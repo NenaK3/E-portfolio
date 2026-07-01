@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nena Kozić | Digitalni Portfolio</title>
+    <link rel="stylesheet" href="stilovi/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="index-body">
+    <div class="index-controls">
+        <button onclick="promeniJezik()" class="control-btn" id="lang-btn">EN</button>
+        <button onclick="promeniTemu()" class="control-btn" id="theme-btn"><i class="fa-solid fa-sun"></i></button>
+    </div>
+    <div class="welcome-container">
+        <h1 id="idx-ime">Nena Kozić</h1>
+        <p class="subtitle" id="idx-podnaslov">Dobrodošli na moj digitalni portfolio. Izaberite profil koji želite da istražite:</p>
+        <div class="split-grid">
+            <div class="selection-card it-card" onclick="izaberiMod('IT')">
+                <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                <h2 id="idx-it-naslov">IT Inženjering</h2>
+                <h3 id="idx-it-sub">Master inženjer informacionih tehnologija</h3>
+                <p id="idx-it-opis">Razvoj frontend aplikacija, napredno upravljanje bazama podataka i softverska arhitektura.</p>
+                <button id="idx-it-btn">Uđi u IT Portfolio <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <div class="selection-card edu-card" onclick="izaberiMod('Edukacija')">
+                <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h2 id="idx-edu-naslov">Edukacija / Prosveta</h2>
+                <h3 id="idx-edu-sub">Master profesor stručnih predmeta (IKT)</h3>
+                <p id="idx-edu-opis">Metodika nastave računarstva, pedagoški rad sa decom, konstruktivizam i evaluacija znanja.</p>
+                <button id="idx-edu-btn">Uđi u Prosvetni Portfolio <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let trenutniJezik = localStorage.getItem('portfolioJezik') || 'SRB';
+        let trenutniRezim = localStorage.getItem('portfolioRezim') || 'dark';
+        function primeniRezim() {
+            if (trenutniRezim === 'light') { document.body.classList.add('light-mode'); document.getElementById('theme-btn').innerHTML = '<i class="fa-solid fa-moon"></i>'; }
+            else { document.body.classList.remove('light-mode'); document.getElementById('theme-btn').innerHTML = '<i class="fa-solid fa-sun"></i>'; }
+        }
+        function promeniTemu() { trenutniRezim = trenutniRezim === 'dark' ? 'light' : 'dark'; localStorage.setItem('portfolioRezim', trenutniRezim); primeniRezim(); }
+        const prevodiIndex = {
+            'SRB': { sub: 'Dobrodošli na moj digitalni portfolio. Izaberite profil koji želite da istražite:', itNaslov: 'IT Inženjering', itSub: 'Master inženjer informacionih tehnologija', itOpis: 'Razvoj frontend aplikacija, napredno upravljanje bazama podataka i softverska arhitektura.', itBtn: 'Uđi u IT Portfolio', eduNaslov: 'Edukacija / Prosveta', eduSub: 'Master profesor stručnih predmeta (IKT)', eduOpis: 'Metodika nastave računarstva, pedagoški rad sa decom, konstruktivizam i evaluacija znanja.', eduBtn: 'Uđi u Prosvetni Portfolio' },
+            'ENG': { sub: 'Welcome to my digital portfolio. Choose the profile you want to explore:', itNaslov: 'IT Engineering', itSub: 'Master of Information Technology', itOpis: 'Frontend application development, advanced database management, and software architecture.', itBtn: 'Enter IT Portfolio', eduNaslov: 'Education / Teaching', eduSub: 'Master Professor of Vocational Subjects (ICT)', eduOpis: 'Computer science teaching methodology, pedagogical work with children, constructivism, and evaluation.', eduBtn: 'Enter Educational Portfolio' }
+        };
+        function primeniJezik() {
+            const p = prevodiIndex[trenutniJezik];
+            document.getElementById('idx-podnaslov').innerText = p.sub; document.getElementById('idx-it-naslov').innerText = p.itNaslov; document.getElementById('idx-it-sub').innerText = p.itSub; document.getElementById('idx-it-opis').innerText = p.itOpis; document.getElementById('idx-it-btn').innerHTML = p.itBtn + ' <i class="fa-solid fa-arrow-right"></i>'; document.getElementById('idx-edu-naslov').innerText = p.eduNaslov; document.getElementById('idx-edu-sub').innerText = p.eduSub; document.getElementById('idx-edu-opis').innerText = p.eduOpis; document.getElementById('idx-edu-btn').innerHTML = p.eduBtn + ' <i class="fa-solid fa-arrow-right"></i>'; document.getElementById('lang-btn').innerText = trenutniJezik === 'SRB' ? 'EN' : 'SRB';
+        }
+        function promeniJezik() { trenutniJezik = trenutniJezik === 'SRB' ? 'ENG' : 'SRB'; localStorage.setItem('portfolioJezik', trenutniJezik); primeniJezik(); }
+        function izaberiMod(mod) { sessionStorage.setItem('portfolioMod', mod); window.location.href = 'portfolio.html'; }
+        primeniRezim(); primeniJezik();
+    </script>
+</body>
+</html>

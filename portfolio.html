@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nena Kozić | Profil</title>
+    <link rel="stylesheet" href="stilovi/portfolio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+       
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo" onclick="window.location.href='index.html'">NK</div>
+        <div class="nav-links">
+            <a href="portfolio.html" class="active" id="nav-profil">Profil</a>
+            <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
+            <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
+            <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
+        </div>
+        <div class="nav-controls">
+            <button onclick="toggleJezik()" class="control-btn" id="nav-lang-btn">EN</button>
+            <button onclick="toggleTema()" class="control-btn" id="nav-theme-btn"><i class="fa-solid fa-sun"></i></button>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-container">
+            <div>
+                <img src="slike/ja.jpg" alt="Nena Kozić" style="width: 200px; height: 200px; border-radius: 8px; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+            </div>
+            <div class="hero-text">
+                <h1>Nena Kozić</h1>
+                <h2 id="hero-title">...</h2>
+            </div>
+        </div>
+    </header>
+
+    <main class="tabs-container">
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="otvoriTab(event, 'o-meni')" id="tab-o-meni-btn"><i class="fa-solid fa-address-card"></i> O meni</button>
+            <button class="tab-btn" onclick="otvoriTab(event, 'vestine')" id="tab-vestine-btn"><i class="fa-solid fa-list-check"></i> Veštine</button>
+            <button class="tab-btn" onclick="otvoriTab(event, 'ambicije')" id="tab-ambicije-btn"><i class="fa-solid fa-bullseye"></i> Ambicije</button>
+            <button class="tab-btn" onclick="otvoriTab(event, 'kontakt')" id="tab-kontakt-btn"><i class="fa-solid fa-envelope"></i> Kontakt</button>
+        </div>
+
+        <div class="tab-content-wrapper">
+            <div id="o-meni" class="tab-content active">
+                <div class="card">
+                    <h3 id="card-naslov-o-meni">Profesionalni profil</h3>
+                    <p id="tekst-o-meni">...</p>
+                </div>
+            </div>
+
+            <div id="vestine" class="tab-content">
+                <div class="skills-grid" id="vestine-kontejner">
+                </div>
+            </div>
+
+            <div id="ambicije" class="tab-content">
+                <div class="card">
+                    <h3 id="card-naslov-ambicije">Budući ciljevi i usmerenja</h3>
+                    <p id="tekst-ambicije">...</p>
+                </div>
+            </div>
+
+            <div id="kontakt" class="tab-content">
+                <div class="card">
+                    <h3 id="card-naslov-kontakt">Kontakt informacije</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fa-solid fa-envelope"></i> 
+                            <span id="lbl-email">E-mail adresa:</span> 
+                            <a href="mailto:nena.kozic3@gmail.com" class="contact-link">nena.kozic3@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i> 
+                            <span id="lbl-lokacija">Lokacija:</span> Čačak, Srbija
+                        </li>
+                        <li>
+                            <i class="fa-brands fa-linkedin"></i> 
+                            <span id="lbl-linkedin">LinkedIn profil:</span> 
+                            <a href="https://www.linkedin.com/in/nena-kozi%C4%87-9665552b7/" target="_blank" class="contact-link">Nena Kozić</a>
+                        </li>
+                        <li>
+                            <i class="fa-brands fa-github"></i> 
+                            <span id="lbl-github">GitHub profil:</span> 
+                            <a href="https://github.com/NenaK3" target="_blank" class="contact-link">NenaK3</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const mod = sessionStorage.getItem('portfolioMod') || 'IT';
+        document.body.classList.add(mod.toLowerCase() + '-theme');
+
+        let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
+        let rezim = localStorage.getItem('portfolioRezim') || 'dark';
+
+        const recnik = {
+            'SRB': {
+                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navPromeni: 'Promeni portfolio',
+                tabOMeni: 'O meni', tabVestine: 'Veštine', tabAmbicije: 'Ambicije', tabKontakt: 'Kontakt',
+                naslovOMeni: 'Profesionalni profil', naslovAmbicije: 'Budući ciljevi i usmerenja', naslovKontakt: 'Kontakt informacije',
+                lblEmail: 'E-mail adresa:', lblLokacija: 'Lokacija:', lblLinkedin: 'LinkedIn profil:', lblGithub: 'GitHub profil:',
+                IT: {
+                    titula: 'Master inženjer informacionih tehnologija',
+                    oMeni: 'Fokusirana na razvoj modernih frontend aplikacija i napredno upravljanje bazama podataka. Kroz praktičan rad u kompanijama i akademske projekte na FTN-u stekla sam iskustvo u tehnologijama kao što su Angular, React, Node.js i Flutter, kao i u radu sa relacionim bazama i softverskom arhitekturom.',
+                    ambicije: 'Dugoročni fokus je usmeren na karijeru u IT industriji, sa primarnim interesovanjem za Frontend razvoj i kreiranje intuitivnih korisničkih interfejsa, kao i za projektovanje baza podataka i Power BI analitiku. Cilj mi je dalji rad sa modernim JavaScript/TypeScript okvirima, napredno upravljanje podacima i kreiranje poslovnih izveštaja koji pomažu u donošenju ključnih odluka.',
+                    v: [
+                        { kat: 'Frontend & Mobile', stavke: ['Angular / AngularJS', 'React.js', 'Flutter', 'JavaScript (ES6)', 'HTML5 / CSS3', 'Bootstrap'] },
+                        { kat: 'Backend & Baze podataka', stavke: ['Node.js', 'SQL / MySQL', 'Oracle APEX / Oracle DB', 'C / C++ / C#', 'Java / Kotlin', 'PHP'] },
+                        { kat: 'Alati & Metodologije', stavke: ['Git / GitHub', 'Web Mining & Data Mining', 'Human-Computer Interaction (HCI)', 'JSON / Web Design', 'WordPress / CRM'] }
+                    ]
+                },
+                Edukacija: {
+                    titula: 'Master profesor stručnih predmeta oblasti informacionih tehnologija',
+                    oMeni: 'Strastvena prema pedagogiji, metodici nastave računarstva i digitalnoj pismenosti. Uspešno prenosim apstraktne IT koncepte (poput programiranja u Python-u) mlađim generacijama kroz interaktivne metode, konstruktivistički pristup i savremene nastavne alate.',
+                    ambicije: 'Rad u prosvetnom sistemu kao profesor informatike i računarstva, kreiranje naprednih radionica i sekcija za talentovane učenike, implementacija EdTech inovacija i istraživanje primene obrazovnih softvera u nastavi.',
+                    v: [
+                        { kat: 'Metodika i pedagogija', stavke: ['Konstruktivizam u nastavi', 'Programirano učenje', 'Digitalna pismenost', 'Individualizacija nastave'] },
+                        { kat: 'Nastavni alati', stavke: ['Izrada e-testova', 'Google Forms', 'Interaktivni materijali (Python Turtle, Pygame)'] },
+                        { kat: 'Lične osobine', stavke: ['Empatija', 'Strpljenje u radu sa učenicima', 'Organizovanost', 'Jasna komunikacija'] }
+                    ]
+                }
+            },
+            'ENG': {
+                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navPromeni: 'Switch Portfolio',
+                tabOMeni: 'About Me', tabVestine: 'Skills', tabAmbicije: 'Ambitions', tabKontakt: 'Contact',
+                naslovOMeni: 'Professional Profile', naslovAmbicije: 'Future Goals & Orientations', naslovKontakt: 'Contact Information',
+                lblEmail: 'Email address:', lblLokacija: 'Location:', lblLinkedin: 'LinkedIn profile:', lblGithub: 'GitHub profile:',
+                IT: {
+                    titula: 'Master of Information Technology',
+                    oMeni: 'Focused on developing modern frontend applications and advanced database management. Through professional internships and academic projects at the Faculty of Technical Sciences, I have gained hands-on experience with Angular, React, Node.js, and Flutter, alongside relational databases and software architecture.',
+                    ambicije: 'Long-term focus is oriented toward a career in the IT industry, with a primary interest in Frontend development and creating intuitive user interfaces, as well as database design and Power BI analytics. My goal is to further work with modern JavaScript/TypeScript frameworks, advanced data management, and generating business reports that drive key decision-making.',
+                    v: [
+                        { kat: 'Frontend & Mobile', stavke: ['Angular / AngularJS', 'React.js', 'Flutter', 'JavaScript (ES6)', 'HTML5 / CSS3', 'Bootstrap'] },
+                        { kat: 'Backend & Databases', stavke: ['Node.js', 'SQL / MySQL', 'Oracle APEX / Oracle DB', 'C / C++ / C#', 'Java / Kotlin', 'PHP'] },
+                        { kat: 'Tools & Methodologies', stavke: ['Git / GitHub', 'Web Mining & Data Mining', 'Human-Computer Interaction (HCI)', 'JSON / Web Design', 'WordPress / CRM'] }
+                    ]
+                },
+                Edukacija: {
+                    titula: 'Master Professor of Information Technology Vocational Subjects',
+                    oMeni: 'Passionate about pedagogy, computer science teaching methodology, and digital literacy. Successfully delivering abstract IT concepts (such as Python programming) to younger generations through interactive methods, constructivism, and contemporary educational tools.',
+                    ambicije: 'Working in the education system as a professor of computer science and information technology, creating advanced workshops and sections for talented students, implementing EdTech innovations and researching the application of educational software in teaching.',
+                    v: [
+                        { kat: 'Methodology & Pedagogy', stavke: ['Constructivism in Education', 'Programmed Learning', 'Digital Literacy', 'Individualized Teaching'] },
+                        { kat: 'Educational Tools', stavke: ['E-tests Generation', 'Google Forms', 'Interactive Materials (Python Turtle, Pygame)'] },
+                        { kat: 'Personal Traits', stavke: ['Empathy', 'Patience with Students', 'Organizational Skills', 'Clear Communication'] }
+                    ]
+                }
+            }
+        };
+
+        function osveziSadrzaj() {
+            const r = recnik[jezik];
+            document.getElementById('nav-profil').innerText = r.navProfil;
+            document.getElementById('nav-iskustvo').innerText = r.navIskustvo;
+            document.getElementById('nav-edukacija').innerText = r.navEdukacija;
+            document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
+            
+            // --- LOGIKA ZA DODAVANJE DOKIMOLOGIJE ---
+            const navLinks = document.querySelector('.nav-links');
+            if (mod === 'Edukacija' && !document.getElementById('nav-dokimologija')) {
+                const noviLink = document.createElement('a');
+                noviLink.href = 'dokimologija.html';
+                noviLink.id = 'nav-dokimologija';
+                noviLink.innerText = jezik === 'SRB' ? 'Dokimologija' : 'Docimology';
+                navLinks.insertBefore(noviLink, document.getElementById('nav-promeni'));
+            } else if (mod !== 'Edukacija') {
+                const stariLink = document.getElementById('nav-dokimologija');
+                if (stariLink) stariLink.remove();
+            }
+            // ----------------------------------------
+
+            document.getElementById('tab-o-meni-btn').innerHTML = `<i class="fa-solid fa-address-card"></i> ${r.tabOMeni}`;
+            document.getElementById('tab-vestine-btn').innerHTML = `<i class="fa-solid fa-list-check"></i> ${r.tabVestine}`;
+            document.getElementById('tab-ambicije-btn').innerHTML = `<i class="fa-solid fa-bullseye"></i> ${r.tabAmbicije}`;
+            document.getElementById('tab-kontakt-btn').innerHTML = `<i class="fa-solid fa-envelope"></i> ${r.tabKontakt}`;
+            
+            document.getElementById('card-naslov-o-meni').innerText = r.naslovOMeni;
+            document.getElementById('card-naslov-ambicije').innerText = r.naslovAmbicije;
+            document.getElementById('card-naslov-kontakt').innerText = r.naslovKontakt;
+
+            // Prevodi labels unutar kontakta
+            document.getElementById('lbl-email').innerText = r.lblEmail;
+            document.getElementById('lbl-lokacija').innerText = r.lblLokacija;
+            document.getElementById('lbl-linkedin').innerText = r.lblLinkedin;
+            document.getElementById('lbl-github').innerText = r.lblGithub;
+
+            const s = r[mod];
+            document.getElementById('hero-title').innerText = s.titula;
+            document.getElementById('tekst-o-meni').innerText = s.oMeni;
+            document.getElementById('tekst-ambicije').innerText = s.ambicije;
+
+            const vk = document.getElementById('vestine-kontejner');
+            vk.innerHTML = '';
+            s.v.forEach(g => {
+                let div = document.createElement('div');
+                div.className = 'card skill-category';
+                div.innerHTML = `<h4>${g.kat}</h4><ul>${g.stavke.map(x => `<li><i class="fa-solid fa-check"></i> ${x}</li>`).join('')}</ul>`;
+                vk.appendChild(div);
+            });
+
+            document.getElementById('nav-lang-btn').innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+        }
+
+        function primeniRezim() {
+            if (rezim === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('nav-theme-btn').innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                document.body.classList.remove('light-mode');
+                document.getElementById('nav-theme-btn').innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        }
+
+        function toggleJezik() {
+            jezik = jezik === 'SRB' ? 'ENG' : 'SRB';
+            localStorage.setItem('portfolioJezik', jezik);
+            osveziSadrzaj();
+        }
+
+        function toggleTema() {
+            rezim = rezim === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('portfolioRezim', rezim);
+            primeniRezim();
+        }
+
+        function otvoriTab(evt, tabId) {
+            let i, tc, tl;
+            tc = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tc.length; i++) tc[i].classList.remove("active");
+            tl = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tl.length; i++) tl[i].classList.remove("active");
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        primeniRezim();
+        osveziSadrzaj();
+    </script>
+</body>
+</html>

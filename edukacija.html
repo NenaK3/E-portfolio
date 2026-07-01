@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nena Kozić | Edukacija</title>
+    <link rel="stylesheet" href="stilovi/edukacija.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo" onclick="window.location.href='index.html'">NK</div>
+        <div class="nav-links">
+            <a href="portfolio.html" id="nav-profil">Profil</a>
+            <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
+            <a href="edukacija.html" class="active" id="nav-edukacija">Edukacija</a>
+            <a href="dokimologija.html" id="nav-dokimologija" style="display: none;">Dokimologija</a>
+            <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
+        </div>
+        <div class="nav-controls">
+            <button onclick="toggleJezik()" class="control-btn" id="nav-lang-btn">EN</button>
+            <button onclick="toggleTema()" class="control-btn" id="nav-theme-btn"><i class="fa-solid fa-sun"></i></button>
+        </div>
+    </nav>
+
+    <main class="education-split-container" id="edu-glavni-kontejner">
+        
+        <section class="edu-column" id="kolona-formalno">
+            <h2 class="column-title" id="naslov-formalno"><i class="fa-solid fa-graduation-cap"></i> Formalno obrazovanje</h2>
+            <div class="experience-stack" id="formalno-kontejner"></div>
+        </section>
+
+        <section class="edu-column" id="kolona-neformalno">
+            <h2 class="column-title" id="naslov-neformalno"><i class="fa-solid fa-certificate"></i> Neformalno obrazovanje</h2>
+            <div class="experience-stack" id="neformalno-kontejner"></div>
+        </section>
+
+    </main>
+
+    <script>
+        const mod = sessionStorage.getItem('portfolioMod') || 'IT';
+        document.body.classList.add(mod.toLowerCase() + '-theme');
+
+        let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
+        let rezim = localStorage.getItem('portfolioRezim') || 'dark';
+
+        const recnik = {
+            'SRB': {
+                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navDokimologija: 'Dokimologija', navPromeni: 'Promeni portfolio',
+                naslovFormalno: 'Formalno obrazovanje', naslovNeformalno: 'Neformalno obrazovanje',
+                formalno: {
+                    IT: [
+                        { stepen: 'Master inženjer informacionih tehnologija', ustanova: 'Fakultet tehničkih nauka u Čačku, Univerzitet u Kragujevcu', period: 'Novembar 2024 - Oktobar 2025', opis: 'Tokom master studija specijalizovala sam se za napredne oblasti uključujući Web Mining, tehnike modeliranja i algoritme. Kroz Interakciju čovek-računar (HCI) istraživala sam spoj tehnologije i korisničkog iskustva.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_IT', vestine: ['HCI', 'Rudarenje veba'] },
+                        { stepen: 'Diplomirani inženjer informacionih tehnologija', ustanova: 'Fakultet tehničkih nauka u Čačku, Univerzitet u Kragujevcu', period: 'Oktobar 2020 - Oktobar 2024', opis: 'Razvila sam čvrstu osnovu u razvoju softvera i upravljanju bazama podataka. Iskustvo sa C, C++, C#, Java, Kotlin, SQL i Oracle APEX.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/OAS_IT_23', vestine: ['JavaScript', 'C++', 'Java', 'MySQL', 'Oracle APEX'] }
+                    ],
+                    Edukacija: [
+                        { stepen: 'Master profesor predmetne nastave', ustanova: 'Fakultet tehničkih nauka u Čačku, Univerzitet u Kragujevcu', period: 'Novembar 2025 - Trenutno', opis: 'Master program fokusiran na pedagošku metodologiju, psihologiju obrazovanja i integraciju modernih tehnologija u učionici.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_PN', vestine: ['Pedagogija', 'Metodika nastave', 'Dokimologija'] }
+                    ]
+                },
+                neformalno: [
+                    { kurs: 'Baze podataka', izdavac: 'freeCodeCamp', period: 'Maj 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Relational-Databases.git', opis: 'Intenzivan kurs za rad sa relacionim bazama podataka, Linux okruženje, Bash skripte i Git.', vestine: ['PostgreSQL', 'SQL', 'Git & GitHub'] },
+                    { kurs: 'Responzivni veb dizajn', izdavac: 'freeCodeCamp', period: 'Mart 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Responsive-Web-Design.git', opis: 'Savladavanje modernih tehnika responzivnog dizajna, arhitekture stranica i naprednog CSS stilizovanja.', vestine: ['HTML', 'HTML5', 'CSS'] },
+                    { kurs: 'Excel VBA programiranje', izdavac: 'Kampster AI', period: 'April 2025', opis: 'Osnove automatizacije unutar Excel-a, pisanje makroa i kontrola toka.', vestine: ['VBA', 'Automatizacija'] },
+                    { kurs: 'Power BI', izdavac: 'Kampster AI', period: 'Decembar 2024', opis: 'Obuka za analizu, modelovanje i vizuelizaciju podataka kroz Power BI Desktop.', vestine: ['Power BI', 'Analiza podataka'] }
+                ]
+            },
+            'ENG': {
+                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navDokimologija: 'Assessment', navPromeni: 'Switch Portfolio',
+                naslovFormalno: 'Formal education', naslovNeformalno: 'Non-formal education',
+                formalno: {
+                    IT: [
+                        { stepen: 'Master of Information Technology (M.Sc.)', ustanova: 'Faculty of Technical Sciences in Cacak', period: 'November 2024 - October 2025', opis: 'Master degree focusing on Web Mining, Algorithms and HCI.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_IT', vestine: ['HCI', 'Web Mining'] },
+                        { stepen: 'Bachelor of Information Technology (B.Sc.)', ustanova: 'Faculty of Technical Sciences in Cacak', period: 'October 2020 - October 2024', opis: 'Foundation in software engineering and database schemas using C, C++, Java and SQL.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/OAS_IT_23', vestine: ['JavaScript', 'C++', 'Java', 'MySQL'] }
+                    ],
+                    Edukacija: [
+                        { stepen: 'Master Professor of Subject Teaching', ustanova: 'Faculty of Technical Sciences in Cacak', period: 'November 2025 - Present', opis: 'Focus on pedagogical methodology, educational psychology and classroom technology integration.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_PN', vestine: ['Pedagogy', 'Teaching Methodology', 'Assessment'] }
+                    ]
+                },
+                neformalno: [
+                    { kurs: 'Databases', izdavac: 'freeCodeCamp', period: 'May 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Relational-Databases.git', opis: 'Relational database systems, Linux administration and Git workflows.', vestine: ['PostgreSQL', 'SQL', 'Git & GitHub'] },
+                    { kurs: 'Responsive Web Design', izdavac: 'freeCodeCamp', period: 'March 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Responsive-Web-Design.git', opis: 'Fluid layouts, responsive styling and cross-browser formatting.', vestine: ['HTML', 'HTML5', 'CSS'] },
+                    { kurs: 'Excel VBA Programming', izdavac: 'Kampster AI', period: 'April 2025', opis: 'Introduction to spreadsheet automation and macro construction.', vestine: ['VBA', 'Automation'] },
+                    { kurs: 'Power BI', izdavac: 'Kampster AI', period: 'December 2024', opis: 'Predictive data modeling and rendering analytical dashboards.', vestine: ['Power BI', 'Data Analysis'] }
+                ]
+            }
+        };
+
+        function osvezi() {
+            const r = recnik[jezik];
+            document.getElementById('nav-profil').innerText = r.navProfil;
+            document.getElementById('nav-iskustvo').innerText = r.navIskustvo;
+            document.getElementById('nav-edukacija').innerText = r.navEdukacija;
+            document.getElementById('nav-dokimologija').innerText = r.navDokimologija;
+            document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
+            document.getElementById('naslov-formalno').innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${r.naslovFormalno}`;
+            document.getElementById('naslov-neformalno').innerHTML = `<i class="fa-solid fa-certificate"></i> ${r.naslovNeformalno}`;
+
+            // Logika za prikaz Dokimologije
+            const dokLink = document.getElementById('nav-dokimologija');
+            if (mod === 'Edukacija') {
+                dokLink.style.display = 'inline-block';
+            } else {
+                dokLink.style.display = 'none';
+            }
+
+            const glavniKontejner = document.getElementById('edu-glavni-kontejner');
+            const kolonaNeformalno = document.getElementById('kolona-neformalno');
+
+            if (mod === 'Edukacija') {
+                kolonaNeformalno.style.display = 'none';
+                glavniKontejner.style.gridTemplateColumns = '1fr';
+                glavniKontejner.style.maxWidth = '900px'; 
+            } else {
+                kolonaNeformalno.style.display = 'block';
+                glavniKontejner.style.gridTemplateColumns = '1fr 1fr';
+                glavniKontejner.style.maxWidth = '1400px';
+            }
+
+            const formalnoKontejner = document.getElementById('formalno-kontejner');
+            formalnoKontejner.innerHTML = '';
+            r.formalno[mod].forEach(f => {
+                formalnoKontejner.innerHTML += `
+                    <div class="card experience-card edu-split-card">
+                        <div class="exp-header">
+                            <div><h3>${f.stepen}</h3><h4>${f.ustanova}</h4></div>
+                            <span class="block-date">${f.period}</span>
+                        </div>
+                        <p class="exp-opis">${f.opis}</p>
+                        ${f.link_programa ? `<a href="${f.link_programa}" target="_blank" class="project-link" style="display: inline-block; margin-bottom: 10px;"><i class="fa-solid fa-link"></i> Studijski program</a>` : ''}
+                        <div class="tag-container">${f.vestine.map(v => `<span class="skill-tag">${v}</span>`).join('')}</div>
+                    </div>`;
+            });
+
+            if (mod === 'IT') {
+                const neformalnoKontejner = document.getElementById('neformalno-kontejner');
+                neformalnoKontejner.innerHTML = '';
+                r.neformalno.forEach(n => {
+                    neformalnoKontejner.innerHTML += `
+                        <div class="card experience-card edu-split-card spec-course-card">
+                            <div class="exp-header">
+                                <div><h3>${n.kurs}</h3><h4>${n.izdavac}</h4></div>
+                                <span class="block-date course-date">${n.period}</span>
+                            </div>
+                            <p class="exp-opis">${n.opis}</p>
+                            ${n.githubLink ? `<a href="${n.githubLink}" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> GitHub Code</a>` : ''}
+                            <div class="tag-container" style="margin-top:10px;">${n.vestine.map(v => `<span class="skill-tag course-tag">${v}</span>`).join('')}</div>
+                        </div>`;
+                });
+            }
+            document.getElementById('nav-lang-btn').innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+        }
+
+        function primeniRezim() {
+            if (rezim === 'light') document.body.classList.add('light-mode');
+            else document.body.classList.remove('light-mode');
+            document.getElementById('nav-theme-btn').innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        }
+
+        function toggleJezik() { jezik = jezik === 'SRB' ? 'ENG' : 'SRB'; localStorage.setItem('portfolioJezik', jezik); osvezi(); }
+        function toggleTema() { rezim = rezim === 'dark' ? 'light' : 'dark'; localStorage.setItem('portfolioRezim', rezim); primeniRezim(); }
+
+        primeniRezim();
+        osvezi();
+    </script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+/* 1. Reset i Osnovna Podešavanja */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Globalne Varijable za Tamnu Temu (Podrazumevana) */
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --text-muted: #94a3b8;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --btn-bg: #334155;
+    --btn-hover: #475569;
+    --shadow: rgba(0, 0, 0, 0.3);
+    
+    /* Zajedničke Pastelne Palete */
+    --pastel-blue-bg: #e0f2fe;
+    --pastel-blue-accent: #38bdf8;
+    --pastel-blue-text: #0369a1;
+    --pastel-blue-dark: #0284c7;
+
+    --pastel-pink-bg: #fce7f3;
+    --pastel-pink-accent: #f472b6;
+    --pastel-pink-text: #b02a59;
+    --pastel-pink-dark: #db2777;
+
+    /* Dinamičke varijable koje prate aktivni portfolio */
+    --theme-accent: var(--pastel-blue-accent);
+    --theme-accent-hover: var(--pastel-blue-dark);
+    --theme-tag-bg: rgba(56, 189, 248, 0.15);
+}
+
+/* 2. Upravljanje Temama (IT i Edukacija) */
+
+/* Kada je izabran IT Portfolio (it-theme) -> PASTELNO PLAVO */
+body.it-theme {
+    --theme-accent: var(--pastel-blue-accent);
+    --theme-accent-hover: var(--pastel-blue-dark);
+    --theme-tag-bg: rgba(56, 189, 248, 0.15);
+}
+
+/* Kada je izabran Prosvetni Portfolio (edukacija-theme) -> PASTELNO ROZE */
+body.edukacija-theme {
+    --theme-accent: var(--pastel-pink-accent);
+    --theme-accent-hover: var(--pastel-pink-dark);
+    --theme-tag-bg: rgba(244, 114, 182, 0.15);
+}
+
+/* Globalni Light Mode (Svetla Tema) */
+body.light-mode {
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --btn-bg: #e2e8f0;
+    --btn-hover: #cbd5e1;
+    --shadow: rgba(0, 0, 0, 0.05);
+}
+
+/* Prilagođavanje za Light Mode + IT */
+body.light-mode.it-theme {
+    --theme-accent: var(--pastel-blue-dark);
+    --theme-accent-hover: var(--pastel-blue-text);
+    --theme-tag-bg: var(--pastel-blue-bg);
+}
+
+/* Prilagođavanje za Light Mode + Edukacija */
+body.light-mode.edukacija-theme {
+    --theme-accent: var(--pastel-pink-dark);
+    --theme-accent-hover: var(--pastel-pink-text);
+    --theme-tag-bg: var(--pastel-pink-bg);
+}
+
+/* 3. Osnovni Stilovi za Body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* 4. Navigacioni Meni (Navbar) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    height: 70px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: 0 4px 6px -1px var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--theme-accent);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.1);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--theme-accent);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--theme-accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+}
+
+/* Dugme "Promeni portfolio" */
+.switch-btn {
+    background-color: var(--btn-bg);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem !important;
+}
+
+.switch-btn::after {
+    display: none !important;
+}
+
+.switch-btn:hover {
+    background-color: var(--theme-accent) !important;
+    color: #ffffff !important;
+    border-color: transparent;
+}
+
+/* Kontrole */
+.nav-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+}
+
+/* 5. Glavni Kontejner Stranice */
+.page-main-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+#naslov-glavni {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+#opis-strane {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+}
+
+/* 6. Mreža sa Statistikom (Stats Grid) */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 45px;
+}
+
+.stat-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px var(--shadow);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--theme-accent);
+}
+
+.stat-card h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.stat-card small {
+    font-size: 0.8rem;
+    color: var(--theme-accent);
+    font-weight: 600;
+    display: block;
+    margin-top: 4px;
+}
+
+/* 7. Sekcija "Tok Aktivnosti" (Timeline) */
+#tok-aktivnosti {
+    margin-top: 20px;
+}
+
+#naslov-tok {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 15px;
+}
+
+#naslov-tok::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 100%;
+    background-color: var(--theme-accent);
+    border-radius: 2px;
+}
+
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Dinamičke stavke imaju sopstveni margin-bottom */
+}
+
+/* Elementi vremenske linije generisani kroz JS */
+.timeline-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 10px 15px -3px var(--shadow);
+}
+
+.timeline-item h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 4px;
+}
+
+.meta-info {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.timeline-item p {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Bedževi za status unutar stavki */
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+/* 8. Responzivni Dizajn */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+
+    .switch-btn {
+        padding: 6px 12px;
+    }
+
+    .page-main-container {
+        margin: 30px auto;
+    }
+
+    #naslov-glavni {
+        font-size: 1.7rem;
+    }
+
+    #opis-strane {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 35px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-card p {
+        font-size: 1.4rem;
+    }
+}
