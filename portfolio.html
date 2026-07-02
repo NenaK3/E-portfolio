@@ -13,11 +13,12 @@
 <body>
 
     <nav class="navbar">
-        <div class="nav-logo" onclick="window.location.href='index.html'">NK</div>
+        <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
         <div class="nav-links">
             <a href="portfolio.html" class="active" id="nav-profil">Profil</a>
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
             <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
+            <a href="projekti.html" id="nav-projekti">Projekti</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
@@ -164,7 +165,6 @@
             document.getElementById('nav-edukacija').innerText = r.navEdukacija;
             document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
             
-            // --- LOGIKA ZA DODAVANJE DOKIMOLOGIJE ---
             const navLinks = document.querySelector('.nav-links');
             if (mod === 'Edukacija' && !document.getElementById('nav-dokimologija')) {
                 const noviLink = document.createElement('a');
@@ -176,7 +176,6 @@
                 const stariLink = document.getElementById('nav-dokimologija');
                 if (stariLink) stariLink.remove();
             }
-            // ----------------------------------------
 
             document.getElementById('tab-o-meni-btn').innerHTML = `<i class="fa-solid fa-address-card"></i> ${r.tabOMeni}`;
             document.getElementById('tab-vestine-btn').innerHTML = `<i class="fa-solid fa-list-check"></i> ${r.tabVestine}`;
@@ -187,7 +186,6 @@
             document.getElementById('card-naslov-ambicije').innerText = r.naslovAmbicije;
             document.getElementById('card-naslov-kontakt').innerText = r.naslovKontakt;
 
-            // Prevodi labels unutar kontakta
             document.getElementById('lbl-email').innerText = r.lblEmail;
             document.getElementById('lbl-lokacija').innerText = r.lblLokacija;
             document.getElementById('lbl-linkedin').innerText = r.lblLinkedin;

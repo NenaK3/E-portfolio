@@ -8,22 +8,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Osiguravamo roze akcenat za logotip i aktivni link */
         .nav-logo, .nav-links a.active {
             color: #f472b6 !important;
         }
-
-        /* Hover efekat za ostale obične linkove (Profil, Iskustvo, Edukacija) */
         .nav-links a:not(.switch-btn):hover {
             color: #f472b6 !important;
         }
 
-        /* Donja linija koja se izvlači na hover običnih linkova */
         .nav-links a:not(.switch-btn)::after {
             background-color: #f472b6 !important;
         }
 
-        /* Hover efekat za dugme "Promeni portfolio" - Roze pozadina i bela slova */
         .nav-links a.switch-btn:hover {
             background-color: #f472b6 !important;
             color: #ffffff !important;
@@ -35,11 +30,12 @@
 <body>
 
     <nav class="navbar">
-        <div class="nav-logo" onclick="window.location.href='index.html'">NK</div>
+        <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
         <div class="nav-links">
             <a href="portfolio.html" id="nav-profil">Profil</a>
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
             <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
+            <a href="projekti.html" class="active" id="nav-projekti">Projekti</a>
             <a href="dokimologija.html" id="nav-dokimologija" class="active">Dokimologija</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
@@ -114,7 +110,6 @@
             const kontejner = document.getElementById('timeline-kontejner');
             kontejner.innerHTML = '';
             podaci[jezik].forEach(item => {
-                // Ovde je dodat inline CSS preko style atributa koji proširuje kartice na 100% širine roditelja (maksimalno do 1200px)
                 kontejner.innerHTML += `
                     <div class="timeline-item" style="border-left-color: ${item.boja}; border-left-width: 4px; border-left-style: solid; width: 100%; max-width: 1200px; box-sizing: border-box; margin-bottom: 20px; padding: 15px 20px;">
                         <h4>${item.naslov}</h4>

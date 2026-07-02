@@ -10,11 +10,12 @@
 <body>
 
     <nav class="navbar">
-        <div class="nav-logo" onclick="window.location.href='index.html'">NK</div>
+        <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
         <div class="nav-links">
             <a href="portfolio.html" id="nav-profil">Profil</a>
             <a href="iskustvo.html" class="active" id="nav-iskustvo">Iskustvo</a>
             <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
+            <a href="projekti.html" id="nav-projekti">Projekti</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
@@ -117,7 +118,6 @@
             document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
             document.getElementById('str-naslov').innerHTML = `<i class="fa-solid fa-briefcase"></i> ${r.naslovSve}`;
 
-            // --- DODATAK ZA DOKIMOLOGIJU ---
             const navLinks = document.querySelector('.nav-links');
             
             if (mod === 'Edukacija' && !document.getElementById('nav-dokimologija')) {
@@ -130,7 +130,6 @@
                 const stariLink = document.getElementById('nav-dokimologija');
                 if (stariLink) stariLink.remove();
             }
-            // --------------------------------
 
             const kontejner = document.getElementById('iskustvo-kontejner');
             kontejner.innerHTML = '';

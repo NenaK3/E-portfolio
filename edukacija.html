@@ -10,11 +10,12 @@
 <body>
 
     <nav class="navbar">
-        <div class="nav-logo" onclick="window.location.href='index.html'">NK</div>
+        <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
         <div class="nav-links">
             <a href="portfolio.html" id="nav-profil">Profil</a>
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
             <a href="edukacija.html" class="active" id="nav-edukacija">Edukacija</a>
+            <a href="projekti.html" id="nav-projekti">Projekti</a>
             <a href="dokimologija.html" id="nav-dokimologija" style="display: none;">Dokimologija</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
@@ -63,6 +64,7 @@
                     { kurs: 'Responzivni veb dizajn', izdavac: 'freeCodeCamp', period: 'Mart 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Responsive-Web-Design.git', opis: 'Savladavanje modernih tehnika responzivnog dizajna, arhitekture stranica i naprednog CSS stilizovanja.', vestine: ['HTML', 'HTML5', 'CSS'] },
                     { kurs: 'Excel VBA programiranje', izdavac: 'Kampster AI', period: 'April 2025', opis: 'Osnove automatizacije unutar Excel-a, pisanje makroa i kontrola toka.', vestine: ['VBA', 'Automatizacija'] },
                     { kurs: 'Power BI', izdavac: 'Kampster AI', period: 'Decembar 2024', opis: 'Obuka za analizu, modelovanje i vizuelizaciju podataka kroz Power BI Desktop.', vestine: ['Power BI', 'Analiza podataka'] }
+                    //{ kurs: }
                 ]
             },
             'ENG': {
@@ -82,6 +84,7 @@
                     { kurs: 'Responsive Web Design', izdavac: 'freeCodeCamp', period: 'March 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Responsive-Web-Design.git', opis: 'Fluid layouts, responsive styling and cross-browser formatting.', vestine: ['HTML', 'HTML5', 'CSS'] },
                     { kurs: 'Excel VBA Programming', izdavac: 'Kampster AI', period: 'April 2025', opis: 'Introduction to spreadsheet automation and macro construction.', vestine: ['VBA', 'Automation'] },
                     { kurs: 'Power BI', izdavac: 'Kampster AI', period: 'December 2024', opis: 'Predictive data modeling and rendering analytical dashboards.', vestine: ['Power BI', 'Data Analysis'] }
+                    //{ kurs:}
                 ]
             }
         };
@@ -96,7 +99,6 @@
             document.getElementById('naslov-formalno').innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${r.naslovFormalno}`;
             document.getElementById('naslov-neformalno').innerHTML = `<i class="fa-solid fa-certificate"></i> ${r.naslovNeformalno}`;
 
-            // Logika za prikaz Dokimologije
             const dokLink = document.getElementById('nav-dokimologija');
             if (mod === 'Edukacija') {
                 dokLink.style.display = 'inline-block';

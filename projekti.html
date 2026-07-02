@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nena Kozić | Projekti</title>
+    <link rel="stylesheet" href="stilovi/edukacija.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
+        <div class="nav-links">
+            <a href="portfolio.html" id="nav-profil">Profil</a>
+            <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
+            <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
+            <a href="projekti.html" class="active" id="nav-projekti">Projekti</a>
+            <a href="dokimologija.html" id="nav-dokimologija" style="display: none;">Dokimologija</a>
+            <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
+        </div>
+        <div class="nav-controls">
+            <button onclick="toggleJezik()" class="control-btn" id="nav-lang-btn">EN</button>
+            <button onclick="toggleTema()" class="control-btn" id="nav-theme-btn"><i class="fa-solid fa-sun"></i></button>
+        </div>
+    </nav>
+
+    <main class="education-split-container" id="edu-glavni-kontejner" style="grid-template-columns: 1fr; max-width: 900px;">
+        
+        <section class="edu-column" id="kolona-projekti">
+            <h2 class="column-title" id="naslov-projekata"><i class="fa-solid fa-folder-open"></i> Moji Projekti</h2>
+            <div class="experience-stack" id="projekti-kontejner"></div>
+        </section>
+
+    </main>
+
+    <script>
+        const mod = sessionStorage.getItem('portfolioMod') || 'IT';
+        document.body.classList.add(mod.toLowerCase() + '-theme');
+
+        let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
+        let rezim = localStorage.getItem('portfolioRezim') || 'dark';
+
+        const recnik = {
+            'SRB': {
+                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navDokimologija: 'Dokimologija', navPromeni: 'Promeni portfolio',
+                naslovProjekata: 'Moji Projekti',
+                tekstLinka: 'Pogledaj kod',
+                projekti: {
+                    IT: [
+                        { 
+                            naziv: 'Digitalni Portfolio', 
+                            podnaslov: 'Lični Projekat', 
+                            period: '2026', 
+                            opis: 'Responzivna veb prezentacija kreirana u svrhu prikazivanja stečenih veština, obrazovanja i praktičnih radova. Implementirana je dvojezičnost i dinamička promena tema u zavisnosti od smera.', 
+                            vestine: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+                            link: 'https://github.com/NenaK3/E-portfolio.git'
+                        },
+                        { 
+                            naziv: 'Hospital Management System', 
+                            podnaslov: 'Timski projekat na fakultetu', 
+                            period: '2024', 
+                            opis: 'Kompleksan sistem za upravljanje bolničkim podacima urađen u saradnji sa kolegama Jelenom Ilić i Filipom Šaranovićem. Omogućava efikasno upravljanje pacijentima, pregledima i osobljem. U sklopu projekta odrađeni su i testovi za jedan sloj aplikacije.', 
+                            vestine: ['C#', '.NET Core', 'Angular', 'Node.js', 'SQL', 'Visual Studio', 'Unit Testing'],
+                            link: 'https://github.com/NenaK3/hospital-management-system.git'
+                        }
+                    ],
+                    Edukacija: [
+                        { 
+                            naziv: 'Python & Turtle', 
+                            podnaslov: 'Rad sa učenicima u školi', 
+                            period: '2025 - 2026', 
+                            opis: 'Zadaci koje su učenici imali da urade za vežbanje kako bi savladali taj deo gradiva kroz vizuelno programiranje, geometrijske oblike i osnovne algoritme.', 
+                            vestine: ['Python', 'Turtle biblioteka', 'Metodika nastave', 'Algoritmi'],
+                            link: 'https://github.com/NenaK3/Python-turtle.git'
+                        }
+                    ]
+                }
+            },
+            'ENG': {
+                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navDokimologija: 'Assessment', navPromeni: 'Switch Portfolio',
+                naslovProjekata: 'My Projects',
+                tekstLinka: 'View Code',
+                projekti: {
+                    IT: [
+                        { 
+                            naziv: 'Digital Portfolio', 
+                            podnaslov: 'Personal Project', 
+                            period: '2026', 
+                            opis: 'A responsive web presentation created to showcase acquired skills, education, and practical work. It features bilingual support and dynamic theme switching based on the selected mode.', 
+                            vestine: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+                            link: 'https://github.com/NenaK3/E-portfolio.git'
+                        },
+                        { 
+                            naziv: 'Hospital Management System', 
+                            podnaslov: 'University Team Project', 
+                            period: '2024', 
+                            opis: 'A complex hospital data management system developed in collaboration with colleagues Jelena Ilić and Filip Šaranović. It features patient, appointment, and staff management, including unit tests for a specific application layer.', 
+                            vestine: ['C#', '.NET Core', 'Angular', 'Node.js', 'SQL', 'Visual Studio', 'Unit Testing'],
+                            link: 'https://github.com/NenaK3/hospital-management-system.git'
+                        }
+                    ],
+                    Edukacija: [
+                        { 
+                            naziv: 'Python & Turtle', 
+                            podnaslov: 'School Teaching Work', 
+                            period: '2025 - 2026', 
+                            opis: 'Tasks and exercises assigned to students to help them master the curriculum through visual programming, geometric shapes, and basic algorithms.', 
+                            vestine: ['Python', 'Turtle Library', 'Teaching Methodology', 'Algorithms'],
+                            link: 'https://github.com/NenaK3/Python-turtle.git'
+                        }
+                    ]
+                }
+            }
+        };
+
+        function osvezi() {
+            const r = recnik[jezik];
+            document.getElementById('nav-profil').innerText = r.navProfil;
+            document.getElementById('nav-iskustvo').innerText = r.navIskustvo;
+            document.getElementById('nav-edukacija').innerText = r.navEdukacija;
+            document.getElementById('nav-projekti').innerText = r.navProjekti;
+            document.getElementById('nav-dokimologija').innerText = r.navDokimologija;
+            document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
+            document.getElementById('naslov-projekata').innerHTML = `<i class="fa-solid fa-folder-open"></i> ${r.naslovProjekata}`;
+
+            const dokLink = document.getElementById('nav-dokimologija');
+            if (mod === 'Edukacija') {
+                dokLink.style.display = 'inline-block';
+            } else {
+                dokLink.style.display = 'none';
+            }
+
+            const projektiKontejner = document.getElementById('projekti-kontejner');
+            projektiKontejner.innerHTML = '';
+            
+            r.projekti[mod].forEach(p => {
+                // Generisanje HTML-a za GitHub dugme samo ako link postoji
+                const githubDugme = p.link ? `
+                    <div style="margin-top: 15px;">
+                        <a href="${p.link}" target="_blank" class="skill-tag ${mod === 'Edukacija' ? 'course-tag' : ''}" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: bold;">
+                            <i class="fa-brands fa-github"></i> ${r.tekstLinka}
+                        </a>
+                    </div>
+                ` : '';
+
+                projektiKontejner.innerHTML += `
+                    <div class="card experience-card edu-split-card ${mod === 'Edukacija' ? 'spec-course-card' : ''}">
+                        <div class="exp-header">
+                            <div><h3>${p.naziv}</h3><h4>${p.podnaslov}</h4></div>
+                            <span class="block-date ${mod === 'Edukacija' ? 'course-date' : ''}">${p.period}</span>
+                        </div>
+                        <p class="exp-opis">${p.opis}</p>
+                        <div class="tag-container" style="margin-top:10px;">
+                            ${p.vestine.map(v => `<span class="skill-tag ${mod === 'Edukacija' ? 'course-tag' : ''}">${v}</span>`).join('')}
+                        </div>
+                        ${githubDugme}
+                    </div>`;
+            });
+
+            document.getElementById('nav-lang-btn').innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+        }
+
+        function primeniRezim() {
+            if (rezim === 'light') document.body.classList.add('light-mode');
+            else document.body.classList.remove('light-mode');
+            document.getElementById('nav-theme-btn').innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        }
+
+        function toggleJezik() { jezik = jezik === 'SRB' ? 'ENG' : 'SRB'; localStorage.setItem('portfolioJezik', jezik); osvezi(); }
+        function toggleTema() { rezim = rezim === 'dark' ? 'light' : 'dark'; localStorage.setItem('portfolioRezim', rezim); primeniRezim(); }
+
+        primeniRezim();
+        osvezi();
+    </script>
+</body>
+</html>
