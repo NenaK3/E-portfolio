@@ -10,7 +10,6 @@
 }
 
 :root {
-    /* Varijable za Tamnu Temu (Podrazumevana) */
     --bg-color: #0f172a;
     --text-color: #f8fafc;
     --text-muted: #94a3b8;
@@ -20,7 +19,6 @@
     --btn-hover: #475569;
     --shadow: rgba(0, 0, 0, 0.3);
     
-    /* Pastelne Boje prema Zahtevu */
     --pastel-blue-bg: #e0f2fe;
     --pastel-blue-accent: #38bdf8;
     --pastel-blue-text: #0369a1;
@@ -33,7 +31,6 @@
 }
 
 body.light-mode {
-    /* Varijable za Svetlu Temu */
     --bg-color: #f8fafc;
     --text-color: #0f172a;
     --text-muted: #64748b;
@@ -44,7 +41,6 @@ body.light-mode {
     --shadow: rgba(0, 0, 0, 0.05);
 }
 
-/* 2. Stilovi Tela i Pozadine */
 body.index-body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
@@ -53,13 +49,12 @@ body.index-body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; /* Izmenjeno sa center radi lakšeg pozicioniranja footera */
+    justify-content: space-between; 
     padding: 20px;
     transition: background-color 0.4s ease, color 0.4s ease;
     overflow-x: hidden;
 }
 
-/* 3. Kontrolni Panel (Jezik i Tema) */
 .index-controls {
     position: absolute;
     top: 20px;
@@ -95,13 +90,12 @@ body.index-body {
     transform: translateY(0);
 }
 
-/* 4. Glavni Kontejner */
 .welcome-container {
     max-width: 1100px;
     width: 100%;
     text-align: center;
     margin-top: 60px;
-    margin-bottom: auto; /* Gura kontejner na sredinu, ostavljajući prostor za footer */
+    margin-bottom: auto; 
 }
 
 #idx-ime {
@@ -119,7 +113,6 @@ body.index-body {
     line-height: 1.6;
 }
 
-/* 5. Grid Raspored za Kartice */
 .split-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -128,7 +121,6 @@ body.index-body {
     width: 100%;
 }
 
-/* 6. Osnovna Stilizacija Selektivnih Kartica */
 .selection-card {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -192,7 +184,6 @@ body.index-body {
     transition: transform 0.3s ease;
 }
 
-/* Animacije na hover za cijelu karticu */
 .selection-card:hover {
     transform: translateY(-8px);
 }
@@ -223,14 +214,12 @@ body.index-body {
     border: 1px solid var(--card-border);
 }
 
-/* Aktivacija pastelnog izgleda na interakciju */
 .it-card:hover {
     background-color: var(--pastel-blue-bg) !important;
     border-color: var(--pastel-blue-accent);
     box-shadow: 0 20px 25px -5px rgba(56, 189, 248, 0.25);
 }
 
-/* Prilagođavanje teksta za savršen kontrast na pastelno plavoj pozadini */
 .it-card:hover h2 {
     color: var(--pastel-blue-text);
 }
@@ -241,7 +230,7 @@ body.index-body {
     color: var(--pastel-blue-text);
 }
 .it-card:hover p {
-    color: #0c4a6e; /* Kontrastna tamno-plava */
+    color: #0c4a6e; 
 }
 .it-card:hover button {
     background-color: var(--pastel-blue-dark);
@@ -268,14 +257,12 @@ body.index-body {
     border: 1px solid var(--card-border);
 }
 
-/* Aktivacija pastelnog izgleda na interakciju */
 .edu-card:hover {
     background-color: var(--pastel-pink-bg) !important;
     border-color: var(--pastel-pink-accent);
     box-shadow: 0 20px 25px -5px rgba(244, 114, 182, 0.25);
 }
 
-/* Prilagođavanje teksta za savršen kontrast na pastelno roze pozadini */
 .edu-card:hover h2 {
     color: var(--pastel-pink-text);
 }
@@ -286,7 +273,7 @@ body.index-body {
     color: var(--pastel-pink-text);
 }
 .edu-card:hover p {
-    color: #5c0632; /* Kontrastna tamno-bordo */
+    color: #5c0632; 
 }
 .edu-card:hover button {
     background-color: var(--pastel-pink-dark);
@@ -295,8 +282,6 @@ body.index-body {
     box-shadow: 0 4px 12px rgba(219, 39, 119, 0.3);
 }
 
-
-/* 9. Prilagođavanje za Mobilne Uređaje (Responsive Design) */
 @media (max-width: 768px) {
     body.index-body {
         justify-content: flex-start;

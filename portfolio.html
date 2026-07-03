@@ -14,7 +14,12 @@
 
     <nav class="navbar">
         <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
-        <div class="nav-links">
+        
+        <div class="hamburger-menu" onclick="toggleMenu()" id="nav-hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="nav-links" id="navbar-links">
             <a href="portfolio.html" class="active" id="nav-profil">Profil</a>
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
             <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
@@ -243,6 +248,22 @@
             document.getElementById(tabId).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
+
+        function toggleMenu() {
+            const links = document.getElementById('navbar-links');
+            const hamburger = document.getElementById('nav-hamburger').querySelector('i');
+            
+            links.classList.toggle('nav-active');
+            
+            if (links.classList.contains('nav-active')) {
+                hamburger.classList.remove('fa-bars');
+                hamburger.classList.add('fa-xmark');
+            } else {
+                hamburger.classList.remove('fa-xmark');
+                hamburger.classList.add('fa-bars');
+            }
+        }
+
 
         primeniRezim();
         osveziSadrzaj();

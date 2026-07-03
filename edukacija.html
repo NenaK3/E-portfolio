@@ -11,7 +11,12 @@
 
     <nav class="navbar">
         <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
-        <div class="nav-links">
+        
+        <button class="hamburger-menu" onclick="toggleMeni()" id="hamburger-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-links" id="nav-links-id">
             <a href="portfolio.html" id="nav-profil">Profil</a>
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
             <a href="edukacija.html" class="active" id="nav-edukacija">Edukacija</a>
@@ -54,7 +59,7 @@
             'SRB': {
                 navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navDokimologija: 'Dokimologija', navPromeni: 'Promeni portfolio',
                 naslovFormalno: 'Formalno obrazovanje', naslovNeformalno: 'Neformalno obrazovanje',
-                footer: '@Copyright by Nena Kozić',
+                footer: '©Copyright by Nena Kozić',
                 formalno: {
                     IT: [
                         { stepen: 'Master inženjer informacionih tehnologija', ustanova: 'Fakultet tehničkih nauka u Čačku, Univerzitet u Kragujevcu', period: 'Novembar 2024 - Oktobar 2025', opis: 'Tokom master studija specijalizovala sam se za napredne oblasti uključujući Web Mining, tehnike modeliranja i algoritme. Kroz Interakciju čovek-računar (HCI) istraživala sam spoj tehnologije i korisničkog iskustva.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_IT', vestine: ['HCI', 'Rudarenje veba'] },
@@ -75,7 +80,7 @@
             'ENG': {
                 navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navDokimologija: 'Assessment', navPromeni: 'Switch Portfolio',
                 naslovFormalno: 'Formal education', naslovNeformalno: 'Non-formal education',
-                footer: '@Copyright by Nena Kozić',
+                footer: '©Copyright by Nena Kozić',
                 formalno: {
                     IT: [
                         { stepen: 'Master of Information Technology (M.Sc.)', ustanova: 'Faculty of Technical Sciences in Cacak', period: 'November 2024 - October 2025', opis: 'Master degree focusing on Web Mining, Algorithms and HCI.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_IT', vestine: ['HCI', 'Web Mining'] },
@@ -168,6 +173,21 @@
 
         function toggleJezik() { jezik = jezik === 'SRB' ? 'ENG' : 'SRB'; localStorage.setItem('portfolioJezik', jezik); osvezi(); }
         function toggleTema() { rezim = rezim === 'dark' ? 'light' : 'dark'; localStorage.setItem('portfolioRezim', rezim); primeniRezim(); }
+        
+        function toggleMeni() {
+            const links = document.getElementById('nav-links-id');
+            const hamburgerIcon = document.getElementById('hamburger-btn').querySelector('i');
+            
+            links.classList.toggle('prikazi');
+            
+            if (links.classList.contains('prikazi')) {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-xmark');
+            } else {
+                hamburgerIcon.classList.remove('fa-xmark');
+                hamburgerIcon.classList.add('fa-bars');
+            }
+        }
 
         primeniRezim();
         osvezi();

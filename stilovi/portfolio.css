@@ -1,4 +1,6 @@
-/* 1. Reset i Osnovna Podešavanja */
+/* ==========================================================================
+   1. Reset i Osnovna Podešavanja
+   ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -6,7 +8,6 @@
 }
 
 :root {
-    /* Globalne Varijable za Tamnu Temu (Podrazumevana) */
     --bg-color: #0f172a;
     --text-color: #f8fafc;
     --text-muted: #94a3b8;
@@ -16,7 +17,6 @@
     --btn-hover: #475569;
     --shadow: rgba(0, 0, 0, 0.3);
     
-    /* Zajedničke Pastelne Palete iz prethodnog fajla */
     --pastel-blue-bg: #e0f2fe;
     --pastel-blue-accent: #38bdf8;
     --pastel-blue-text: #0369a1;
@@ -27,27 +27,29 @@
     --pastel-pink-text: #b02a59;
     --pastel-pink-dark: #db2777;
 
-    /* Dinamičke varijable koje se menjaju u zavisnosti od teme */
     --theme-accent: var(--pastel-blue-accent);
     --theme-accent-hover: var(--pastel-blue-dark);
     --theme-tab-active-bg: #2d3748;
+    
+    --hamburger-color: #0369a1;
 }
 
-/* 2. Upravljanje Temama (IT i Edukacija) i Režimima (Svetlo/Tamno) */
+/* ==========================================================================
+   2. Upravljanje Temama (IT i Edukacija) i Režimima (Svetlo/Tamno)
+   ========================================================================== */
 
-/* Kada je izabran IT Portfolio (it-theme) */
 body.it-theme {
     --theme-accent: var(--pastel-blue-accent);
     --theme-accent-hover: var(--pastel-blue-dark);
+    --hamburger-color: #0369a1;
 }
 
-/* Kada je izabran Prosvetni Portfolio (edukacija-theme) */
 body.edukacija-theme {
     --theme-accent: var(--pastel-pink-accent);
     --theme-accent-hover: var(--pastel-pink-dark);
+    --hamburger-color: #f472b6;
 }
 
-/* Globalni Light Mode (Svetla Tema) */
 body.light-mode {
     --bg-color: #f8fafc;
     --text-color: #0f172a;
@@ -60,19 +62,21 @@ body.light-mode {
     --theme-tab-active-bg: #e2e8f0;
 }
 
-/* Specifične prilagodbe za Light Mode u kombinaciji sa IT Portfoliom */
 body.light-mode.it-theme {
     --theme-accent: var(--pastel-blue-dark);
     --theme-accent-hover: var(--pastel-blue-text);
+    --hamburger-color: #0369a1;
 }
 
-/* Specifične prilagodbe za Light Mode u kombinaciji sa Prosvetnim Portfoliom */
 body.light-mode.edukacija-theme {
     --theme-accent: var(--pastel-pink-dark);
     --theme-accent-hover: var(--pastel-pink-text);
+    --hamburger-color: #f472b6;
 }
 
-/* 3. Osnovni Stilovi za Body */
+/* ==========================================================================
+   3. Osnovni Stilovi za Body
+   ========================================================================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
@@ -80,13 +84,13 @@ body {
     min-height: 100vh;
     line-height: 1.6;
     transition: background-color 0.4s ease, color 0.4s ease;
-    
-    /* Dodato radi fiksiranja footera na dnu kod kraćih stranica */
     display: flex;
     flex-direction: column;
 }
 
-/* 4. Navigacioni Meni (Navbar) */
+/* ==========================================================================
+   4. Navigacioni Meni (Navbar)
+   ========================================================================== */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -133,7 +137,6 @@ body {
     color: var(--theme-accent);
 }
 
-/* Indikator linija ispod aktivnog linka */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -149,7 +152,6 @@ body {
     width: 100%;
 }
 
-/* Dugme "Promeni portfolio" */
 .switch-btn {
     background-color: var(--btn-bg);
     padding: 8px 16px;
@@ -162,7 +164,7 @@ body {
 }
 
 .switch-btn::after {
-    display: none !important; /* Sklanjamo liniju ispod ovog dugmeta */
+    display: none !important;
 }
 
 .switch-btn:hover {
@@ -171,7 +173,18 @@ body {
     border-color: transparent;
 }
 
-/* Kontrolni tasteri u navigaciji (Jezik i Tema) */
+.hamburger-menu {
+    display: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: var(--hamburger-color);
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.hamburger-menu:hover {
+    transform: scale(1.05);
+}
+
 .nav-controls {
     display: flex;
     gap: 10px;
@@ -197,7 +210,9 @@ body {
     transform: translateY(-2px);
 }
 
-/* 5. Hero Sekcija */
+/* ==========================================================================
+   5. Hero Sekcija
+   ========================================================================== */
 .hero-section {
     background: linear-gradient(185deg, var(--card-bg) 0%, var(--bg-color) 100%);
     padding: 60px 20px;
@@ -241,12 +256,14 @@ body {
     color: var(--text-muted);
 }
 
-/* 6. Tabs Kontejner (Tabovi i navigacija kroz tabove) */
+/* ==========================================================================
+   6. Tabs Kontejner
+   ========================================================================== */
 .tabs-container {
     max-width: 900px;
     margin: 40px auto;
     padding: 0 20px;
-    flex: 1; /* Tera sadržaj da se širi i gura footer na dno */
+    flex: 1;
 }
 
 .tab-buttons {
@@ -268,7 +285,7 @@ body {
     align-items: center;
     gap: 10px;
     position: relative;
-    bottom: -2px; /* Da pokrije donju ivicu */
+    bottom: -2px;
     border-bottom: 2px solid transparent;
     transition: all 0.3s ease;
 }
@@ -286,7 +303,9 @@ body {
     border-bottom-color: var(--theme-accent);
 }
 
-/* 7. Prikaz i skrivanje sadržaja tabova */
+/* ==========================================================================
+   7. Prikaz i skrivanje sadržaja tabova
+   ========================================================================== */
 .tab-content-wrapper {
     position: relative;
 }
@@ -305,7 +324,9 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 8. Stilovi Kartica (Cards) */
+/* ==========================================================================
+   8. Stilovi Kartica (Cards)
+   ========================================================================== */
 .card {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -323,7 +344,6 @@ body {
     padding-bottom: 10px;
 }
 
-/* Mala akcentna linija ispod naslova u kartici */
 .card h3::after {
     content: '';
     position: absolute;
@@ -341,7 +361,9 @@ body {
     line-height: 1.7;
 }
 
-/* 9. Grid za Veštine (Skills Grid) */
+/* ==========================================================================
+   9. Grid za Veštine (Skills Grid)
+   ========================================================================== */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -373,18 +395,16 @@ body {
     font-size: 0.85rem;
 }
 
- /* CSS Varijable i stilovi za linkove koji prate izabranu temu */
 .it-theme {
-    --link-color: #0284c7; /* Pastelno plava za IT */
+    --link-color: #0284c7;
     --link-hover: #38bdf8;
 }
 
 .edukacija-theme {
-    --link-color: #db2777; /* Pastelno roze za Edukaciju */
+    --link-color: #db2777;
     --link-hover: #f472b6;
 }
         
-/* Klasa za kontakt linkove kako ne bi bili default plavi */
 .contact-link {
     color: var(--link-color) !important;
     text-decoration: none;
@@ -396,7 +416,6 @@ body {
     text-decoration: underline;
 }
         
-/* Blagi stil za listu kontakata unutar kartice */
 .contact-list {
     list-style: none;
     padding: 0;
@@ -414,7 +433,6 @@ body {
     text-align: center;
 }
 
-/* 9.5 Novi Footer Stil (Usklađen sa Navbarom) */
 .site-footer {
     width: 100%;
     text-align: center;
@@ -427,22 +445,64 @@ body {
     transition: border-color 0.4s ease, color 0.4s ease;
 }
 
-/* 10. Prilagođavanje za Mobilne Uređaje (Responsive Design) */
+/* ==========================================================================
+   10. Prilagođavanje za Mobilne Uređaje (Responsive Design)
+   ========================================================================== */
 @media (max-width: 768px) {
     .navbar {
         padding: 0 20px;
     }
 
+    .nav-logo {
+        order: 1;
+    }
+
+    .hamburger-menu {
+        display: block;
+        order: 2;
+    }
+
+    .nav-controls {
+        order: 3;
+    }
+
     .nav-links {
-        gap: 14px;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-bottom: 1px solid var(--card-border);
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        box-shadow: 0 10px 15px -3px var(--shadow);
+        z-index: 99;
+    }
+
+    .nav-links.nav-active {
+        max-height: 350px;
+        padding: 15px 0;
     }
 
     .nav-links a {
-        font-size: 0.9rem;
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+        font-size: 1rem;
+    }
+
+    .nav-links a::after {
+        display: none; 
     }
 
     .switch-btn {
-        padding: 6px 12px;
+        margin-top: 10px;
+        width: auto;
+        display: inline-flex;
     }
 
     .hero-container {

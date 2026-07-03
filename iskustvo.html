@@ -11,7 +11,12 @@
 
     <nav class="navbar">
         <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
-        <div class="nav-links">
+        
+        <div class="hamburger-menu" onclick="toggleMenu()" id="nav-hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="nav-links" id="navbar-links">
             <a href="portfolio.html" id="nav-profil">Profil</a>
             <a href="iskustvo.html" class="active" id="nav-iskustvo">Iskustvo</a>
             <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
@@ -22,7 +27,7 @@
             <button onclick="toggleJezik()" class="control-btn" id="nav-lang-btn">EN</button>
             <button onclick="toggleTema()" class="control-btn" id="nav-theme-btn"><i class="fa-solid fa-sun"></i></button>
         </div>
-    </nav>
+    </nav>ss
 
     <main class="page-main-container">
         <h2 class="page-section-title" id="str-naslov"><i class="fa-solid fa-briefcase"></i> Radno iskustvo & prakse</h2>
@@ -72,7 +77,7 @@
                         firma: 'Osnovna škola „Dr Dragiša Mišović“, Čačak', 
                         link: 'https://osdragisamisovic.edu.rs/',
                         period: 'April 2026 - Jun 2026', 
-                        opis: 'Tokom nastavne prakse u osnovnoj školi, uspešno sam povezala tehnička znanja i pedagoške veštine kroz mentorstvo učenika starijih razreda. Aktivno sam pratila i analizirala nastavne procese u okviru predmeta Informatika i računarstvo, sa fokusom na podučavanje programskog jezika Python kroz vizuelna okruženja — konkretno, rad sa Turtle bibliotekom u 6. razredu i uvođenje u kreiranje 2D igara pomoću Pygame-a u 7. razredu. Ostvarila sam direktan uticaj samostalnim dizajnom i realizacijom tri časa za učenike 6. razreda, gde sam efikasno predstavila nove koncepte iz nastavnog plana tokom jednog predavanja i vodila praktičnu primenu tog znanja kroz dva posvećena časa laboratorijskih/praktičnih vežbi. Kroz ovo iskustvo razvila sam metodologiju nastave prilagođenu uzrastu, podsticala algoritamsko razmišljanje kod učenika i stekla vredne uvide u upravljanje učionicom i digitalnu pismenost mladih.', 
+                        opis: 'Tokom nastavne prakse u osnovnoj školi, uspešno sam povezala tehnička znanja i pedagoške veštine kroz mentorstvo učenika starijih razreda. Aktivno sam pratila i analizirala nastavne procese u okviru predmeta Informatika i računarstvo, sa fokusom na podučavanje programskog jezika Python kroz vizuelna okruženja — konkretno, rad sa Turtle bibliotekom u 6. razredu i uvođenje u kreiranje 2D igara pomoću Pygame-a u 7. razredu. Ostvarila sam direktan uticaj samostalnim dizajnom i realizacijom tri časa za učenike 6. razreda, gde sam efikasno predstavila nove koncepte iz nastavnog plana tokom jednog predavanja i vodila praktičnu primenu tog znanja kroz dva posvećena časa laboratorijskih/praktičnih vežbi.', 
                         tagovi: ['Pedagogija', 'Razvoj kurikuluma', 'Komunikacija', 'Python programiranje', 'Python Turtle', 'Python PyGame', 'Informatičko obrazovanje', 'Digitalna pismenost', 'Algoritamsko mišljenje', 'Podučavanje', 'Upravljanje učionicom', 'Evaluacija učenika', 'Javno ocenjivanje', 'Javni govor', 'Prezentacione veštine'] 
                     }
                 ]
@@ -108,7 +113,7 @@
                         firma: 'Dr Dragisa Misovic Primary School, Cacak', 
                         link: 'https://osdragisamisovic.edu.rs/',
                         period: 'April 2026 – June 2026', 
-                        opis: 'During my teaching internship at a primary school, I successfully combined my technical knowledge and pedagogical skills through mentoring upper-primary school students. I actively observed and analyzed the instructional processes within Computer Science classes, focusing on teaching the Python programming language through visual environments—specifically, working with the Turtle library in the 6th grade and introducing 2D game creation using Pygame in the 7th grade. I made a direct impact by independently designing and delivering three lessons to 6th-grade students, effectively introducing new curriculum concepts in one lecture and guiding the practical application of that knowledge over two dedicated hands-on practice sessions. Through this experience, I developed age-appropriate teaching methodologies, fostered algorithmic thinking in students, and gained valuable insights into classroom management and youth digital literacy.', 
+                        opis: 'During my teaching internship at a primary school, I successfully combined my technical knowledge and pedagogical skills through mentoring upper-primary school students. I actively observed and analyzed the instructional processes within Computer Science classes, focusing on teaching the Python programming language through visual environments—specifically, working with the Turtle library in the 6th grade and introducing 2D game creation using Pygame in the 7th grade.', 
                         tagovi: ['Pedagogy', 'Curriculum Development', 'Communication', 'Python (Programming Language)', 'Python Turtle', 'Python PyGame', 'Computer Science Education', 'Digital Literacy', 'Algorithmic Thinking', 'Teaching', 'Classroom Management', 'Student Evaluation', 'Public Evaluation', 'Public Speaking', 'Presentation Skills'] 
                     }
                 ]
@@ -178,6 +183,20 @@
             rezim = rezim === 'dark' ? 'light' : 'dark'; 
             localStorage.setItem('portfolioRezim', rezim); 
             primeniRezim(); 
+        }
+
+        function toggleMenu() {
+            const links = document.getElementById('navbar-links');
+            const hamburger = document.getElementById('nav-hamburger').querySelector('i');
+            
+            links.classList.toggle('nav-active');
+            if (links.classList.contains('nav-active')) {
+                hamburger.classList.remove('fa-bars');
+                hamburger.classList.add('fa-xmark');
+            } else {
+                hamburger.classList.remove('fa-xmark');
+                hamburger.classList.add('fa-bars');
+            }
         }
 
         primeniRezim();

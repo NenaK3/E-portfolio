@@ -1,4 +1,6 @@
-/* 1. Reset i Osnovna Podešavanja */
+/* ==========================================================================
+   1. Reset i Osnovna Podešavanja
+   ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -6,7 +8,6 @@
 }
 
 :root {
-    /* Globalne Varijable za Tamnu Temu (Podrazumevana) */
     --bg-color: #0f172a;
     --text-color: #f8fafc;
     --text-muted: #94a3b8;
@@ -16,7 +17,6 @@
     --btn-hover: #475569;
     --shadow: rgba(0, 0, 0, 0.3);
     
-    /* Zajedničke Pastelne Palete */
     --pastel-blue-bg: #e0f2fe;
     --pastel-blue-accent: #38bdf8;
     --pastel-blue-text: #0369a1;
@@ -27,32 +27,34 @@
     --pastel-pink-text: #b02a59;
     --pastel-pink-dark: #db2777;
 
-    /* Dinamičke varijable koje prate aktivni portfolio */
     --theme-accent: var(--pastel-blue-accent);
     --theme-accent-hover: var(--pastel-blue-dark);
     --theme-tag-bg: rgba(56, 189, 248, 0.15);
     --theme-tag-text: var(--pastel-blue-accent);
+    
+    --hamburger-color: #0369a1;
 }
 
-/* 2. Upravljanje Temama (IT i Edukacija) */
+/* ==========================================================================
+   2. Upravljanje Temama (IT i Edukacija)
+   ========================================================================== */
 
-/* Kada je izabran IT Portfolio (it-theme) -> PASTELNO PLAVO */
 body.it-theme {
     --theme-accent: var(--pastel-blue-accent);
     --theme-accent-hover: var(--pastel-blue-dark);
     --theme-tag-bg: rgba(56, 189, 248, 0.15);
     --theme-tag-text: var(--pastel-blue-accent);
+    --hamburger-color: #0369a1;
 }
 
-/* Kada je izabran Prosvetni Portfolio (edukacija-theme) -> PASTELNO ROZE */
 body.edukacija-theme {
     --theme-accent: var(--pastel-pink-accent);
     --theme-accent-hover: var(--pastel-pink-dark);
     --theme-tag-bg: rgba(244, 114, 182, 0.15);
     --theme-tag-text: var(--pastel-pink-accent);
+    --hamburger-color: #f472b6;
 }
 
-/* Globalni Light Mode (Svetla Tema) */
 body.light-mode {
     --bg-color: #f8fafc;
     --text-color: #0f172a;
@@ -64,23 +66,25 @@ body.light-mode {
     --shadow: rgba(0, 0, 0, 0.05);
 }
 
-/* Prilagođavanje za Light Mode + IT */
 body.light-mode.it-theme {
     --theme-accent: var(--pastel-blue-dark);
     --theme-accent-hover: var(--pastel-blue-text);
     --theme-tag-bg: var(--pastel-blue-bg);
     --theme-tag-text: var(--pastel-blue-text);
+    --hamburger-color: #0369a1;
 }
 
-/* Prilagođavanje za Light Mode + Edukacija */
 body.light-mode.edukacija-theme {
     --theme-accent: var(--pastel-pink-dark);
     --theme-accent-hover: var(--pastel-pink-text);
     --theme-tag-bg: var(--pastel-pink-bg);
     --theme-tag-text: var(--pastel-pink-text);
+    --hamburger-color: #f472b6;
 }
 
-/* 3. Osnovni Stilovi za Body */
+/* ==========================================================================
+   3. Osnovni Stilovi za Body
+   ========================================================================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
@@ -88,13 +92,13 @@ body {
     min-height: 100vh;
     line-height: 1.6;
     transition: background-color 0.4s ease, color 0.4s ease;
-
-    /* Aktiviran Flexbox raspored kako bi footer stabilno stajao na dnu */
     display: flex;
     flex-direction: column;
 }
 
-/* 4. Navigacioni Meni (Navbar) */
+/* ==========================================================================
+   4. Navigacioni Meni (Navbar)
+   ========================================================================== */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -156,12 +160,10 @@ body {
     width: 100%;
 }
 
-/* Specijalni link Dokimologija */
 #nav-dokimologija {
     font-weight: 600;
 }
 
-/* Dugme "Promeni portfolio" */
 .switch-btn {
     background-color: var(--btn-bg);
     padding: 8px 16px;
@@ -183,7 +185,18 @@ body {
     border-color: transparent;
 }
 
-/* Kontrole */
+.hamburger-menu {
+    display: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: var(--hamburger-color);
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.hamburger-menu:hover {
+    transform: scale(1.05);
+}
+
 .nav-controls {
     display: flex;
     gap: 10px;
@@ -209,7 +222,9 @@ body {
     transform: translateY(-2px);
 }
 
-/* 5. Edukacija Glavni Kontejner (Split/Grid Layout) */
+/* ==========================================================================
+   5. Edukacija Glavni Kontejner (Split/Grid Layout)
+   ========================================================================== */
 .education-split-container {
     display: grid;
     gap: 40px;
@@ -217,7 +232,7 @@ body {
     padding: 0 20px;
     align-items: start;
     transition: max-width 0.4s ease;
-    flex: 1; /* Širi centralni kontejner i gura footer na dno */
+    flex: 1;
 }
 
 .edu-column {
@@ -242,7 +257,9 @@ body {
     color: var(--theme-accent);
 }
 
-/* 6. Stek sa Karticama Obrazovanja */
+/* ==========================================================================
+   6. Stek sa Karticama Obrazovanja / Projekata
+   ========================================================================== */
 .experience-stack {
     display: flex;
     flex-direction: column;
@@ -268,7 +285,6 @@ body {
     position: relative;
 }
 
-/* Zaglavlje unutar kartica */
 .exp-header {
     display: flex;
     justify-content: space-between;
@@ -291,7 +307,6 @@ body {
     color: var(--theme-accent);
 }
 
-/* Bedž sa datumom / periodom */
 .block-date {
     font-size: 0.85rem;
     font-weight: 600;
@@ -303,7 +318,6 @@ body {
     border: 1px solid var(--card-border);
 }
 
-/* Opis */
 .exp-opis {
     color: var(--text-muted);
     font-size: 0.98rem;
@@ -312,7 +326,6 @@ body {
     text-align: justify;
 }
 
-/* GitHub Link za projekte/kodove kurseva */
 .project-link {
     display: inline-flex;
     align-items: center;
@@ -336,7 +349,9 @@ body {
     transform: translateY(-2px);
 }
 
-/* 7. Kontenjer za Tagove i Same Tagove */
+/* ==========================================================================
+   7. Kontenjer za Tagove i Same Tagove
+   ========================================================================== */
 .tag-container {
     display: flex;
     flex-wrap: wrap;
@@ -358,7 +373,6 @@ body {
     color: #ffffff !important;
 }
 
-/* 7.5 Unificirani Stil za Footer */
 .site-footer {
     width: 100%;
     text-align: center;
@@ -371,13 +385,14 @@ body {
     transition: border-color 0.4s ease, color 0.4s ease;
 }
 
-/* Animacija učitavanja */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 8. Responzivni Dizajn (Mobilni Uređaji i Tableti) */
+/* ==========================================================================
+   8. Responzivni Dizajn (Mobilni Uređaji i Tableti)
+   ========================================================================== */
 @media (max-width: 1024px) {
     .education-split-container {
         grid-template-columns: 1fr !important;
@@ -391,16 +406,56 @@ body {
         padding: 0 20px;
     }
 
+    .nav-logo {
+        order: 1;
+    }
+
+    .hamburger-menu {
+        display: block;
+        order: 2;
+    }
+
+    .nav-controls {
+        order: 3;
+    }
+
     .nav-links {
-        gap: 12px;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-bottom: 1px solid var(--card-border);
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        box-shadow: 0 10px 15px -3px var(--shadow);
+        z-index: 99;
+    }
+
+    .nav-links.nav-active {
+        max-height: 400px; 
+        padding: 15px 0;
     }
 
     .nav-links a {
-        font-size: 0.85rem;
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+        font-size: 1rem;
+    }
+
+    .nav-links a::after {
+        display: none;
     }
 
     .switch-btn {
-        padding: 5px 10px;
+        margin-top: 10px;
+        width: auto;
+        display: inline-flex;
     }
 
     .education-split-container {

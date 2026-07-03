@@ -30,7 +30,12 @@
 
     <nav class="navbar">
         <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
-        <div class="nav-links">
+        
+        <button class="hamburger-menu" onclick="toggleMeni()" id="hamburger-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-links" id="nav-links-id">
             <a href="portfolio.html" id="nav-profil">Profil</a>
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
             <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
@@ -90,8 +95,8 @@
         };
 
         const recnik = {
-            'SRB': { navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navDokimologija: 'Dokimologija', navPromeni: 'Promeni portfolio', naslovGlavni: 'Aktivnosti u sklopu predmeta dokimologija', opisStrane: 'Evidencija aktivnosti i domaćih zadataka okviru predmeta dokimologija.', statZavrseno: 'Završeno', statKolokvijum: 'Kolokvijum', statOcena: 'Ocena testa', statStatus: 'čeka ocenu', naslovTok: 'TOK AKTIVNOSTI', footer: '@Copyright by Nena Kozić' },
-            'ENG': { navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navDokimologija: 'Assessment', navPromeni: 'Switch Portfolio', naslovGlavni: 'Activities in Subject Assessment', opisStrane: 'Record of activities and assignments within the assessment subject.', statZavrseno: 'Completed', statKolokvijum: 'Midterm', statOcena: 'Test Grade', statStatus: 'pending', naslovTok: 'ACTIVITY FLOW', footer: '@Copyright by Nena Kozić' }
+            'SRB': { navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navDokimologija: 'Dokimologija', navPromeni: 'Promeni portfolio', naslovGlavni: 'Aktivnosti u sklopu predmeta dokimologija', opisStrane: 'Evidencija aktivnosti i domaćih zadataka okviru predmeta dokimologija.', statZavrseno: 'Završeno', statKolokvijum: 'Kolokvijum', statOcena: 'Ocena testa', statStatus: 'čeka ocenu', naslovTok: 'TOK AKTIVNOSTI', footer: '©Copyright by Nena Kozić' },
+            'ENG': { navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navDokimologija: 'Assessment', navPromeni: 'Switch Portfolio', naslovGlavni: 'Activities in Subject Assessment', opisStrane: 'Record of activities and assignments within the assessment subject.', statZavrseno: 'Completed', statKolokvijum: 'Midterm', statOcena: 'Test Grade', statStatus: 'pending', naslovTok: 'ACTIVITY FLOW', footer: '©Copyright by Nena Kozić' }
         };
 
         function osvezi() {
@@ -136,6 +141,21 @@
 
         function toggleJezik() { jezik = jezik === 'SRB' ? 'ENG' : 'SRB'; localStorage.setItem('portfolioJezik', jezik); osvezi(); }
         function toggleTema() { rezim = rezim === 'dark' ? 'light' : 'dark'; localStorage.setItem('portfolioRezim', rezim); primeniRezim(); }
+        
+        function toggleMeni() {
+            const links = document.getElementById('nav-links-id');
+            const hamburgerIcon = document.getElementById('hamburger-btn').querySelector('i');
+            
+            links.classList.toggle('prikazi');
+            
+            if (links.classList.contains('prikazi')) {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-xmark');
+            } else {
+                hamburgerIcon.classList.remove('fa-xmark');
+                hamburgerIcon.classList.add('fa-bars');
+            }
+        }
 
         primeniRezim();
         osvezi();
