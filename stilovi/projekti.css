@@ -38,7 +38,6 @@
 /* ==========================================================================
    2. Upravljanje Temama (IT i Edukacija)
    ========================================================================== */
-
 body.it-theme {
     --theme-accent: var(--pastel-blue-accent);
     --theme-accent-hover: var(--pastel-blue-dark);
@@ -453,9 +452,11 @@ body {
     }
 
     .switch-btn {
-        margin-top: 10px;
-        width: auto;
-        display: inline-flex;
+        margin: 15px auto 5px auto;
+        width: 100%;
+        max-width: 90%;
+        display: flex;
+        justify-content: center;
     }
 
     .education-split-container {

@@ -474,7 +474,7 @@ body {
         background-color: var(--card-bg);
         border-bottom: 1px solid var(--card-border);
         flex-direction: column;
-        gap: 0;
+        gap: 16px;                  
         padding: 0;
         max-height: 0;
         overflow: hidden;
@@ -484,14 +484,14 @@ body {
     }
 
     .nav-links.nav-active {
-        max-height: 350px;
-        padding: 15px 0;
+        max-height: 400px; 
+        padding: 20px 0;           
     }
 
     .nav-links a {
         width: 100%;
         text-align: center;
-        padding: 12px 0;
+        padding: 10px 0;            
         font-size: 1rem;
     }
 
@@ -500,9 +500,11 @@ body {
     }
 
     .switch-btn {
-        margin-top: 10px;
-        width: auto;
-        display: inline-flex;
+        margin: 15px auto 5px auto;
+        width: 100%;
+        max-width: 90%;
+        display: flex;
+        justify-content: center;               
     }
 
     .hero-container {

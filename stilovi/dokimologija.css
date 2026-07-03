@@ -415,9 +415,11 @@ body {
     }
 
     .switch-btn {
+        margin: 15px auto 5px auto;
         width: 100%;
+        max-width: 90%;
+        display: flex;
         justify-content: center;
-        padding: 10px;
     }
 
     .page-main-container {
