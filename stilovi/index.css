@@ -53,7 +53,7 @@ body.index-body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* Izmenjeno sa center radi lakšeg pozicioniranja footera */
     padding: 20px;
     transition: background-color 0.4s ease, color 0.4s ease;
     overflow-x: hidden;
@@ -100,7 +100,8 @@ body.index-body {
     max-width: 1100px;
     width: 100%;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 60px;
+    margin-bottom: auto; /* Gura kontejner na sredinu, ostavljajući prostor za footer */
 }
 
 #idx-ime {
@@ -319,4 +320,19 @@ body.index-body {
     .selection-card {
         padding: 30px 20px;
     }
+}
+
+/* ==========================================================================
+   10. Stilovi za Footer (Novi Deo)
+   ========================================================================== */
+#idx-footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 10px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--card-border);
+    margin-top: 40px;
+    letter-spacing: 0.5px;
+    transition: border-color 0.4s ease, color 0.4s ease;
 }

@@ -88,6 +88,10 @@ body {
     min-height: 100vh;
     line-height: 1.6;
     transition: background-color 0.4s ease, color 0.4s ease;
+
+    /* Aktiviran Flexbox raspored kako bi footer stabilno stajao na dnu */
+    display: flex;
+    flex-direction: column;
 }
 
 /* 4. Navigacioni Meni (Navbar) */
@@ -213,7 +217,7 @@ body {
     padding: 0 20px;
     align-items: start;
     transition: max-width 0.4s ease;
-    /* Inicijalno se širina i kolone menjaju preko JS-a (1fr ili 1fr 1fr) */
+    flex: 1; /* Širi centralni kontejner i gura footer na dno */
 }
 
 .edu-column {
@@ -260,7 +264,6 @@ body {
     box-shadow: 0 20px 25px -5px var(--shadow);
 }
 
-/* Neformalno obrazovanje - kursevi mogu imati malo drugačiju nijansu okvira */
 .spec-course-card {
     position: relative;
 }
@@ -355,6 +358,19 @@ body {
     color: #ffffff !important;
 }
 
+/* 7.5 Unificirani Stil za Footer */
+.site-footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 10px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--card-border);
+    margin-top: 40px;
+    letter-spacing: 0.5px;
+    transition: border-color 0.4s ease, color 0.4s ease;
+}
+
 /* Animacija učitavanja */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(15px); }
@@ -363,7 +379,6 @@ body {
 
 /* 8. Responzivni Dizajn (Mobilni Uređaji i Tableti) */
 @media (max-width: 1024px) {
-    /* Na tabletima forsiramo jednu kolonu bez obzira na to što je IT mod aktivan */
     .education-split-container {
         grid-template-columns: 1fr !important;
         max-width: 750px !important;

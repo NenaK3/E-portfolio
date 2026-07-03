@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nena Kozić | Projekti</title>
-    <link rel="stylesheet" href="stilovi/edukacija.css">
+    <link rel="stylesheet" href="stilovi/projekti.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -33,6 +33,10 @@
         </section>
 
     </main>
+
+    <footer class="site-footer">
+        <p> ©Copyright by Nena Kozić.</p>
+    </footer>
 
     <script>
         const mod = sessionStorage.getItem('portfolioMod') || 'IT';
@@ -135,7 +139,6 @@
             projektiKontejner.innerHTML = '';
             
             r.projekti[mod].forEach(p => {
-                // Generisanje HTML-a za GitHub dugme samo ako link postoji
                 const githubDugme = p.link ? `
                     <div style="margin-top: 15px;">
                         <a href="${p.link}" target="_blank" class="skill-tag ${mod === 'Edukacija' ? 'course-tag' : ''}" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: bold;">

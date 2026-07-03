@@ -15,7 +15,7 @@
     --btn-bg: #334155;
     --btn-hover: #475569;
     --shadow: rgba(0, 0, 0, 0.3);
-    
+     
     /* Zajedničke Pastelne Palete */
     --pastel-blue-bg: #e0f2fe;
     --pastel-blue-accent: #38bdf8;
@@ -82,6 +82,9 @@ body {
     color: var(--text-color);
     min-height: 100vh;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
@@ -198,8 +201,10 @@ body {
 /* 5. Glavni Kontejner Stranice */
 .page-main-container {
     max-width: 1000px;
+    width: 100%;
     margin: 50px auto;
     padding: 0 20px;
+    flex-grow: 1; /* Omogućava sekciji da zauzme sav prostor i gurne footer na dno */
 }
 
 #naslov-glavni {
@@ -289,7 +294,7 @@ body {
 .timeline-container {
     display: flex;
     flex-direction: column;
-    gap: 5px; /* Dinamičke stavke imaju sopstveni margin-bottom */
+    gap: 5px;
 }
 
 /* Elementi vremenske linije generisani kroz JS */
@@ -383,4 +388,19 @@ body {
     .stat-card p {
         font-size: 1.4rem;
     }
+}
+
+/* ==========================================================================
+   9. Stilovi za Footer (Usklađeno sa početnom stranicom)
+   ========================================================================== */
+#idx-footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 10px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--card-border);
+    margin-top: 40px;
+    letter-spacing: 0.5px;
+    transition: border-color 0.4s ease, color 0.4s ease;
 }

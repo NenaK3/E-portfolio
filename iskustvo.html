@@ -26,9 +26,12 @@
 
     <main class="page-main-container">
         <h2 class="page-section-title" id="str-naslov"><i class="fa-solid fa-briefcase"></i> Radno iskustvo & prakse</h2>
-        <div class="experience-stack" id="iskustvo-kontejner">
-        </div>
+        <div class="experience-stack" id="iskustvo-kontejner"></div>
     </main>
+
+    <footer id="idx-footer">
+        ©Copyright by Nena Kozić
+    </footer>
 
     <script>
         const mod = sessionStorage.getItem('portfolioMod') || 'IT';
@@ -44,6 +47,7 @@
                 navEdukacija: 'Edukacija', 
                 navPromeni: 'Promeni portfolio',
                 naslovSve: 'Radno iskustvo & profesionalne prakse',
+                footer: '@Copyright by Nena Kozić',
                 IT: [
                     { 
                         pozicija: 'Softverski programer (Praksa)', 
@@ -79,6 +83,7 @@
                 navEdukacija: 'Education', 
                 navPromeni: 'Switch Portfolio',
                 naslovSve: 'Work experience & professional internships',
+                footer: '@Copyright by Nena Kozić',
                 IT: [
                     { 
                         pozicija: 'Software Developer (Internship)', 
@@ -117,6 +122,7 @@
             document.getElementById('nav-edukacija').innerText = r.navEdukacija;
             document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
             document.getElementById('str-naslov').innerHTML = `<i class="fa-solid fa-briefcase"></i> ${r.naslovSve}`;
+            document.getElementById('idx-footer').innerText = r.footer;
 
             const navLinks = document.querySelector('.nav-links');
             

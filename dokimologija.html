@@ -25,7 +25,6 @@
             border-color: transparent !important;
         }
     </style>
-
 </head>
 <body>
 
@@ -61,6 +60,10 @@
         </section>
     </main>
 
+    <footer id="idx-footer">
+        ©Copyright by Nena Kozić
+    </footer>
+
     <script>
         let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
         let rezim = localStorage.getItem('portfolioRezim') || 'dark';
@@ -87,8 +90,8 @@
         };
 
         const recnik = {
-            'SRB': { navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navDokimologija: 'Dokimologija', navPromeni: 'Promeni portfolio', naslovGlavni: 'Aktivnosti u sklopu predmeta dokimologija', opisStrane: 'Evidencija aktivnosti i domaćih zadataka okviru predmeta dokimologija.', statZavrseno: 'Završeno', statKolokvijum: 'Kolokvijum', statOcena: 'Ocena testa', statStatus: 'čeka ocenu', naslovTok: 'TOK AKTIVNOSTI' },
-            'ENG': { navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navDokimologija: 'Assessment', navPromeni: 'Switch Portfolio', naslovGlavni: 'Activities in Subject Assessment', opisStrane: 'Record of activities and assignments within the assessment subject.', statZavrseno: 'Completed', statKolokvijum: 'Midterm', statOcena: 'Test Grade', statStatus: 'pending', naslovTok: 'ACTIVITY FLOW' }
+            'SRB': { navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navDokimologija: 'Dokimologija', navPromeni: 'Promeni portfolio', naslovGlavni: 'Aktivnosti u sklopu predmeta dokimologija', opisStrane: 'Evidencija aktivnosti i domaćih zadataka okviru predmeta dokimologija.', statZavrseno: 'Završeno', statKolokvijum: 'Kolokvijum', statOcena: 'Ocena testa', statStatus: 'čeka ocenu', naslovTok: 'TOK AKTIVNOSTI', footer: '@Copyright by Nena Kozić' },
+            'ENG': { navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navDokimologija: 'Assessment', navPromeni: 'Switch Portfolio', naslovGlavni: 'Activities in Subject Assessment', opisStrane: 'Record of activities and assignments within the assessment subject.', statZavrseno: 'Completed', statKolokvijum: 'Midterm', statOcena: 'Test Grade', statStatus: 'pending', naslovTok: 'ACTIVITY FLOW', footer: '@Copyright by Nena Kozić' }
         };
 
         function osvezi() {
@@ -106,6 +109,7 @@
             document.getElementById('stat-status').innerText = r.statStatus;
             document.getElementById('naslov-tok').innerText = r.naslovTok;
             document.getElementById('nav-lang-btn').innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+            document.getElementById('idx-footer').innerText = r.footer;
 
             const kontejner = document.getElementById('timeline-kontejner');
             kontejner.innerHTML = '';

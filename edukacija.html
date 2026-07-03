@@ -39,6 +39,10 @@
 
     </main>
 
+    <footer id="idx-footer">
+        ©Copyright by Nena Kozić
+    </footer>
+
     <script>
         const mod = sessionStorage.getItem('portfolioMod') || 'IT';
         document.body.classList.add(mod.toLowerCase() + '-theme');
@@ -50,6 +54,7 @@
             'SRB': {
                 navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navDokimologija: 'Dokimologija', navPromeni: 'Promeni portfolio',
                 naslovFormalno: 'Formalno obrazovanje', naslovNeformalno: 'Neformalno obrazovanje',
+                footer: '@Copyright by Nena Kozić',
                 formalno: {
                     IT: [
                         { stepen: 'Master inženjer informacionih tehnologija', ustanova: 'Fakultet tehničkih nauka u Čačku, Univerzitet u Kragujevcu', period: 'Novembar 2024 - Oktobar 2025', opis: 'Tokom master studija specijalizovala sam se za napredne oblasti uključujući Web Mining, tehnike modeliranja i algoritme. Kroz Interakciju čovek-računar (HCI) istraživala sam spoj tehnologije i korisničkog iskustva.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_IT', vestine: ['HCI', 'Rudarenje veba'] },
@@ -70,6 +75,7 @@
             'ENG': {
                 navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navDokimologija: 'Assessment', navPromeni: 'Switch Portfolio',
                 naslovFormalno: 'Formal education', naslovNeformalno: 'Non-formal education',
+                footer: '@Copyright by Nena Kozić',
                 formalno: {
                     IT: [
                         { stepen: 'Master of Information Technology (M.Sc.)', ustanova: 'Faculty of Technical Sciences in Cacak', period: 'November 2024 - October 2025', opis: 'Master degree focusing on Web Mining, Algorithms and HCI.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_IT', vestine: ['HCI', 'Web Mining'] },
@@ -98,6 +104,7 @@
             document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
             document.getElementById('naslov-formalno').innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${r.naslovFormalno}`;
             document.getElementById('naslov-neformalno').innerHTML = `<i class="fa-solid fa-certificate"></i> ${r.naslovNeformalno}`;
+            document.getElementById('idx-footer').innerText = r.footer;
 
             const dokLink = document.getElementById('nav-dokimologija');
             if (mod === 'Edukacija') {
