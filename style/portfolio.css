@@ -355,25 +355,31 @@ body {
     border-radius: 2px;
 }
 
+/* Svi pasusi i tekstualni elementi unutar kartica (.card) */
 .card p {
     color: var(--text-muted);
     font-size: 1.05rem;
+    font-weight: 400;
     line-height: 1.7;
 }
 
 /* ==========================================================================
-   9. Grid za Veštine (Skills Grid)
+   9. Grid za Veštine (Skills Grid) - SADA FIKSIRANO U JEDNOM REDU ZA DESKTOP
    ========================================================================== */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* Tri jednake kolone garantuju jedan red na desktopu */
+    gap: 20px;                             /* Malo smanjen gap da sve stane bez guranja */
+}
+
+.skill-category {
+    padding: 24px;                         /* Blago smanjen padding za bolji raspored unutar užih kartica */
 }
 
 .skill-category h4 {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     color: var(--theme-accent);
 }
 
@@ -384,17 +390,26 @@ body {
 .skill-category li {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
+    gap: 12px;
+    margin-bottom: 16px;
     color: var(--text-muted);
+    font-size: 1.05rem;  
+    font-weight: 400;   
+    line-height: 1.7;    
+}
+
+.skill-category li:last-child {
+    margin-bottom: 0;
 }
 
 .skill-category li i {
     color: var(--theme-accent);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
 }
 
+/* ==========================================================================
+   10. Kontakt Sekcija
+   ========================================================================== */
 .it-theme {
     --link-color: #0284c7;
     --link-hover: #38bdf8;
@@ -419,18 +434,27 @@ body {
 .contact-list {
     list-style: none;
     padding: 0;
-    margin: 15px 0 0 0;
+    margin: 25px 0 0 0;
 }
 
 .contact-list li {
-    margin-bottom: 12px;
-    font-size: 1.05rem;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    font-size: 1.05rem;  
+    font-weight: 400;   
+    line-height: 1.7;    
+}
+
+.contact-list li:last-child {
+    margin-bottom: 0;
 }
 
 .contact-list i {
-    margin-right: 10px;
-    width: 20px;
+    margin-right: 14px;
+    width: 24px;
     text-align: center;
+    color: var(--theme-accent);
+    font-size: 1.15rem;
 }
 
 .site-footer {
@@ -446,9 +470,15 @@ body {
 }
 
 /* ==========================================================================
-   10. Prilagođavanje za Mobilne Uređaje (Responsive Design)
+   11. Prilagođavanje za Mobilne Uređaje (Responsive Design)
    ========================================================================== */
 @media (max-width: 768px) {
+    /* Na mobilnim uređajima grid prelazi u 1 kolonu radi preglednosti */
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
     .navbar {
         padding: 0 20px;
     }
