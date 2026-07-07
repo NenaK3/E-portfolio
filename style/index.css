@@ -1,0 +1,323 @@
+/* ==========================================================================
+   Nena Kozić | Digitalni Portfolio - Kompletni Stilovi (style.css)
+   ========================================================================== */
+
+/* 1. Reset i Osnovna Podešavanja */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --text-muted: #94a3b8;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --btn-bg: #334155;
+    --btn-hover: #475569;
+    --shadow: rgba(0, 0, 0, 0.3);
+    
+    --pastel-blue-bg: #e0f2fe;
+    --pastel-blue-accent: #38bdf8;
+    --pastel-blue-text: #0369a1;
+    --pastel-blue-dark: #0284c7;
+
+    --pastel-pink-bg: #fce7f3;
+    --pastel-pink-accent: #f472b6;
+    --pastel-pink-text: #b02a59;
+    --pastel-pink-dark: #db2777;
+}
+
+body.light-mode {
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --btn-bg: #e2e8f0;
+    --btn-hover: #cbd5e1;
+    --shadow: rgba(0, 0, 0, 0.05);
+}
+
+body.index-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 20px;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+.index-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.control-btn {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 45px;
+    box-shadow: 0 4px 6px -1px var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+.welcome-container {
+    max-width: 1100px;
+    width: 100%;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: auto; 
+}
+
+#idx-ime {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 50px auto;
+    line-height: 1.6;
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+    padding: 10px;
+    width: 100%;
+}
+
+.selection-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 40px 30px;
+    cursor: pointer;
+    text-align: left;
+    box-shadow: 0 10px 15px -3px var(--shadow);
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease, 
+                background-color 0.4s ease, 
+                border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 24px;
+    transition: transform 0.3s ease;
+}
+
+.selection-card h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.selection-card h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.selection-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.selection-card button {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.selection-card button i {
+    transition: transform 0.3s ease;
+}
+
+.selection-card:hover {
+    transform: translateY(-8px);
+}
+
+.selection-card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+.selection-card:hover button i {
+    transform: translateX(5px);
+}
+
+
+/* ==========================================================================
+   7. Specifični Zahtev: Pastelno Plavi Stilovi (IT Inženjering)
+   ========================================================================== */
+.it-card h2, .it-card h3, .it-card .card-icon {
+    color: var(--pastel-blue-accent);
+}
+
+.it-card p {
+    color: var(--text-muted);
+}
+
+.it-card button {
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+}
+
+.it-card:hover {
+    background-color: var(--pastel-blue-bg) !important;
+    border-color: var(--pastel-blue-accent);
+    box-shadow: 0 20px 25px -5px rgba(56, 189, 248, 0.25);
+}
+
+.it-card:hover h2 {
+    color: var(--pastel-blue-text);
+}
+.it-card:hover h3 {
+    color: var(--pastel-blue-dark);
+}
+.it-card:hover .card-icon {
+    color: var(--pastel-blue-text);
+}
+.it-card:hover p {
+    color: #0c4a6e; 
+}
+.it-card:hover button {
+    background-color: var(--pastel-blue-dark);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+
+/* ==========================================================================
+   8. Specifični Zahtev: Pastelno Roze Stilovi (Edukacija / Prosveta)
+   ========================================================================== */
+.edu-card h2, .edu-card h3, .edu-card .card-icon {
+    color: var(--pastel-pink-accent);
+}
+
+.edu-card p {
+    color: var(--text-muted);
+}
+
+.edu-card button {
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+}
+
+.edu-card:hover {
+    background-color: var(--pastel-pink-bg) !important;
+    border-color: var(--pastel-pink-accent);
+    box-shadow: 0 20px 25px -5px rgba(244, 114, 182, 0.25);
+}
+
+.edu-card:hover h2 {
+    color: var(--pastel-pink-text);
+}
+.edu-card:hover h3 {
+    color: var(--pastel-pink-dark);
+}
+.edu-card:hover .card-icon {
+    color: var(--pastel-pink-text);
+}
+.edu-card:hover p {
+    color: #5c0632; 
+}
+.edu-card:hover button {
+    background-color: var(--pastel-pink-dark);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(219, 39, 119, 0.3);
+}
+
+@media (max-width: 768px) {
+    body.index-body {
+        justify-content: flex-start;
+        padding-top: 80px;
+    }
+    
+    #idx-ime {
+        font-size: 2.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    .split-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .selection-card {
+        padding: 30px 20px;
+    }
+}
+
+/* ==========================================================================
+   10. Stilovi za Footer (Novi Deo)
+   ========================================================================== */
+#idx-footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 10px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--card-border);
+    margin-top: 40px;
+    letter-spacing: 0.5px;
+    transition: border-color 0.4s ease, color 0.4s ease;
+}

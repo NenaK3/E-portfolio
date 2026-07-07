@@ -1,0 +1,531 @@
+/* ==========================================================================
+   1. Reset i Osnovna Podešavanja
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --text-muted: #94a3b8;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --btn-bg: #334155;
+    --btn-hover: #475569;
+    --shadow: rgba(0, 0, 0, 0.3);
+    
+    --pastel-blue-bg: #e0f2fe;
+    --pastel-blue-accent: #38bdf8;
+    --pastel-blue-text: #0369a1;
+    --pastel-blue-dark: #0284c7;
+
+    --pastel-pink-bg: #fce7f3;
+    --pastel-pink-accent: #f472b6;
+    --pastel-pink-text: #b02a59;
+    --pastel-pink-dark: #db2777;
+
+    --theme-accent: var(--pastel-blue-accent);
+    --theme-accent-hover: var(--pastel-blue-dark);
+    --theme-tab-active-bg: #2d3748;
+    
+    --hamburger-color: #0369a1;
+}
+
+/* ==========================================================================
+   2. Upravljanje Temama (IT i Edukacija) i Režimima (Svetlo/Tamno)
+   ========================================================================== */
+
+body.it-theme {
+    --theme-accent: var(--pastel-blue-accent);
+    --theme-accent-hover: var(--pastel-blue-dark);
+    --hamburger-color: #0369a1;
+}
+
+body.edukacija-theme {
+    --theme-accent: var(--pastel-pink-accent);
+    --theme-accent-hover: var(--pastel-pink-dark);
+    --hamburger-color: #f472b6;
+}
+
+body.light-mode {
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --btn-bg: #e2e8f0;
+    --btn-hover: #cbd5e1;
+    --shadow: rgba(0, 0, 0, 0.05);
+    --theme-tab-active-bg: #e2e8f0;
+}
+
+body.light-mode.it-theme {
+    --theme-accent: var(--pastel-blue-dark);
+    --theme-accent-hover: var(--pastel-blue-text);
+    --hamburger-color: #0369a1;
+}
+
+body.light-mode.edukacija-theme {
+    --theme-accent: var(--pastel-pink-dark);
+    --theme-accent-hover: var(--pastel-pink-text);
+    --hamburger-color: #f472b6;
+}
+
+/* ==========================================================================
+   3. Osnovni Stilovi za Body
+   ========================================================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   4. Navigacioni Meni (Navbar)
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    height: 70px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: 0 4px 6px -1px var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--theme-accent);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.1);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--theme-accent);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--theme-accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+}
+
+.switch-btn {
+    background-color: var(--btn-bg);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem !important;
+}
+
+.switch-btn::after {
+    display: none !important;
+}
+
+.switch-btn:hover {
+    background-color: var(--theme-accent) !important;
+    color: #ffffff !important;
+    border-color: transparent;
+}
+
+.hamburger-menu {
+    display: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: var(--hamburger-color);
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.hamburger-menu:hover {
+    transform: scale(1.05);
+}
+
+.nav-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   5. Hero Sekcija
+   ========================================================================== */
+.hero-section {
+    background: linear-gradient(185deg, var(--card-bg) 0%, var(--bg-color) 100%);
+    padding: 60px 20px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.hero-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.hero-img {
+    width: 120px;
+    height: 120px;
+    background-color: var(--card-bg);
+    border: 3px solid var(--theme-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 15px -3px var(--shadow);
+}
+
+.placeholder-avatar {
+    font-size: 3.5rem;
+    color: var(--theme-accent);
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.hero-text h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   6. Tabs Kontejner
+   ========================================================================== */
+.tabs-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    flex: 1;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid var(--card-border);
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    bottom: -2px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tab-btn i {
+    font-size: 1.1rem;
+}
+
+.tab-btn:hover {
+    color: var(--text-color);
+}
+
+.tab-btn.active {
+    color: var(--theme-accent);
+    border-bottom-color: var(--theme-accent);
+}
+
+/* ==========================================================================
+   7. Prikaz i skrivanje sadržaja tabova
+   ========================================================================== */
+.tab-content-wrapper {
+    position: relative;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   8. Stilovi Kartica (Cards)
+   ========================================================================== */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 10px 15px -3px var(--shadow);
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.card h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--theme-accent);
+    border-radius: 2px;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* ==========================================================================
+   9. Grid za Veštine (Skills Grid)
+   ========================================================================== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.skill-category h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--theme-accent);
+}
+
+.skill-category ul {
+    list-style: none;
+}
+
+.skill-category li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.skill-category li i {
+    color: var(--theme-accent);
+    font-size: 0.85rem;
+}
+
+.it-theme {
+    --link-color: #0284c7;
+    --link-hover: #38bdf8;
+}
+
+.edukacija-theme {
+    --link-color: #db2777;
+    --link-hover: #f472b6;
+}
+        
+.contact-link {
+    color: var(--link-color) !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--link-hover) !important;
+    text-decoration: underline;
+}
+        
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 0;
+}
+
+.contact-list li {
+    margin-bottom: 12px;
+    font-size: 1.05rem;
+}
+
+.contact-list i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.site-footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 10px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--card-border);
+    margin-top: 40px;
+    letter-spacing: 0.5px;
+    transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+/* ==========================================================================
+   10. Prilagođavanje za Mobilne Uređaje (Responsive Design)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .nav-logo {
+        order: 1;
+    }
+
+    .hamburger-menu {
+        display: block;
+        order: 2;
+    }
+
+    .nav-controls {
+        order: 3;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--card-bg);
+        border-bottom: 1px solid var(--card-border);
+        flex-direction: column;
+        gap: 16px;                  
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        box-shadow: 0 10px 15px -3px var(--shadow);
+        z-index: 99;
+    }
+
+    .nav-links.nav-active {
+        max-height: 400px; 
+        padding: 20px 0;           
+    }
+
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;            
+        font-size: 1rem;
+    }
+
+    .nav-links a::after {
+        display: none; 
+    }
+
+    .switch-btn {
+        margin: 15px auto 5px auto;
+        width: 100%;
+        max-width: 90%;
+        display: flex;
+        justify-content: center;               
+    }
+
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .tab-buttons {
+        justify-content: space-between;
+        gap: 0;
+    }
+
+    .tab-btn {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        flex: 1;
+        justify-content: center;
+    }
+}
