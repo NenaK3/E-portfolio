@@ -126,18 +126,7 @@
 
     </main>
 
-    <div class="modal-overlay" id="pdf-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modal-title-text">Priprema za čas</h3>
-                <button class="modal-close-btn" onclick="zatvoriModal()"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="modal-body">
-                <iframe id="pdf-viewer" src=""></iframe>
-            </div>
-        </div>
-    </div>
-
+    <!-- Modalni prozor (očišćen duplikat) -->
     <div class="modal-overlay" id="pdf-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -271,7 +260,8 @@
                     `;
                 }
 
-                if (mod === 'Edukacija' && p.naziv.includes('Python & Turtle')) {
+                /* ISPRAVLJENO: Uslov sada tačno proverava naziv 'Python turtle' */
+                if (mod === 'Edukacija' && p.naziv.toLowerCase().includes('python turtle')) {
                     buttonsHTML += `
                         <button onclick="otvoriModal('assets/priprema/Priprema za čas broj  33, šesti razred.pdf', '${r.btnPriprema33}')" class="skill-tag course-tag" style="border:none; cursor:pointer; font-weight:bold; display:inline-flex; align-items:center; gap:5px;">
                             <i class="fa-solid fa-file-pdf"></i> ${r.btnPriprema33}
