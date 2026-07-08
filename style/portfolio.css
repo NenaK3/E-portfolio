@@ -227,21 +227,13 @@ body {
     gap: 35px;
 }
 
-.hero-img {
-    width: 120px;
-    height: 120px;
-    background-color: var(--card-bg);
-    border: 3px solid var(--theme-accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 15px -3px var(--shadow);
-}
-
-.placeholder-avatar {
-    font-size: 3.5rem;
-    color: var(--theme-accent);
+.hero-profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    max-width: 100%; /* Sprečava prelivanje na malim ekranima */
 }
 
 .hero-text h1 {
@@ -264,6 +256,7 @@ body {
     margin: 40px auto;
     padding: 0 20px;
     flex: 1;
+    width: 100%;
 }
 
 .tab-buttons {
@@ -355,7 +348,6 @@ body {
     border-radius: 2px;
 }
 
-/* Svi pasusi i tekstualni elementi unutar kartica (.card) */
 .card p {
     color: var(--text-muted);
     font-size: 1.05rem;
@@ -364,16 +356,16 @@ body {
 }
 
 /* ==========================================================================
-   9. Grid za Veštine (Skills Grid) - SADA FIKSIRANO U JEDNOM REDU ZA DESKTOP
+   9. Grid za Veštine (Skills Grid)
    ========================================================================== */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Tri jednake kolone garantuju jedan red na desktopu */
-    gap: 20px;                             /* Malo smanjen gap da sve stane bez guranja */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;                             
 }
 
 .skill-category {
-    padding: 24px;                         /* Blago smanjen padding za bolji raspored unutar užih kartica */
+    padding: 24px;                         
 }
 
 .skill-category h4 {
@@ -473,14 +465,22 @@ body {
    11. Prilagođavanje za Mobilne Uređaje (Responsive Design)
    ========================================================================== */
 @media (max-width: 768px) {
-    /* Na mobilnim uređajima grid prelazi u 1 kolonu radi preglednosti */
-    .skills-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
     .navbar {
         padding: 0 20px;
+    }
+
+    .tabs-container {
+        padding: 0 20px; 
+        margin: 25px auto;
+    }
+
+    .card {
+        padding: 20px; 
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     .nav-logo {
@@ -543,6 +543,11 @@ body {
         gap: 20px;
     }
 
+    .hero-profile-img {
+        width: 150px; 
+        height: 150px;
+    }
+
     .hero-text h1 {
         font-size: 2rem;
     }
@@ -553,8 +558,8 @@ body {
     }
 
     .tab-btn {
-        padding: 10px 12px;
-        font-size: 0.9rem;
+        padding: 10px 5px; 
+        font-size: 0.85rem;
         flex: 1;
         justify-content: center;
     }
