@@ -37,7 +37,6 @@
 /* ==========================================================================
    2. Upravljanje Temama (IT i Edukacija) i Režimima (Svetlo/Tamno)
    ========================================================================== */
-
 body.it-theme {
     --theme-accent: var(--pastel-blue-accent);
     --theme-accent-hover: var(--pastel-blue-dark);
@@ -211,7 +210,7 @@ body {
 }
 
 /* ==========================================================================
-   5. Hero Sekcija
+   5. Hero Sekcija i CV Dugme
    ========================================================================== */
 .hero-section {
     background: linear-gradient(185deg, var(--card-bg) 0%, var(--bg-color) 100%);
@@ -233,7 +232,7 @@ body {
     border-radius: 8px;
     object-fit: cover;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    max-width: 100%; /* Sprečava prelivanje na malim ekranima */
+    max-width: 100%;
 }
 
 .hero-text h1 {
@@ -246,6 +245,104 @@ body {
     font-size: 1.2rem;
     font-weight: 500;
     color: var(--text-muted);
+}
+
+.cv-btn-container {
+    margin-top: 18px;
+}
+
+.cv-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px;
+    background-color: var(--theme-accent);
+    color: #ffffff !important;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 6px -1px var(--shadow);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cv-download-btn:hover {
+    background-color: var(--theme-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px -1px var(--shadow);
+}
+
+.cv-download-btn i {
+    font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   5a. Novi Dodatak: Stilovi za CV Modalni Prozor
+   ========================================================================== */
+.cv-modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.cv-modal.prikazi {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cv-modal-sadrzaj {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    width: 90%;
+    max-width: 800px;
+    height: 85vh;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px 20px 20px;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.cv-modal.prikazi .cv-modal-sadrzaj {
+    transform: scale(1);
+}
+
+.cv-zatvori-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.cv-zatvori-btn:hover {
+    color: var(--theme-accent);
+}
+
+.cv-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 6px;
+    background-color: #ffffff;
 }
 
 /* ==========================================================================
@@ -361,11 +458,11 @@ body {
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
-    gap: 20px;                             
+    gap: 20px;                                 
 }
 
 .skill-category {
-    padding: 24px;                         
+    padding: 24px;                                 
 }
 
 .skill-category h4 {
@@ -400,7 +497,7 @@ body {
 }
 
 /* ==========================================================================
-   10. Kontakt Sekcija
+   10. Kontakt Sekcija i Footer
    ========================================================================== */
 .it-theme {
     --link-color: #0284c7;
@@ -435,6 +532,12 @@ body {
     font-size: 1.05rem;  
     font-weight: 400;   
     line-height: 1.7;    
+}
+
+.contact-list li span {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-right: 4px;
 }
 
 .contact-list li:last-child {
@@ -552,6 +655,12 @@ body {
         font-size: 2rem;
     }
 
+    .cv-btn-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
     .tab-buttons {
         justify-content: space-between;
         gap: 0;
@@ -562,5 +671,11 @@ body {
         font-size: 0.85rem;
         flex: 1;
         justify-content: center;
+    }
+
+    .cv-modal-sadrzaj {
+        height: 75vh;
+        width: 95%;
+        padding: 40px 10px 10px 10px;
     }
 }

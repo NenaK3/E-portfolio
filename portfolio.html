@@ -37,9 +37,21 @@
             <div class="hero-text">
                 <h1>Nena Kozić</h1>
                 <h2 id="hero-title">...</h2>
+                <div class="cv-btn-container">
+                    <a id="cv-link" href="javascript:void(0)" onclick="otvoriCvModal()" class="cv-download-btn">
+                        <i class="fa-solid fa-file-pdf"></i> <span id="cv-btn-text">Prikaži CV</span>
+                    </a>
+                </div>
             </div>
         </div>
     </header>
+
+    <div id="cv-modal" class="cv-modal" onclick="zatvoriCvModalIzvan(event)">
+        <div class="cv-modal-sadrzaj">
+            <button class="cv-zatvori-btn" onclick="zatvoriCvModal()"><i class="fa-solid fa-xmark"></i></button>
+            <iframe id="cv-iframe" class="cv-iframe" src=""></iframe>
+        </div>
+    </div>
 
     <main class="tabs-container">
         <div class="tab-buttons">
@@ -108,6 +120,7 @@
 
         let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
         let rezim = localStorage.getItem('portfolioRezim') || 'dark';
+        let trenutniCvPutanja = ''; 
 
         const recnik = {
             'SRB': {
@@ -115,10 +128,12 @@
                 tabOMeni: 'O meni', tabVestine: 'Veštine', tabAmbicije: 'Ambicije', tabKontakt: 'Kontakt',
                 naslovOMeni: 'Profesionalni profil', naslovAmbicije: 'Budući ciljevi i usmerenja', naslovKontakt: 'Kontakt informacije',
                 lblEmail: 'E-mail adresa:', lblLokacija: 'Lokacija:', lblLinkedin: 'LinkedIn profil:', lblGithub: 'GitHub profil:',
+                cvBtnText: 'Prikaži CV',
                 IT: {
                     titula: 'Master inženjer informacionih tehnologija',
                     oMeni: 'Fokusirana na razvoj modernih frontend aplikacija i napredno upravljanje bazama podataka. Kroz praktičan rad u kompanijama i akademske projekte na FTN-u stekla sam iskustvo u tehnologijama kao što su Angular, React, Node.js i Flutter, kao i u radu sa relacionim bazama i softverskom arhitekturom.',
                     ambicije: 'Dugoročni fokus je usmeren na karijeru u IT industriji, sa primarnim interesovanjem za Frontend razvoj i kreiranje intuitivnih korisničkih interfejsa, kao i za projektovanje baza podataka i Power BI analitiku. Cilj mi je dalji rad sa modernim JavaScript/TypeScript okvirima, napredno upravljanje podacima i kreiranje poslovnih izveštaja koji pomažu u donošenju ključnih odluka.',
+                    cvFajl: 'assets/cv/CV IT - srb.pdf',
                     v: [
                         { kat: 'Frontend & Mobile', stavke: ['Angular / AngularJS', 'React.js', 'Flutter', 'JavaScript (ES6)', 'HTML5 / CSS3', 'Bootstrap'] },
                         { kat: 'Backend & Baze podataka', stavke: ['Node.js', 'SQL / MySQL', 'Oracle APEX / Oracle DB', 'C / C++ / C#', 'Java / Kotlin', 'PHP'] },
@@ -129,6 +144,7 @@
                     titula: 'Master profesor stručnih predmeta oblasti informacionih tehnologija',
                     oMeni: 'Strastvena prema pedagogiji, metodici nastave računarstva i digitalnoj pismenosti. Uspešno prenosim apstraktne IT koncepte (poput programiranja u Python-u) mlađim generacijama kroz interaktivne metode, konstruktivistički pristup i savremene nastavne alate.',
                     ambicije: 'Rad u prosvetnom sistemu kao profesor informatike i računarstva, kreiranje naprednih radionica i sekcija za talentovane učenike, implementacija EdTech inovacija i istraživanje primene obrazovnih softvera u nastavi.',
+                    cvFajl: 'assets/cv/CV PN - srb.pdf',
                     v: [
                         { kat: 'Metodika i pedagogija', stavke: ['Konstruktivizam u nastavi', 'Programirano učenje', 'Digitalna pismenost', 'Individualizacija nastave'] },
                         { kat: 'Nastavni alati', stavke: ['Izrada e-testova', 'Google Forms', 'Interaktivni materijali (Python Turtle, Pygame)'] },
@@ -141,10 +157,12 @@
                 tabOMeni: 'About Me', tabVestine: 'Skills', tabAmbicije: 'Ambitions', tabKontakt: 'Contact',
                 naslovOMeni: 'Professional Profile', naslovAmbicije: 'Future Goals & Orientations', naslovKontakt: 'Contact Information',
                 lblEmail: 'Email address:', lblLokacija: 'Location:', lblLinkedin: 'LinkedIn profile:', lblGithub: 'GitHub profile:',
+                cvBtnText: 'View CV',
                 IT: {
                     titula: 'Master of Information Technology',
                     oMeni: 'Focused on developing modern frontend applications and advanced database management. Through professional internships and academic projects at the Faculty of Technical Sciences, I have gained hands-on experience with Angular, React, Node.js, and Flutter, alongside relational databases and software architecture.',
                     ambicije: 'Long-term focus is oriented toward a career in the IT industry, with a primary interest in Frontend development and creating intuitive user interfaces, as well as database design and Power BI analytics. My goal is to further work with modern JavaScript/TypeScript frameworks, advanced data management, and generating business reports that drive key decision-making.',
+                    cvFajl: 'assets/cv/CV IT - eng.pdf',
                     v: [
                         { kat: 'Frontend & Mobile', stavke: ['Angular / AngularJS', 'React.js', 'Flutter', 'JavaScript (ES6)', 'HTML5 / CSS3', 'Bootstrap'] },
                         { kat: 'Backend & Databases', stavke: ['Node.js', 'SQL / MySQL', 'Oracle APEX / Oracle DB', 'C / C++ / C#', 'Java / Kotlin', 'PHP'] },
@@ -155,6 +173,7 @@
                     titula: 'Master Professor of Information Technology Vocational Subjects',
                     oMeni: 'Passionate about pedagogy, computer science teaching methodology, and digital literacy. Successfully delivering abstract IT concepts (such as Python programming) to younger generations through interactive methods, constructivism, and contemporary educational tools.',
                     ambicije: 'Working in the education system as a professor of computer science and information technology, creating advanced workshops and sections for talented students, implementing EdTech innovations and researching the application of educational software in teaching.',
+                    cvFajl: 'assets/cv/CV PN - engs.pdf',
                     v: [
                         { kat: 'Methodology & Pedagogy', stavke: ['Constructivism in Education', 'Programmed Learning', 'Digital Literacy', 'Individualized Teaching'] },
                         { kat: 'Educational Tools', stavke: ['E-tests Generation', 'Google Forms', 'Interactive Materials (Python Turtle, Pygame)'] },
@@ -202,6 +221,10 @@
             document.getElementById('tekst-o-meni').innerText = s.oMeni;
             document.getElementById('tekst-ambicije').innerText = s.ambicije;
 
+            document.getElementById('cv-btn-text').innerText = r.cvBtnText;
+            
+            trenutniCvPutanja = s.cvFajl;
+
             const vk = document.getElementById('vestine-kontejner');
             vk.innerHTML = '';
             s.v.forEach(g => {
@@ -212,6 +235,30 @@
             });
 
             document.getElementById('nav-lang-btn').innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+        }
+
+        function otvoriCvModal() {
+            const modal = document.getElementById('cv-modal');
+            const iframe = document.getElementById('cv-iframe');
+            
+            iframe.src = trenutniCvPutanja; 
+            modal.classList.add('prikazi');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function zatvoriCvModal() {
+            const modal = document.getElementById('cv-modal');
+            const iframe = document.getElementById('cv-iframe');
+            
+            modal.classList.remove('prikazi');
+            iframe.src = '';
+            document.body.style.overflow = ''; 
+        }
+
+        function zatvoriCvModalIzvan(event) {
+            if (event.target.id === 'cv-modal') {
+                zatvoriCvModal();
+            }
         }
 
         function primeniRezim() {
