@@ -6,7 +6,6 @@
     <title>Nena Kozić | Projekti</title>
     <link rel="stylesheet" href="style/projekti.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
 </head>
 <body>
 
@@ -71,6 +70,7 @@
                 btnMaterijal: 'Materijal za đake',
                 btnPriprema33: 'Priprema za čas broj 33, šesti razred',
                 btnPriprema34: 'Priprema za čas broj 34, šesti razred',
+                btnKodNaDelu: 'Pogledaj kod na delu',
                 projekti: {
                     IT: [
                         { 
@@ -109,6 +109,7 @@
                 btnMaterijal: 'Student materials',
                 btnPriprema33: 'Lesson plan 33 (6th grade)',
                 btnPriprema34: 'Lesson plan 34 (6th grade)',
+                btnKodNaDelu: 'See code in action',
                 projekti: {
                     IT: [
                         { 
@@ -175,14 +176,17 @@
 
                 if (mod === 'Edukacija' && p.naziv.toLowerCase().includes('python turtle')) {
                     buttonsHTML += `
-                        <button onclick="otvoriModal('assets/priprema/Priprema za čas broj  33, šesti razred.pdf', '${r.btnPriprema33}')" class="skill-tag course-tag" style="border:none; cursor:pointer; font-weight:bold; display:inline-flex; align-items:center; gap:5px;">
+                        <button onclick="otvoriModal('assets/priprema/Priprema za čas broj   33, šesti razred.pdf', '${r.btnPriprema33}')" class="skill-tag course-tag" style="border:none; cursor:pointer; font-weight:bold; display:inline-flex; align-items:center; gap:5px;">
                             <i class="fa-solid fa-file-pdf"></i> ${r.btnPriprema33}
                         </button>
                         <button onclick="otvoriModal('assets/priprema/Priprema za čas broj 34, šesti razred.pdf', '${r.btnPriprema34}')" class="skill-tag course-tag" style="border:none; cursor:pointer; font-weight:bold; display:inline-flex; align-items:center; gap:5px;">
                             <i class="fa-solid fa-file-pdf"></i> ${r.btnPriprema34}
                         </button>
-                        <a href="https://heyzine.com/flip-book/ae67dcf23c.html" target="_blank" class="skill-tag course-tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: bold;">
+                        <a href="https://heyzine.com/flip-book/ae67dcf23c.html" class="skill-tag course-tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: bold;">
                             <i class="fa-solid fa-book-open"></i> ${r.btnMaterijal}
+                        </a>
+                        <a href="kod.html" class="skill-tag course-tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: bold;">
+                            <i class="fa-solid fa-code"></i> ${r.btnKodNaDelu}
                         </a>
                     `;
                 }

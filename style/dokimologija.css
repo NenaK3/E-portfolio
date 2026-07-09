@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. Reset i Osnovna Podešavanja
+   1. Reset i osnovna podešavanja
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -35,7 +35,7 @@
 }
 
 /* ==========================================================================
-   2. Upravljanje Temama (IT i Edukacija)
+   2. Upravljanje temama
    ========================================================================== */
 body.it-theme {
     --theme-accent: var(--pastel-blue-accent);
@@ -75,7 +75,7 @@ body.light-mode.edukacija-theme {
 }
 
 /* ==========================================================================
-   3. Osnovni Stilovi za Body
+   3. Osnovni stilovi za body
    ========================================================================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -90,7 +90,7 @@ body {
 }
 
 /* ==========================================================================
-   4. Navigacioni Meni (Navbar)
+   4. Navigacioni meni (navbar)
    ========================================================================== */
 .navbar {
     display: flex;
@@ -210,7 +210,7 @@ body {
 }
 
 /* ==========================================================================
-   5. Glavni Kontejner Stranice
+   5. Glavni kontejner stranice
    ========================================================================== */
 .page-main-container {
     max-width: 1000px;
@@ -234,7 +234,7 @@ body {
 }
 
 /* ==========================================================================
-   6. Mreža sa Statistikom (Stats Grid)
+   6. Mreža sa statistikom (stats grid)
    ========================================================================== */
 .stats-grid {
     display: grid;
@@ -280,7 +280,7 @@ body {
 }
 
 /* ==========================================================================
-   7. Sekcija "Tok Aktivnosti" (Timeline)
+   7. Sekcija "tok aktivnosti" (timeline)
    ========================================================================== */
 #tok-aktivnosti {
     margin-top: 20px;
@@ -360,7 +360,7 @@ body {
 }
 
 /* ==========================================================================
-   8. Responzivni Dizajn (Sa fiksiranim rasporedom elemenata)
+   8. Responzivni dizajn (sa fiksiranim rasporedom elemenata)
    ========================================================================== */
 @media (max-width: 768px) {
     .navbar {
@@ -451,7 +451,7 @@ body {
 }
 
 /* ==========================================================================
-   9. Stilovi za Footer
+   9. Stilovi za footer
    ========================================================================== */
 #idx-footer {
     width: 100%;

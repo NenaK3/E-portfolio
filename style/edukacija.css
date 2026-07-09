@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. Reset i Osnovna Podešavanja
+   1. Reset i osnovna podešavanja
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -36,7 +36,7 @@
 }
 
 /* ==========================================================================
-   2. Upravljanje Temama (IT i Edukacija)
+   2. Upravljanje temama
    ========================================================================== */
 body.it-theme {
     --theme-accent: var(--pastel-blue-accent);
@@ -83,7 +83,7 @@ body.light-mode.edukacija-theme {
 }
 
 /* ==========================================================================
-   3. Osnovni Stilovi za Body
+   3. Osnovni stilovi za body
    ========================================================================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -98,7 +98,7 @@ body {
 }
 
 /* ==========================================================================
-   4. Navigacioni Meni (Navbar)
+   4. Navigacioni meni (navbar)
    ========================================================================== */
 .navbar {
     display: flex;
@@ -222,7 +222,7 @@ body {
 }
 
 /* ==========================================================================
-   5. Edukacija Glavni Kontejner (Split/Grid Layout)
+   5. Edukacija glavni kontejner (split/grid layout)
    ========================================================================== */
 .education-split-container {
     display: grid;
@@ -258,7 +258,7 @@ body {
 }
 
 /* ==========================================================================
-   6. Stek sa Karticama Obrazovanja
+   6. Stek sa karticama obrazovanja
    ========================================================================== */
 .experience-stack {
     display: flex;
@@ -376,7 +376,7 @@ body {
 }
 
 /* ==========================================================================
-   8. Responzivni Dizajn (Mobilni Uređaji i Tableti)
+   8. Responzivni dizajn (mobilni uređaji i tableti)
    ========================================================================== */
 @media (max-width: 1024px) {
     .education-split-container {
@@ -466,7 +466,7 @@ body {
 }
 
 /* ==========================================================================
-   9. Stilovi za Footer 
+   9. Stilovi za footer 
    ========================================================================== */
 #idx-footer {
     width: 100%;

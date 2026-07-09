@@ -1,8 +1,6 @@
 /* ==========================================================================
-   Nena Kozić | Digitalni Portfolio - Kompletni Stilovi (style.css)
+   1. Reset i Osnovna Podešavanja
    ========================================================================== */
-
-/* 1. Reset i Osnovna Podešavanja */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -198,7 +196,7 @@ body.index-body {
 
 
 /* ==========================================================================
-   7. Specifični Zahtev: Pastelno Plavi Stilovi (IT Inženjering)
+   2. Specifični Zahtev: Pastelno Plavi Stilovi (IT Inženjering)
    ========================================================================== */
 .it-card h2, .it-card h3, .it-card .card-icon {
     color: var(--pastel-blue-accent);
@@ -241,7 +239,7 @@ body.index-body {
 
 
 /* ==========================================================================
-   8. Specifični Zahtev: Pastelno Roze Stilovi (Edukacija / Prosveta)
+   3. Specifični Zahtev: Pastelno Roze Stilovi (Edukacija / Prosveta)
    ========================================================================== */
 .edu-card h2, .edu-card h3, .edu-card .card-icon {
     color: var(--pastel-pink-accent);
@@ -308,7 +306,7 @@ body.index-body {
 }
 
 /* ==========================================================================
-   10. Stilovi za Footer (Novi Deo)
+   4. Stilovi za footer
    ========================================================================== */
 #idx-footer {
     width: 100%;

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. Reset i Osnovna Podešavanja
+   1. Reset i osnovna podešavanja
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -35,7 +35,7 @@
 }
 
 /* ==========================================================================
-   2. Upravljanje Temama (IT i Edukacija) i Režimima (Svetlo/Tamno)
+   2. Upravljanje temama
    ========================================================================== */
 body.it-theme {
     --theme-accent: var(--pastel-blue-accent);
@@ -74,7 +74,7 @@ body.light-mode.edukacija-theme {
 }
 
 /* ==========================================================================
-   3. Osnovni Stilovi za Body
+   3. Osnovni stilovi za body
    ========================================================================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -88,7 +88,7 @@ body {
 }
 
 /* ==========================================================================
-   4. Navigacioni Meni (Navbar)
+   4. Navigacioni meni (navbar)
    ========================================================================== */
 .navbar {
     display: flex;
@@ -210,7 +210,7 @@ body {
 }
 
 /* ==========================================================================
-   5. Hero Sekcija i CV Dugme
+   5. Hero sekcija i CV dugme
    ========================================================================== */
 .hero-section {
     background: linear-gradient(185deg, var(--card-bg) 0%, var(--bg-color) 100%);
@@ -277,7 +277,7 @@ body {
 }
 
 /* ==========================================================================
-   5a. Novi Dodatak: Stilovi za CV Modalni Prozor
+   5a. Novi dodatak: stilovi za CV modalni prozor
    ========================================================================== */
 .cv-modal {
     display: flex;
@@ -346,7 +346,7 @@ body {
 }
 
 /* ==========================================================================
-   6. Tabs Kontejner
+   6. Tabs kontejner
    ========================================================================== */
 .tabs-container {
     max-width: 900px;
@@ -415,7 +415,7 @@ body {
 }
 
 /* ==========================================================================
-   8. Stilovi Kartica (Cards)
+   8. Stilovi kartica
    ========================================================================== */
 .card {
     background-color: var(--card-bg);
@@ -453,7 +453,7 @@ body {
 }
 
 /* ==========================================================================
-   9. Grid za Veštine (Skills Grid)
+   9. Grid za veštine (skills grid)
    ========================================================================== */
 .skills-grid {
     display: grid;
@@ -497,7 +497,7 @@ body {
 }
 
 /* ==========================================================================
-   10. Kontakt Sekcija i Footer
+   10. Kontakt sekcija i footer
    ========================================================================== */
 .it-theme {
     --link-color: #0284c7;
@@ -565,7 +565,7 @@ body {
 }
 
 /* ==========================================================================
-   11. Prilagođavanje za Mobilne Uređaje (Responsive Design)
+   11. Prilagođavanje za mobilne uređaje (responsive design)
    ========================================================================== */
 @media (max-width: 768px) {
     .navbar {
