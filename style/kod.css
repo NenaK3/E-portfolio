@@ -1,109 +1,278 @@
 /* ==========================================================================
-   1. Osnovna podešavanja i paleta voja 
+   1. Osnovna podešavanja i teme 
    ========================================================================== */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 :root {
     --bg-color: #0f172a;
     --text-color: #f8fafc;
     --text-muted: #94a3b8;
     --card-bg: #1e293b;
     --card-border: #334155;
+    --btn-bg: #334155;
+    --btn-hover: #475569;
     --shadow: rgba(0, 0, 0, 0.3);
     
+    --pastel-blue-bg: #e0f2fe;
+    --pastel-blue-accent: #38bdf8;
+    --pastel-blue-text: #0369a1;
+    --pastel-blue-dark: #0284c7;
+
+    --pastel-pink-bg: #fce7f3;
     --pastel-pink-accent: #f472b6;
     --pastel-pink-text: #b02a59;
     --pastel-pink-dark: #db2777;
 
+    --theme-accent: var(--pastel-blue-accent);
+    --theme-accent-hover: var(--pastel-blue-dark);
+    --hamburger-color: #0369a1; 
+    
+    --code-bg: #1e293b;           
+    --comment-color: #64748b;  
+    
+    --nav-bg: var(--card-bg); 
+}
+
+body.light-mode {
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --btn-bg: #e2e8f0;
+    --btn-hover: #cbd5e1;
+    --shadow: rgba(0, 0, 0, 0.05);
+    
+    --code-bg: #f1f5f9;          
+    --comment-color: #94a3b8;
+    --nav-bg: var(--card-bg);
+}
+
+body.it-theme {
+    --theme-accent: var(--pastel-blue-accent);
+    --theme-accent-hover: var(--pastel-blue-dark);
+    --hamburger-color: #0369a1;
+}
+
+body.edukacija-theme {
     --theme-accent: var(--pastel-pink-accent);
     --theme-accent-hover: var(--pastel-pink-dark);
-    
-    --code-bg: #0b0f19;
-    --comment-color: #64748b;
+    --hamburger-color: #f472b6;
+}
+
+body.light-mode.it-theme {
+    --theme-accent: var(--pastel-blue-dark);
+    --theme-accent-hover: var(--pastel-blue-text);
+    --hamburger-color: #0369a1;
+}
+
+body.light-mode.edukacija-theme {
+    --theme-accent: var(--pastel-pink-dark);
+    --theme-accent-hover: var(--pastel-pink-text);
+    --hamburger-color: #f472b6;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
     min-height: 100vh;
-    line-height: 1.6;
-    padding: 40px 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 /* ==========================================================================
-   2. Tipografija i naslovi
+   2. Navigacija 
    ========================================================================== */
-h1 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--text-color);
-    margin-bottom: 8px;
-    text-align: center;
-    position: relative;
-    padding-bottom: 12px;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--nav-bg);
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: 0 4px 6px -1px var(--shadow);
+    padding: 0 40px;
+    height: 70px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
-h1::after {
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--theme-accent);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.1);
+}
+
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--hamburger-color);
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--theme-accent);
+    background-color: transparent; 
+}
+
+.nav-links a::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
+    left: 0;
+    width: 0;
+    height: 2px;
     background-color: var(--theme-accent);
-    border-radius: 2px;
+    transition: width 0.3s ease;
 }
 
-p {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-    margin-bottom: 30px;
-    text-align: center;
-    max-width: 600px;
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+}
+
+.switch-btn {
+    background-color: var(--btn-bg);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem !important;
+    transition: all 0.3s ease;
+}
+
+.switch-btn::after {
+    display: none !important; 
+}
+
+.switch-btn:hover {
+    background-color: var(--theme-accent) !important;
+    color: #ffffff !important;
+    border-color: transparent;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+    border-color: var(--card-border);
+    color: var(--text-color);
 }
 
 /* ==========================================================================
-   3. Interaktivni prikaz koda (<pre> blok)
+   3. Glavni kontejner i tekstualni delovi
+   ========================================================================== */
+.turtle-main-container {
+    flex: 1;
+    max-width: 1000px;
+    width: 90%;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+#glavni-naslov {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#glavni-podnaslov {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   4. Interaktivni prikaz koda (<pre> i spans)
    ========================================================================== */
 pre {
     background-color: var(--code-bg);
     border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 24px;
-    box-shadow: 0 10px 15px -3px var(--shadow);
-    font-family: 'Consolas', 'Courier New', Courier, monospace;
-    font-size: 0.95rem;
+    border-radius: 12px;
+    padding: 25px;
     overflow-x: auto;
-    max-width: 850px;
-    width: 100%;
-    white-space: pre-wrap; 
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .video-link {
-    color: var(--theme-accent);
+    color: var(--pastel-pink-accent);
     text-decoration: underline;
-    text-decoration-style: dotted;
     text-underline-offset: 4px;
+    text-decoration-thickness: 1.5px;
     cursor: pointer;
     font-weight: 600;
-    transition: color 0.2s ease, background-color 0.2s ease;
     padding: 2px 4px;
     border-radius: 4px;
+    transition: all 0.2s ease-in-out;
 }
 
 .video-link:hover {
     color: #ffffff;
-    background-color: var(--theme-accent-hover);
+    background-color: var(--pastel-pink-dark);
     text-decoration: none;
+    box-shadow: 0 0 8px rgba(244, 114, 182, 0.5);
+}
+
+body.light-mode .video-link:hover {
+    color: #ffffff;
 }
 
 .komentar {
@@ -112,98 +281,167 @@ pre {
 }
 
 .komentar .video-link {
-    color: var(--theme-accent);
     font-style: normal;
 }
 
 /* ==========================================================================
-   4. Video modalni prozor
+   5. Modalni prozor za google drive video player
    ========================================================================== */
 .modal {
-    display: none; 
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
-    z-index: 1000;
+    background-color: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    opacity: 1;
+    transition: all 0.3s ease;
 }
 
 .modal-content {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    width: 95%;
-    max-width: 800px;
-    height: 75vh;
-    border-radius: 12px;
     position: relative;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    padding: 45px 15px 15px 15px;
-    animation: modalSkok 0.3s ease forwards;
+    background-color: #000000;
+    width: 80%;
+    max-width: 850px;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(244, 114, 182, 0.3);
+    border: 2px solid var(--theme-accent);
+    animation: otvoriModal 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes modalSkok {
+@keyframes otvoriModal {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    color: var(--text-color);
-    font-size: 2rem;
-    line-height: 1;
-    cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.close-btn:hover {
-    color: var(--theme-accent);
-    transform: scale(1.1);
 }
 
 #videoPlayer {
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: 6px;
-    background-color: #000000;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(15, 23, 42, 0.6);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 28px;
+    line-height: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2010;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background-color: var(--theme-accent-hover);
+    color: white;
+    transform: rotate(90deg);
 }
 
 /* ==========================================================================
-   5. Prilagođavanje za mobilne uređaje (responsive)
+   6. Footer podnožje
    ========================================================================== */
+#idx-footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--card-border);
+    margin-top: auto;
+}
+
+/* ==========================================================================
+   7. Responzivni dizajn i mobilni meni
+   ========================================================================== */
+@media (max-width: 868px) {
+    .navbar {
+        padding: 0 20px;
+        position: relative;
+    }
+
+    .nav-logo {
+        order: 1;
+    }
+
+    .hamburger-menu {
+        display: block;
+        order: 2; 
+    }
+    
+    .nav-controls {
+        order: 3; 
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px; 
+        left: 0;
+        width: 100%;
+        background-color: var(--nav-bg);
+        border-bottom: 1px solid var(--card-border);
+        padding: 20px;
+        gap: 16px;
+        box-shadow: 0 10px 15px -3px var(--shadow);
+        z-index: 99;
+    }
+
+    .nav-links.prikazi {
+        display: flex;
+    }
+
+    .nav-links a {
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .nav-links a::after {
+        display: none; 
+    }
+
+    .switch-btn {
+        margin: 15px auto 5px auto;
+        width: 100%;
+        max-width: 90%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
 @media (max-width: 768px) {
-    body {
-        padding: 20px 10px;
+    .turtle-main-container {
+        margin: 20px auto;
+        padding: 10px;
     }
-
-    h1 {
-        font-size: 1.6rem;
+    
+    #glavni-naslov {
+        font-size: 1.75rem;
     }
-
-    p {
-        font-size: 0.95rem;
-        margin-bottom: 20px;
-    }
-
+    
     pre {
-        padding: 16px;
-        font-size: 0.85rem;
+        padding: 15px;
+        font-size: 0.95rem;
     }
-
+    
     .modal-content {
-        height: 50vh; 
-        padding: 40px 10px 10px 10px;
+        width: 95%;
     }
 }

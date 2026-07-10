@@ -3,74 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Turtle - Kod na delu</title>
+    <title>Nena Kozić | Python Turtle - Kod na delu</title>
     <link rel="stylesheet" href="style/kod.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <h1>Interaktivni Python Turtle Kod</h1>
-    <p>Klikni na roze, podvučene linije koda kako bi pogledao video objašnjenje za njih!</p>
+    <nav class="navbar">
+        <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
+        
+        <button class="hamburger-menu" onclick="toggleMeni()" id="hamburger-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
-    <pre>
-        <span class="video-link" data-video="https://drive.google.com/file/d/1rU3Yo1VJkbWSDP-W5UEI484VcTZ0Mt_Z/view?usp=sharing">import turtle</span>
+        <div class="nav-links" id="nav-links-id">
+            <a href="portfolio.html" id="nav-profil">Profil</a>
+            <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
+            <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
+            <a href="projekti.html" class="active" id="nav-projekti">Projekti</a>
+            <a href="dokimologija.html" id="nav-dokimologija" style="display: none;">Dokimologija</a>
+            <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
+        </div>
+        <div class="nav-controls">
+            <button onclick="toggleJezik()" class="control-btn" id="nav-lang-btn">EN</button>
+            <button onclick="toggleTema()" class="control-btn" id="nav-theme-btn"><i class="fa-solid fa-sun"></i></button>
+        </div>
+    </nav>
 
-        <span class="komentar"># 1. Priprema ekrana i kornjače</span>
-        turtle.title("Moja kućica")
-        <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.shape</span>("turtle")
-        <span class="video-link" data-video="https://drive.google.com/file/d/1iyFHiSs9ZtMJUKl5lofUyVprKroAvs-h/view?usp=sharing">turtle.width</span>(4)
-        <span class="video-link" data-video="https://drive.google.com/file/d/1f2cGh1PgFXCLQQhWwdA7O5U1i94w8czp/view?usp=sharing">turtle.speed</span>(3)
+    <main class="turtle-main-container">
+        <h1 id="glavni-naslov">Interaktivni Python Turtle Kod</h1>
+        <p id="glavni-podnaslov">Klikni na roze, podvučene linije koda kako bi pogledao video objašnjenje za njih!</p>
 
-        <span class="komentar"># 2. PLAVA BAZA KUĆICE</span>
-        <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.color</span>("blue")
-        <span class="video-link" data-video="https://drive.google.com/file/d/1EQYLsmXEd3iVz9xRKaar7yt8vw1bEuxF/view?usp=sharing">for _ in range(4):</span>
-            <span class="video-link" data-video="https://drive.google.com/file/d/1FAFVZBnITrizJuM2oIQ77LOWfOpf19PD/view?usp=sharing">turtle.forward</span>(150) <span class="komentar"># za crtanje u nazad se koristi <span class="video-link" data-video="https://drive.google.com/file/d/1cKFCFNnLxplIRqnuDemAv_N7Se6j50_U/view?usp=sharing">turtle.backward</span></span>
+        <pre>
+            <span class="video-link" data-video="https://drive.google.com/file/d/1rU3Yo1VJkbWSDP-W5UEI484VcTZ0Mt_Z/view?usp=sharing">import turtle</span>
+
+            <span class="komentar"># 1. Priprema ekrana i kornjače</span>
+            turtle.title("Moja kućica")
+            <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.shape</span>("turtle")
+            <span class="video-link" data-video="https://drive.google.com/file/d/1iyFHiSs9ZtMJUKl5lofUyVprKroAvs-h/view?usp=sharing">turtle.width</span>(4)
+            <span class="video-link" data-video="https://drive.google.com/file/d/1f2cGh1PgFXCLQQhWwdA7O5U1i94w8czp/view?usp=sharing">turtle.speed</span>(3)
+
+            <span class="komentar"># 2. PLAVA BAZA KUĆICE</span>
+            <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.color</span>("blue")
+            <span class="video-link" data-video="https://drive.google.com/file/d/1EQYLsmXEd3iVz9xRKaar7yt8vw1bEuxF/view?usp=sharing">for _ in range(4):</span>
+                <span class="video-link" data-video="https://drive.google.com/file/d/1FAFVZBnITrizJuM2oIQ77LOWfOpf19PD/view?usp=sharing">turtle.forward</span>(150) <span class="komentar"># za crtanje u nazad se koristi <span class="video-link" data-video="https://drive.google.com/file/d/1cKFCFNnLxplIRqnuDemAv_N7Se6j50_U/view?usp=sharing">turtle.backward</span></span>
+                turtle.left(90)
+
+            <span class="komentar"># 3. ŠIRI CRVENI KROV (Popunjen crvenom bojom)</span>
+            <span class="video-link" data-video="https://drive.google.com/file/d/1aC8l0ngJ8SuQ3DSLpocn_Yu8bbl6Pj39/view?usp=sharing">turtle.penup</span>()
             turtle.left(90)
+            <span class="video-link" data-video="https://drive.google.com/file/d/1FAFVZBnITrizJuM2oIQ77LOWfOpf19PD/view?usp=sharing">turtle.forward</span>(150)    
+            turtle.left(90)
+            <span class="video-link" data-video="https://drive.google.com/file/d/1FAFVZBnITrizJuM2oIQ77LOWfOpf19PD/view?usp=sharing">turtle.forward</span>(25)     <span class="komentar"># Pomeramo se ulevo da krov bude širi (-25,150)</span>
+            <span class="video-link" data-video="https://drive.google.com/file/d/1vrHY1cjqvkkYSd3cd_O4w9nS85tkeRBg/view?usp=sharing">turtle.right</span>(180)      <span class="komentar"># Okrećemo kornjaču udesno (setheading(0))</span>
 
-        <span class="komentar"># 3. ŠIRI CRVENI KROV (Popunjen crvenom bojom)</span>
-        <span class="video-link" data-video="https://drive.google.com/file/d/1aC8l0ngJ8SuQ3DSLpocn_Yu8bbl6Pj39/view?usp=sharing">turtle.penup</span>()
-        turtle.left(90)
-        <span class="video-link" data-video="https://drive.google.com/file/d/1FAFVZBnITrizJuM2oIQ77LOWfOpf19PD/view?usp=sharing">turtle.forward</span>(150)    
-        turtle.left(90)
-        <span class="video-link" data-video="https://drive.google.com/file/d/1FAFVZBnITrizJuM2oIQ77LOWfOpf19PD/view?usp=sharing">turtle.forward</span>(25)     <span class="komentar"># Pomeramo se ulevo da krov bude širi (-25,150)</span>
-        <span class="video-link" data-video="https://drive.google.com/file/d/1vrHY1cjqvkkYSd3cd_O4w9nS85tkeRBg/view?usp=sharing">turtle.right</span>(180)      <span class="komentar"># Okrećemo kornjaču udesno (setheading(0))</span>
+            turtle.color("red")
+            <span class="video-link" data-video="https://drive.google.com/file/d/19ysRPvPPfIpf0Jy07g-FXkCJoRyTxwed/view?usp=sharing">turtle.begin_fill</span>()
+            <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(75, 225)   <span class="komentar"># Vrh krova (sredina)</span>
+            <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(175, 150)  <span class="komentar"># Desni kraj krova</span>
+            <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(-25, 150)  <span class="komentar"># Povratak na početak krova</span>
+            <span class="video-link" data-video="https://drive.google.com/file/d/19ysRPvPPfIpf0Jy07g-FXkCJoRyTxwed/view?usp=sharing">turtle.end_fill</span>()
 
-        turtle.color("red")
-        <span class="video-link" data-video="https://drive.google.com/file/d/19ysRPvPPfIpf0Jy07g-FXkCJoRyTxwed/view?usp=sharing">turtle.begin_fill</span>()
-        <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(75, 225)   <span class="komentar"># Vrh krova (sredina)</span>
-        <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(175, 150)  <span class="komentar"># Desni kraj krova</span>
-        <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(-25, 150)  <span class="komentar"># Povratak na početak krova</span>
-        <span class="video-link" data-video="https://drive.google.com/file/d/19ysRPvPPfIpf0Jy07g-FXkCJoRyTxwed/view?usp=sharing">turtle.end_fill</span>()
+            <span class="komentar"># 4. PROZORI (Preko stamp-a)</span>
+            <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.shape</span>("square")
+            <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.color</span>("lightblue")
+            <span class="video-link" data-video="https://drive.google.com/file/d/1aC8l0ngJ8SuQ3DSLpocn_Yu8bbl6Pj39/view?usp=sharing">turtle.penup</span>()
 
-        <span class="komentar"># 4. PROZORI (Preko stamp-a)</span>
-        <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.shape</span>("square")
-        <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.color</span>("lightblue")
-        <span class="video-link" data-video="https://drive.google.com/file/d/1aC8l0ngJ8SuQ3DSLpocn_Yu8bbl6Pj39/view?usp=sharing">turtle.penup</span>()
+            <span class="komentar"># Levi prozor</span>
+            <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(40, 100)
+            turtle.shapesize(1.5, 1.5)
+            <span class="video-link" data-video="https://drive.google.com/file/d/1UGjaEXaoPuCYECxUKRt1zOQv9tQbeYyM/view?usp=sharing">turtle.stamp</span>()
 
-        <span class="komentar"># Levi prozor</span>
-        <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(40, 100)
-        turtle.shapesize(1.5, 1.5)
-        <span class="video-link" data-video="https://drive.google.com/file/d/1UGjaEXaoPuCYECxUKRt1zOQv9tQbeYyM/view?usp=sharing">turtle.stamp</span>()
+            <span class="komentar"># Desni prozor</span>
+            <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(110, 100)
+            <span class="video-link" data-video="https://drive.google.com/file/d/1UGjaEXaoPuCYECxUKRt1zOQv9tQbeYyM/view?usp=sharing">turtle.stamp</span>()
 
-        <span class="komentar"># Desni prozor</span>
-        <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(110, 100)
-        <span class="video-link" data-video="https://drive.google.com/file/d/1UGjaEXaoPuCYECxUKRt1zOQv9tQbeYyM/view?usp=sharing">turtle.stamp</span>()
+            <span class="komentar"># 5. VRATA (Preko stamp-a)</span>
+            <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.color</span>("brown")
+            <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(75, 30) 
+            turtle.shapesize(3, 2) 
+            <span class="video-link" data-video="https://drive.google.com/file/d/1UGjaEXaoPuCYECxUKRt1zOQv9tQbeYyM/view?usp=sharing">turtle.stamp</span>()
 
-        <span class="komentar"># 5. VRATA (Preko stamp-a)</span>
-        <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.color</span>("brown")
-        <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(75, 30) 
-        turtle.shapesize(3, 2) 
-        <span class="video-link" data-video="https://drive.google.com/file/d/1UGjaEXaoPuCYECxUKRt1zOQv9tQbeYyM/view?usp=sharing">turtle.stamp</span>()
+            <span class="komentar"># 6. KORNJAČA U DVORIŠTU</span>
+            <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.shape</span>("turtle")
+            <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.color</span>("green")
+            turtle.shapesize(1.5)
+            <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(75, -50) 
+            turtle.setheading(90) <span class="komentar"># Gleda ponosno u kuću</span>
 
-        <span class="komentar"># 6. KORNJAČA U DVORIŠTU</span>
-        <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.shape</span>("turtle")
-        <span class="video-link" data-video="https://drive.google.com/file/d/1n3NmqrNJ4D3SJ5ssFlJCfIWrWsKPt71N/view?usp=sharing">turtle.color</span>("green")
-        turtle.shapesize(1.5)
-        <span class="video-link" data-video="https://drive.google.com/file/d/1Y1U5Pub6boHBNo3TGXntzhZ9wgRWuCqZ/view?usp=sharing">turtle.goto</span>(75, -50) 
-        turtle.setheading(90) <span class="komentar"># Gleda ponosno u kuću</span>
-
-        turtle.done()
-    </pre>
+            turtle.done()
+        </pre>
+    </main>
 
     <div id="videoModal" class="modal">
         <div class="modal-content">
@@ -79,16 +102,86 @@
         </div>
     </div>
 
+    <footer id="idx-footer">
+        ©Copyright by Nena Kozić
+    </footer>
+
     <script>
+        const mod = sessionStorage.getItem('portfolioMod') || 'IT';
+        document.body.classList.add(mod.toLowerCase() + '-theme');
+
+        let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
+        let rezim = localStorage.getItem('portfolioRezim') || 'dark';
+
+        const recnik = {
+            'SRB': {
+                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navDokimologija: 'Dokimologija', navPromeni: 'Promeni portfolio',
+                naslovStrane: 'Interaktivni Python Turtle Kod',
+                podnaslovStrane: 'Klikni na roze, podvučene linije koda kako bi pogledao video objašnjenje za njih!',
+                footer: '©Copyright by Nena Kozić'
+            },
+            'ENG': {
+                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navDokimologija: 'Assessment', navPromeni: 'Switch Portfolio',
+                naslovStrane: 'Interactive Python Turtle Code',
+                podnaslovStrane: 'Click on the pink, underlined lines of code to watch their video explanation!',
+                footer: '©Copyright by Nena Kozić'
+            }
+        };
+
+        function osvezi() {
+            const r = recnik[jezik];
+            document.getElementById('nav-profil').innerText = r.navProfil;
+            document.getElementById('nav-iskustvo').innerText = r.navIskustvo;
+            document.getElementById('nav-edukacija').innerText = r.navEdukacija;
+            document.getElementById('nav-projekti').innerText = r.navProjekti;
+            document.getElementById('nav-dokimologija').innerText = r.navDokimologija;
+            document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
+            
+            document.getElementById('glavni-naslov').innerText = r.naslovStrane;
+            document.getElementById('glavni-podnaslov').innerText = r.podnaslovStrane;
+            document.getElementById('idx-footer').innerText = r.footer;
+
+            const dokLink = document.getElementById('nav-dokimologija');
+            if (mod === 'Edukacija') {
+                dokLink.style.display = 'inline-block';
+            } else {
+                dokLink.style.display = 'none';
+            }
+
+            document.getElementById('nav-lang-btn').innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+        }
+
+        function primeniRezim() {
+            if (rezim === 'light') document.body.classList.add('light-mode');
+            else document.body.classList.remove('light-mode');
+            document.getElementById('nav-theme-btn').innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        }
+
+        function toggleJezik() { jezik = jezik === 'SRB' ? 'ENG' : 'SRB'; localStorage.setItem('portfolioJezik', jezik); osvezi(); }
+        function toggleTema() { rezim = rezim === 'dark' ? 'light' : 'dark'; localStorage.setItem('portfolioRezim', rezim); primeniRezim(); }
+        
+        function toggleMeni() {
+            const links = document.getElementById('nav-links-id');
+            const hamburgerIcon = document.getElementById('hamburger-btn').querySelector('i');
+            
+            links.classList.toggle('prikazi');
+            
+            if (links.classList.contains('prikazi')) {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-xmark');
+            } else {
+                hamburgerIcon.classList.remove('fa-xmark');
+                hamburgerIcon.classList.add('fa-bars');
+            }
+        }
+
         const modal = document.getElementById('videoModal');
         const player = document.getElementById('videoPlayer');
-
         const linkovi = document.querySelectorAll('.video-link');
 
         linkovi.forEach(link => {
             link.addEventListener('click', function() {
                 let originalLink = this.getAttribute('data-video');
-                
                 let embedLink = originalLink.replace('/view?usp=sharing', '/preview');
                 
                 player.src = embedLink;
@@ -106,7 +199,9 @@
                 zatvoriVideo();
             }
         }
-    </script>
 
+        primeniRezim();
+        osvezi();
+    </script>
 </body>
 </html>
