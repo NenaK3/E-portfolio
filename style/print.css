@@ -1,0 +1,91 @@
+
+@media print {
+
+    /* ---------- Osnova: beli papir, crn tekst, bez senki ---------- */
+    * {
+        background: #ffffff !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    body {
+        font-size: 11pt;
+        line-height: 1.4;
+    }
+
+    /* ---------- Sakriveno: sve što nema smisla na papiru ---------- */
+    .navbar,
+    .hamburger-menu,
+    .nav-controls,
+    .switch-btn,
+    .index-controls,
+    .tab-buttons,
+    .cv-btn-container,
+    .edu-buttons-container,
+    .modal-overlay,
+    .cv-modal,
+    .modal,
+    #pdf-modal,
+    #cv-modal,
+    #videoModal,
+    button {
+        display: none !important;
+    }
+
+    .tab-content {
+        display: block !important;
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+    }
+
+    .education-split-container,
+    .split-grid,
+    .skills-grid {
+        display: block !important;
+        max-width: 100% !important;
+    }
+
+    .edu-column,
+    .skill-category,
+    .selection-card {
+        margin-bottom: 16px;
+    }
+
+    .card,
+    .experience-card,
+    .edu-split-card,
+    .spec-course-card {
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid;
+        margin-bottom: 14px;
+        padding: 12px;
+    }
+
+    a {
+        text-decoration: underline !important;
+    }
+
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 8pt;
+        font-weight: normal;
+        word-break: break-all;
+    }
+
+    .hero-profile-img {
+        max-width: 150px !important;
+        height: auto !important;
+    }
+
+    .site-footer,
+    #idx-footer {
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+        margin-top: 20px;
+    }
+
+    @page {
+        margin: 2cm;
+    }
+}

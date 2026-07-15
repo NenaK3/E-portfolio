@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://e-portfolio-nena-kozic.vercel.app/sitemap.xml
