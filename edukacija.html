@@ -18,132 +18,6 @@
     <link rel="stylesheet" href="style/edukacija.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/print.css" media="print">
-    <style>
-        a:focus-visible,
-        button:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 3px solid #4da3ff;
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
-
-        .nav-dropdown {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .nav-dropdown .dropdown-caret-btn {
-            background: none;
-            border: none;
-            color: inherit;
-            font: inherit;
-            cursor: pointer;
-            padding: 4px 6px;
-            line-height: 1;
-        }
-        .nav-dropdown .dropdown-caret-btn i {
-            font-size: 0.75em;
-            transition: transform 0.2s ease;
-        }
-        .nav-dropdown.dropdown-open .dropdown-caret-btn i {
-            transform: rotate(180deg);
-        }
-        .nav-dropdown .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            min-width: 230px;
-            background: var(--pozadina-kartice, #1e1e1e);
-            border: 1px solid rgba(128, 128, 128, 0.25);
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            padding: 6px;
-            margin-top: 8px;
-            display: none;
-            flex-direction: column;
-            gap: 2px;
-            z-index: 300;
-        }
-        .nav-dropdown.dropdown-open .dropdown-menu {
-            display: flex;
-        }
-        .nav-dropdown.bez-padajuce .dropdown-caret-btn,
-        .nav-dropdown.bez-padajuce .dropdown-menu {
-            display: none !important;
-        }
-        .nav-dropdown .dropdown-menu a {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 9px 12px;
-            border-radius: 6px;
-            white-space: nowrap;
-            font-size: 0.95em;
-        }
-        .nav-dropdown .dropdown-menu a:hover,
-        .nav-dropdown .dropdown-menu a.active {
-            background: rgba(128, 128, 128, 0.18);
-        }
-        @media (max-width: 768px) {
-            .nav-dropdown .dropdown-menu {
-                position: static;
-                box-shadow: none;
-                border: none;
-                margin-top: 4px;
-                padding-left: 14px;
-            }
-        }
-
-        /* Fallback stilovi za modal (ako edukacija.css ne pokriva ove klase) */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        .modal-overlay .modal-content {
-            background: var(--pozadina-kartice, #1e1e1e);
-            border-radius: 10px;
-            width: 90%;
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        .modal-overlay .modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
-        }
-        .modal-overlay .modal-title {
-            margin: 0;
-        }
-        .modal-overlay .modal-close-btn {
-            background: none;
-            border: none;
-            color: inherit;
-            font-size: 1.2em;
-            cursor: pointer;
-        }
-        .rad-link {
-            text-decoration: none;
-            border: none;
-            background: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: bold;
-            font-family: inherit;
-            font-size: inherit;
-        }
-    </style>
 </head>
 <body>
 
@@ -157,16 +31,7 @@
         <div class="nav-links" id="nav-links-id">
             <a href="portfolio.html" id="nav-profil">Profil</a>
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
-            <div class="nav-dropdown" id="nav-edukacija-dropdown">
-                <a href="edukacija.html" class="active" id="nav-edukacija">Edukacija</a>
-                <button type="button" class="dropdown-caret-btn" onclick="toggleEduDropdown(event)" aria-label="Prikaži podmeni Edukacija">
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="dropdown-menu" id="edukacija-dropdown-menu">
-                    <a href="edukacija.html?tip=formalno" id="nav-edu-formalno"><i class="fa-solid fa-graduation-cap"></i> Formalno obrazovanje</a>
-                    <a href="edukacija.html?tip=neformalno" id="nav-edu-neformalno"><i class="fa-solid fa-certificate"></i> Neformalno obrazovanje</a>
-                </div>
-            </div>
+            <a href="edukacija.html" class="active" id="nav-edukacija">Edukacija</a>
             <a href="projekti.html" id="nav-projekti">Projekti</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
@@ -294,13 +159,11 @@
         const recnik = {
             SRB: {
                 navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navPromeni: 'Promeni portfolio',
-                navEduFormalno: 'Formalno obrazovanje', navEduNeformalno: 'Neformalno obrazovanje',
                 naslovFormalno: 'Formalno obrazovanje', naslovNeformalno: 'Neformalno obrazovanje',
                 footer: '©Copyright by Nena Kozić'
             },
             ENG: {
                 navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navPromeni: 'Switch Portfolio',
-                navEduFormalno: 'Formal education', navEduNeformalno: 'Non-formal education',
                 naslovFormalno: 'Formal education', naslovNeformalno: 'Non-formal education',
                 footer: '©Copyright by Nena Kozić'
             }
@@ -311,8 +174,6 @@
             navIskustvo: document.getElementById('nav-iskustvo'),
             navEdukacija: document.getElementById('nav-edukacija'),
             navPromeni: document.getElementById('nav-promeni'),
-            navEduFormalno: document.getElementById('nav-edu-formalno'),
-            navEduNeformalno: document.getElementById('nav-edu-neformalno'),
             naslovFormalno: document.getElementById('naslov-formalno'),
             naslovNeformalno: document.getElementById('naslov-neformalno'),
             footer: document.getElementById('idx-footer'),
@@ -325,14 +186,10 @@
             themeBtn: document.getElementById('nav-theme-btn'),
             hamburgerBtn: document.getElementById('hamburger-btn'),
             navLinks: document.getElementById('nav-links-id'),
-            eduDropdown: document.getElementById('nav-edukacija-dropdown'),
             radModal: document.getElementById('rad-modal'),
             radModalNaslov: document.getElementById('rad-modal-naslov'),
             radModalTelo: document.getElementById('rad-modal-telo')
         };
-
-        // Koji tip obrazovanja je izabran preko padajuće liste u navbaru ('formalno' / 'neformalno' / null = oba)
-        const odabranTip = new URLSearchParams(window.location.search).get('tip');
 
         function karticaHTML({ naslov, podnaslov, period, opis, link, linkTekst, vestine, extraClass = '', tagClass = 'skill-tag', radDugme = '' }) {
             return `
@@ -372,24 +229,6 @@
             if (event.key === 'Escape' && el.radModal.style.display === 'flex') zatvoriRadModal();
         });
 
-        // Podela na formalno/neformalno u navbaru važi samo za IT portfolio — u Edukacija modu nema neformalnog obrazovanja
-        if (mod !== 'IT') {
-            el.eduDropdown.classList.add('bez-padajuce');
-        }
-
-        function toggleEduDropdown(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            if (mod !== 'IT') return;
-            el.eduDropdown.classList.toggle('dropdown-open');
-        }
-
-        document.addEventListener('click', event => {
-            if (el.eduDropdown && !el.eduDropdown.contains(event.target)) {
-                el.eduDropdown.classList.remove('dropdown-open');
-            }
-        });
-
         function osvezi() {
             const r = recnik[jezik];
 
@@ -397,22 +236,16 @@
             el.navIskustvo.innerText = r.navIskustvo;
             el.navEdukacija.innerText = r.navEdukacija;
             el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
-            el.navEduFormalno.innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${r.navEduFormalno}`;
-            el.navEduNeformalno.innerHTML = `<i class="fa-solid fa-certificate"></i> ${r.navEduNeformalno}`;
-            el.navEduFormalno.classList.toggle('active', odabranTip === 'formalno');
-            el.navEduNeformalno.classList.toggle('active', odabranTip === 'neformalno');
             el.naslovFormalno.innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${r.naslovFormalno}`;
             el.naslovNeformalno.innerHTML = `<i class="fa-solid fa-certificate"></i> ${r.naslovNeformalno}`;
             el.footer.innerText = r.footer;
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
 
             const jeEdukacijaMod = mod === 'Edukacija';
-            const sakrijNeformalno = jeEdukacijaMod || odabranTip === 'formalno';
-            const sakrijFormalno = !jeEdukacijaMod && odabranTip === 'neformalno';
-            const jednaKolona = sakrijNeformalno || sakrijFormalno;
+            const jednaKolona = jeEdukacijaMod;
 
-            el.kolonaFormalno.style.display = sakrijFormalno ? 'none' : 'block';
-            el.kolonaNeformalno.style.display = sakrijNeformalno ? 'none' : 'block';
+            el.kolonaFormalno.style.display = 'block';
+            el.kolonaNeformalno.style.display = jeEdukacijaMod ? 'none' : 'block';
             el.glavniKontejner.classList.toggle('single-column', jednaKolona);
             el.glavniKontejner.style.gridTemplateColumns = jednaKolona ? '1fr' : '1fr 1fr';
             el.glavniKontejner.style.maxWidth = jednaKolona ? '900px' : '1400px';

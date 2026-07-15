@@ -129,7 +129,8 @@
     <script>
         'use strict';
 
-        const mod = sessionStorage.getItem('portfolioMod') || 'IT';
+        const mod = 'Edukacija';
+        sessionStorage.setItem('portfolioMod', mod);
         document.body.classList.add(mod.toLowerCase() + '-theme');
 
         let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
