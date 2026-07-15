@@ -4,15 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nena Kozić | Projekti</title>
+    <meta name="description" content="Projekti Nene Kozić — digitalni portfolio, Hospital management system i nastavni materijali za Python Turtle.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nena Kozić | Projekti">
+    <meta property="og:description" content="Pregled IT i edukativnih projekata Nene Kozić, sa linkovima ka kodu i materijalima.">
+    <meta property="og:image" content="http://e-portfolio-nena-kozic.vercel.app/assets/images/ja.jpg">
+    <meta property="og:url" content="http://e-portfolio-nena-kozic.vercel.app/projekti.html">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+
     <link rel="stylesheet" href="style/projekti.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        a:focus-visible,
+        button:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 3px solid #4da3ff;
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
 
     <nav class="navbar">
         <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
 
-        <div class="hamburger-menu" onclick="toggleMenu()" id="nav-hamburger">
+        <div class="hamburger-menu" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleMenu();}" id="nav-hamburger" tabindex="0" role="button" aria-label="Meni">
             <i class="fa-solid fa-bars"></i>
         </div>
 
@@ -180,6 +200,7 @@
             if (p.link) {
                 dugmad.push(akcioniTagHTML({ tag: 'a', href: p.link, ikona: 'fa-brands fa-github', tekst: r.tekstLinka }));
             }
+
             if (p.posebniMaterijali) {
                 dugmad.push(akcioniTagHTML({ tag: 'button', onclick: `otvoriModal('assets/priprema/Priprema za čas broj   33, šesti razred.pdf', '${r.btnPriprema33}')`, ikona: 'fa-solid fa-file-pdf', tekst: r.btnPriprema33 }));
                 dugmad.push(akcioniTagHTML({ tag: 'button', onclick: `otvoriModal('assets/priprema/Priprema za čas broj 34, šesti razred.pdf', '${r.btnPriprema34}')`, ikona: 'fa-solid fa-file-pdf', tekst: r.btnPriprema34 }));
@@ -233,6 +254,10 @@
 
         el.pdfModal.addEventListener('click', event => {
             if (event.target === el.pdfModal) zatvoriModal();
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && el.pdfModal.style.display === 'flex') zatvoriModal();
         });
 
         function primeniRezim() {
