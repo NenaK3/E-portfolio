@@ -11,7 +11,7 @@
 
     <nav class="navbar">
         <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
-        
+
         <div class="hamburger-menu" onclick="toggleMenu()" id="nav-hamburger">
             <i class="fa-solid fa-bars"></i>
         </div>
@@ -30,7 +30,7 @@
     </nav>
 
     <main class="education-split-container" id="edu-glavni-kontejner" style="grid-template-columns: 1fr; max-width: 900px;">
-        
+
         <section class="edu-column" id="kolona-projekti">
             <h2 class="column-title" id="naslov-projekata"><i class="fa-solid fa-folder-open"></i> Moji projekti</h2>
             <div class="experience-stack" id="projekti-kontejner"></div>
@@ -55,14 +55,20 @@
     </footer>
 
     <script>
+        'use strict';
+
         const mod = sessionStorage.getItem('portfolioMod') || 'IT';
         document.body.classList.add(mod.toLowerCase() + '-theme');
 
         let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
         let rezim = localStorage.getItem('portfolioRezim') || 'dark';
 
+        const eduTag = mod === 'Edukacija' ? 'course-tag' : '';
+        const eduDate = mod === 'Edukacija' ? 'course-date' : '';
+        const eduCard = mod === 'Edukacija' ? 'spec-course-card' : '';
+
         const recnik = {
-            'SRB': {
+            SRB: {
                 navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navPromeni: 'Promeni portfolio',
                 naslovProjekata: 'Moji projekti',
                 tekstLinka: 'Pogledaj kod',
@@ -72,36 +78,37 @@
                 btnKodNaDelu: 'Pogledaj kod na delu',
                 projekti: {
                     IT: [
-                        { 
-                            naziv: 'Digitalni portfolio', 
-                            podnaslov: 'Lični projekat', 
-                            period: '2026', 
-                            opis: 'Responzivna veb prezentacija kreirana u svrhu prikazivanja stečenih veština, obrazovanja i praktičnih radova. Implementirana je dvojezičnost i dinamička promena tema u zavisnosti od smera.', 
+                        {
+                            naziv: 'Digitalni portfolio',
+                            podnaslov: 'Lični projekat',
+                            period: '2026',
+                            opis: 'Responzivna veb prezentacija kreirana u svrhu prikazivanja stečenih veština, obrazovanja i praktičnih radova. Implementirana je dvojezičnost i dinamička promena tema u zavisnosti od smera.',
                             vestine: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
                             link: 'https://github.com/NenaK3/E-portfolio.git'
                         },
-                        { 
-                            naziv: 'Hospital management system', 
-                            podnaslov: 'Timski projekat na fakultetu', 
-                            period: '2024', 
-                            opis: 'Kompleksan sistem za upravljanje bolničkim podacima urađen u saradnji sa kolegama Jelenom Ilić i Filipom Šaranovićem. Omogućava efikasno upravljanje pacijentima, pregledima i osobljem. U sklopu projekta odrađeni su i testovi za jedan sloj aplikacije.', 
+                        {
+                            naziv: 'Hospital management system',
+                            podnaslov: 'Timski projekat na fakultetu',
+                            period: '2024',
+                            opis: 'Kompleksan sistem za upravljanje bolničkim podacima urađen u saradnji sa kolegama Jelenom Ilić i Filipom Šaranovićem. Omogućava efikasno upravljanje pacijentima, pregledima i osobljem. U sklopu projekta odrađeni su i testovi za jedan sloj aplikacije.',
                             vestine: ['C#', '.NET Core', 'Angular', 'Node.js', 'SQL', 'Visual Studio', 'Unit Testing'],
                             link: 'https://github.com/NenaK3/hospital-management-system.git'
                         }
                     ],
                     Edukacija: [
-                        { 
-                            naziv: 'Python turtle', 
-                            podnaslov: 'Rad sa učenicima u školi', 
-                            period: '2026', 
-                            opis: 'Zadaci koje su učenici imali da urade za vežbanje kako bi savladali taj deo gradiva kroz vizuelno programiranje, geometrijske oblike i osnovne algoritme.', 
+                        {
+                            naziv: 'Python turtle',
+                            podnaslov: 'Rad sa učenicima u školi',
+                            period: '2026',
+                            opis: 'Zadaci koje su učenici imali da urade za vežbanje kako bi savladali taj deo gradiva kroz vizuelno programiranje, geometrijske oblike i osnovne algoritme.',
                             vestine: ['Python', 'Turtle biblioteka', 'Metodika nastave', 'Algoritmi'],
-                            link: 'https://github.com/NenaK3/Python-turtle.git'
+                            link: 'https://github.com/NenaK3/Python-turtle.git',
+                            posebniMaterijali: true
                         }
                     ]
                 }
             },
-            'ENG': {
+            ENG: {
                 navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navPromeni: 'Switch Portfolio',
                 naslovProjekata: 'My projects',
                 tekstLinka: 'View Code',
@@ -111,136 +118,145 @@
                 btnKodNaDelu: 'See code in action',
                 projekti: {
                     IT: [
-                        { 
-                            naziv: 'Digital portfolio', 
-                            podnaslov: 'Personal project', 
-                            period: '2026', 
-                            opis: 'A responsive web presentation created to showcase acquired skills, education, and practical work. It features bilingual support and dynamic theme switching based on the selected mode.', 
+                        {
+                            naziv: 'Digital portfolio',
+                            podnaslov: 'Personal project',
+                            period: '2026',
+                            opis: 'A responsive web presentation created to showcase acquired skills, education, and practical work. It features bilingual support and dynamic theme switching based on the selected mode.',
                             vestine: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
                             link: 'https://github.com/NenaK3/E-portfolio.git'
                         },
-                        { 
-                            naziv: 'Hospital management system', 
-                            podnaslov: 'University team project', 
-                            period: '2024', 
-                            opis: 'A complex hospital data management system developed in collaboration with codebase colleagues Jelena Ilić and Filip Šaranović. It features patient, appointment, and staff management, including unit tests for a specific application layer.', 
+                        {
+                            naziv: 'Hospital management system',
+                            podnaslov: 'University team project',
+                            period: '2024',
+                            opis: 'A complex hospital data management system developed in collaboration with codebase colleagues Jelena Ilić and Filip Šaranović. It features patient, appointment, and staff management, including unit tests for a specific application layer.',
                             vestine: ['C#', '.NET Core', 'Angular', 'Node.js', 'SQL', 'Visual Studio', 'Unit Testing'],
                             link: 'https://github.com/NenaK3/hospital-management-system.git'
                         }
                     ],
                     Edukacija: [
-                        { 
-                            naziv: 'Python turtle', 
-                            podnaslov: 'School teaching work', 
-                            period: '2026', 
-                            opis: 'Tasks and exercises assigned to students to help them master the curriculum through visual programming, geometric shapes, and basic algorithms.', 
+                        {
+                            naziv: 'Python turtle',
+                            podnaslov: 'School teaching work',
+                            period: '2026',
+                            opis: 'Tasks and exercises assigned to students to help them master the curriculum through visual programming, geometric shapes, and basic algorithms.',
                             vestine: ['Python', 'Turtle Library', 'Teaching Methodology', 'Algorithms'],
-                            link: 'https://github.com/NenaK3/Python-turtle.git'
+                            link: 'https://github.com/NenaK3/Python-turtle.git',
+                            posebniMaterijali: true
                         }
                     ]
                 }
             }
         };
 
+        const el = {
+            navProfil: document.getElementById('nav-profil'),
+            navIskustvo: document.getElementById('nav-iskustvo'),
+            navEdukacija: document.getElementById('nav-edukacija'),
+            navProjekti: document.getElementById('nav-projekti'),
+            navPromeni: document.getElementById('nav-promeni'),
+            naslovProjekata: document.getElementById('naslov-projekata'),
+            projektiKontejner: document.getElementById('projekti-kontejner'),
+            langBtn: document.getElementById('nav-lang-btn'),
+            themeBtn: document.getElementById('nav-theme-btn'),
+            hamburger: document.getElementById('nav-hamburger'),
+            navLinks: document.getElementById('navbar-links'),
+            pdfModal: document.getElementById('pdf-modal'),
+            pdfViewer: document.getElementById('pdf-viewer'),
+            modalTitleText: document.getElementById('modal-title-text')
+        };
+
+        const AKCIJA_STIL = 'text-decoration:none; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:5px; font-weight:bold;';
+
+        function akcioniTagHTML({ tag, href, onclick, ikona, tekst }) {
+            const atribut = tag === 'a' ? `href="${href}" target="_blank"` : `onclick="${onclick}"`;
+            return `<${tag} ${atribut} class="skill-tag ${eduTag}" style="${AKCIJA_STIL}"><i class="${ikona}"></i> ${tekst}</${tag}>`;
+        }
+
+        function dugmadZaProjekat(p, r) {
+            const dugmad = [];
+
+            if (p.link) {
+                dugmad.push(akcioniTagHTML({ tag: 'a', href: p.link, ikona: 'fa-brands fa-github', tekst: r.tekstLinka }));
+            }
+            if (p.posebniMaterijali) {
+                dugmad.push(akcioniTagHTML({ tag: 'button', onclick: `otvoriModal('assets/priprema/Priprema za čas broj   33, šesti razred.pdf', '${r.btnPriprema33}')`, ikona: 'fa-solid fa-file-pdf', tekst: r.btnPriprema33 }));
+                dugmad.push(akcioniTagHTML({ tag: 'button', onclick: `otvoriModal('assets/priprema/Priprema za čas broj 34, šesti razred.pdf', '${r.btnPriprema34}')`, ikona: 'fa-solid fa-file-pdf', tekst: r.btnPriprema34 }));
+                dugmad.push(akcioniTagHTML({ tag: 'a', href: 'https://heyzine.com/flip-book/ae67dcf23c.html', ikona: 'fa-solid fa-book-open', tekst: r.btnMaterijal }));
+                dugmad.push(akcioniTagHTML({ tag: 'a', href: 'kod.html', ikona: 'fa-solid fa-code', tekst: r.btnKodNaDelu }));
+            }
+
+            return dugmad.join('');
+        }
+
+        function karticaHTML(p, r) {
+            return `
+                <div class="card experience-card edu-split-card ${eduCard}">
+                    <div class="exp-header">
+                        <div><h3>${p.naziv}</h3><h4>${p.podnaslov}</h4></div>
+                        <span class="block-date ${eduDate}">${p.period}</span>
+                    </div>
+                    <p class="exp-opis">${p.opis}</p>
+                    <div class="tag-container" style="margin-top:10px;">
+                        ${p.vestine.map(v => `<span class="skill-tag ${eduTag}">${v}</span>`).join('')}
+                    </div>
+                    <div class="edu-buttons-container">${dugmadZaProjekat(p, r)}</div>
+                </div>`;
+        }
+
         function osvezi() {
             const r = recnik[jezik];
-            document.getElementById('nav-profil').innerText = r.navProfil;
-            document.getElementById('nav-iskustvo').innerText = r.navIskustvo;
-            document.getElementById('nav-edukacija').innerText = r.navEdukacija;
-            document.getElementById('nav-projekti').innerText = r.navProjekti;
-            document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
-            document.getElementById('naslov-projekata').innerHTML = `<i class="fa-solid fa-folder-open"></i> ${r.naslovProjekata}`;
 
-            const projektiKontejner = document.getElementById('projekti-kontejner');
-            projektiKontejner.innerHTML = '';
-            
-            r.projekti[mod].forEach(p => {
-                let buttonsHTML = '<div class="edu-buttons-container">';
+            el.navProfil.innerText = r.navProfil;
+            el.navIskustvo.innerText = r.navIskustvo;
+            el.navEdukacija.innerText = r.navEdukacija;
+            el.navProjekti.innerText = r.navProjekti;
+            el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
+            el.naslovProjekata.innerHTML = `<i class="fa-solid fa-folder-open"></i> ${r.naslovProjekata}`;
 
-                if (p.link) {
-                    buttonsHTML += `
-                        <a href="${p.link}" target="_blank" class="skill-tag ${mod === 'Edukacija' ? 'course-tag' : ''}" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: bold;">
-                            <i class="fa-brands fa-github"></i> ${r.tekstLinka}
-                        </a>
-                    `;
-                }
+            el.projektiKontejner.innerHTML = r.projekti[mod].map(p => karticaHTML(p, r)).join('');
 
-                if (mod === 'Edukacija' && p.naziv.toLowerCase().includes('python turtle')) {
-                    buttonsHTML += `
-                        <button onclick="otvoriModal('assets/priprema/Priprema za čas broj   33, šesti razred.pdf', '${r.btnPriprema33}')" class="skill-tag course-tag" style="border:none; cursor:pointer; font-weight:bold; display:inline-flex; align-items:center; gap:5px;">
-                            <i class="fa-solid fa-file-pdf"></i> ${r.btnPriprema33}
-                        </button>
-                        <button onclick="otvoriModal('assets/priprema/Priprema za čas broj 34, šesti razred.pdf', '${r.btnPriprema34}')" class="skill-tag course-tag" style="border:none; cursor:pointer; font-weight:bold; display:inline-flex; align-items:center; gap:5px;">
-                            <i class="fa-solid fa-file-pdf"></i> ${r.btnPriprema34}
-                        </button>
-                        <a href="https://heyzine.com/flip-book/ae67dcf23c.html" class="skill-tag course-tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: bold;">
-                            <i class="fa-solid fa-book-open"></i> ${r.btnMaterijal}
-                        </a>
-                        <a href="kod.html" class="skill-tag course-tag" style="text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: bold;">
-                            <i class="fa-solid fa-code"></i> ${r.btnKodNaDelu}
-                        </a>
-                    `;
-                }
-
-                buttonsHTML += '</div>';
-
-                projektiKontejner.innerHTML += `
-                    <div class="card experience-card edu-split-card ${mod === 'Edukacija' ? 'spec-course-card' : ''}">
-                        <div class="exp-header">
-                            <div><h3>${p.naziv}</h3><h4>${p.podnaslov}</h4></div>
-                            <span class="block-date ${mod === 'Edukacija' ? 'course-date' : ''}">${p.period}</span>
-                        </div>
-                        <p class="exp-opis">${p.opis}</p>
-                        <div class="tag-container" style="margin-top:10px;">
-                            ${p.vestine.map(v => `<span class="skill-tag ${mod === 'Edukacija' ? 'course-tag' : ''}">${v}</span>`).join('')}
-                        </div>
-                        ${buttonsHTML}
-                    </div>`;
-            });
-
-            document.getElementById('nav-lang-btn').innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+            el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
         }
 
         function otvoriModal(pdfPutanja, naslov) {
-            document.getElementById('modal-title-text').innerText = naslov;
-            document.getElementById('pdf-viewer').src = pdfPutanja;
-            document.getElementById('pdf-modal').style.display = 'flex';
+            el.modalTitleText.innerText = naslov;
+            el.pdfViewer.src = pdfPutanja;
+            el.pdfModal.style.display = 'flex';
         }
 
         function zatvoriModal() {
-            document.getElementById('pdf-modal').style.display = 'none';
-            document.getElementById('pdf-viewer').src = '';
+            el.pdfModal.style.display = 'none';
+            el.pdfViewer.src = '';
         }
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('pdf-modal');
-            if (event.target == modal) {
-                zatvoriModal();
-            }
-        }
+        el.pdfModal.addEventListener('click', event => {
+            if (event.target === el.pdfModal) zatvoriModal();
+        });
 
         function primeniRezim() {
-            if (rezim === 'light') document.body.classList.add('light-mode');
-            else document.body.classList.remove('light-mode');
-            document.getElementById('nav-theme-btn').innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+            document.body.classList.toggle('light-mode', rezim === 'light');
+            el.themeBtn.innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
         }
 
-        function toggleJezik() { jezik = jezik === 'SRB' ? 'ENG' : 'SRB'; localStorage.setItem('portfolioJezik', jezik); osvezi(); }
-        function toggleTema() { rezim = rezim === 'dark' ? 'light' : 'dark'; localStorage.setItem('portfolioRezim', rezim); primeniRezim(); }
+        function toggleJezik() {
+            jezik = jezik === 'SRB' ? 'ENG' : 'SRB';
+            localStorage.setItem('portfolioJezik', jezik);
+            osvezi();
+        }
+
+        function toggleTema() {
+            rezim = rezim === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('portfolioRezim', rezim);
+            primeniRezim();
+        }
 
         function toggleMenu() {
-            const links = document.getElementById('navbar-links');
-            const hamburger = document.getElementById('nav-hamburger').querySelector('i');
-            
-            links.classList.toggle('nav-active');
-            
-            if (links.classList.contains('nav-active')) {
-                hamburger.classList.remove('fa-bars');
-                hamburger.classList.add('fa-xmark');
-            } else {
-                hamburger.classList.remove('fa-xmark');
-                hamburger.classList.add('fa-bars');
-            }
+            const aktivno = el.navLinks.classList.toggle('nav-active');
+            const ikonica = el.hamburger.querySelector('i');
+            ikonica.classList.toggle('fa-bars', !aktivno);
+            ikonica.classList.toggle('fa-xmark', aktivno);
         }
 
         primeniRezim();

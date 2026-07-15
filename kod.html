@@ -11,7 +11,7 @@
 
     <nav class="navbar">
         <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
-        
+
         <button class="hamburger-menu" onclick="toggleMeni()" id="hamburger-btn">
             <i class="fa-solid fa-bars"></i>
         </button>
@@ -33,7 +33,7 @@
         <h1 id="glavni-naslov">Interaktivni Python Turtle kod</h1>
         <p id="glavni-podnaslov">Klikni na roze, podvučene linije koda kako bi pogledao video objašnjenje za njih!</p>
 
-        <pre>
+        <pre id="kod-blok">
             <span class="video-link" data-video="https://drive.google.com/file/d/1rU3Yo1VJkbWSDP-W5UEI484VcTZ0Mt_Z/view?usp=sharing">import turtle</span>
 
             <span class="komentar"># 1. Priprema ekrana i kornjače</span>
@@ -106,6 +106,8 @@
     </footer>
 
     <script>
+        'use strict';
+
         const mod = sessionStorage.getItem('portfolioMod') || 'IT';
         document.body.classList.add(mod.toLowerCase() + '-theme');
 
@@ -113,13 +115,13 @@
         let rezim = localStorage.getItem('portfolioRezim') || 'dark';
 
         const recnik = {
-            'SRB': {
+            SRB: {
                 navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navPromeni: 'Promeni portfolio',
                 naslovStrane: 'Interaktivni Python Turtle Kod',
                 podnaslovStrane: 'Klikni na roze, podvučene linije koda kako bi pogledao video objašnjenje za njih!',
                 footer: '©Copyright by Nena Kozić'
             },
-            'ENG': {
+            ENG: {
                 navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navPromeni: 'Switch Portfolio',
                 naslovStrane: 'Interactive Python Turtle Code',
                 podnaslovStrane: 'Click on the pink, underlined lines of code to watch their video explanation!',
@@ -127,69 +129,80 @@
             }
         };
 
+        const el = {
+            navProfil: document.getElementById('nav-profil'),
+            navIskustvo: document.getElementById('nav-iskustvo'),
+            navEdukacija: document.getElementById('nav-edukacija'),
+            navProjekti: document.getElementById('nav-projekti'),
+            navPromeni: document.getElementById('nav-promeni'),
+            glavniNaslov: document.getElementById('glavni-naslov'),
+            glavniPodnaslov: document.getElementById('glavni-podnaslov'),
+            footer: document.getElementById('idx-footer'),
+            langBtn: document.getElementById('nav-lang-btn'),
+            themeBtn: document.getElementById('nav-theme-btn'),
+            hamburgerBtn: document.getElementById('hamburger-btn'),
+            navLinks: document.getElementById('nav-links-id'),
+            kodBlok: document.getElementById('kod-blok'),
+            modal: document.getElementById('videoModal'),
+            player: document.getElementById('videoPlayer')
+        };
+
         function osvezi() {
             const r = recnik[jezik];
-            document.getElementById('nav-profil').innerText = r.navProfil;
-            document.getElementById('nav-iskustvo').innerText = r.navIskustvo;
-            document.getElementById('nav-edukacija').innerText = r.navEdukacija;
-            document.getElementById('nav-projekti').innerText = r.navProjekti;
-            document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
-            
-            document.getElementById('glavni-naslov').innerText = r.naslovStrane;
-            document.getElementById('glavni-podnaslov').innerText = r.podnaslovStrane;
-            document.getElementById('idx-footer').innerText = r.footer;
+            el.navProfil.innerText = r.navProfil;
+            el.navIskustvo.innerText = r.navIskustvo;
+            el.navEdukacija.innerText = r.navEdukacija;
+            el.navProjekti.innerText = r.navProjekti;
+            el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
 
-            document.getElementById('nav-lang-btn').innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+            el.glavniNaslov.innerText = r.naslovStrane;
+            el.glavniPodnaslov.innerText = r.podnaslovStrane;
+            el.footer.innerText = r.footer;
+
+            el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
         }
 
         function primeniRezim() {
-            if (rezim === 'light') document.body.classList.add('light-mode');
-            else document.body.classList.remove('light-mode');
-            document.getElementById('nav-theme-btn').innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+            document.body.classList.toggle('light-mode', rezim === 'light');
+            el.themeBtn.innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
         }
 
-        function toggleJezik() { jezik = jezik === 'SRB' ? 'ENG' : 'SRB'; localStorage.setItem('portfolioJezik', jezik); osvezi(); }
-        function toggleTema() { rezim = rezim === 'dark' ? 'light' : 'dark'; localStorage.setItem('portfolioRezim', rezim); primeniRezim(); }
-        
+        function toggleJezik() {
+            jezik = jezik === 'SRB' ? 'ENG' : 'SRB';
+            localStorage.setItem('portfolioJezik', jezik);
+            osvezi();
+        }
+
+        function toggleTema() {
+            rezim = rezim === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('portfolioRezim', rezim);
+            primeniRezim();
+        }
+
         function toggleMeni() {
-            const links = document.getElementById('nav-links-id');
-            const hamburgerIcon = document.getElementById('hamburger-btn').querySelector('i');
-            
-            links.classList.toggle('prikazi');
-            
-            if (links.classList.contains('prikazi')) {
-                hamburgerIcon.classList.remove('fa-bars');
-                hamburgerIcon.classList.add('fa-xmark');
-            } else {
-                hamburgerIcon.classList.remove('fa-xmark');
-                hamburgerIcon.classList.add('fa-bars');
-            }
+            const prikazano = el.navLinks.classList.toggle('prikazi');
+            const ikonica = el.hamburgerBtn.querySelector('i');
+            ikonica.classList.toggle('fa-bars', !prikazano);
+            ikonica.classList.toggle('fa-xmark', prikazano);
         }
 
-        const modal = document.getElementById('videoModal');
-        const player = document.getElementById('videoPlayer');
-        const linkovi = document.querySelectorAll('.video-link');
+        el.kodBlok.addEventListener('click', event => {
+            const link = event.target.closest('.video-link');
+            if (!link) return;
 
-        linkovi.forEach(link => {
-            link.addEventListener('click', function() {
-                let originalLink = this.getAttribute('data-video');
-                let embedLink = originalLink.replace('/view?usp=sharing', '/preview');
-                
-                player.src = embedLink;
-                modal.style.display = 'flex';
-            });
+            const embedLink = link.dataset.video.replace('/view?usp=sharing', '/preview');
+            el.player.src = embedLink;
+            el.modal.style.display = 'flex';
         });
 
         function zatvoriVideo() {
-            modal.style.display = 'none';
-            player.src = ''; 
+            el.modal.style.display = 'none';
+            el.player.src = '';
         }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                zatvoriVideo();
-            }
-        }
+        el.modal.addEventListener('click', event => {
+            if (event.target === el.modal) zatvoriVideo();
+        });
 
         primeniRezim();
         osvezi();

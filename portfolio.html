@@ -11,7 +11,7 @@
 
     <nav class="navbar">
         <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
-        
+
         <div class="hamburger-menu" onclick="toggleMenu()" id="nav-hamburger">
             <i class="fa-solid fa-bars"></i>
         </div>
@@ -86,22 +86,22 @@
                     <h3 id="card-naslov-kontakt">Kontakt informacije</h3>
                     <ul class="contact-list">
                         <li>
-                            <i class="fa-solid fa-envelope"></i> 
-                            <span id="lbl-email">E-mail adresa:</span> 
+                            <i class="fa-solid fa-envelope"></i>
+                            <span id="lbl-email">E-mail adresa:</span>
                             <a href="mailto:nena.kozic3@gmail.com" class="contact-link">nena.kozic3@gmail.com</a>
                         </li>
                         <li>
-                            <i class="fa-solid fa-location-dot"></i> 
+                            <i class="fa-solid fa-location-dot"></i>
                             <span id="lbl-lokacija">Lokacija:</span> Čačak, Srbija
                         </li>
                         <li>
-                            <i class="fa-solid fa-linkedin"></i> 
-                            <span id="lbl-linkedin">LinkedIn profil:</span> 
+                            <i class="fa-solid fa-linkedin"></i>
+                            <span id="lbl-linkedin">LinkedIn profil:</span>
                             <a href="https://www.linkedin.com/in/nena-kozi%C4%87-9665552b7/" target="_blank" class="contact-link">Nena Kozić</a>
                         </li>
                         <li>
-                            <i class="fa-solid fa-brands fa-github"></i> 
-                            <span id="lbl-github">GitHub profil:</span> 
+                            <i class="fa-solid fa-brands fa-github"></i>
+                            <span id="lbl-github">GitHub profil:</span>
                             <a href="https://github.com/NenaK3" target="_blank" class="contact-link">NenaK3</a>
                         </li>
                     </ul>
@@ -115,15 +115,17 @@
     </footer>
 
     <script>
+        'use strict';
+
         const mod = sessionStorage.getItem('portfolioMod') || 'IT';
         document.body.classList.add(mod.toLowerCase() + '-theme');
 
         let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
         let rezim = localStorage.getItem('portfolioRezim') || 'dark';
-        let trenutniCvPutanja = ''; 
+        let trenutniCvPutanja = '';
 
         const recnik = {
-            'SRB': {
+            SRB: {
                 navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navPromeni: 'Promeni portfolio',
                 tabOMeni: 'O meni', tabVestine: 'Veštine', tabAmbicije: 'Ambicije', tabKontakt: 'Kontakt',
                 naslovOMeni: 'Profesionalni profil', naslovAmbicije: 'Budući ciljevi i usmerenja', naslovKontakt: 'Kontakt informacije',
@@ -152,7 +154,7 @@
                     ]
                 }
             },
-            'ENG': {
+            ENG: {
                 navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navPromeni: 'Switch Portfolio',
                 tabOMeni: 'About Me', tabVestine: 'Skills', tabAmbicije: 'Ambitions', tabKontakt: 'Contact',
                 naslovOMeni: 'Professional Profile', naslovAmbicije: 'Future Goals & Orientations', naslovKontakt: 'Contact Information',
@@ -183,80 +185,97 @@
             }
         };
 
+        const el = {
+            navProfil: document.getElementById('nav-profil'),
+            navIskustvo: document.getElementById('nav-iskustvo'),
+            navEdukacija: document.getElementById('nav-edukacija'),
+            navPromeni: document.getElementById('nav-promeni'),
+            heroTitle: document.getElementById('hero-title'),
+            tekstOMeni: document.getElementById('tekst-o-meni'),
+            tekstAmbicije: document.getElementById('tekst-ambicije'),
+            cardNaslovOMeni: document.getElementById('card-naslov-o-meni'),
+            cardNaslovAmbicije: document.getElementById('card-naslov-ambicije'),
+            cardNaslovKontakt: document.getElementById('card-naslov-kontakt'),
+            lblEmail: document.getElementById('lbl-email'),
+            lblLokacija: document.getElementById('lbl-lokacija'),
+            lblLinkedin: document.getElementById('lbl-linkedin'),
+            lblGithub: document.getElementById('lbl-github'),
+            cvBtnText: document.getElementById('cv-btn-text'),
+            vestineKontejner: document.getElementById('vestine-kontejner'),
+            langBtn: document.getElementById('nav-lang-btn'),
+            themeBtn: document.getElementById('nav-theme-btn'),
+            hamburger: document.getElementById('nav-hamburger'),
+            navLinks: document.getElementById('navbar-links'),
+            cvModal: document.getElementById('cv-modal'),
+            cvIframe: document.getElementById('cv-iframe'),
+            tabContents: document.querySelectorAll('.tab-content'),
+            tabBtns: document.querySelectorAll('.tab-btn')
+        };
+
+        const tabDugmici = [
+            { el: document.getElementById('tab-o-meni-btn'), ikona: 'fa-address-card', kljuc: 'tabOMeni' },
+            { el: document.getElementById('tab-vestine-btn'), ikona: 'fa-list-check', kljuc: 'tabVestine' },
+            { el: document.getElementById('tab-ambicije-btn'), ikona: 'fa-bullseye', kljuc: 'tabAmbicije' },
+            { el: document.getElementById('tab-kontakt-btn'), ikona: 'fa-envelope', kljuc: 'tabKontakt' }
+        ];
+
         function osveziSadrzaj() {
             const r = recnik[jezik];
-            document.getElementById('nav-profil').innerText = r.navProfil;
-            document.getElementById('nav-iskustvo').innerText = r.navIskustvo;
-            document.getElementById('nav-edukacija').innerText = r.navEdukacija;
-            document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
-
-            document.getElementById('tab-o-meni-btn').innerHTML = `<i class="fa-solid fa-address-card"></i> ${r.tabOMeni}`;
-            document.getElementById('tab-vestine-btn').innerHTML = `<i class="fa-solid fa-list-check"></i> ${r.tabVestine}`;
-            document.getElementById('tab-ambicije-btn').innerHTML = `<i class="fa-solid fa-bullseye"></i> ${r.tabAmbicije}`;
-            document.getElementById('tab-kontakt-btn').innerHTML = `<i class="fa-solid fa-envelope"></i> ${r.tabKontakt}`;
-            
-            document.getElementById('card-naslov-o-meni').innerText = r.naslovOMeni;
-            document.getElementById('card-naslov-ambicije').innerText = r.naslovAmbicije;
-            document.getElementById('card-naslov-kontakt').innerText = r.naslovKontakt;
-
-            document.getElementById('lbl-email').innerText = r.lblEmail;
-            document.getElementById('lbl-lokacija').innerText = r.lblLokacija;
-            document.getElementById('lbl-linkedin').innerText = r.lblLinkedin;
-            document.getElementById('lbl-github').innerText = r.lblGithub;
-
             const s = r[mod];
-            document.getElementById('hero-title').innerText = s.titula;
-            document.getElementById('tekst-o-meni').innerText = s.oMeni;
-            document.getElementById('tekst-ambicije').innerText = s.ambicije;
 
-            document.getElementById('cv-btn-text').innerText = r.cvBtnText;
-            
-            trenutniCvPutanja = s.cvFajl;
+            el.navProfil.innerText = r.navProfil;
+            el.navIskustvo.innerText = r.navIskustvo;
+            el.navEdukacija.innerText = r.navEdukacija;
+            el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
 
-            const vk = document.getElementById('vestine-kontejner');
-            vk.innerHTML = '';
-            s.v.forEach(g => {
-                let div = document.createElement('div');
-                div.className = 'card skill-category';
-                div.innerHTML = `<h4>${g.kat}</h4><ul>${g.stavke.map(x => `<li><i class="fa-solid fa-check"></i> ${x}</li>`).join('')}</ul>`;
-                vk.appendChild(div);
+            tabDugmici.forEach(t => {
+                t.el.innerHTML = `<i class="fa-solid ${t.ikona}"></i> ${r[t.kljuc]}`;
             });
 
-            document.getElementById('nav-lang-btn').innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+            el.cardNaslovOMeni.innerText = r.naslovOMeni;
+            el.cardNaslovAmbicije.innerText = r.naslovAmbicije;
+            el.cardNaslovKontakt.innerText = r.naslovKontakt;
+
+            el.lblEmail.innerText = r.lblEmail;
+            el.lblLokacija.innerText = r.lblLokacija;
+            el.lblLinkedin.innerText = r.lblLinkedin;
+            el.lblGithub.innerText = r.lblGithub;
+
+            el.heroTitle.innerText = s.titula;
+            el.tekstOMeni.innerText = s.oMeni;
+            el.tekstAmbicije.innerText = s.ambicije;
+            el.cvBtnText.innerText = r.cvBtnText;
+
+            trenutniCvPutanja = s.cvFajl;
+
+            el.vestineKontejner.innerHTML = s.v.map(g => `
+                <div class="card skill-category">
+                    <h4>${g.kat}</h4>
+                    <ul>${g.stavke.map(x => `<li><i class="fa-solid fa-check"></i> ${x}</li>`).join('')}</ul>
+                </div>`).join('');
+
+            el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
         }
 
         function otvoriCvModal() {
-            const modal = document.getElementById('cv-modal');
-            const iframe = document.getElementById('cv-iframe');
-            
-            iframe.src = trenutniCvPutanja; 
-            modal.classList.add('prikazi');
-            document.body.style.overflow = 'hidden'; 
+            el.cvIframe.src = trenutniCvPutanja;
+            el.cvModal.classList.add('prikazi');
+            document.body.style.overflow = 'hidden';
         }
 
         function zatvoriCvModal() {
-            const modal = document.getElementById('cv-modal');
-            const iframe = document.getElementById('cv-iframe');
-            
-            modal.classList.remove('prikazi');
-            iframe.src = '';
-            document.body.style.overflow = ''; 
+            el.cvModal.classList.remove('prikazi');
+            el.cvIframe.src = '';
+            document.body.style.overflow = '';
         }
 
         function zatvoriCvModalIzvan(event) {
-            if (event.target.id === 'cv-modal') {
-                zatvoriCvModal();
-            }
+            if (event.target.id === 'cv-modal') zatvoriCvModal();
         }
 
         function primeniRezim() {
-            if (rezim === 'light') {
-                document.body.classList.add('light-mode');
-                document.getElementById('nav-theme-btn').innerHTML = '<i class="fa-solid fa-moon"></i>';
-            } else {
-                document.body.classList.remove('light-mode');
-                document.getElementById('nav-theme-btn').innerHTML = '<i class="fa-solid fa-sun"></i>';
-            }
+            document.body.classList.toggle('light-mode', rezim === 'light');
+            el.themeBtn.innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
         }
 
         function toggleJezik() {
@@ -272,28 +291,17 @@
         }
 
         function otvoriTab(evt, tabId) {
-            let i, tc, tl;
-            tc = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tc.length; i++) tc[i].classList.remove("active");
-            tl = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tl.length; i++) tl[i].classList.remove("active");
-            document.getElementById(tabId).classList.add("active");
-            evt.currentTarget.classList.add("active");
+            el.tabContents.forEach(t => t.classList.remove('active'));
+            el.tabBtns.forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
         }
 
         function toggleMenu() {
-            const links = document.getElementById('navbar-links');
-            const hamburger = document.getElementById('nav-hamburger').querySelector('i');
-            
-            links.classList.toggle('nav-active');
-            
-            if (links.classList.contains('nav-active')) {
-                hamburger.classList.remove('fa-bars');
-                hamburger.classList.add('fa-xmark');
-            } else {
-                hamburger.classList.remove('fa-xmark');
-                hamburger.classList.add('fa-bars');
-            }
+            const aktivno = el.navLinks.classList.toggle('nav-active');
+            const ikonica = el.hamburger.querySelector('i');
+            ikonica.classList.toggle('fa-bars', !aktivno);
+            ikonica.classList.toggle('fa-xmark', aktivno);
         }
 
         primeniRezim();
