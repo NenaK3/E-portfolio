@@ -97,27 +97,8 @@
                 btnPriprema33: 'Priprema za čas broj 33, šesti razred',
                 btnPriprema34: 'Priprema za čas broj 34, šesti razred',
                 btnKodNaDelu: 'Pogledaj kod na delu',
-                pinLabel: 'Izdvojeno',
                 projekti: {
                     IT: [
-                        {
-                            naziv: 'Master rad — Psihološki uticaji mehanika nagrađivanja u digitalnim igrama',
-                            podnaslov: 'Master rad, FTN Čačak',
-                            period: '2025',
-                            opis: 'Rad istražuje psihološke mehanizme iza sistema nagrađivanja u digitalnim igrama — loot boxes, battle pass, achievement sisteme i dnevne bonuse — kroz teoriju operativnog uslovljavanja, intrinzičnu/ekstrinzičnu motivaciju, ulogu dopaminskog sistema i teoriju flow-a. Na primerima igara poput Fortnite-a i Minecraft-a analizira kako dizajn nagrađivanja utiče na angažovanost igrača, uz osvrt na etičke implikacije i preporuke za odgovorniji dizajn nagrađivanja.',
-                            vestine: ['Psihologija igara', 'HCI', 'Game Design', 'Istraživanje'],
-                            mentor: 'Mentor rada - dr Veljko Aleksić, vanredni profesor',
-                            pin: true
-                        },
-                        {
-                            naziv: 'Diplomski rad — Primena standarda za modelovanje u razvoju informacionih sistema',
-                            podnaslov: 'Diplomski rad, FTN Čačak',
-                            period: '2024',
-                            opis: 'Rad analizira i upoređuje standarde za modelovanje informacionih sistema — IDEF0, IDEF1X, UML i BPMN — kroz njihovu primenu u funkcionalnom, informacionom i aplikativnom modelovanju. Kroz razradu faza razvoja informacionog sistema rad pokazuje kako modelovanje smanjuje kompleksnost sistema i olakšava komunikaciju između razvojnih timova i korisnika.',
-                            vestine: ['IDEF0', 'IDEF1X', 'UML', 'BPMN', 'Modelovanje IS'],
-                            mentor: 'Mentor rada - dr Miloš Papić, redovni profesor',
-                            pin: true
-                        },
                         {
                             naziv: 'Digitalni portfolio',
                             podnaslov: 'Lični projekat',
@@ -156,27 +137,8 @@
                 btnPriprema33: 'Lesson plan 33 (6th grade)',
                 btnPriprema34: 'Lesson plan 34 (6th grade)',
                 btnKodNaDelu: 'See code in action',
-                pinLabel: 'Featured',
                 projekti: {
                     IT: [
-                        {
-                            naziv: 'Master Thesis — Psychological Effects of Reward Mechanics in Digital Games',
-                            podnaslov: 'Master Thesis, FTN Čačak',
-                            period: '2025',
-                            opis: 'The thesis explores the psychological mechanisms behind reward systems in digital games — loot boxes, battle passes, achievement systems, and daily bonuses — through operant conditioning theory, intrinsic/extrinsic motivation, the role of the dopamine system, and flow theory. Using examples like Fortnite and Minecraft, it analyzes how reward design affects player engagement, with a look at ethical implications and recommendations for more responsible reward design.',
-                            vestine: ['Game Psychology', 'HCI', 'Game Design', 'Research'],
-                            mentor: 'Thesis Mentor - Dr Veljko Aleksić, Associate Professor',
-                            pin: true
-                        },
-                        {
-                            naziv: 'Bachelor Thesis — Application of Modeling Standards in Information Systems Development',
-                            podnaslov: 'Bachelor Thesis, FTN Čačak',
-                            period: '2024',
-                            opis: 'The thesis analyzes and compares information system modeling standards — IDEF0, IDEF1X, UML, and BPMN — through their application in functional, informational, and application-level modeling. By working through the phases of information system development, it shows how modeling reduces system complexity and improves communication between development teams and users.',
-                            vestine: ['IDEF0', 'IDEF1X', 'UML', 'BPMN', 'IS Modeling'],
-                            mentor: 'Thesis Mentor - Dr Miloš Papić, Full Professor',
-                            pin: true
-                        },
                         {
                             naziv: 'Digital portfolio',
                             podnaslov: 'Personal project',
@@ -241,7 +203,7 @@
             }
 
             if (p.posebniMaterijali) {
-                dugmad.push(akcioniTagHTML({ tag: 'button', onclick: `otvoriModal('assets/priprema/Priprema za čas broj   33, šesti razred.pdf', '${r.btnPriprema33}')`, ikona: 'fa-solid fa-file-pdf', tekst: r.btnPriprema33 }));
+                dugmad.push(akcioniTagHTML({ tag: 'button', onclick: `otvoriModal('assets/priprema/Priprema za čas broj    33, šesti razred.pdf', '${r.btnPriprema33}')`, ikona: 'fa-solid fa-file-pdf', tekst: r.btnPriprema33 }));
                 dugmad.push(akcioniTagHTML({ tag: 'button', onclick: `otvoriModal('assets/priprema/Priprema za čas broj 34, šesti razred.pdf', '${r.btnPriprema34}')`, ikona: 'fa-solid fa-file-pdf', tekst: r.btnPriprema34 }));
                 dugmad.push(akcioniTagHTML({ tag: 'a', href: 'https://heyzine.com/flip-book/ae67dcf23c.html', ikona: 'fa-solid fa-book-open', tekst: r.btnMaterijal }));
                 dugmad.push(akcioniTagHTML({ tag: 'a', href: 'kod.html', ikona: 'fa-solid fa-code', tekst: r.btnKodNaDelu }));
@@ -250,21 +212,13 @@
             return dugmad.join('');
         }
 
-        function pinBadgeHTML(pinLabel) {
-            return `<div class="pin-badge" style="display:inline-flex; align-items:center; gap:6px; background:rgba(77,163,255,0.15); color:#4da3ff; font-size:12px; font-weight:bold; padding:5px 12px; border-radius:20px; margin-bottom:12px;">
-                <i class="fa-solid fa-thumbtack"></i> ${pinLabel}
-            </div>`;
-        }
-
         function karticaHTML(p, r) {
             const mentorDeo = p.mentor
                 ? `<p class="exp-mentor" style="font-style: italic; font-weight: 500; margin-top: 10px;"><i class="fa-solid fa-user-tie" style="margin-right: 8px;"></i>${p.mentor}</p>`
                 : '';
-            const pinDeo = p.pin ? pinBadgeHTML(r.pinLabel) : '';
 
             return `
                 <div class="card experience-card edu-split-card ${eduCard}">
-                    ${pinDeo}
                     <div class="exp-header">
                         <div><h3>${p.naziv}</h3><h4>${p.podnaslov}</h4></div>
                         <span class="block-date ${eduDate}">${p.period}</span>

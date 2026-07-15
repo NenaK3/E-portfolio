@@ -26,6 +26,123 @@
             outline-offset: 3px;
             border-radius: 4px;
         }
+
+        .nav-dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .nav-dropdown .dropdown-caret-btn {
+            background: none;
+            border: none;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
+            padding: 4px 6px;
+            line-height: 1;
+        }
+        .nav-dropdown .dropdown-caret-btn i {
+            font-size: 0.75em;
+            transition: transform 0.2s ease;
+        }
+        .nav-dropdown.dropdown-open .dropdown-caret-btn i {
+            transform: rotate(180deg);
+        }
+        .nav-dropdown .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 230px;
+            background: var(--pozadina-kartice, #1e1e1e);
+            border: 1px solid rgba(128, 128, 128, 0.25);
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            padding: 6px;
+            margin-top: 8px;
+            display: none;
+            flex-direction: column;
+            gap: 2px;
+            z-index: 300;
+        }
+        .nav-dropdown.dropdown-open .dropdown-menu {
+            display: flex;
+        }
+        .nav-dropdown.bez-padajuce .dropdown-caret-btn,
+        .nav-dropdown.bez-padajuce .dropdown-menu {
+            display: none !important;
+        }
+        .nav-dropdown .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            font-size: 0.95em;
+        }
+        .nav-dropdown .dropdown-menu a:hover,
+        .nav-dropdown .dropdown-menu a.active {
+            background: rgba(128, 128, 128, 0.18);
+        }
+        @media (max-width: 768px) {
+            .nav-dropdown .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border: none;
+                margin-top: 4px;
+                padding-left: 14px;
+            }
+        }
+
+        /* Fallback stilovi za modal (ako edukacija.css ne pokriva ove klase) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-overlay .modal-content {
+            background: var(--pozadina-kartice, #1e1e1e);
+            border-radius: 10px;
+            width: 90%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .modal-overlay .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+        }
+        .modal-overlay .modal-title {
+            margin: 0;
+        }
+        .modal-overlay .modal-close-btn {
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        .rad-link {
+            text-decoration: none;
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+            font-family: inherit;
+            font-size: inherit;
+        }
     </style>
 </head>
 <body>
@@ -40,7 +157,16 @@
         <div class="nav-links" id="nav-links-id">
             <a href="portfolio.html" id="nav-profil">Profil</a>
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
-            <a href="edukacija.html" class="active" id="nav-edukacija">Edukacija</a>
+            <div class="nav-dropdown" id="nav-edukacija-dropdown">
+                <a href="edukacija.html" class="active" id="nav-edukacija">Edukacija</a>
+                <button type="button" class="dropdown-caret-btn" onclick="toggleEduDropdown(event)" aria-label="Prikaži podmeni Edukacija">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-menu" id="edukacija-dropdown-menu">
+                    <a href="edukacija.html?tip=formalno" id="nav-edu-formalno"><i class="fa-solid fa-graduation-cap"></i> Formalno obrazovanje</a>
+                    <a href="edukacija.html?tip=neformalno" id="nav-edu-neformalno"><i class="fa-solid fa-certificate"></i> Neformalno obrazovanje</a>
+                </div>
+            </div>
             <a href="projekti.html" id="nav-projekti">Projekti</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
@@ -64,6 +190,16 @@
 
     </main>
 
+    <div class="modal-overlay" id="rad-modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="rad-modal-naslov">Rad</h3>
+                <button class="modal-close-btn" onclick="zatvoriRadModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="rad-modal-telo" style="padding: 20px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
     <footer id="idx-footer">
         ©Copyright by Nena Kozić
     </footer>
@@ -78,13 +214,52 @@
         let rezim = localStorage.getItem('portfolioRezim') || 'dark';
 
         const mastIT = {
-            SRB: { stepen: 'Master inženjer informacionih tehnologija', ustanova: 'Fakultet tehničkih nauka u Čačku, Univerzitet u Kragujevcu', period: 'Novembar 2024 - Oktobar 2025', opis: 'Tokom master studija specijalizovala sam se za napredne oblasti uključujući Web Mining, tehnike modeliranja i algoritme. Kroz Interakciju čovek-računar (HCI) istraživala sam spoj tehnologije i korisničkog iskustva.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_IT', vestine: ['HCI - Interakcija čovek-računar', 'Rudarenje veba', 'Rudarenje podataka', 'Razvoj digitalnih igara', 'Upravljanje kvalitetom softvera', 'Algoritmi i tehnike modelovanja'] },
-            ENG: { stepen: 'Master of Information Technology (M.Sc.)', ustanova: 'Faculty of Technical Sciences in Cacak', period: 'November 2024 - October 2025', opis: 'Master degree focusing on Web Mining, Algorithms and HCI.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_IT', vestine: ['HCI - Human Computer Interaction', 'Web Mining', 'Data mining', 'Game Development', 'Software Quality Management', 'Algorithms and Modeling Techniques'] }
+            SRB: { stepen: 'Master inženjer informacionih tehnologija', ustanova: 'Fakultet tehničkih nauka u Čačku, Univerzitet u Kragujevcu', period: 'Novembar 2024 - Oktobar 2025', opis: 'Tokom master studija specijalizovala sam se za napredne oblasti uključujući Web Mining, tehnike modeliranja i algoritme. Kroz Interakciju čovek-računar (HCI) istraživala sam spoj tehnologije i korisničkog iskustva.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_IT', vestine: ['HCI - Interakcija čovek-računar', 'Rudarenje veba', 'Rudarenje podataka', 'Razvoj digitalnih igara', 'Upravljanje kvalitetom softvera', 'Algoritmi i tehnike modelovanja'], radKey: 'master', radLinkTekst: 'Pogledaj rad' },
+            ENG: { stepen: 'Master of Information Technology (M.Sc.)', ustanova: 'Faculty of Technical Sciences in Cacak', period: 'November 2024 - October 2025', opis: 'Master degree focusing on Web Mining, Algorithms and HCI.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_IT', vestine: ['HCI - Human Computer Interaction', 'Web Mining', 'Data mining', 'Game Development', 'Software Quality Management', 'Algorithms and Modeling Techniques'], radKey: 'master', radLinkTekst: 'View Thesis' }
         };
 
         const bachIT = {
-            SRB: { stepen: 'Diplomirani inženjer informacionih tehnologija', ustanova: 'Fakultet tehničkih nauka u Čačku, Univerzitet u Kragujevcu', period: 'Oktobar 2020 - Oktobar 2024', opis: 'Razvila sam čvrstu osnovu u razvoju softvera i upravljanju bazama podataka. Iskustvo sa C, C++, C#, Java, Kotlin, SQL i Oracle APEX.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/OAS_IT_23', vestine: ['JavaScript', 'C++', 'C#', 'C', 'Java', 'Kotlin', 'AngularJS', 'Node.js', 'MySQL', 'Oracle APEX', 'HTML', 'CSS', 'Bootstrap'] },
-            ENG: { stepen: 'Bachelor of Information Technology (B.Sc.)', ustanova: 'Faculty of Technical Sciences in Cacak', period: 'October 2020 - October 2024', opis: 'Foundation in software engineering and database schemas using C, C++, Java and SQL.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/OAS_IT_23', vestine: ['JavaScript', 'C++', 'C#', 'C', 'Java', 'Kotlin', 'AngularJS', 'Node.js', 'MySQL', 'Oracle APEX', 'HTML', 'CSS', 'Bootstrap'] }
+            SRB: { stepen: 'Diplomirani inženjer informacionih tehnologija', ustanova: 'Fakultet tehničkih nauka u Čačku, Univerzitet u Kragujevcu', period: 'Oktobar 2020 - Oktobar 2024', opis: 'Razvila sam čvrstu osnovu u razvoju softvera i upravljanju bazama podataka. Iskustvo sa C, C++, C#, Java, Kotlin, SQL i Oracle APEX.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/OAS_IT_23', vestine: ['JavaScript', 'C++', 'C#', 'C', 'Java', 'Kotlin', 'AngularJS', 'Node.js', 'MySQL', 'Oracle APEX', 'HTML', 'CSS', 'Bootstrap'], radKey: 'bachelor', radLinkTekst: 'Pogledaj rad' },
+            ENG: { stepen: 'Bachelor of Information Technology (B.Sc.)', ustanova: 'Faculty of Technical Sciences in Cacak', period: 'October 2020 - October 2024', opis: 'Foundation in software engineering and database schemas using C, C++, Java and SQL.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/OAS_IT_23', vestine: ['JavaScript', 'C++', 'C#', 'C', 'Java', 'Kotlin', 'AngularJS', 'Node.js', 'MySQL', 'Oracle APEX', 'HTML', 'CSS', 'Bootstrap'], radKey: 'bachelor', radLinkTekst: 'View Thesis' }
+        };
+
+        const radovi = {
+            master: {
+                SRB: {
+                    naziv: 'Master rad — Psihološki uticaji mehanika nagrađivanja u digitalnim igrama',
+                    podnaslov: 'Master rad, FTN Čačak',
+                    period: '2025',
+                    opis: 'Rad istražuje psihološke mehanizme iza sistema nagrađivanja u digitalnim igrama — loot boxes, battle pass, achievement sisteme i dnevne bonuse — kroz teoriju operativnog uslovljavanja, intrinzičnu/ekstrinzičnu motivaciju, ulogu dopaminskog sistema i teoriju flow-a. Na primerima igara poput Fortnite-a i Minecraft-a analizira kako dizajn nagrađivanja utiče na angažovanost igrača, uz osvrt na etičke implikacije i preporuke za odgovorniji dizajn nagrađivanja.',
+                    vestine: ['Psihologija igara', 'HCI', 'Game Design', 'Istraživanje'],
+                    mentor: 'Mentor rada - dr Veljko Aleksić, vanredni profesor'
+                },
+                ENG: {
+                    naziv: 'Master Thesis — Psychological Effects of Reward Mechanics in Digital Games',
+                    podnaslov: 'Master Thesis, FTS Cacak',
+                    period: '2025',
+                    opis: 'The thesis explores the psychological mechanisms behind reward systems in digital games — loot boxes, battle passes, achievement systems and daily bonuses — through operant conditioning theory, intrinsic/extrinsic motivation, the role of the dopamine system, and flow theory. Using examples such as Fortnite and Minecraft, it analyzes how reward design affects player engagement, alongside a review of ethical implications and recommendations for more responsible reward design.',
+                    vestine: ['Game Psychology', 'HCI', 'Game Design', 'Research'],
+                    mentor: 'Thesis Mentor - dr Veljko Aleksić, Associate Professor'
+                }
+            },
+            bachelor: {
+                SRB: {
+                    naziv: 'Diplomski rad — Primena standarda za modelovanje u razvoju informacionih sistema',
+                    podnaslov: 'Diplomski rad, FTN Čačak',
+                    period: '2024',
+                    opis: 'Rad analizira i upoređuje standarde za modelovanje informacionih sistema — IDEF0, IDEF1X, UML i BPMN — kroz njihovu primenu u funkcionalnom, informacionom i aplikativnom modelovanju. Kroz razradu faza razvoja informacionog sistema rad pokazuje kako modelovanje smanjuje kompleksnost sistema i olakšava komunikaciju između razvojnih timova i korisnika.',
+                    vestine: ['IDEF0', 'IDEF1X', 'UML', 'BPMN', 'Modelovanje IS'],
+                    mentor: 'Mentor rada - dr Miloš Papić, redovni profesor'
+                },
+                ENG: {
+                    naziv: 'Bachelor Thesis — Application of Modeling Standards in Information Systems Development',
+                    podnaslov: 'Bachelor Thesis, FTS Cacak',
+                    period: '2024',
+                    opis: 'The thesis analyzes and compares information system modeling standards — IDEF0, IDEF1X, UML, and BPMN — through their application in functional, informational, and application modeling. By elaborating on the development phases of an information system, the thesis shows how modeling reduces system complexity and facilitates communication between development teams and users.',
+                    vestine: ['IDEF0', 'IDEF1X', 'UML', 'BPMN', 'IS Modeling'],
+                    mentor: 'Thesis Mentor - dr Miloš Papić, Full Professor'
+                }
+            }
         };
 
         const pedagoski = {
@@ -119,11 +294,13 @@
         const recnik = {
             SRB: {
                 navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navPromeni: 'Promeni portfolio',
+                navEduFormalno: 'Formalno obrazovanje', navEduNeformalno: 'Neformalno obrazovanje',
                 naslovFormalno: 'Formalno obrazovanje', naslovNeformalno: 'Neformalno obrazovanje',
                 footer: '©Copyright by Nena Kozić'
             },
             ENG: {
                 navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navPromeni: 'Switch Portfolio',
+                navEduFormalno: 'Formal education', navEduNeformalno: 'Non-formal education',
                 naslovFormalno: 'Formal education', naslovNeformalno: 'Non-formal education',
                 footer: '©Copyright by Nena Kozić'
             }
@@ -134,20 +311,30 @@
             navIskustvo: document.getElementById('nav-iskustvo'),
             navEdukacija: document.getElementById('nav-edukacija'),
             navPromeni: document.getElementById('nav-promeni'),
+            navEduFormalno: document.getElementById('nav-edu-formalno'),
+            navEduNeformalno: document.getElementById('nav-edu-neformalno'),
             naslovFormalno: document.getElementById('naslov-formalno'),
             naslovNeformalno: document.getElementById('naslov-neformalno'),
             footer: document.getElementById('idx-footer'),
             glavniKontejner: document.getElementById('edu-glavni-kontejner'),
+            kolonaFormalno: document.getElementById('kolona-formalno'),
             kolonaNeformalno: document.getElementById('kolona-neformalno'),
             formalnoKontejner: document.getElementById('formalno-kontejner'),
             neformalnoKontejner: document.getElementById('neformalno-kontejner'),
             langBtn: document.getElementById('nav-lang-btn'),
             themeBtn: document.getElementById('nav-theme-btn'),
             hamburgerBtn: document.getElementById('hamburger-btn'),
-            navLinks: document.getElementById('nav-links-id')
+            navLinks: document.getElementById('nav-links-id'),
+            eduDropdown: document.getElementById('nav-edukacija-dropdown'),
+            radModal: document.getElementById('rad-modal'),
+            radModalNaslov: document.getElementById('rad-modal-naslov'),
+            radModalTelo: document.getElementById('rad-modal-telo')
         };
 
-        function karticaHTML({ naslov, podnaslov, period, opis, link, linkTekst, vestine, extraClass = '', tagClass = 'skill-tag' }) {
+        // Koji tip obrazovanja je izabran preko padajuće liste u navbaru ('formalno' / 'neformalno' / null = oba)
+        const odabranTip = new URLSearchParams(window.location.search).get('tip');
+
+        function karticaHTML({ naslov, podnaslov, period, opis, link, linkTekst, vestine, extraClass = '', tagClass = 'skill-tag', radDugme = '' }) {
             return `
                 <div class="card experience-card edu-split-card ${extraClass}">
                     <div class="exp-header">
@@ -156,9 +343,52 @@
                     </div>
                     <p class="exp-opis">${opis}</p>
                     ${link ? `<a href="${link}" target="_blank" class="project-link"><i class="${extraClass ? 'fa-brands fa-github' : 'fa-solid fa-link'}"></i> ${linkTekst}</a>` : ''}
+                    ${radDugme}
                     <div class="tag-container" style="${extraClass ? 'margin-top:10px;' : ''}">${vestine.map(v => `<span class="${tagClass}">${v}</span>`).join('')}</div>
                 </div>`;
         }
+
+        function otvoriRadModal(kljuc) {
+            const r = radovi[kljuc][jezik];
+            el.radModalNaslov.innerText = r.naziv;
+            el.radModalTelo.innerHTML = `
+                <p style="font-style:italic; opacity:0.85; margin-bottom:10px;">${r.podnaslov} • ${r.period}</p>
+                <p class="exp-opis">${r.opis}</p>
+                <div class="tag-container" style="margin-top:12px;">${r.vestine.map(v => `<span class="skill-tag">${v}</span>`).join('')}</div>
+                <p class="exp-mentor" style="font-style: italic; font-weight: 500; margin-top: 15px;"><i class="fa-solid fa-user-tie" style="margin-right: 8px;"></i>${r.mentor}</p>
+            `;
+            el.radModal.style.display = 'flex';
+        }
+
+        function zatvoriRadModal() {
+            el.radModal.style.display = 'none';
+        }
+
+        el.radModal.addEventListener('click', event => {
+            if (event.target === el.radModal) zatvoriRadModal();
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && el.radModal.style.display === 'flex') zatvoriRadModal();
+        });
+
+        // Podela na formalno/neformalno u navbaru važi samo za IT portfolio — u Edukacija modu nema neformalnog obrazovanja
+        if (mod !== 'IT') {
+            el.eduDropdown.classList.add('bez-padajuce');
+        }
+
+        function toggleEduDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (mod !== 'IT') return;
+            el.eduDropdown.classList.toggle('dropdown-open');
+        }
+
+        document.addEventListener('click', event => {
+            if (el.eduDropdown && !el.eduDropdown.contains(event.target)) {
+                el.eduDropdown.classList.remove('dropdown-open');
+            }
+        });
 
         function osvezi() {
             const r = recnik[jezik];
@@ -167,21 +397,31 @@
             el.navIskustvo.innerText = r.navIskustvo;
             el.navEdukacija.innerText = r.navEdukacija;
             el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
+            el.navEduFormalno.innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${r.navEduFormalno}`;
+            el.navEduNeformalno.innerHTML = `<i class="fa-solid fa-certificate"></i> ${r.navEduNeformalno}`;
+            el.navEduFormalno.classList.toggle('active', odabranTip === 'formalno');
+            el.navEduNeformalno.classList.toggle('active', odabranTip === 'neformalno');
             el.naslovFormalno.innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${r.naslovFormalno}`;
             el.naslovNeformalno.innerHTML = `<i class="fa-solid fa-certificate"></i> ${r.naslovNeformalno}`;
             el.footer.innerText = r.footer;
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
 
             const jeEdukacijaMod = mod === 'Edukacija';
-            el.kolonaNeformalno.style.display = jeEdukacijaMod ? 'none' : 'block';
-            el.glavniKontejner.classList.toggle('single-column', jeEdukacijaMod);
-            el.glavniKontejner.style.gridTemplateColumns = jeEdukacijaMod ? '1fr' : '1fr 1fr';
-            el.glavniKontejner.style.maxWidth = jeEdukacijaMod ? '900px' : '1400px';
+            const sakrijNeformalno = jeEdukacijaMod || odabranTip === 'formalno';
+            const sakrijFormalno = !jeEdukacijaMod && odabranTip === 'neformalno';
+            const jednaKolona = sakrijNeformalno || sakrijFormalno;
+
+            el.kolonaFormalno.style.display = sakrijFormalno ? 'none' : 'block';
+            el.kolonaNeformalno.style.display = sakrijNeformalno ? 'none' : 'block';
+            el.glavniKontejner.classList.toggle('single-column', jednaKolona);
+            el.glavniKontejner.style.gridTemplateColumns = jednaKolona ? '1fr' : '1fr 1fr';
+            el.glavniKontejner.style.maxWidth = jednaKolona ? '900px' : '1400px';
 
             const formalno = formalnoZa(jezik)[mod];
             el.formalnoKontejner.innerHTML = formalno.map(f => karticaHTML({
                 naslov: f.stepen, podnaslov: f.ustanova, period: f.period, opis: f.opis,
-                link: f.link_programa, linkTekst: 'Studijski program', vestine: f.vestine
+                link: f.link_programa, linkTekst: 'Studijski program', vestine: f.vestine,
+                radDugme: f.radKey ? `<a href="javascript:void(0)" onclick="otvoriRadModal('${f.radKey}')" class="rad-link"><i class="fa-solid fa-book"></i> ${f.radLinkTekst}</a>` : ''
             })).join('');
 
             if (mod === 'IT') {
