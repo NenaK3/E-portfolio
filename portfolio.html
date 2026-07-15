@@ -189,18 +189,6 @@
             document.getElementById('nav-iskustvo').innerText = r.navIskustvo;
             document.getElementById('nav-edukacija').innerText = r.navEdukacija;
             document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
-            
-            const navLinks = document.querySelector('.nav-links');
-            if (mod === 'Edukacija' && !document.getElementById('nav-dokimologija')) {
-                const noviLink = document.createElement('a');
-                noviLink.href = 'dokimologija.html';
-                noviLink.id = 'nav-dokimologija';
-                noviLink.innerText = jezik === 'SRB' ? 'Dokimologija' : 'Docimology';
-                navLinks.insertBefore(noviLink, document.getElementById('nav-promeni'));
-            } else if (mod !== 'Edukacija') {
-                const stariLink = document.getElementById('nav-dokimologija');
-                if (stariLink) stariLink.remove();
-            }
 
             document.getElementById('tab-o-meni-btn').innerHTML = `<i class="fa-solid fa-address-card"></i> ${r.tabOMeni}`;
             document.getElementById('tab-vestine-btn').innerHTML = `<i class="fa-solid fa-list-check"></i> ${r.tabVestine}`;

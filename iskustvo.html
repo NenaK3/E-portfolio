@@ -134,24 +134,12 @@
             document.getElementById('idx-footer').innerText = r.footer;
 
             const navLinks = document.querySelector('.nav-links');
-            
-            if (mod === 'Edukacija' && !document.getElementById('nav-dokimologija')) {
-                const noviLink = document.createElement('a');
-                noviLink.href = 'dokimologija.html';
-                noviLink.id = 'nav-dokimologija';
-                noviLink.innerText = jezik === 'SRB' ? 'Dokimologija' : 'Docimology';
-                navLinks.insertBefore(noviLink, document.getElementById('nav-promeni'));
-            } else if (mod !== 'Edukacija') {
-                const stariLink = document.getElementById('nav-dokimologija');
-                if (stariLink) stariLink.remove();
-            }
 
             const kontejner = document.getElementById('iskustvo-kontejner');
             kontejner.innerHTML = '';
             
             if (r[mod]) {
                 r[mod].forEach(i => {
-                    // Logika koja generiše tagove i mentora ukoliko postoje
                     let tagoviDeo = '';
                     let mentorDeo = '';
 

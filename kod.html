@@ -21,7 +21,6 @@
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
             <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
             <a href="projekti.html" class="active" id="nav-projekti">Projekti</a>
-            <a href="dokimologija.html" id="nav-dokimologija" style="display: none;">Dokimologija</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
@@ -115,13 +114,13 @@
 
         const recnik = {
             'SRB': {
-                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navDokimologija: 'Dokimologija', navPromeni: 'Promeni portfolio',
+                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navPromeni: 'Promeni portfolio',
                 naslovStrane: 'Interaktivni Python Turtle Kod',
                 podnaslovStrane: 'Klikni na roze, podvučene linije koda kako bi pogledao video objašnjenje za njih!',
                 footer: '©Copyright by Nena Kozić'
             },
             'ENG': {
-                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navDokimologija: 'Assessment', navPromeni: 'Switch Portfolio',
+                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navPromeni: 'Switch Portfolio',
                 naslovStrane: 'Interactive Python Turtle Code',
                 podnaslovStrane: 'Click on the pink, underlined lines of code to watch their video explanation!',
                 footer: '©Copyright by Nena Kozić'
@@ -134,19 +133,11 @@
             document.getElementById('nav-iskustvo').innerText = r.navIskustvo;
             document.getElementById('nav-edukacija').innerText = r.navEdukacija;
             document.getElementById('nav-projekti').innerText = r.navProjekti;
-            document.getElementById('nav-dokimologija').innerText = r.navDokimologija;
             document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
             
             document.getElementById('glavni-naslov').innerText = r.naslovStrane;
             document.getElementById('glavni-podnaslov').innerText = r.podnaslovStrane;
             document.getElementById('idx-footer').innerText = r.footer;
-
-            const dokLink = document.getElementById('nav-dokimologija');
-            if (mod === 'Edukacija') {
-                dokLink.style.display = 'inline-block';
-            } else {
-                dokLink.style.display = 'none';
-            }
 
             document.getElementById('nav-lang-btn').innerText = jezik === 'SRB' ? 'EN' : 'SRB';
         }

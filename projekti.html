@@ -21,7 +21,6 @@
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
             <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
             <a href="projekti.html" class="active" id="nav-projekti">Projekti</a>
-            <a href="dokimologija.html" id="nav-dokimologija" style="display: none;">Dokimologija</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
@@ -64,7 +63,7 @@
 
         const recnik = {
             'SRB': {
-                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navDokimologija: 'Dokimologija', navPromeni: 'Promeni portfolio',
+                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navPromeni: 'Promeni portfolio',
                 naslovProjekata: 'Moji projekti',
                 tekstLinka: 'Pogledaj kod',
                 btnMaterijal: 'Materijal za đake',
@@ -103,7 +102,7 @@
                 }
             },
             'ENG': {
-                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navDokimologija: 'Assessment', navPromeni: 'Switch Portfolio',
+                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navPromeni: 'Switch Portfolio',
                 naslovProjekata: 'My projects',
                 tekstLinka: 'View Code',
                 btnMaterijal: 'Student materials',
@@ -149,16 +148,8 @@
             document.getElementById('nav-iskustvo').innerText = r.navIskustvo;
             document.getElementById('nav-edukacija').innerText = r.navEdukacija;
             document.getElementById('nav-projekti').innerText = r.navProjekti;
-            document.getElementById('nav-dokimologija').innerText = r.navDokimologija;
             document.getElementById('nav-promeni').innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
             document.getElementById('naslov-projekata').innerHTML = `<i class="fa-solid fa-folder-open"></i> ${r.naslovProjekata}`;
-
-            const dokLink = document.getElementById('nav-dokimologija');
-            if (mod === 'Edukacija') {
-                dokLink.style.display = 'inline-block';
-            } else {
-                dokLink.style.display = 'none';
-            }
 
             const projektiKontejner = document.getElementById('projekti-kontejner');
             projektiKontejner.innerHTML = '';
