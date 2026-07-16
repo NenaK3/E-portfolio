@@ -85,7 +85,9 @@
     </div>
 
     <footer id="idx-footer">
-        ©Copyright by Nena Kozić
+        <span id="idx-footer-copy">©Copyright by Nena Kozić</span>
+        <span class="footer-separator">•</span>
+        <span id="idx-footer-datum"></span>
     </footer>
 
     <script>
@@ -205,7 +207,8 @@
             navPromeni: document.getElementById('nav-promeni'),
             naslovFormalno: document.getElementById('naslov-formalno'),
             naslovNeformalno: document.getElementById('naslov-neformalno'),
-            footer: document.getElementById('idx-footer'),
+            footer: document.getElementById('idx-footer-copy'),
+            footerDatum: document.getElementById('idx-footer-datum'),
             glavniKontejner: document.getElementById('edu-glavni-kontejner'),
             kolonaFormalno: document.getElementById('kolona-formalno'),
             kolonaNeformalno: document.getElementById('kolona-neformalno'),
@@ -306,6 +309,19 @@
             if (event.key === 'Escape' && el.sertifikatModal.style.display === 'flex') zatvoriSertifikatModal();
         });
 
+        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
+        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        function azurirajDatumFootera() {
+            const sada = new Date();
+            const meseci = jezik === 'SRB' ? meseciSRB : meseciENG;
+            const mesec = meseci[sada.getMonth()];
+            const godina = sada.getFullYear();
+            el.footerDatum.innerText = jezik === 'SRB'
+                ? `${mesec} ${godina}.`
+                : `${mesec} ${godina}.`;
+        }
+
         function osvezi() {
             const r = recnik[jezik];
 
@@ -316,6 +332,7 @@
             el.naslovFormalno.innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${r.naslovFormalno}`;
             el.naslovNeformalno.innerHTML = `<i class="fa-solid fa-certificate"></i> ${r.naslovNeformalno}`;
             el.footer.innerText = r.footer;
+            azurirajDatumFootera();
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
 
             const jeEdukacijaMod = mod === 'Edukacija';

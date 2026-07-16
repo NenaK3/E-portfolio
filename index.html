@@ -56,7 +56,9 @@
     </div>
 
     <footer id="idx-footer">
-        ©Copyright by Nena Kozić
+        <span id="idx-footer-copy">©Copyright by Nena Kozić</span>
+        <span class="footer-separator">•</span>
+        <span id="idx-footer-datum"></span>
     </footer>
 
     <script>
@@ -102,7 +104,7 @@
             { id: 'idx-edu-sub', kljuc: 'eduSub' },
             { id: 'idx-edu-opis', kljuc: 'eduOpis' },
             { id: 'idx-edu-btn', kljuc: 'eduBtn', btn: true },
-            { id: 'idx-footer', kljuc: 'footer' }
+            { id: 'idx-footer-copy', kljuc: 'footer' }
         ];
 
         const el = Object.fromEntries(
@@ -110,6 +112,20 @@
         );
         el['lang-btn'] = document.getElementById('lang-btn');
         el['theme-btn'] = document.getElementById('theme-btn');
+        el['idx-footer-datum'] = document.getElementById('idx-footer-datum');
+
+        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
+        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        function azurirajDatumFootera() {
+            const sada = new Date();
+            const meseci = trenutniJezik === 'SRB' ? meseciSRB : meseciENG;
+            const mesec = meseci[sada.getMonth()];
+            const godina = sada.getFullYear();
+            el['idx-footer-datum'].innerText = trenutniJezik === 'SRB'
+                ? `${mesec} ${godina}.`
+                : `${mesec} ${godina}.`;
+        }
 
         function primeniRezim() {
             document.body.classList.toggle('light-mode', trenutniRezim === 'light');
@@ -128,6 +144,7 @@
             });
 
             el['lang-btn'].innerText = trenutniJezik === 'SRB' ? 'EN' : 'SRB';
+            azurirajDatumFootera();
         }
 
         function promeniTemu() {

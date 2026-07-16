@@ -65,7 +65,9 @@
     </main>
 
     <footer id="idx-footer">
-        ©Copyright by Nena Kozić
+        <span id="idx-footer-copy">©Copyright by Nena Kozić</span>
+        <span class="footer-separator">•</span>
+        <span id="idx-footer-datum"></span>
     </footer>
 
     <script>
@@ -162,7 +164,8 @@
             navEdukacija: document.getElementById('nav-edukacija'),
             navPromeni: document.getElementById('nav-promeni'),
             strNaslov: document.getElementById('str-naslov'),
-            footer: document.getElementById('idx-footer'),
+            footer: document.getElementById('idx-footer-copy'),
+            footerDatum: document.getElementById('idx-footer-datum'),
             kontejner: document.getElementById('iskustvo-kontejner'),
             langBtn: document.getElementById('nav-lang-btn'),
             themeBtn: document.getElementById('nav-theme-btn'),
@@ -193,6 +196,19 @@
                 </div>`;
         }
 
+        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
+        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        function azurirajDatumFootera() {
+            const sada = new Date();
+            const meseci = jezik === 'SRB' ? meseciSRB : meseciENG;
+            const mesec = meseci[sada.getMonth()];
+            const godina = sada.getFullYear();
+            el.footerDatum.innerText = jezik === 'SRB'
+                ? `${mesec} ${godina}.`
+                : `${mesec} ${godina}.`;
+        }
+
         function osvezi() {
             const r = recnik[jezik];
 
@@ -202,6 +218,7 @@
             el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
             el.strNaslov.innerHTML = `<i class="fa-solid fa-briefcase"></i> ${r.naslovSve}`;
             el.footer.innerText = r.footer;
+            azurirajDatumFootera();
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
 
             el.kontejner.innerHTML = (r[mod] || []).map(karticaHTML).join('');

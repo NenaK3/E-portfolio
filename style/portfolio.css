@@ -680,6 +680,11 @@ body {
     transition: border-color 0.4s ease, color 0.4s ease;
 }
 
+.footer-separator {
+    margin: 0 8px;
+    opacity: 0.6;
+}
+
 /* ==========================================================================
    11. Prilagođavanje za mobilne uređaje (responsive design)
    ========================================================================== */

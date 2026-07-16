@@ -145,7 +145,7 @@
     </main>
 
     <footer class="site-footer">
-        <p>©Copyright by Nena Kozić</p>
+        <p>©Copyright by Nena Kozić <span class="footer-separator">•</span> <span id="footer-datum"></span></p>
     </footer>
 
     <script>
@@ -238,6 +238,7 @@
             lblGithub: document.getElementById('lbl-github'),
             cvBtnText: document.getElementById('cv-btn-text'),
             statusTekst: document.getElementById('status-tekst'),
+            footerDatum: document.getElementById('footer-datum'),
             vestineKontejner: document.getElementById('vestine-kontejner'),
             langBtn: document.getElementById('nav-lang-btn'),
             themeBtn: document.getElementById('nav-theme-btn'),
@@ -255,6 +256,19 @@
             { el: document.getElementById('tab-ambicije-btn'), ikona: 'fa-bullseye', kljuc: 'tabAmbicije' },
             { el: document.getElementById('tab-kontakt-btn'), ikona: 'fa-envelope', kljuc: 'tabKontakt' }
         ];
+
+        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
+        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        function azurirajDatumFootera() {
+            const sada = new Date();
+            const meseci = jezik === 'SRB' ? meseciSRB : meseciENG;
+            const mesec = meseci[sada.getMonth()];
+            const godina = sada.getFullYear();
+            el.footerDatum.innerText = jezik === 'SRB'
+                ? `${mesec} ${godina}.`
+                : `${mesec} ${godina}.`;
+        }
 
         function osveziSadrzaj() {
             const r = recnik[jezik];
@@ -283,6 +297,7 @@
             el.tekstAmbicije.innerText = s.ambicije;
             el.cvBtnText.innerText = r.cvBtnText;
             el.statusTekst.innerText = r.statusDostupnost;
+            azurirajDatumFootera();
 
             trenutniCvPutanja = s.cvFajl;
 

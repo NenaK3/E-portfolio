@@ -81,7 +81,7 @@
     </div>
 
     <footer class="site-footer">
-        <p> ©Copyright by Nena Kozić.</p>
+        <p>©Copyright by Nena Kozić. <span class="footer-separator">•</span> <span id="footer-datum"></span></p>
     </footer>
 
     <script>
@@ -194,7 +194,8 @@
             navLinks: document.getElementById('navbar-links'),
             pdfModal: document.getElementById('pdf-modal'),
             pdfViewer: document.getElementById('pdf-viewer'),
-            modalTitleText: document.getElementById('modal-title-text')
+            modalTitleText: document.getElementById('modal-title-text'),
+            footerDatum: document.getElementById('footer-datum')
         };
 
         const AKCIJA_STIL = 'text-decoration:none; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:5px; font-weight:bold;';
@@ -242,6 +243,19 @@
                 </div>`;
         }
 
+        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
+        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        function azurirajDatumFootera() {
+            const sada = new Date();
+            const meseci = jezik === 'SRB' ? meseciSRB : meseciENG;
+            const mesec = meseci[sada.getMonth()];
+            const godina = sada.getFullYear();
+            el.footerDatum.innerText = jezik === 'SRB'
+                ? `${mesec} ${godina}.`
+                : `${mesec} ${godina}.`;
+        }
+
         function osvezi() {
             const r = recnik[jezik];
 
@@ -255,6 +269,7 @@
             el.projektiKontejner.innerHTML = r.projekti[mod].map(p => karticaHTML(p, r)).join('');
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+            azurirajDatumFootera();
         }
 
         function otvoriModal(pdfPutanja, naslov) {

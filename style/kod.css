@@ -470,6 +470,11 @@ body.light-mode .video-link:hover {
     margin-top: auto;
 }
 
+.footer-separator {
+    margin: 0 8px;
+    opacity: 0.6;
+}
+
 /* ==========================================================================
    7. Responzivni dizajn i mobilni meni
    ========================================================================== */

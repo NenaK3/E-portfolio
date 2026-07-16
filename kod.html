@@ -136,7 +136,9 @@
     </div>
 
     <footer id="idx-footer">
-        ©Copyright by Nena Kozić
+        <span id="idx-footer-copy">©Copyright by Nena Kozić</span>
+        <span class="footer-separator">•</span>
+        <span id="idx-footer-datum"></span>
     </footer>
 
     <script>
@@ -172,7 +174,8 @@
             navPromeni: document.getElementById('nav-promeni'),
             glavniNaslov: document.getElementById('glavni-naslov'),
             glavniPodnaslov: document.getElementById('glavni-podnaslov'),
-            footer: document.getElementById('idx-footer'),
+            footer: document.getElementById('idx-footer-copy'),
+            footerDatum: document.getElementById('idx-footer-datum'),
             langBtn: document.getElementById('nav-lang-btn'),
             themeBtn: document.getElementById('nav-theme-btn'),
             hamburgerBtn: document.getElementById('hamburger-btn'),
@@ -181,6 +184,19 @@
             modal: document.getElementById('videoModal'),
             player: document.getElementById('videoPlayer')
         };
+
+        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
+        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        function azurirajDatumFootera() {
+            const sada = new Date();
+            const meseci = jezik === 'SRB' ? meseciSRB : meseciENG;
+            const mesec = meseci[sada.getMonth()];
+            const godina = sada.getFullYear();
+            el.footerDatum.innerText = jezik === 'SRB'
+                ? `${mesec} ${godina}.`
+                : `${mesec} ${godina}.`;
+        }
 
         function osvezi() {
             const r = recnik[jezik];
@@ -193,6 +209,7 @@
             el.glavniNaslov.innerText = r.naslovStrane;
             el.glavniPodnaslov.innerText = r.podnaslovStrane;
             el.footer.innerText = r.footer;
+            azurirajDatumFootera();
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
         }

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. Reset i osnovna podešavanja
+   1. Reset i Osnovna Podešavanja
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -39,7 +39,7 @@
 }
 
 /* ==========================================================================
-   2. Upravljanje temama (IT i edukacija)
+   2. Upravljanje Temama (IT i Edukacija)
    ========================================================================== */
 body.it-theme {
     --theme-accent: var(--pastel-blue-accent);
@@ -87,7 +87,7 @@ body.light-mode.edukacija-theme {
 }
 
 /* ==========================================================================
-   3. Osnovni stilovi za body
+   3. Osnovni Stilovi za Body
    ========================================================================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -101,7 +101,7 @@ body {
 }
 
 /* ==========================================================================
-   4. Navigacioni meni (Navbar)
+   4. Navigacioni Meni (Navbar)
    ========================================================================== */
 .navbar {
     display: flex;
@@ -190,7 +190,7 @@ body {
 }
 
 /* ==========================================================================
-   Padajuća lista za edukaciju (formalno / neformalno obrazovanje)
+   Padajuća lista za Edukaciju (Formalno / Neformalno obrazovanje)
    ========================================================================== */
 .nav-dropdown {
     position: relative;
@@ -302,7 +302,7 @@ body {
 }
 
 /* ==========================================================================
-   5. Edukacija glavni kontejner (split/grid layout)
+   5. Edukacija Glavni Kontejner (Split/Grid Layout)
    ========================================================================== */
 .education-split-container {
     display: grid;
@@ -338,7 +338,7 @@ body {
 }
 
 /* ==========================================================================
-   6. Stek sa karticama obrazovanja / projekata
+   6. Stek sa Karticama Obrazovanja / Projekata
    ========================================================================== */
 .experience-stack {
     display: flex;
@@ -407,7 +407,7 @@ body {
 }
 
 /* ==========================================================================
-   7. Kontenjer za tagove i same tagove
+   7. Kontenjer za Tagove i Same Tagove
    ========================================================================== */
 .tag-container {
     display: flex;
@@ -482,7 +482,7 @@ body {
 }
 
 /* ==========================================================================
-   8. Stilovi za modal (pregled PDF dokumenata)
+   8. Stilovi za Modal (Pregled PDF dokumenata)
    ========================================================================== */
 .modal-overlay {
     position: fixed;
@@ -560,7 +560,7 @@ body {
 }
 
 /* ==========================================================================
-   9. Footer i animacije
+   9. Footer i Animacije
    ========================================================================== */
 .site-footer {
     width: 100%;
@@ -572,6 +572,11 @@ body {
     margin-top: auto; 
     letter-spacing: 0.5px;
     transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.footer-separator {
+    margin: 0 8px;
+    opacity: 0.6;
 }
 
 @keyframes fadeInUp {
@@ -590,7 +595,7 @@ body {
 }
 
 /* ==========================================================================
-   10. Responzivni Dizajn (Mobilni uređaji i tableti)
+   10. Responzivni Dizajn (Mobilni Uređaji i Tableti)
    ========================================================================== */
 @media (max-width: 1024px) {
     .education-split-container {
