@@ -40,7 +40,16 @@
         <div class="nav-links" id="navbar-links">
             <a href="portfolio.html" class="active" id="nav-profil">Profil</a>
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
-            <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
+            <div class="nav-dropdown" id="nav-edukacija-wrap">
+                <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
+                <button type="button" class="nav-dropdown-caret" id="nav-edukacija-caret" aria-label="Prikaži opcije edukacije" aria-expanded="false">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="nav-dropdown-menu" id="nav-edukacija-menu">
+                    <a href="edukacija.html?tip=formalno" id="nav-edu-formalno">Formalno obrazovanje</a>
+                    <a href="edukacija.html?tip=neformalno" id="nav-edu-neformalno">Neformalno obrazovanje</a>
+                </div>
+            </div>
             <a href="projekti.html" id="nav-projekti">Projekti</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
@@ -329,8 +338,41 @@
             ikonica.classList.toggle('fa-xmark', aktivno);
         }
 
+        function podesiEduDropdown() {
+            const wrap = document.getElementById('nav-edukacija-wrap');
+            if (!wrap) return;
+            const caret = document.getElementById('nav-edukacija-caret');
+
+            if (mod !== 'IT') {
+                wrap.classList.add('no-dropdown');
+                return;
+            }
+
+            caret.addEventListener('click', event => {
+                event.preventDefault();
+                event.stopPropagation();
+                const otvoreno = wrap.classList.toggle('open');
+                caret.setAttribute('aria-expanded', otvoreno);
+            });
+
+            document.addEventListener('click', event => {
+                if (!wrap.contains(event.target)) {
+                    wrap.classList.remove('open');
+                    caret.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape' && wrap.classList.contains('open')) {
+                    wrap.classList.remove('open');
+                    caret.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
         primeniRezim();
         osveziSadrzaj();
+        podesiEduDropdown();
     </script>
 </body>
 </html>

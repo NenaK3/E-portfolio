@@ -31,7 +31,16 @@
         <div class="nav-links" id="nav-links-id">
             <a href="portfolio.html" id="nav-profil">Profil</a>
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
-            <a href="edukacija.html" class="active" id="nav-edukacija">Edukacija</a>
+            <div class="nav-dropdown" id="nav-edukacija-wrap">
+                <a href="edukacija.html" class="active" id="nav-edukacija">Edukacija</a>
+                <button type="button" class="nav-dropdown-caret" id="nav-edukacija-caret" aria-label="Prikaži opcije edukacije" aria-expanded="false">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="nav-dropdown-menu" id="nav-edukacija-menu">
+                    <a href="edukacija.html?tip=formalno" id="nav-edu-formalno">Formalno obrazovanje</a>
+                    <a href="edukacija.html?tip=neformalno" id="nav-edu-neformalno">Neformalno obrazovanje</a>
+                </div>
+            </div>
             <a href="projekti.html" id="nav-projekti">Projekti</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
@@ -77,6 +86,10 @@
 
         let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
         let rezim = localStorage.getItem('portfolioRezim') || 'dark';
+
+        const dozvoljeniTipovi = ['formalno', 'neformalno'];
+        const tipIzUrl = new URLSearchParams(window.location.search).get('tip');
+        let tip = mod === 'IT' && dozvoljeniTipovi.includes(tipIzUrl) ? tipIzUrl : null;
 
         const mastIT = {
             SRB: { stepen: 'Master inženjer informacionih tehnologija', ustanova: 'Fakultet tehničkih nauka u Čačku, Univerzitet u Kragujevcu', period: 'Novembar 2024 - Oktobar 2025', opis: 'Tokom master studija specijalizovala sam se za napredne oblasti uključujući Web Mining, tehnike modeliranja i algoritme. Kroz Interakciju čovek-računar (HCI) istraživala sam spoj tehnologije i korisničkog iskustva.', link_programa: 'https://www.ftn.kg.ac.rs/studije/program/MAS_IT', vestine: ['HCI - Interakcija čovek-računar', 'Rudarenje veba', 'Rudarenje podataka', 'Razvoj digitalnih igara', 'Upravljanje kvalitetom softvera', 'Algoritmi i tehnike modelovanja'], radKey: 'master', radLinkTekst: 'Pogledaj rad' },
@@ -186,6 +199,8 @@
             themeBtn: document.getElementById('nav-theme-btn'),
             hamburgerBtn: document.getElementById('hamburger-btn'),
             navLinks: document.getElementById('nav-links-id'),
+            eduFormalnoLink: document.getElementById('nav-edu-formalno'),
+            eduNeformalnoLink: document.getElementById('nav-edu-neformalno'),
             radModal: document.getElementById('rad-modal'),
             radModalNaslov: document.getElementById('rad-modal-naslov'),
             radModalTelo: document.getElementById('rad-modal-telo')
@@ -242,13 +257,20 @@
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
 
             const jeEdukacijaMod = mod === 'Edukacija';
-            const jednaKolona = jeEdukacijaMod;
+            const prikaziSamoFormalno = jeEdukacijaMod || tip === 'formalno';
+            const prikaziSamoNeformalno = mod === 'IT' && tip === 'neformalno';
+            const jednaKolona = prikaziSamoFormalno || prikaziSamoNeformalno;
 
-            el.kolonaFormalno.style.display = 'block';
-            el.kolonaNeformalno.style.display = jeEdukacijaMod ? 'none' : 'block';
+            el.kolonaFormalno.style.display = prikaziSamoNeformalno ? 'none' : 'block';
+            el.kolonaNeformalno.style.display = (jeEdukacijaMod || prikaziSamoFormalno) ? 'none' : 'block';
             el.glavniKontejner.classList.toggle('single-column', jednaKolona);
             el.glavniKontejner.style.gridTemplateColumns = jednaKolona ? '1fr' : '1fr 1fr';
             el.glavniKontejner.style.maxWidth = jednaKolona ? '900px' : '1400px';
+
+            if (el.eduFormalnoLink && el.eduNeformalnoLink) {
+                el.eduFormalnoLink.classList.toggle('active', tip === 'formalno');
+                el.eduNeformalnoLink.classList.toggle('active', tip === 'neformalno');
+            }
 
             const formalno = formalnoZa(jezik)[mod];
             el.formalnoKontejner.innerHTML = formalno.map(f => karticaHTML({
@@ -289,8 +311,41 @@
             el.hamburgerBtn.querySelector('i').classList.toggle('fa-xmark', prikazano);
         }
 
+        function podesiEduDropdown() {
+            const wrap = document.getElementById('nav-edukacija-wrap');
+            if (!wrap) return;
+            const caret = document.getElementById('nav-edukacija-caret');
+
+            if (mod !== 'IT') {
+                wrap.classList.add('no-dropdown');
+                return;
+            }
+
+            caret.addEventListener('click', event => {
+                event.preventDefault();
+                event.stopPropagation();
+                const otvoreno = wrap.classList.toggle('open');
+                caret.setAttribute('aria-expanded', otvoreno);
+            });
+
+            document.addEventListener('click', event => {
+                if (!wrap.contains(event.target)) {
+                    wrap.classList.remove('open');
+                    caret.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape' && wrap.classList.contains('open')) {
+                    wrap.classList.remove('open');
+                    caret.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
         primeniRezim();
         osvezi();
+        podesiEduDropdown();
     </script>
 </body>
 </html>

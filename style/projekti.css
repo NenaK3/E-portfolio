@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. Reset i Osnovna Podešavanja
+   1. Reset i osnovna podešavanja
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -39,7 +39,7 @@
 }
 
 /* ==========================================================================
-   2. Upravljanje Temama (IT i Edukacija)
+   2. Upravljanje temama (IT i edukacija)
    ========================================================================== */
 body.it-theme {
     --theme-accent: var(--pastel-blue-accent);
@@ -87,7 +87,7 @@ body.light-mode.edukacija-theme {
 }
 
 /* ==========================================================================
-   3. Osnovni Stilovi za Body
+   3. Osnovni stilovi za body
    ========================================================================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -101,7 +101,7 @@ body {
 }
 
 /* ==========================================================================
-   4. Navigacioni Meni (Navbar)
+   4. Navigacioni meni (Navbar)
    ========================================================================== */
 .navbar {
     display: flex;
@@ -189,6 +189,81 @@ body {
     border-color: transparent;
 }
 
+/* ==========================================================================
+   Padajuća lista za edukaciju (formalno / neformalno obrazovanje)
+   ========================================================================== */
+.nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.nav-dropdown-caret {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 0.7rem;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-dropdown-caret:hover {
+    color: var(--theme-accent);
+    background-color: var(--btn-bg);
+}
+
+.nav-dropdown.open .nav-dropdown-caret {
+    transform: rotate(180deg);
+    color: var(--theme-accent);
+}
+
+.nav-dropdown.no-dropdown .nav-dropdown-caret {
+    display: none;
+}
+
+.nav-dropdown-menu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 0;
+    min-width: 230px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -3px var(--shadow);
+    padding: 8px;
+    z-index: 200;
+}
+
+.nav-dropdown.open .nav-dropdown-menu {
+    display: flex;
+}
+
+.nav-dropdown-menu a {
+    padding: 10px 12px !important;
+    border-radius: 6px;
+    font-size: 0.92rem !important;
+    white-space: nowrap;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a.active {
+    background-color: var(--theme-tag-bg, var(--btn-bg));
+    color: var(--theme-accent);
+}
+
+.nav-dropdown-menu a::after {
+    display: none !important;
+}
+
 .hamburger-menu {
     display: none;
     font-size: 1.6rem;
@@ -227,7 +302,7 @@ body {
 }
 
 /* ==========================================================================
-   5. Edukacija Glavni Kontejner (Split/Grid Layout)
+   5. Edukacija glavni kontejner (split/grid layout)
    ========================================================================== */
 .education-split-container {
     display: grid;
@@ -263,7 +338,7 @@ body {
 }
 
 /* ==========================================================================
-   6. Stek sa Karticama Obrazovanja / Projekata
+   6. Stek sa karticama obrazovanja / projekata
    ========================================================================== */
 .experience-stack {
     display: flex;
@@ -332,7 +407,7 @@ body {
 }
 
 /* ==========================================================================
-   7. Kontenjer za Tagove i Same Tagove
+   7. Kontenjer za tagove i same tagove
    ========================================================================== */
 .tag-container {
     display: flex;
@@ -407,7 +482,7 @@ body {
 }
 
 /* ==========================================================================
-   8. Stilovi za Modal (Pregled PDF dokumenata)
+   8. Stilovi za modal (pregled PDF dokumenata)
    ========================================================================== */
 .modal-overlay {
     position: fixed;
@@ -485,7 +560,7 @@ body {
 }
 
 /* ==========================================================================
-   9. Footer i Animacije
+   9. Footer i animacije
    ========================================================================== */
 .site-footer {
     width: 100%;
@@ -515,7 +590,7 @@ body {
 }
 
 /* ==========================================================================
-   10. Responzivni Dizajn (Mobilni Uređaji i Tableti)
+   10. Responzivni Dizajn (Mobilni uređaji i tableti)
    ========================================================================== */
 @media (max-width: 1024px) {
     .education-split-container {
@@ -574,6 +649,37 @@ body {
 
     .nav-links a::after {
         display: none;
+    }
+
+    .nav-dropdown {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        position: relative;
+    }
+
+    .nav-dropdown-caret {
+        position: absolute;
+        top: 4px;
+        right: 10px;
+    }
+
+    .nav-dropdown-menu {
+        position: static;
+        display: none;
+        width: 100%;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 4px 0 0 0;
+    }
+
+    .nav-dropdown.open .nav-dropdown-menu {
+        display: flex;
+    }
+
+    .nav-dropdown-menu a {
+        text-align: center;
     }
 
     .switch-btn {

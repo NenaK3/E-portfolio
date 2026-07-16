@@ -196,6 +196,81 @@ body {
     border-color: transparent;
 }
 
+/* ==========================================================================
+   Padajuća lista za edukaciju (formalno / neformalno obrazovanje)
+   ========================================================================== */
+.nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.nav-dropdown-caret {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 0.7rem;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-dropdown-caret:hover {
+    color: var(--theme-accent);
+    background-color: var(--btn-bg);
+}
+
+.nav-dropdown.open .nav-dropdown-caret {
+    transform: rotate(180deg);
+    color: var(--theme-accent);
+}
+
+.nav-dropdown.no-dropdown .nav-dropdown-caret {
+    display: none;
+}
+
+.nav-dropdown-menu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 0;
+    min-width: 230px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -3px var(--shadow);
+    padding: 8px;
+    z-index: 200;
+}
+
+.nav-dropdown.open .nav-dropdown-menu {
+    display: flex;
+}
+
+.nav-dropdown-menu a {
+    padding: 10px 12px !important;
+    border-radius: 6px;
+    font-size: 0.92rem !important;
+    white-space: nowrap;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a.active {
+    background-color: var(--theme-tag-bg, var(--btn-bg));
+    color: var(--theme-accent);
+}
+
+.nav-dropdown-menu a::after {
+    display: none !important;
+}
+
 .nav-controls {
     display: flex;
     gap: 10px;
@@ -534,6 +609,37 @@ body {
 
     .nav-links a::after {
         display: none;
+    }
+
+    .nav-dropdown {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        position: relative;
+    }
+
+    .nav-dropdown-caret {
+        position: absolute;
+        top: 4px;
+        right: 10px;
+    }
+
+    .nav-dropdown-menu {
+        position: static;
+        display: none;
+        width: 100%;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 4px 0 0 0;
+    }
+
+    .nav-dropdown.open .nav-dropdown-menu {
+        display: flex;
+    }
+
+    .nav-dropdown-menu a {
+        text-align: center;
     }
 
     .switch-btn {
