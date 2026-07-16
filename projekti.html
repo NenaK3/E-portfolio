@@ -199,8 +199,9 @@
 
         const AKCIJA_STIL = 'text-decoration:none; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:5px; font-weight:bold;';
 
-        function akcioniTagHTML({ tag, href, onclick, ikona, tekst }) {
-            const atribut = tag === 'a' ? `href="${href}" target="_blank"` : `onclick="${onclick}"`;
+        function akcioniTagHTML({ tag, href, onclick, ikona, tekst, noviTab = true }) {
+            const ciljAtribut = noviTab ? ' target="_blank"' : '';
+            const atribut = tag === 'a' ? `href="${href}"${ciljAtribut}` : `onclick="${onclick}"`;
             return `<${tag} ${atribut} class="skill-tag ${eduTag}" style="${AKCIJA_STIL}"><i class="${ikona}"></i> ${tekst}</${tag}>`;
         }
 
@@ -215,7 +216,7 @@
                 dugmad.push(akcioniTagHTML({ tag: 'button', onclick: `otvoriModal('assets/priprema/Priprema za čas broj    33, šesti razred.pdf', '${r.btnPriprema33}')`, ikona: 'fa-solid fa-file-pdf', tekst: r.btnPriprema33 }));
                 dugmad.push(akcioniTagHTML({ tag: 'button', onclick: `otvoriModal('assets/priprema/Priprema za čas broj 34, šesti razred.pdf', '${r.btnPriprema34}')`, ikona: 'fa-solid fa-file-pdf', tekst: r.btnPriprema34 }));
                 dugmad.push(akcioniTagHTML({ tag: 'a', href: 'https://heyzine.com/flip-book/ae67dcf23c.html', ikona: 'fa-solid fa-book-open', tekst: r.btnMaterijal }));
-                dugmad.push(akcioniTagHTML({ tag: 'a', href: 'kod.html', ikona: 'fa-solid fa-code', tekst: r.btnKodNaDelu }));
+                dugmad.push(akcioniTagHTML({ tag: 'a', href: 'kod.html', ikona: 'fa-solid fa-code', tekst: r.btnKodNaDelu, noviTab: false }));
             }
 
             return dugmad.join('');
