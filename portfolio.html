@@ -61,8 +61,12 @@
 
     <header class="hero-section">
         <div class="hero-container">
-            <div>
+            <div class="hero-img-wrap">
                 <img src="assets/images/ja.jpg" alt="Nena Kozić" class="hero-profile-img">
+                <span class="status-badge" id="status-badge">
+                    <span class="status-dot"></span>
+                    <span id="status-tekst">Otvorena za saradnju</span>
+                </span>
             </div>
             <div class="hero-text">
                 <h1>Nena Kozić</h1>
@@ -161,6 +165,7 @@
                 naslovOMeni: 'Profesionalni profil', naslovAmbicije: 'Budući ciljevi i usmerenja', naslovKontakt: 'Kontakt informacije',
                 lblEmail: 'E-mail adresa:', lblLokacija: 'Lokacija:', lblLinkedin: 'LinkedIn profil:', lblGithub: 'GitHub profil:',
                 cvBtnText: 'Prikaži CV',
+                statusDostupnost: 'Otvorena za saradnju',
                 IT: {
                     titula: 'Master inženjer informacionih tehnologija',
                     oMeni: 'Fokusirana na razvoj modernih frontend aplikacija i napredno upravljanje bazama podataka. Kroz praktičan rad u kompanijama i akademske projekte na FTN-u stekla sam iskustvo u tehnologijama kao što su Angular, React, Node.js i Flutter, kao i u radu sa relacionim bazama i softverskom arhitekturom.',
@@ -190,6 +195,7 @@
                 naslovOMeni: 'Professional Profile', naslovAmbicije: 'Future Goals & Orientations', naslovKontakt: 'Contact Information',
                 lblEmail: 'Email address:', lblLokacija: 'Location:', lblLinkedin: 'LinkedIn profile:', lblGithub: 'GitHub profile:',
                 cvBtnText: 'View CV',
+                statusDostupnost: 'Open to opportunities',
                 IT: {
                     titula: 'Master of Information Technology',
                     oMeni: 'Focused on developing modern frontend applications and advanced database management. Through professional internships and academic projects at the Faculty of Technical Sciences, I have gained hands-on experience with Angular, React, Node.js, and Flutter, alongside relational databases and software architecture.',
@@ -231,6 +237,7 @@
             lblLinkedin: document.getElementById('lbl-linkedin'),
             lblGithub: document.getElementById('lbl-github'),
             cvBtnText: document.getElementById('cv-btn-text'),
+            statusTekst: document.getElementById('status-tekst'),
             vestineKontejner: document.getElementById('vestine-kontejner'),
             langBtn: document.getElementById('nav-lang-btn'),
             themeBtn: document.getElementById('nav-theme-btn'),
@@ -275,6 +282,7 @@
             el.tekstOMeni.innerText = s.oMeni;
             el.tekstAmbicije.innerText = s.ambicije;
             el.cvBtnText.innerText = r.cvBtnText;
+            el.statusTekst.innerText = r.statusDostupnost;
 
             trenutniCvPutanja = s.cvFajl;
 

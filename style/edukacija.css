@@ -197,7 +197,7 @@ body {
 }
 
 /* ==========================================================================
-   Padajuća lista za edukaciju (formalno / neformalno obrazovanje)
+   Padajuća lista za Edukaciju (Formalno / Neformalno obrazovanje)
    ========================================================================== */
 .nav-dropdown {
     position: relative;
@@ -424,6 +424,20 @@ body {
     transform: translateY(-2px);
 }
 
+/* ==========================================================================
+   6a. Red dugmadi za sertifikate (verifikacija / pregled)
+   ========================================================================== */
+.cert-buttons-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.cert-buttons-row .project-link {
+    margin-bottom: 0;
+}
+
 .tag-container {
     display: flex;
     flex-wrap: wrap;
@@ -549,6 +563,88 @@ body {
 }
 
 /* ==========================================================================
+   7a. Modal za prikaz sertifikata (PDF ili slika)
+   ========================================================================== */
+#sertifikat-modal .modal-content {
+    max-width: 900px;
+    height: 85vh;
+}
+
+#sertifikat-modal .modal-body {
+    flex: 1;
+    padding: 0;
+    overflow: hidden;
+    background-color: #525659;
+}
+
+#sertifikat-modal .modal-body iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+#sertifikat-modal .modal-body img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #ffffff;
+    display: block;
+}
+
+#sertifikat-modal .modal-body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-external-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    padding: 40px 36px;
+    max-width: 420px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+.cert-external-icon {
+    font-size: 3rem;
+    color: var(--theme-accent);
+}
+
+.cert-external-tekst {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.cert-external-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--theme-accent);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.cert-external-btn:hover {
+    background-color: var(--theme-accent-hover);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
    8. Responzivni dizajn (mobilni uređaji i tableti)
    ========================================================================== */
 @media (max-width: 1024px) {
@@ -654,8 +750,16 @@ body {
         margin-left: 0;
     }
 
+    .cert-buttons-row {
+        flex-direction: column;
+    }
+
     .modal-overlay .modal-content {
         max-height: 90vh;
+    }
+
+    #sertifikat-modal .modal-content {
+        height: 80vh;
     }
 
     .education-split-container {

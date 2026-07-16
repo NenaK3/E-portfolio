@@ -74,6 +74,16 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="sertifikat-modal">
+        <div class="modal-content" id="sertifikat-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="sertifikat-modal-naslov">Sertifikat</h3>
+                <button class="modal-close-btn" onclick="zatvoriSertifikatModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="sertifikat-modal-telo"></div>
+        </div>
+    </div>
+
     <footer id="idx-footer">
         ©Copyright by Nena Kozić
     </footer>
@@ -147,18 +157,18 @@
 
         const neformalnoPodaci = {
             SRB: [
-                { kurs: 'Baze podataka', izdavac: 'freeCodeCamp', period: 'Maj 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Relational-Databases.git', opis: 'Intenzivan kurs za rad sa relacionim bazama podataka, Linux okruženje, Bash skripte i Git.', vestine: ['PostgreSQL', 'SQL', 'Git & GitHub'] },
-                { kurs: 'Responzivni veb dizajn', izdavac: 'freeCodeCamp', period: 'Mart 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Responsive-Web-Design.git', opis: 'Savladavanje modernih tehnika responzivnog dizajna, arhitekture stranica i naprednog CSS stilizovanja.', vestine: ['HTML', 'HTML5', 'CSS'] },
-                { kurs: 'Excel VBA programiranje', izdavac: 'Kampster AI', period: 'April 2025', opis: 'Osnove automatizacije unutar Excel-a, pisanje makroa i kontrola toka.', vestine: ['VBA', 'Automatizacija'] },
-                { kurs: 'Power BI', izdavac: 'Kampster AI', period: 'Decembar 2024', opis: 'Obuka za analizu, modelovanje i vizuelizaciju podataka kroz Power BI Desktop.', vestine: ['Power BI', 'Analiza podataka'] },
-                { kurs: 'Adobe Dreamweaver', izdavac: 'Akademija Oxford', period: '2021', githubLink: 'https://github.com/NenaK3/E-portfolio.git', opis: 'Kurs za izradu veb stranica i aplikacija u Adobe Dreamweaver okruženju, kroz učenje standarda modernog dizajna.', vestine: ['HTML', 'HTML5', 'CSS', 'Web design', 'Web development'] }
+                { kurs: 'Baze podataka', izdavac: 'freeCodeCamp', period: 'Maj 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Relational-Databases.git', verifikacijaLink: 'https://www.freecodecamp.org/certification/nena_k/relational-database-v8', opis: 'Intenzivan kurs za rad sa relacionim bazama podataka, Linux okruženje, Bash skripte i Git.', vestine: ['PostgreSQL', 'SQL', 'Git & GitHub'] },
+                { kurs: 'Responzivni veb dizajn', izdavac: 'freeCodeCamp', period: 'Mart 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Responsive-Web-Design.git', verifikacijaLink: 'https://www.freecodecamp.org/certification/nena_k/responsive-web-design', opis: 'Savladavanje modernih tehnika responzivnog dizajna, arhitekture stranica i naprednog CSS stilizovanja.', vestine: ['HTML', 'HTML5', 'CSS'] },
+                { kurs: 'Excel VBA programiranje', izdavac: 'Kampster AI', period: 'April 2025', sertifikatFajl: 'assets/sertifikat/srb - Excel VBA programiranje - osnovni nivo.pdf', opis: 'Osnove automatizacije unutar Excel-a, pisanje makroa i kontrola toka.', vestine: ['VBA', 'Automatizacija'] },
+                { kurs: 'Power BI', izdavac: 'Kampster AI', period: 'Decembar 2024', sertifikatFajl: 'assets/sertifikat/srb - Microsoft Power BI.pdf', opis: 'Obuka za analizu, modelovanje i vizuelizaciju podataka kroz Power BI Desktop.', vestine: ['Power BI', 'Analiza podataka'] },
+                { kurs: 'Adobe Dreamweaver', izdavac: 'Akademija Oxford', period: '2021', githubLink: 'https://github.com/NenaK3/E-portfolio.git', sertifikatFajl: 'assets/sertifikat/Adobe Dreamweaver.png', opis: 'Kurs za izradu veb stranica i aplikacija u Adobe Dreamweaver okruženju, kroz učenje standarda modernog dizajna.', vestine: ['HTML', 'HTML5', 'CSS', 'Web design', 'Web development'] }
             ],
             ENG: [
-                { kurs: 'Databases', izdavac: 'freeCodeCamp', period: 'May 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Relational-Databases.git', opis: 'Relational database systems, Linux administration and Git workflows.', vestine: ['PostgreSQL', 'SQL', 'Git & GitHub'] },
-                { kurs: 'Responsive Web Design', izdavac: 'freeCodeCamp', period: 'March 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Responsive-Web-Design.git', opis: 'Fluid layouts, responsive styling and cross-browser formatting.', vestine: ['HTML', 'HTML5', 'CSS'] },
-                { kurs: 'Excel VBA Programming', izdavac: 'Kampster AI', period: 'April 2025', opis: 'Introduction to spreadsheet automation and macro construction.', vestine: ['VBA', 'Automation'] },
-                { kurs: 'Power BI', izdavac: 'Kampster AI', period: 'December 2024', opis: 'Predictive data modeling and rendering analytical dashboards.', vestine: ['Power BI', 'Data Analysis'] },
-                { kurs: 'Adobe Dreamweaver', izdavac: 'Oxford Academy', period: '2021', githubLink: 'https://github.com/NenaK3/E-portfolio.git', opis: 'Web development and application course using Adobe Dreamweaver, covering modern design standards.', vestine: ['HTML', 'HTML5', 'CSS', 'Web design', 'Web development'] }
+                { kurs: 'Databases', izdavac: 'freeCodeCamp', period: 'May 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Relational-Databases.git', verifikacijaLink: 'https://www.freecodecamp.org/certification/nena_k/relational-database-v8', opis: 'Relational database systems, Linux administration and Git workflows.', vestine: ['PostgreSQL', 'SQL', 'Git & GitHub'] },
+                { kurs: 'Responsive Web Design', izdavac: 'freeCodeCamp', period: 'March 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Responsive-Web-Design.git', verifikacijaLink: 'https://www.freecodecamp.org/certification/nena_k/responsive-web-design', opis: 'Fluid layouts, responsive styling and cross-browser formatting.', vestine: ['HTML', 'HTML5', 'CSS'] },
+                { kurs: 'Excel VBA Programming', izdavac: 'Kampster AI', period: 'April 2025', sertifikatFajl: 'assets/sertifikat/eng - Excel VBA programiranje - osnovni nivo.pdf', opis: 'Introduction to spreadsheet automation and macro construction.', vestine: ['VBA', 'Automation'] },
+                { kurs: 'Power BI', izdavac: 'Kampster AI', period: 'December 2024', sertifikatFajl: 'assets/sertifikat/eng - Microsoft Power BI.pdf', opis: 'Predictive data modeling and rendering analytical dashboards.', vestine: ['Power BI', 'Data Analysis'] },
+                { kurs: 'Adobe Dreamweaver', izdavac: 'Oxford Academy', period: '2021', githubLink: 'https://github.com/NenaK3/E-portfolio.git', sertifikatFajl: 'assets/sertifikat/Adobe Dreamweaver.png', opis: 'Web development and application course using Adobe Dreamweaver, covering modern design standards.', vestine: ['HTML', 'HTML5', 'CSS', 'Web design', 'Web development'] }
             ]
         };
 
@@ -173,11 +183,17 @@
             SRB: {
                 navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navPromeni: 'Promeni portfolio',
                 naslovFormalno: 'Formalno obrazovanje', naslovNeformalno: 'Neformalno obrazovanje',
+                tekstPogledajSertifikat: 'Pogledaj sertifikat',
+                tekstEksterniOpis: 'Ovaj sertifikat se nalazi na freeCodeCamp platformi. Iz bezbednosnih razloga sajt ne dozvoljava prikaz unutar ovog prozora — klikni dugme ispod da ga pogledaš.',
+                tekstOtvoriSertifikat: 'Otvori sertifikat',
                 footer: '©Copyright by Nena Kozić'
             },
             ENG: {
                 navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navPromeni: 'Switch Portfolio',
                 naslovFormalno: 'Formal education', naslovNeformalno: 'Non-formal education',
+                tekstPogledajSertifikat: 'View Certificate',
+                tekstEksterniOpis: 'This certificate is hosted on the freeCodeCamp platform. For security reasons the site does not allow it to be displayed inside this window — click the button below to view it.',
+                tekstOtvoriSertifikat: 'Open Certificate',
                 footer: '©Copyright by Nena Kozić'
             }
         };
@@ -203,10 +219,13 @@
             eduNeformalnoLink: document.getElementById('nav-edu-neformalno'),
             radModal: document.getElementById('rad-modal'),
             radModalNaslov: document.getElementById('rad-modal-naslov'),
-            radModalTelo: document.getElementById('rad-modal-telo')
+            radModalTelo: document.getElementById('rad-modal-telo'),
+            sertifikatModal: document.getElementById('sertifikat-modal'),
+            sertifikatModalNaslov: document.getElementById('sertifikat-modal-naslov'),
+            sertifikatModalTelo: document.getElementById('sertifikat-modal-telo')
         };
 
-        function karticaHTML({ naslov, podnaslov, period, opis, link, linkTekst, vestine, extraClass = '', tagClass = 'skill-tag', radDugme = '' }) {
+        function karticaHTML({ naslov, podnaslov, period, opis, link, linkTekst, vestine, extraClass = '', tagClass = 'skill-tag', radDugme = '', sertifikatHTML = '' }) {
             return `
                 <div class="card experience-card edu-split-card ${extraClass}">
                     <div class="exp-header">
@@ -216,8 +235,17 @@
                     <p class="exp-opis">${opis}</p>
                     ${link ? `<a href="${link}" target="_blank" class="project-link"><i class="${extraClass ? 'fa-brands fa-github' : 'fa-solid fa-link'}"></i> ${linkTekst}</a>` : ''}
                     ${radDugme}
+                    ${sertifikatHTML}
                     <div class="tag-container" style="${extraClass ? 'margin-top:10px;' : ''}">${vestine.map(v => `<span class="${tagClass}">${v}</span>`).join('')}</div>
                 </div>`;
+        }
+
+        function sertifikatDugmadHTML(n, r) {
+            const putanja = n.verifikacijaLink || n.sertifikatFajl;
+            if (!putanja) return '';
+
+            const naslovEskejp = n.kurs.replace(/'/g, "\\'");
+            return `<div class="cert-buttons-row"><a href="javascript:void(0)" onclick="otvoriSertifikatModal('${putanja}', '${naslovEskejp}')" class="project-link cert-link"><i class="fa-solid fa-certificate"></i> ${r.tekstPogledajSertifikat}</a></div>`;
         }
 
         function otvoriRadModal(kljuc) {
@@ -242,6 +270,40 @@
 
         document.addEventListener('keydown', event => {
             if (event.key === 'Escape' && el.radModal.style.display === 'flex') zatvoriRadModal();
+        });
+
+        function otvoriSertifikatModal(putanja, naslov) {
+            el.sertifikatModalNaslov.innerText = naslov;
+            const staza = putanja.toLowerCase();
+
+            if (staza.endsWith('.pdf')) {
+                el.sertifikatModalTelo.innerHTML = `<iframe src="${putanja}"></iframe>`;
+            } else if (staza.endsWith('.png') || staza.endsWith('.jpg') || staza.endsWith('.jpeg')) {
+                el.sertifikatModalTelo.innerHTML = `<img src="${putanja}" alt="${naslov}">`;
+            } else {
+                const r = recnik[jezik];
+                el.sertifikatModalTelo.innerHTML = `
+                    <div class="cert-external-card">
+                        <i class="fa-solid fa-shield-halved cert-external-icon"></i>
+                        <p class="cert-external-tekst">${r.tekstEksterniOpis}</p>
+                        <a href="${putanja}" target="_blank" class="cert-external-btn"><i class="fa-solid fa-up-right-from-square"></i> ${r.tekstOtvoriSertifikat}</a>
+                    </div>`;
+            }
+
+            el.sertifikatModal.style.display = 'flex';
+        }
+
+        function zatvoriSertifikatModal() {
+            el.sertifikatModal.style.display = 'none';
+            el.sertifikatModalTelo.innerHTML = '';
+        }
+
+        el.sertifikatModal.addEventListener('click', event => {
+            if (event.target === el.sertifikatModal) zatvoriSertifikatModal();
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && el.sertifikatModal.style.display === 'flex') zatvoriSertifikatModal();
         });
 
         function osvezi() {
@@ -283,7 +345,8 @@
                 el.neformalnoKontejner.innerHTML = neformalnoPodaci[jezik].map(n => karticaHTML({
                     naslov: n.kurs, podnaslov: n.izdavac, period: n.period, opis: n.opis,
                     link: n.githubLink, linkTekst: 'GitHub Code', vestine: n.vestine,
-                    extraClass: 'spec-course-card', tagClass: 'skill-tag course-tag'
+                    extraClass: 'spec-course-card', tagClass: 'skill-tag course-tag',
+                    sertifikatHTML: sertifikatDugmadHTML(n, r)
                 })).join('');
             }
         }
