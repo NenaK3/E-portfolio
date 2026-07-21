@@ -545,3 +545,25 @@ body {
     margin: 0 8px;
     opacity: 0.6;
 }
+
+/* ==========================================================================
+   Skip link (pristupačnost — "Preskoči na sadržaj")
+   ========================================================================== */
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: 12px;
+    z-index: 9999;
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 12px;
+}

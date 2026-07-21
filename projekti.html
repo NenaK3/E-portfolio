@@ -3,33 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nena Kozić | Projekti</title>
-    <meta name="description" content="Projekti Nene Kozić — digitalni portfolio, Hospital management system i nastavni materijali za Python Turtle.">
+    <title>Nena Kozić | Profil</title>
+    <meta name="description" content="Profesionalni profil Nene Kozić — master inženjera informacionih tehnologija i master profesora predmetne nastave. Veštine, ambicije i kontakt.">
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Nena Kozić | Projekti">
-    <meta property="og:description" content="Pregled IT i edukativnih projekata Nene Kozić, sa linkovima ka kodu i materijalima.">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Nena Kozić | Profil">
+    <meta property="og:description" content="Profesionalni profil Nene Kozić — veštine, ambicije i kontakt informacije.">
     <meta property="og:image" content="https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image.png">
-    <meta property="og:url" content="https://e-portfolio-nena-kozic.vercel.app/projekti.html">
-    <link rel="canonical" href="https://e-portfolio-nena-kozic.vercel.app/projekti.html">
+    <meta property="og:url" content="https://e-portfolio-nena-kozic.vercel.app/portfolio.html">
+    <link rel="canonical" href="https://e-portfolio-nena-kozic.vercel.app/portfolio.html">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" type="image/png" href="assets/images/logo.png">
     <link rel="apple-touch-icon" href="assets/images/logo.png">
     <link rel="manifest" href="manifest.json">
 
-    <link rel="stylesheet" href="style/projekti.css">
+    <link rel="stylesheet" href="style/portfolio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/print.css" media="print">
-    <style>
-        a:focus-visible,
-        button:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 3px solid #4da3ff;
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
-    </style>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -47,6 +39,7 @@
     </script>
 </head>
 <body>
+    <a href="#glavni-sadrzaj" class="skip-link">Preskoči na sadržaj / Skip to content</a>
 
     <nav class="navbar">
         <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
@@ -56,7 +49,7 @@
         </div>
 
         <div class="nav-links" id="navbar-links">
-            <a href="portfolio.html" id="nav-profil">Profil</a>
+            <a href="portfolio.html" class="active" id="nav-profil">Profil</a>
             <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
             <div class="nav-dropdown" id="nav-edukacija-wrap">
                 <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
@@ -68,7 +61,7 @@
                     <a href="edukacija.html?tip=neformalno" id="nav-edu-neformalno">Neformalno obrazovanje</a>
                 </div>
             </div>
-            <a href="projekti.html" class="active" id="nav-projekti">Projekti</a>
+            <a href="projekti.html" id="nav-projekti">Projekti</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
@@ -77,29 +70,93 @@
         </div>
     </nav>
 
-    <main class="education-split-container" id="edu-glavni-kontejner" style="grid-template-columns: 1fr; max-width: 900px;">
-
-        <section class="edu-column" id="kolona-projekti">
-            <h2 class="column-title" id="naslov-projekata"><i class="fa-solid fa-folder-open"></i> Moji projekti</h2>
-            <div class="experience-stack" id="projekti-kontejner"></div>
-        </section>
-
-    </main>
-
-    <div class="modal-overlay" id="pdf-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modal-title-text">Priprema za čas</h3>
-                <button class="modal-close-btn" onclick="zatvoriModal()"><i class="fa-solid fa-xmark"></i></button>
+    <header class="hero-section">
+        <div class="hero-container">
+            <div class="hero-img-wrap">
+                <img src="assets/images/ja.jpg" alt="Nena Kozić" class="hero-profile-img">
+                <span class="status-badge" id="status-badge">
+                    <span class="status-dot"></span>
+                    <span id="status-tekst">Otvorena za saradnju</span>
+                </span>
             </div>
-            <div class="modal-body">
-                <iframe id="pdf-viewer" src=""></iframe>
+            <div class="hero-text">
+                <h1>Nena Kozić</h1>
+                <h2 id="hero-title">...</h2>
+                <div class="cv-btn-container">
+                    <a id="cv-link" href="javascript:void(0)" onclick="otvoriCvModal()" class="cv-download-btn">
+                        <i class="fa-solid fa-file-pdf"></i> <span id="cv-btn-text">Prikaži CV</span>
+                    </a>
+                </div>
             </div>
+        </div>
+    </header>
+
+    <div id="cv-modal" class="cv-modal" onclick="zatvoriCvModalIzvan(event)">
+        <div class="cv-modal-sadrzaj">
+            <button class="cv-zatvori-btn" onclick="zatvoriCvModal()"><i class="fa-solid fa-xmark"></i></button>
+            <iframe id="cv-iframe" class="cv-iframe" src=""></iframe>
         </div>
     </div>
 
+    <main class="tabs-container" id="glavni-sadrzaj" tabindex="-1">
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="otvoriTab(event, 'o-meni')" id="tab-o-meni-btn"><i class="fa-solid fa-address-card"></i> O meni</button>
+            <button class="tab-btn" onclick="otvoriTab(event, 'vestine')" id="tab-vestine-btn"><i class="fa-solid fa-list-check"></i> Veštine</button>
+            <button class="tab-btn" onclick="otvoriTab(event, 'ambicije')" id="tab-ambicije-btn"><i class="fa-solid fa-bullseye"></i> Ambicije</button>
+            <button class="tab-btn" onclick="otvoriTab(event, 'kontakt')" id="tab-kontakt-btn"><i class="fa-solid fa-envelope"></i> Contact</button>
+        </div>
+
+        <div class="tab-content-wrapper">
+            <div id="o-meni" class="tab-content active">
+                <div class="card">
+                    <h3 id="card-naslov-o-meni">Profesionalni profil</h3>
+                    <p id="tekst-o-meni">...</p>
+                </div>
+            </div>
+
+            <div id="vestine" class="tab-content">
+                <div class="skills-grid" id="vestine-kontejner">
+                </div>
+            </div>
+
+            <div id="ambicije" class="tab-content">
+                <div class="card">
+                    <h3 id="card-naslov-ambicije">Budući ciljevi i usmerenja</h3>
+                    <p id="tekst-ambicije">...</p>
+                </div>
+            </div>
+
+            <div id="kontakt" class="tab-content">
+                <div class="card">
+                    <h3 id="card-naslov-kontakt">Kontakt informacije</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <span id="lbl-email">E-mail adresa:</span>
+                            <a href="mailto:nena.kozic3@gmail.com" class="contact-link">nena.kozic3@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span id="lbl-lokacija">Lokacija:</span> Čačak, Srbija
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-linkedin"></i>
+                            <span id="lbl-linkedin">LinkedIn profil:</span>
+                            <a href="https://www.linkedin.com/in/nena-kozi%C4%87-9665552b7/" target="_blank" class="contact-link">Nena Kozić</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-brands fa-github"></i>
+                            <span id="lbl-github">GitHub profil:</span>
+                            <a href="https://github.com/NenaK3" target="_blank" class="contact-link">NenaK3</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <footer class="site-footer">
-        <p>©Copyright by Nena Kozić. <span class="footer-separator">•</span> <span id="footer-datum"></span></p>
+        <p>©Copyright by Nena Kozić <span class="footer-separator">•</span> <span id="footer-datum"></span></p>
     </footer>
 
     <script>
@@ -109,120 +166,67 @@
         document.body.classList.add(mod.toLowerCase() + '-theme');
 
         let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
-        let rezim = localStorage.getItem('portfolioRezim') || 'dark';
-
-        const eduTag = mod === 'Edukacija' ? 'course-tag' : '';
-        const eduDate = mod === 'Edukacija' ? 'course-date' : '';
-        const eduCard = mod === 'Edukacija' ? 'spec-course-card' : '';
+        let rezim = localStorage.getItem('portfolioRezim') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        let trenutniCvPutanja = '';
 
         const recnik = {
             SRB: {
-                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navPromeni: 'Promeni portfolio',
-                naslovProjekata: 'Moji projekti',
-                tekstLinka: 'Pogledaj kod',
-                btnMaterijal: 'Materijal za đake',
-                btnPriprema33: 'Priprema za čas broj  33, šesti razred',
-                btnPriprema34: 'Priprema za čas broj 34, šesti razred',
-                btnKodNaDelu: 'Pogledaj kod na delu',
-                projekti: {
-                    IT: [
-                        {
-                            naziv: 'Digitalni portfolio',
-                            podnaslov: 'Lični projekat',
-                            period: '2026',
-                            opis: 'Responzivna veb prezentacija kreirana u svrhu prikazivanja stečenih veština, obrazovanja i praktičnih radova. Implementirana je dvojezičnost i dinamička promena tema u zavisnosti od smera.',
-                            vestine: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
-                            link: 'https://github.com/NenaK3/E-portfolio.git'
-                        },
-                        {
-                            naziv: 'Power BI izveštaj — Analiza prodaje i distribucije',
-                            podnaslov: 'Projekat izrađen u sklopu selekcionog procesa',
-                            period: '2025',
-                            opis: 'Interaktivni Power BI izveštaj razvijen nad relacionim modelom sa 9 povezanih tabela. Uključuje kreiranje DAX mera za analizu prodaje, praćenje statusa porudžbina i marže po proizvodnim grupama, kao i vizuelizacije za poređenje performansi po regionima, kanalima prodaje i vremenskim periodima. Fokus je bio na modelovanju podataka (star schema pristup), optimizaciji relacija i izradi preglednog, interaktivnog dashboard-a.',
-                            vestine: ['Power BI', 'DAX', 'Power Query (M)', 'Data Modeling']
-                        },
-                        {
-                            naziv: 'Hospital management system',
-                            podnaslov: 'Timski projekat na fakultetu',
-                            period: '2024',
-                            opis: 'Kompleksan sistem za upravljanje bolničkim podacima urađen u saradnji sa kolegama Jelenom Ilić i Filipom Šaranovićem. Omogućava efikasno upravljanje pacijentima, pregledima i osobljem. U sklopu projekta odrađeni su i testovi za jedan sloj aplikacije.',
-                            vestine: ['C#', '.NET Core', 'Angular', 'Node.js', 'SQL', 'Visual Studio', 'Unit Testing'],
-                            link: 'https://github.com/NenaK3/hospital-management-system.git'
-                        },
-                        {
-                            naziv: 'E-cvećara "Rose"',
-                            podnaslov: 'Samostalni projekat na fakultetu',
-                            period: '2021/2022',
-                            opis: 'Desktop aplikacija za upravljanje poslovanjem cvećare, razvijena u Java Swing-u. Omogućava kupovinu cveća i buketa, pravljenje sopstvenog buketa, zakazivanje dekoracije prostora i prijavu zaposlenih. Projekat je izrađen samostalno u okviru predmeta Objektno orijentisano programiranje, sa naglaskom na primenu enkapsulacije, nasleđivanja, polimorfizma i rada sa interfejsima.',
-                            vestine: ['Java', 'Java Swing', 'OOP', 'Rad sa fajlovima'],
-                            link: 'https://github.com/NenaK3/e-cvecara-e-flower-shop-'
-                        }
-                    ],
-                    Edukacija: [
-                        {
-                            naziv: 'Python turtle',
-                            podnaslov: 'Rad sa učenicima u školi',
-                            period: '2026',
-                            opis: 'Zadaci koje su učenici imali da urade za vežbanje kako bi savladali taj deo gradiva kroz vizuelno programiranje, geometrijske oblike i osnovne algoritme.',
-                            vestine: ['Python', 'Turtle biblioteka', 'Metodika nastave', 'Algoritmi'],
-                            link: 'https://github.com/NenaK3/Python-turtle.git',
-                            posebniMaterijali: true
-                        }
+                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navPromeni: 'Promeni portfolio',
+                tabOMeni: 'O meni', tabVestine: 'Veštine', tabAmbicije: 'Ambicije', tabKontakt: 'Kontakt',
+                naslovOMeni: 'Profesionalni profil', naslovAmbicije: 'Budući ciljevi i usmerenja', naslovKontakt: 'Kontakt informacije',
+                lblEmail: 'E-mail adresa:', lblLokacija: 'Lokacija:', lblLinkedin: 'LinkedIn profil:', lblGithub: 'GitHub profil:',
+                cvBtnText: 'Prikaži CV',
+                statusDostupnost: 'Otvorena za saradnju',
+                IT: {
+                    titula: 'Master inženjer informacionih tehnologija',
+                    oMeni: 'Fokusirana na razvoj modernih frontend aplikacija i napredno upravljanje bazama podataka. Kroz praktičan rad u kompanijama i akademske projekte na FTN-u stekla sam iskustvo u tehnologijama kao što su Angular, React, Node.js i Flutter, kao i u radu sa relacionim bazama i softverskom arhitekturom.',
+                    ambicije: 'Dugoročni fokus je usmeren na karijeru u IT industriji, sa primarnim interesovanjem za Frontend razvoj i kreiranje intuitivnih korisničkih interfejsa, kao i za projektovanje baza podataka i Power BI analitiku. Cilj mi je dalji rad sa modernim JavaScript/TypeScript okvirima, napredno upravljanje podacima i kreiranje poslovnih izveštaja koji pomažu u donošenju ključnih odluka.',
+                    cvFajl: 'assets/cv/CV IT - srb.pdf',
+                    v: [
+                        { kat: 'Frontend & Mobile', stavke: ['Angular / AngularJS', 'React.js', 'Flutter', 'JavaScript (ES6)', 'HTML5 / CSS3', 'Bootstrap'] },
+                        { kat: 'Backend & Baze podataka', stavke: ['Node.js', 'SQL / MySQL', 'Oracle APEX / Oracle DB', 'C / C++ / C#', 'Java / Kotlin', 'PHP'] },
+                        { kat: 'Alati & Metodologije', stavke: ['Git / GitHub', 'Web Mining & Data Mining', 'Human-Computer Interaction (HCI)', 'JSON / Web Design', 'WordPress / CRM'] }
+                    ]
+                },
+                Edukacija: {
+                    titula: 'Master profesor stručnih predmeta oblasti informacionih tehnologija',
+                    oMeni: 'Strastvena prema pedagogiji, metodici nastave računarstva i digitalnoj pismenosti. Uspešno prenosim apstraktne IT koncepte (poput programiranja u Python-u) mlađim generacijama kroz interaktivne metode, konstruktivistički pristup i savremene nastavne alate.',
+                    ambicije: 'Rad u prosvetnom sistemu kao profesor informatike i računarstva, kreiranje naprednih radionica i sekcija za talentovane učenike, implementacija EdTech inovacija i istraživanje primene obrazovnih softvera u nastavi.',
+                    cvFajl: 'assets/cv/CV PN - srb.pdf',
+                    v: [
+                        { kat: 'Metodika i pedagogija', stavke: ['Konstruktivizam u nastavi', 'Programirano učenje', 'Digitalna pismenost', 'Individualizacija nastave'] },
+                        { kat: 'Nastavni alati', stavke: ['Izrada e-testova', 'Google Forms', 'Interaktivni materijali (Python Turtle, Pygame)'] },
+                        { kat: 'Lične osobine', stavke: ['Empatija', 'Strpljenje u radu sa učenicima', 'Organizovanost', 'Jasna komunikacija'] }
                     ]
                 }
             },
             ENG: {
-                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navPromeni: 'Switch Portfolio',
-                naslovProjekata: 'My projects',
-                tekstLinka: 'View Code',
-                btnMaterijal: 'Student materials',
-                btnPriprema33: 'Lesson plan 33 (6th grade)',
-                btnPriprema34: 'Lesson plan 34 (6th grade)',
-                btnKodNaDelu: 'See code in action',
-                projekti: {
-                    IT: [
-                        {
-                            naziv: 'Digital portfolio',
-                            podnaslov: 'Personal project',
-                            period: '2026',
-                            opis: 'A responsive web presentation created to showcase acquired skills, education, and practical work. It features bilingual support and dynamic theme switching based on the selected mode.',
-                            vestine: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
-                            link: 'https://github.com/NenaK3/E-portfolio.git'
-                        },
-                        {
-                            naziv: 'Power BI Report — Sales & Distribution Analysis',
-                            podnaslov: 'Project developed as part of a selection process',
-                            period: '2025',
-                            opis: 'An interactive Power BI report built on a relational data model with 9 connected tables. Includes DAX measures for sales analysis, order status tracking, and margin analysis by product group, along with visualizations comparing performance across regions, sales channels, and time periods. The focus was on data modeling (star schema approach), relationship optimization, and building a clear, interactive dashboard.',
-                            vestine: ['Power BI', 'DAX', 'Power Query (M)', 'Data Modeling']
-                        },
-                        {
-                            naziv: 'Hospital management system',
-                            podnaslov: 'University team project',
-                            period: '2024',
-                            opis: 'A complex hospital data management system developed in collaboration with codebase colleagues Jelena Ilić and Filip Šaranović. It features patient, appointment, and staff management, including unit tests for a specific application layer.',
-                            vestine: ['C#', '.NET Core', 'Angular', 'Node.js', 'SQL', 'Visual Studio', 'Unit Testing'],
-                            link: 'https://github.com/NenaK3/hospital-management-system.git'
-                        },
-                        {
-                            naziv: 'E-flower shop "Rose"',
-                            podnaslov: 'Independent university project',
-                            period: '2021/2022',
-                            opis: 'A desktop application for managing a flower shop\'s business, built with Java Swing. It supports buying flowers and bouquets, building a custom bouquet, scheduling venue decoration, and employee login. Developed independently for the Object-Oriented Programming course, with a focus on encapsulation, inheritance, polymorphism, and interfaces.',
-                            vestine: ['Java', 'Java Swing', 'OOP', 'File Handling'],
-                            link: 'https://github.com/NenaK3/e-cvecara-e-flower-shop-'
-                        }
-                    ],
-                    Edukacija: [
-                        {
-                            naziv: 'Python turtle',
-                            podnaslov: 'School teaching work',
-                            period: '2026',
-                            opis: 'Tasks and exercises assigned to students to help them master the curriculum through visual programming, geometric shapes, and basic algorithms.',
-                            vestine: ['Python', 'Turtle Library', 'Teaching Methodology', 'Algorithms'],
-                            link: 'https://github.com/NenaK3/Python-turtle.git',
-                            posebniMaterijali: true
-                        }
+                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navPromeni: 'Switch Portfolio',
+                tabOMeni: 'About Me', tabVestine: 'Skills', tabAmbicije: 'Ambitions', tabKontakt: 'Contact',
+                naslovOMeni: 'Professional Profile', naslovAmbicije: 'Future Goals & Orientations', naslovKontakt: 'Contact Information',
+                lblEmail: 'Email address:', lblLokacija: 'Location:', lblLinkedin: 'LinkedIn profile:', lblGithub: 'GitHub profile:',
+                cvBtnText: 'View CV',
+                statusDostupnost: 'Open to opportunities',
+                IT: {
+                    titula: 'Master of Information Technology',
+                    oMeni: 'Focused on developing modern frontend applications and advanced database management. Through professional internships and academic projects at the Faculty of Technical Sciences, I have gained hands-on experience with Angular, React, Node.js, and Flutter, alongside relational databases and software architecture.',
+                    ambicije: 'Long-term focus is oriented toward a career in the IT industry, with a primary interest in Frontend development and creating intuitive user interfaces, as well as database design and Power BI analytics. My goal is to further work with modern JavaScript/TypeScript frameworks, advanced data management, and generating business reports that drive key decision-making.',
+                    cvFajl: 'assets/cv/CV IT - eng.pdf',
+                    v: [
+                        { kat: 'Frontend & Mobile', stavke: ['Angular / AngularJS', 'React.js', 'Flutter', 'JavaScript (ES6)', 'HTML5 / CSS3', 'Bootstrap'] },
+                        { kat: 'Backend & Databases', stavke: ['Node.js', 'SQL / MySQL', 'Oracle APEX / Oracle DB', 'C / C++ / C#', 'Java / Kotlin', 'PHP'] },
+                        { kat: 'Tools & Methodologies', stavke: ['Git / GitHub', 'Web Mining & Data Mining', 'Human-Computer Interaction (HCI)', 'JSON / Web Design', 'WordPress / CRM'] }
+                    ]
+                },
+                Edukacija: {
+                    titula: 'Master Professor of Information Technology Vocational Subjects',
+                    oMeni: 'Passionate about pedagogy, computer science teaching methodology, and digital literacy. Successfully delivering abstract IT concepts (such as Python programming) to younger generations through interactive methods, constructivism, and contemporary educational tools.',
+                    ambicije: 'Working in the education system as a professor of computer science and information technology, creating advanced workshops and sections for talented students, implementing EdTech innovations and researching the application of educational software in teaching.',
+                    cvFajl: 'assets/cv/CV PN - eng.pdf',
+                    v: [
+                        { kat: 'Methodology & Pedagogy', stavke: ['Constructivism in Education', 'Programmed Learning', 'Digital Literacy', 'Individualized Teaching'] },
+                        { kat: 'Educational Tools', stavke: ['E-tests Generation', 'Google Forms', 'Interactive Materials (Python Turtle, Pygame)'] },
+                        { kat: 'Personal Traits', stavke: ['Empathy', 'Patience with Students', 'Organizational Skills', 'Clear Communication'] }
                     ]
                 }
             }
@@ -232,64 +236,37 @@
             navProfil: document.getElementById('nav-profil'),
             navIskustvo: document.getElementById('nav-iskustvo'),
             navEdukacija: document.getElementById('nav-edukacija'),
-            navProjekti: document.getElementById('nav-projekti'),
             navPromeni: document.getElementById('nav-promeni'),
-            naslovProjekata: document.getElementById('naslov-projekata'),
-            projektiKontejner: document.getElementById('projekti-kontejner'),
+            heroTitle: document.getElementById('hero-title'),
+            tekstOMeni: document.getElementById('tekst-o-meni'),
+            tekstAmbicije: document.getElementById('tekst-ambicije'),
+            cardNaslovOMeni: document.getElementById('card-naslov-o-meni'),
+            cardNaslovAmbicije: document.getElementById('card-naslov-ambicije'),
+            cardNaslovKontakt: document.getElementById('card-naslov-kontakt'),
+            lblEmail: document.getElementById('lbl-email'),
+            lblLokacija: document.getElementById('lbl-lokacija'),
+            lblLinkedin: document.getElementById('lbl-linkedin'),
+            lblGithub: document.getElementById('lbl-github'),
+            cvBtnText: document.getElementById('cv-btn-text'),
+            statusTekst: document.getElementById('status-tekst'),
+            footerDatum: document.getElementById('footer-datum'),
+            vestineKontejner: document.getElementById('vestine-kontejner'),
             langBtn: document.getElementById('nav-lang-btn'),
             themeBtn: document.getElementById('nav-theme-btn'),
             hamburger: document.getElementById('nav-hamburger'),
             navLinks: document.getElementById('navbar-links'),
-            pdfModal: document.getElementById('pdf-modal'),
-            pdfViewer: document.getElementById('pdf-viewer'),
-            modalTitleText: document.getElementById('modal-title-text'),
-            footerDatum: document.getElementById('footer-datum')
+            cvModal: document.getElementById('cv-modal'),
+            cvIframe: document.getElementById('cv-iframe'),
+            tabContents: document.querySelectorAll('.tab-content'),
+            tabBtns: document.querySelectorAll('.tab-btn')
         };
 
-        const AKCIJA_STIL = 'text-decoration:none; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:5px; font-weight:bold;';
-
-        function akcioniTagHTML({ tag, href, onclick, ikona, tekst, noviTab = true }) {
-            const ciljAtribut = noviTab ? ' target="_blank"' : '';
-            const atribut = tag === 'a' ? `href="${href}"${ciljAtribut}` : `onclick="${onclick}"`;
-            return `<${tag} ${atribut} class="skill-tag ${eduTag}" style="${AKCIJA_STIL}"><i class="${ikona}"></i> ${tekst}</${tag}>`;
-        }
-
-        function dugmadZaProjekat(p, r) {
-            const dugmad = [];
-
-            if (p.link) {
-                dugmad.push(akcioniTagHTML({ tag: 'a', href: p.link, ikona: 'fa-brands fa-github', tekst: r.tekstLinka }));
-            }
-
-            if (p.posebniMaterijali) {
-                dugmad.push(akcioniTagHTML({ tag: 'button', onclick: `otvoriModal('assets/priprema/Priprema za čas broj  33, šesti razred.pdf', '${r.btnPriprema33}')`, ikona: 'fa-solid fa-file-pdf', tekst: r.btnPriprema33 }));
-                dugmad.push(akcioniTagHTML({ tag: 'button', onclick: `otvoriModal('assets/priprema/Priprema za čas broj 34, šesti razred.pdf', '${r.btnPriprema34}')`, ikona: 'fa-solid fa-file-pdf', tekst: r.btnPriprema34 }));
-                dugmad.push(akcioniTagHTML({ tag: 'a', href: 'https://heyzine.com/flip-book/ae67dcf23c.html', ikona: 'fa-solid fa-book-open', tekst: r.btnMaterijal }));
-                dugmad.push(akcioniTagHTML({ tag: 'a', href: 'kod.html', ikona: 'fa-solid fa-code', tekst: r.btnKodNaDelu, noviTab: false }));
-            }
-
-            return dugmad.join('');
-        }
-
-        function karticaHTML(p, r) {
-            const mentorDeo = p.mentor
-                ? `<p class="exp-mentor" style="font-style: italic; font-weight: 500; margin-top: 10px;"><i class="fa-solid fa-user-tie" style="margin-right: 8px;"></i>${p.mentor}</p>`
-                : '';
-
-            return `
-                <div class="card experience-card edu-split-card ${eduCard}">
-                    <div class="exp-header">
-                        <div><h3>${p.naziv}</h3><h4>${p.podnaslov}</h4></div>
-                        <span class="block-date ${eduDate}">${p.period}</span>
-                    </div>
-                    <p class="exp-opis">${p.opis}</p>
-                    ${mentorDeo}
-                    <div class="tag-container" style="margin-top:10px;">
-                        ${p.vestine.map(v => `<span class="skill-tag ${eduTag}">${v}</span>`).join('')}
-                    </div>
-                    <div class="edu-buttons-container">${dugmadZaProjekat(p, r)}</div>
-                </div>`;
-        }
+        const tabDugmici = [
+            { el: document.getElementById('tab-o-meni-btn'), ikona: 'fa-address-card', kljuc: 'tabOMeni' },
+            { el: document.getElementById('tab-vestine-btn'), ikona: 'fa-list-check', kljuc: 'tabVestine' },
+            { el: document.getElementById('tab-ambicije-btn'), ikona: 'fa-bullseye', kljuc: 'tabAmbicije' },
+            { el: document.getElementById('tab-kontakt-btn'), ikona: 'fa-envelope', kljuc: 'tabKontakt' }
+        ];
 
         const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
         const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -304,39 +281,64 @@
                 : `${mesec} ${godina}.`;
         }
 
-        function osvezi() {
+        function osveziSadrzaj() {
             const r = recnik[jezik];
+            const s = r[mod];
 
             el.navProfil.innerText = r.navProfil;
             el.navIskustvo.innerText = r.navIskustvo;
             el.navEdukacija.innerText = r.navEdukacija;
-            el.navProjekti.innerText = r.navProjekti;
             el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
-            el.naslovProjekata.innerHTML = `<i class="fa-solid fa-folder-open"></i> ${r.naslovProjekata}`;
 
-            el.projektiKontejner.innerHTML = r.projekti[mod].map(p => karticaHTML(p, r)).join('');
+            tabDugmici.forEach(t => {
+                t.el.innerHTML = `<i class="fa-solid ${t.ikona}"></i> ${r[t.kljuc]}`;
+            });
+
+            el.cardNaslovOMeni.innerText = r.naslovOMeni;
+            el.cardNaslovAmbicije.innerText = r.naslovAmbicije;
+            el.cardNaslovKontakt.innerText = r.naslovKontakt;
+
+            el.lblEmail.innerText = r.lblEmail;
+            el.lblLokacija.innerText = r.lblLokacija;
+            el.lblLinkedin.innerText = r.lblLinkedin;
+            el.lblGithub.innerText = r.lblGithub;
+
+            el.heroTitle.innerText = s.titula;
+            el.tekstOMeni.innerText = s.oMeni;
+            el.tekstAmbicije.innerText = s.ambicije;
+            el.cvBtnText.innerText = r.cvBtnText;
+            el.statusTekst.innerText = r.statusDostupnost;
+            azurirajDatumFootera();
+
+            trenutniCvPutanja = s.cvFajl;
+
+            el.vestineKontejner.innerHTML = s.v.map(g => `
+                <div class="card skill-category">
+                    <h4>${g.kat}</h4>
+                    <ul>${g.stavke.map(x => `<li><i class="fa-solid fa-check"></i> ${x}</li>`).join('')}</ul>
+                </div>`).join('');
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
-            azurirajDatumFootera();
         }
 
-        function otvoriModal(pdfPutanja, naslov) {
-            el.modalTitleText.innerText = naslov;
-            el.pdfViewer.src = pdfPutanja;
-            el.pdfModal.style.display = 'flex';
+        function otvoriCvModal() {
+            el.cvIframe.src = trenutniCvPutanja;
+            el.cvModal.classList.add('prikazi');
+            document.body.style.overflow = 'hidden';
         }
 
-        function zatvoriModal() {
-            el.pdfModal.style.display = 'none';
-            el.pdfViewer.src = '';
+        function zatvoriCvModal() {
+            el.cvModal.classList.remove('prikazi');
+            el.cvIframe.src = '';
+            document.body.style.overflow = '';
         }
 
-        el.pdfModal.addEventListener('click', event => {
-            if (event.target === el.pdfModal) zatvoriModal();
-        });
+        function zatvoriCvModalIzvan(event) {
+            if (event.target.id === 'cv-modal') zatvoriCvModal();
+        }
 
         document.addEventListener('keydown', event => {
-            if (event.key === 'Escape' && el.pdfModal.style.display === 'flex') zatvoriModal();
+            if (event.key === 'Escape' && el.cvModal.classList.contains('prikazi')) zatvoriCvModal();
         });
 
         function primeniRezim() {
@@ -347,13 +349,20 @@
         function toggleJezik() {
             jezik = jezik === 'SRB' ? 'ENG' : 'SRB';
             localStorage.setItem('portfolioJezik', jezik);
-            osvezi();
+            osveziSadrzaj();
         }
 
         function toggleTema() {
             rezim = rezim === 'dark' ? 'light' : 'dark';
             localStorage.setItem('portfolioRezim', rezim);
             primeniRezim();
+        }
+
+        function otvoriTab(evt, tabId) {
+            el.tabContents.forEach(t => t.classList.remove('active'));
+            el.tabBtns.forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
         }
 
         function toggleMenu() {
@@ -396,7 +405,7 @@
         }
 
         primeniRezim();
-        osvezi();
+        osveziSadrzaj();
         podesiEduDropdown();
     </script>
     <script>

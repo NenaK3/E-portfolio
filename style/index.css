@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. Reset i Osnovna Podešavanja
+   1. Reset i osnovna podešavanja
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -196,7 +196,7 @@ body.index-body {
 
 
 /* ==========================================================================
-   2. Specifični Zahtev: Pastelno Plavi Stilovi (IT Inženjering)
+   2. Specifični zahtev: Pastelno plavi stilovi (IT Inženjering)
    ========================================================================== */
 .it-card h2, .it-card h3, .it-card .card-icon {
     color: var(--pastel-blue-accent);
@@ -239,7 +239,7 @@ body.index-body {
 
 
 /* ==========================================================================
-   3. Specifični Zahtev: Pastelno Roze Stilovi (Edukacija / Prosveta)
+   3. Specifični zahtev: Pastelno roze stilovi (Edukacija / Prosveta)
    ========================================================================== */
 .edu-card h2, .edu-card h3, .edu-card .card-icon {
     color: var(--pastel-pink-accent);
@@ -323,4 +323,26 @@ body.index-body {
 .footer-separator {
     margin: 0 8px;
     opacity: 0.6;
+}
+
+/* ==========================================================================
+   Skip link (pristupačnost — "Preskoči na sadržaj")
+   ========================================================================== */
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: 12px;
+    z-index: 9999;
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 12px;
 }

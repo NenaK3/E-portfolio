@@ -21,15 +21,7 @@
     <link rel="stylesheet" href="style/portfolio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/print.css" media="print">
-    <style>
-        a:focus-visible,
-        button:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 3px solid #4da3ff;
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
-    </style>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -47,6 +39,7 @@
     </script>
 </head>
 <body>
+    <a href="#glavni-sadrzaj" class="skip-link">Preskoči na sadržaj / Skip to content</a>
 
     <nav class="navbar">
         <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
@@ -105,7 +98,7 @@
         </div>
     </div>
 
-    <main class="tabs-container">
+    <main class="tabs-container" id="glavni-sadrzaj" tabindex="-1">
         <div class="tab-buttons">
             <button class="tab-btn active" onclick="otvoriTab(event, 'o-meni')" id="tab-o-meni-btn"><i class="fa-solid fa-address-card"></i> O meni</button>
             <button class="tab-btn" onclick="otvoriTab(event, 'vestine')" id="tab-vestine-btn"><i class="fa-solid fa-list-check"></i> Veštine</button>
@@ -173,7 +166,7 @@
         document.body.classList.add(mod.toLowerCase() + '-theme');
 
         let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
-        let rezim = localStorage.getItem('portfolioRezim') || 'dark';
+        let rezim = localStorage.getItem('portfolioRezim') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
         let trenutniCvPutanja = '';
 
         const recnik = {

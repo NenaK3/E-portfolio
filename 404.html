@@ -14,23 +14,16 @@
     <link rel="stylesheet" href="style/404.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/print.css" media="print">
-    <style>
-        a:focus-visible,
-        button:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 3px solid #4da3ff;
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
-    </style>
+    
 </head>
 <body class="index-body">
+    <a href="#glavni-sadrzaj" class="skip-link">Preskoči na sadržaj / Skip to content</a>
     <div class="index-controls">
         <button onclick="promeniJezik()" class="control-btn" id="lang-btn" aria-label="Promeni jezik / Switch language">EN</button>
         <button onclick="promeniTemu()" class="control-btn" id="theme-btn" aria-label="Promeni temu / Switch theme"><i class="fa-solid fa-sun"></i></button>
     </div>
 
-    <div class="welcome-container">
+    <div class="welcome-container" id="glavni-sadrzaj" tabindex="-1">
         <p class="error-code" id="err-kod">404</p>
         <h1 id="err-naslov">Stranica nije pronađena</h1>
         <p class="subtitle" id="err-opis">Stranica koju tražite ne postoji ili je premeštena. Vratite se na početnu i izaberite profil koji vas zanima.</p>
@@ -49,7 +42,7 @@
         'use strict';
 
         let trenutniJezik = localStorage.getItem('portfolioJezik') || 'SRB';
-        let trenutniRezim = localStorage.getItem('portfolioRezim') || 'dark';
+        let trenutniRezim = localStorage.getItem('portfolioRezim') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
 
         const prevodi404 = {
             SRB: {

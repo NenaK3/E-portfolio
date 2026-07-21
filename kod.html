@@ -21,15 +21,7 @@
     <link rel="stylesheet" href="style/kod.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/print.css" media="print">
-    <style>
-        a:focus-visible,
-        button:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 3px solid #4da3ff;
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
-    </style>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -47,6 +39,7 @@
     </script>
 </head>
 <body>
+    <a href="#glavni-sadrzaj" class="skip-link">Preskoči na sadržaj / Skip to content</a>
 
     <a href="projekti.html" class="kod-close-btn" id="kod-close-btn" aria-label="Zatvori i vrati se na projekte" title="Nazad na projekte">
         <i class="fa-solid fa-xmark"></i>
@@ -81,7 +74,7 @@
         </div>
     </nav>
 
-    <main class="turtle-main-container">
+    <main class="turtle-main-container" id="glavni-sadrzaj" tabindex="-1">
         <h1 id="glavni-naslov">Interaktivni Python Turtle kod</h1>
         <p id="glavni-podnaslov">Klikni na roze, podvučene linije koda kako bi pogledao video objašnjenje za njih!</p>
 
@@ -167,7 +160,7 @@
         document.body.classList.add(mod.toLowerCase() + '-theme');
 
         let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
-        let rezim = localStorage.getItem('portfolioRezim') || 'dark';
+        let rezim = localStorage.getItem('portfolioRezim') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
 
         const recnik = {
             SRB: {
