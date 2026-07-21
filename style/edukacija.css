@@ -563,6 +563,55 @@ body {
 }
 
 /* ==========================================================================
+   7b. Case-study kartice unutar modala za radove
+   ========================================================================== */
+.case-study-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.case-study-highlight-card {
+    background-color: var(--btn-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.case-study-highlight-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--theme-accent);
+    background-color: var(--theme-tag-bg);
+}
+
+.case-study-highlight-icon {
+    font-size: 1.3rem;
+    color: var(--theme-accent);
+    margin-bottom: 8px;
+}
+
+.case-study-highlight-naslov {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 6px;
+}
+
+.case-study-highlight-opis {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .case-study-highlights {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
    7a. Modal za prikaz sertifikata (PDF ili slika)
    ========================================================================== */
 #sertifikat-modal .modal-content {

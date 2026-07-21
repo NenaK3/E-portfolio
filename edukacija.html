@@ -9,14 +9,11 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Nena Kozić | Edukacija">
     <meta property="og:description" content="Formalno i neformalno obrazovanje Nene Kozić — fakultet, sertifikati i kursevi.">
-    <meta property="og:image" content="https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image.png">
+    <meta property="og:image" content="https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image.jpg">
     <meta property="og:url" content="https://e-portfolio-nena-kozic.vercel.app/edukacija.html">
-    <link rel="canonical" href="https://e-portfolio-nena-kozic.vercel.app/edukacija.html">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" type="image/png" href="assets/images/logo.png">
-    <link rel="apple-touch-icon" href="assets/images/logo.png">
-    <link rel="manifest" href="manifest.json">
 
     <link rel="stylesheet" href="style/edukacija.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,7 +24,7 @@
       "@type": "Person",
       "name": "Nena Kozić",
       "url": "https://e-portfolio-nena-kozic.vercel.app/index.html",
-      "image": "https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image.png",
+      "image": "https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image.jpg",
       "jobTitle": ["Master inženjer informacionih tehnologija", "Master profesor stručnih predmeta (IKT)"],
       "email": "mailto:nena.kozic3@gmail.com",
       "sameAs": [
@@ -63,8 +60,8 @@
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
-            <button onclick="toggleJezik()" class="control-btn" id="nav-lang-btn" aria-label="Promeni jezik / Switch language">EN</button>
-            <button onclick="toggleTema()" class="control-btn" id="nav-theme-btn" aria-label="Promeni temu / Switch theme"><i class="fa-solid fa-sun"></i></button>
+            <button onclick="toggleJezik()" class="control-btn" id="nav-lang-btn">EN</button>
+            <button onclick="toggleTema()" class="control-btn" id="nav-theme-btn"><i class="fa-solid fa-sun"></i></button>
         </div>
     </nav>
 
@@ -83,7 +80,7 @@
     </main>
 
     <div class="modal-overlay" id="rad-modal">
-        <div class="modal-content" style="max-width: 700px;">
+        <div class="modal-content" style="max-width: 820px;">
             <div class="modal-header">
                 <h3 class="modal-title" id="rad-modal-naslov">Rad</h3>
                 <button class="modal-close-btn" onclick="zatvoriRadModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -137,7 +134,16 @@
                     naziv: 'Master rad — Psihološki uticaji mehanika nagrađivanja u digitalnim igrama',
                     podnaslov: 'Master rad, FTN Čačak',
                     period: '2025',
-                    opis: 'Rad istražuje psihološke mehanizme iza sistema nagrađivanja u digitalnim igrama — loot boxes, battle pass, achievement sisteme i dnevne bonuse — kroz teoriju operativnog uslovljavanja, intrinzičnu/ekstrinzičnu motivaciju, ulogu dopaminskog sistema i teoriju flow-a. Na primerima igara poput Fortnite-a i Minecraft-a analizira kako dizajn nagrađivanja utiče na angažovanost igrača, uz osvrt na etičke implikacije i preporuke za odgovorniji dizajn nagrađivanja.',
+                    opis: 'Rad istražuje psihološke mehanizme iza sistema nagrađivanja u digitalnim igrama — loot boxes, battle pass, achievement sisteme i dnevne bonuse — kroz teoriju operativnog uslovljavanja, intrinzičnu/ekstrinzičnu motivaciju, ulogu dopaminskog sistema i teoriju flow-a. Rad polazi od pitanja zašto digitalne igre uspevaju da zadrže pažnju igrača duže od većine drugih medija, i pokazuje da odgovor leži u pažljivo dizajniranim psihološkim okidačima, a ne u slučajnosti. Na primerima igara poput Fortnite-a i Minecraft-a analizira kako dizajn nagrađivanja utiče na angažovanost igrača, uz osvrt na etičke implikacije i preporuke za odgovorniji dizajn nagrađivanja.',
+                    highlights: [
+                        { ikona: 'fa-brain', naslov: 'Operativno uslovljavanje', opis: 'Skinerov princip modifikacije ponašanja kroz posledice — osnova za nagrade za postignuća i slučajno nagrađivanje u igrama.', primer: 'Primer: trofeji i dostignuća na Xbox/PlayStation platformama koji nagrađuju ponovljeno ponašanje.' },
+                        { ikona: 'fa-bolt', naslov: 'Intrinzična i ekstrinzična motivacija', opis: 'Zašto igramo Minecraft radi samog zadovoljstva, a Fortnite često zbog Battle Pass nagrada.', primer: 'Primer: Minecraft/Zelda (intrinzična) nasuprot Fortnite Battle Pass-u (ekstrinzična).' },
+                        { ikona: 'fa-flask', naslov: 'Dopaminski sistem', opis: 'Očekivane, randomizovane i progresivne nagrade i njihov uticaj na neurohemiju motivacije.', primer: 'Primer: postepeno otključavanje nagrada kroz Battle Pass nivoe pojačava očekivanje.' },
+                        { ikona: 'fa-water', naslov: 'Flow teorija', opis: 'Stanje potpune uronjenosti u aktivnost — fokus, gubitak osećaja za vreme, "biti u zoni".', primer: 'Primer: igrači gube pojam o vremenu tokom dugih, intenzivnih sesija igranja.' },
+                        { ikona: 'fa-box-open', naslov: 'Loot boxes', opis: 'Najkontroverznija mehanika — virtuelne kutije sa nasumičnim nagradama nepoznate vrednosti unapred.', primer: 'Primer: pojedine zemlje (Belgija, Holandija) regulišu ili zabranjuju loot boxes zbog sličnosti sa kockanjem.' },
+                        { ikona: 'fa-calendar-check', naslov: 'Dnevni/mesečni bonusi', opis: 'Strategija zadržavanja igrača kroz formiranje navika i pozitivno pojačanje.', primer: 'Primer: dnevne nagrade za prijavljivanje koje grade rutinu vraćanja u igru.' }
+                    ],
+                    kljucniZakljucak: 'Rad zaključuje da odgovoran dizajn nagrađivanja treba da balansira angažovanost igrača sa etičkim standardima — posebno kada su u pitanju maloletni igrači i mehanike poput loot boxes koje se graniče sa kockanjem.',
                     vestine: ['Psihologija igara', 'HCI', 'Game Design', 'Istraživanje'],
                     mentor: 'Mentor rada - dr Veljko Aleksić, vanredni profesor'
                 },
@@ -145,7 +151,16 @@
                     naziv: 'Master Thesis — Psychological Effects of Reward Mechanics in Digital Games',
                     podnaslov: 'Master Thesis, FTS Cacak',
                     period: '2025',
-                    opis: 'The thesis explores the psychological mechanisms behind reward systems in digital games — loot boxes, battle passes, achievement systems and daily bonuses — through operant conditioning theory, intrinsic/extrinsic motivation, the role of the dopamine system, and flow theory. Using examples such as Fortnite and Minecraft, it analyzes how reward design affects player engagement, alongside a review of ethical implications and recommendations for more responsible reward design.',
+                    opis: 'The thesis explores the psychological mechanisms behind reward systems in digital games — loot boxes, battle passes, achievement systems and daily bonuses — through operant conditioning theory, intrinsic/extrinsic motivation, the role of the dopamine system, and flow theory. It starts from the question of why digital games manage to hold player attention longer than most other media, and shows that the answer lies in carefully designed psychological triggers rather than coincidence. Using examples such as Fortnite and Minecraft, it analyzes how reward design affects player engagement, alongside a review of ethical implications and recommendations for more responsible reward design.',
+                    highlights: [
+                        { ikona: 'fa-brain', naslov: 'Operant Conditioning', opis: "Skinner's principle of behavior modification through consequences — the basis for achievement rewards and random reinforcement in games.", primer: 'Example: Xbox/PlayStation trophies and achievements that reward repeated behavior.' },
+                        { ikona: 'fa-bolt', naslov: 'Intrinsic & Extrinsic Motivation', opis: 'Why we play Minecraft purely for enjoyment, while Fortnite often relies on Battle Pass rewards.', primer: 'Example: Minecraft/Zelda (intrinsic) versus Fortnite Battle Pass (extrinsic).' },
+                        { ikona: 'fa-flask', naslov: 'Dopamine System', opis: 'Expected, randomized and progressive rewards and their effect on the neurochemistry of motivation.', primer: 'Example: gradual unlocking of rewards through Battle Pass tiers builds anticipation.' },
+                        { ikona: 'fa-water', naslov: 'Flow Theory', opis: 'A state of complete immersion in an activity — full focus, loss of time-awareness, "being in the zone".', primer: 'Example: players lose track of time during long, intense play sessions.' },
+                        { ikona: 'fa-box-open', naslov: 'Loot Boxes', opis: 'The most controversial mechanic — virtual boxes with random rewards of unknown value in advance.', primer: 'Example: some countries (Belgium, the Netherlands) regulate or ban loot boxes due to similarities with gambling.' },
+                        { ikona: 'fa-calendar-check', naslov: 'Daily/Monthly Bonuses', opis: 'A player-retention strategy built on habit formation and positive reinforcement.', primer: 'Example: daily login rewards that build a routine of returning to the game.' }
+                    ],
+                    kljucniZakljucak: 'The thesis concludes that responsible reward design must balance player engagement with ethical standards — particularly regarding minors and mechanics such as loot boxes that border on gambling.',
                     vestine: ['Game Psychology', 'HCI', 'Game Design', 'Research'],
                     mentor: 'Thesis Mentor - dr Veljko Aleksić, Associate Professor'
                 }
@@ -155,7 +170,14 @@
                     naziv: 'Diplomski rad — Primena standarda za modelovanje u razvoju informacionih sistema',
                     podnaslov: 'Diplomski rad, FTN Čačak',
                     period: '2024',
-                    opis: 'Rad analizira i upoređuje standarde za modelovanje informacionih sistema — IDEF0, IDEF1X, UML i BPMN — kroz njihovu primenu u funkcionalnom, informacionom i aplikativnom modelovanju. Kroz razradu faza razvoja informacionog sistema rad pokazuje kako modelovanje smanjuje kompleksnost sistema i olakšava komunikaciju između razvojnih timova i korisnika.',
+                    opis: 'Rad analizira i upoređuje standarde za modelovanje informacionih sistema — IDEF0, IDEF1X, UML i BPMN — kroz njihovu primenu u funkcionalnom, informacionom i aplikativnom modelovanju. Polazna tačka rada je problem dvosmislenosti prirodnog jezika u komunikaciji između razvojnih timova i korisnika, i potreba za formalnim, ali razumljivim jezikom modelovanja. Kroz razradu faza razvoja informacionog sistema rad pokazuje kako modelovanje smanjuje kompleksnost sistema i olakšava komunikaciju između razvojnih timova i korisnika.',
+                    highlights: [
+                        { ikona: 'fa-diagram-project', naslov: 'IDEF0', opis: 'Funkcionalno modelovanje — opisivanje, analiza i modelovanje sistema i procesa kroz pravougaonike, strelice i pravila.', primer: 'Primer: prikaz ulaza, izlaza, kontrola i mehanizama jednog poslovnog procesa kroz standardizovanu notaciju.' },
+                        { ikona: 'fa-database', naslov: 'IDEF1X', opis: 'Informaciono modelovanje za projektovanje relacionih baza podataka — entiteti, atributi, veze.', primer: 'Primer: modelovanje entiteta poput "Korisnik" i "Narudžbina" i veza između njih.' },
+                        { ikona: 'fa-sitemap', naslov: 'UML', opis: 'Objedinjeni jezik za modelovanje — dijagrami ponašanja, interakcije i strukturni dijagrami.', primer: 'Primer: dijagrami klasa, use case i sekvencijalni dijagrami u objektno-orijentisanom dizajnu.' },
+                        { ikona: 'fa-people-arrows', naslov: 'BPMN', opis: 'Notacija za modelovanje poslovnih procesa kroz aktivnosti, događaje i tok podataka.', primer: 'Primer: prikaz toka odobravanja zahteva kroz aktivnosti, grananja i odluke.' }
+                    ],
+                    kljucniZakljucak: 'Rad zaključuje da kombinovana primena IDEF0, IDEF1X, UML i BPMN standarda obezbeđuje precizniju komunikaciju između razvojnih timova i korisnika, smanjujući dvosmislenost u svim fazama razvoja informacionog sistema.',
                     vestine: ['IDEF0', 'IDEF1X', 'UML', 'BPMN', 'Modelovanje IS'],
                     mentor: 'Mentor rada - dr Miloš Papić, redovni profesor'
                 },
@@ -163,7 +185,14 @@
                     naziv: 'Bachelor Thesis — Application of Modeling Standards in Information Systems Development',
                     podnaslov: 'Bachelor Thesis, FTS Cacak',
                     period: '2024',
-                    opis: 'The thesis analyzes and compares information system modeling standards — IDEF0, IDEF1X, UML, and BPMN — through their application in functional, informational, and application modeling. By elaborating on the development phases of an information system, the thesis shows how modeling reduces system complexity and facilitates communication between development teams and users.',
+                    opis: 'The thesis analyzes and compares information system modeling standards — IDEF0, IDEF1X, UML, and BPMN — through their application in functional, informational, and application modeling. Its starting point is the ambiguity problem of natural language in communication between development teams and users, and the need for a formal yet understandable modeling language. By elaborating on the development phases of an information system, the thesis shows how modeling reduces system complexity and facilitates communication between development teams and users.',
+                    highlights: [
+                        { ikona: 'fa-diagram-project', naslov: 'IDEF0', opis: 'Functional modeling — describing, analyzing and modeling systems and processes through boxes, arrows and rules.', primer: 'Example: representing the inputs, outputs, controls and mechanisms of a business process through standardized notation.' },
+                        { ikona: 'fa-database', naslov: 'IDEF1X', opis: 'Information modeling for relational database design — entities, attributes, relationships.', primer: 'Example: modeling entities such as "Customer" and "Order" and the relationships between them.' },
+                        { ikona: 'fa-sitemap', naslov: 'UML', opis: 'Unified Modeling Language — behavioral, interaction and structural diagrams.', primer: 'Example: class diagrams, use case diagrams and sequence diagrams in object-oriented design.' },
+                        { ikona: 'fa-people-arrows', naslov: 'BPMN', opis: 'Business process modeling notation using activities, events and data flow.', primer: 'Example: representing a request-approval workflow through activities, branches and decisions.' }
+                    ],
+                    kljucniZakljucak: 'The thesis concludes that combining IDEF0, IDEF1X, UML and BPMN standards provides more precise communication between development teams and users, reducing ambiguity across every phase of information system development.',
                     vestine: ['IDEF0', 'IDEF1X', 'UML', 'BPMN', 'IS Modeling'],
                     mentor: 'Thesis Mentor - dr Miloš Papić, Full Professor'
                 }
@@ -271,11 +300,29 @@
 
         function otvoriRadModal(kljuc) {
             const r = radovi[kljuc][jezik];
+            const highlightsHTML = (r.highlights || []).map(h => `
+                <div class="case-study-highlight-card">
+                    <div class="case-study-highlight-icon"><i class="fa-solid ${h.ikona}"></i></div>
+                    <h4 class="case-study-highlight-naslov">${h.naslov}</h4>
+                    <p class="case-study-highlight-opis">${h.opis}</p>
+                    ${h.primer ? `<p class="case-study-highlight-primer">${h.primer}</p>` : ''}
+                </div>
+            `).join('');
+
+            const takeawayHTML = r.kljucniZakljucak ? `
+                <div class="case-study-takeaway">
+                    <i class="fa-solid fa-quote-left case-study-takeaway-icon"></i>
+                    <p class="case-study-takeaway-tekst">${r.kljucniZakljucak}</p>
+                </div>
+            ` : '';
+
             el.radModalNaslov.innerText = r.naziv;
             el.radModalTelo.innerHTML = `
                 <p style="font-style:italic; opacity:0.85; margin-bottom:10px;">${r.podnaslov} • ${r.period}</p>
                 <p class="exp-opis">${r.opis}</p>
-                <div class="tag-container" style="margin-top:12px;">${r.vestine.map(v => `<span class="skill-tag">${v}</span>`).join('')}</div>
+                ${highlightsHTML ? `<div class="case-study-highlights">${highlightsHTML}</div>` : ''}
+                ${takeawayHTML}
+                <div class="tag-container" style="margin-top:20px;">${r.vestine.map(v => `<span class="skill-tag">${v}</span>`).join('')}</div>
                 <p class="exp-mentor" style="font-style: italic; font-weight: 500; margin-top: 15px;"><i class="fa-solid fa-user-tie" style="margin-right: 8px;"></i>${r.mentor}</p>
             `;
             el.radModal.style.display = 'flex';
