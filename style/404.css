@@ -1,0 +1,210 @@
+/* ==========================================================================
+   1. Reset i osnovna podešavanja
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --text-muted: #94a3b8;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --btn-bg: #334155;
+    --btn-hover: #475569;
+    --shadow: rgba(0, 0, 0, 0.3);
+
+    --pastel-blue-bg: #e0f2fe;
+    --pastel-blue-accent: #38bdf8;
+    --pastel-blue-text: #0369a1;
+    --pastel-blue-dark: #0284c7;
+
+    --pastel-pink-bg: #fce7f3;
+    --pastel-pink-accent: #f472b6;
+    --pastel-pink-text: #b02a59;
+    --pastel-pink-dark: #db2777;
+}
+
+body.light-mode {
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --btn-bg: #e2e8f0;
+    --btn-hover: #cbd5e1;
+    --shadow: rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   2. Osnovni izgled stranice
+   ========================================================================== */
+body.index-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+.index-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.control-btn {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 45px;
+    box-shadow: 0 4px 6px -1px var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   3. Sadržaj 404 stranice
+   ========================================================================== */
+.welcome-container {
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+    margin: auto 0;
+}
+
+.error-code {
+    font-size: 6rem;
+    font-weight: 800;
+    line-height: 1;
+    margin: 0 0 12px 0;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--pastel-blue-accent), var(--pastel-pink-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#err-naslov {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.error-actions {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.error-actions button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 10px 15px -3px var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.error-actions button i {
+    transition: transform 0.3s ease;
+}
+
+.error-actions button:hover {
+    background-color: var(--pastel-blue-dark);
+    color: #ffffff;
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 20px 25px -5px rgba(2, 132, 199, 0.3);
+}
+
+.error-actions button:hover i {
+    transform: translateX(5px);
+}
+
+/* ==========================================================================
+   4. Responsive
+   ========================================================================== */
+@media (max-width: 768px) {
+    body.index-body {
+        justify-content: center;
+        padding-top: 80px;
+    }
+
+    .error-code {
+        font-size: 4rem;
+    }
+
+    #err-naslov {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   5. Footer
+   ========================================================================== */
+#idx-footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 10px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--card-border);
+    margin-top: 40px;
+    letter-spacing: 0.5px;
+    transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.footer-separator {
+    margin: 0 8px;
+    opacity: 0.6;
+}
