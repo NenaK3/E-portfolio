@@ -11,9 +11,12 @@
     <meta property="og:description" content="Digitalni portfolio Nene Kozić — master inženjera informacionih tehnologija i master profesora predmetne nastave.">
     <meta property="og:image" content="https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image.jpg">
     <meta property="og:url" content="https://e-portfolio-nena-kozic.vercel.app/index.html">
+    <link rel="canonical" href="https://e-portfolio-nena-kozic.vercel.app/index.html">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    <link rel="manifest" href="manifest.json">
 
     <link rel="stylesheet" href="style/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -45,8 +48,8 @@
 </head>
 <body class="index-body">
     <div class="index-controls">
-        <button onclick="promeniJezik()" class="control-btn" id="lang-btn">EN</button>
-        <button onclick="promeniTemu()" class="control-btn" id="theme-btn"><i class="fa-solid fa-sun"></i></button>
+        <button onclick="promeniJezik()" class="control-btn" id="lang-btn" aria-label="Promeni jezik / Switch language">EN</button>
+        <button onclick="promeniTemu()" class="control-btn" id="theme-btn" aria-label="Promeni temu / Switch theme"><i class="fa-solid fa-sun"></i></button>
     </div>
 
     <div class="welcome-container">

@@ -1,0 +1,26 @@
+{
+  "name": "Nena Kozić | Digitalni Portfolio",
+  "short_name": "Nena Kozić",
+  "description": "Digitalni portfolio Nene Kozić — master inženjera informacionih tehnologija i master profesora predmetne nastave.",
+  "start_url": "index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "lang": "sr",
+  "icons": [
+    {
+      "src": "assets/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

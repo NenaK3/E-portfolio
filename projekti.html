@@ -11,9 +11,12 @@
     <meta property="og:description" content="Pregled IT i edukativnih projekata Nene Kozić, sa linkovima ka kodu i materijalima.">
     <meta property="og:image" content="https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image.jpg">
     <meta property="og:url" content="https://e-portfolio-nena-kozic.vercel.app/projekti.html">
+    <link rel="canonical" href="https://e-portfolio-nena-kozic.vercel.app/projekti.html">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    <link rel="manifest" href="manifest.json">
 
     <link rel="stylesheet" href="style/projekti.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -69,8 +72,8 @@
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
-            <button onclick="toggleJezik()" class="control-btn" id="nav-lang-btn">EN</button>
-            <button onclick="toggleTema()" class="control-btn" id="nav-theme-btn"><i class="fa-solid fa-sun"></i></button>
+            <button onclick="toggleJezik()" class="control-btn" id="nav-lang-btn" aria-label="Promeni jezik / Switch language">EN</button>
+            <button onclick="toggleTema()" class="control-btn" id="nav-theme-btn" aria-label="Promeni temu / Switch theme"><i class="fa-solid fa-sun"></i></button>
         </div>
     </nav>
 
