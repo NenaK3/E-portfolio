@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a" id="theme-color-meta">
     <title>Nena Kozić | Python Turtle - Kod na delu</title>
     <meta name="description" content="Interaktivni Python Turtle kod sa video objašnjenjima za svaku liniju — primer nastavnog materijala Nene Kozić.">
 
@@ -21,7 +22,32 @@
     <link rel="stylesheet" href="style/kod.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/print.css" media="print">
-    
+    <style>
+        a:focus-visible,
+        button:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 3px solid #4da3ff;
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+        .skip-link {
+            position: absolute;
+            top: -60px;
+            left: 12px;
+            z-index: 9999;
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus {
+            top: 12px;
+        }
+    </style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -228,6 +254,8 @@
         function primeniRezim() {
             document.body.classList.toggle('light-mode', rezim === 'light');
             el.themeBtn.innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+            const metaTema = document.getElementById('theme-color-meta');
+            if (metaTema) metaTema.setAttribute('content', rezim === 'light' ? '#f8fafc' : '#0f172a');
         }
 
         function toggleJezik() {

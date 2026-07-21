@@ -443,6 +443,13 @@ body {
     border-top: 1px dashed var(--card-border);
 }
 
+.edu-buttons-container .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+}
+
 .edu-buttons-container .skill-tag {
     text-decoration: none;
     padding: 10px 16px;
@@ -557,6 +564,137 @@ body {
     height: 100%;
     border: none;
     display: block;
+}
+
+/* ==========================================================================
+   8b. Modal za detalje projekta (case study)
+   ========================================================================== */
+#projekat-modal .modal-content {
+    height: auto;
+    max-height: 85vh;
+}
+
+#projekat-modal .modal-body {
+    background-color: var(--card-bg);
+    flex: 1;
+    overflow-y: auto;
+}
+
+.rad-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    background-color: var(--btn-bg);
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.rad-link:hover {
+    background-color: var(--theme-accent);
+    color: #ffffff;
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+.exp-mentor {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.exp-mentor i {
+    color: var(--theme-accent);
+}
+
+/* ==========================================================================
+   8c. Case-study kartice unutar modala za projekte
+   ========================================================================== */
+.case-study-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.case-study-highlight-card {
+    background-color: var(--btn-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.case-study-highlight-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--theme-accent);
+    background-color: var(--theme-tag-bg);
+}
+
+.case-study-highlight-icon {
+    font-size: 1.3rem;
+    color: var(--theme-accent);
+    margin-bottom: 8px;
+}
+
+.case-study-highlight-naslov {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 6px;
+}
+
+.case-study-highlight-opis {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.case-study-highlight-primer {
+    font-size: 0.8rem;
+    color: var(--theme-accent);
+    line-height: 1.5;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--card-border);
+    font-style: italic;
+}
+
+.case-study-takeaway {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 20px;
+    padding: 18px 20px;
+    background-color: var(--theme-tag-bg);
+    border-left: 3px solid var(--theme-accent);
+    border-radius: 10px;
+}
+
+.case-study-takeaway-icon {
+    font-size: 1.1rem;
+    color: var(--theme-accent);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.case-study-takeaway-tekst {
+    font-size: 0.92rem;
+    color: var(--text-color);
+    line-height: 1.6;
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .case-study-highlights {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ==========================================================================
@@ -718,6 +856,11 @@ body {
         gap: 10px;
     }
 
+    .edu-buttons-container .btn-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
     .edu-buttons-container .skill-tag {
         width: 100%;
         justify-content: center;
@@ -748,4 +891,16 @@ body {
 
 .skip-link:focus {
     top: 12px;
+}
+
+/* ==========================================================================
+   Podrška za prefers-reduced-motion (pristupačnost)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
