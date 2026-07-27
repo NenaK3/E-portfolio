@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a" id="theme-color-meta">
+    <title>Nena Kozić | Blog</title>
+    <meta name="description" content="Kratke beleške i refleksije Nene Kozić o projektima, učenju i radu — IT i prosvetni profil.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nena Kozić | Blog">
+    <meta property="og:description" content="Kratke beleške i refleksije o projektima, učenju i praktičnom radu.">
+    <meta property="og:image" content="https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image.png">
+    <meta property="og:url" content="https://e-portfolio-nena-kozic.vercel.app/blog.html">
+    <link rel="canonical" href="https://e-portfolio-nena-kozic.vercel.app/blog.html">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="style/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style/print.css" media="print">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Nena Kozić",
+      "url": "https://e-portfolio-nena-kozic.vercel.app/index.html",
+      "image": "https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image.png",
+      "jobTitle": ["Master inženjer informacionih tehnologija", "Master profesor stručnih predmeta (IKT)"],
+      "email": "mailto:nena.kozic3@gmail.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/nena-kozi%C4%87-9665552b7/",
+        "https://github.com/NenaK3"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <a href="#blog-glavni" class="skip-link">Preskoči na sadržaj / Skip to content</a>
+
+    <nav class="navbar">
+        <div class="nav-logo" onclick="window.location.href='index.html'">N.K.</div>
+
+        <div class="hamburger-menu" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleMenu();}" id="nav-hamburger" tabindex="0" role="button" aria-label="Meni">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="nav-links" id="navbar-links">
+            <a href="portfolio.html" id="nav-profil">Profil</a>
+            <a href="iskustvo.html" id="nav-iskustvo">Iskustvo</a>
+            <div class="nav-dropdown" id="nav-edukacija-wrap">
+                <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
+                <button type="button" class="nav-dropdown-caret" id="nav-edukacija-caret" aria-label="Prikaži opcije edukacije" aria-expanded="false">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="nav-dropdown-menu" id="nav-edukacija-menu">
+                    <a href="edukacija.html?tip=formalno" id="nav-edu-formalno">Formalno obrazovanje</a>
+                    <a href="edukacija.html?tip=neformalno" id="nav-edu-neformalno">Neformalno obrazovanje</a>
+                </div>
+            </div>
+            <a href="projekti.html" id="nav-projekti">Projekti</a>
+            <a href="blog.html" class="active" id="nav-blog">Blog</a>
+            <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
+        </div>
+        <div class="nav-controls">
+            <button onclick="toggleJezik()" class="control-btn" id="nav-lang-btn" aria-label="Promeni jezik / Switch language">EN</button>
+            <button onclick="toggleTema()" class="control-btn" id="nav-theme-btn" aria-label="Promeni temu / Switch theme"><i class="fa-solid fa-sun"></i></button>
+        </div>
+    </nav>
+
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html" id="bc-pocetna">Početna</a>
+        <span class="bc-sep">/</span>
+        <span class="bc-current" id="bc-trenutna">Blog</span>
+    </nav>
+
+    <main class="education-split-container fade-in-up" id="blog-glavni" style="grid-template-columns: 1fr; max-width: 920px;" tabindex="-1">
+        <section class="edu-column" id="kolona-blog">
+            <h2 class="column-title" id="naslov-blog"><i class="fa-solid fa-pen-nib"></i> Beleške</h2>
+            <p class="blog-uvod" id="blog-uvod" style="opacity:0.85; margin-bottom: 24px; line-height: 1.6;"></p>
+            <div class="experience-stack" id="blog-kontejner"></div>
+        </section>
+    </main>
+
+    <!-- Modal u obogaćenom stilu -->
+    <div class="modal-overlay" id="blog-modal" role="dialog" aria-modal="true" aria-labelledby="blog-modal-naslov">
+        <div class="modal-content blog-enhanced-modal">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <h3 class="modal-title" id="blog-modal-naslov">Beleška</h3>
+                    <span class="block-date" id="blog-modal-datum"></span>
+                </div>
+                <button class="modal-close-btn" onclick="zatvoriBlogModal()" aria-label="Zatvori modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="blog-modal-telo"></div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>©Copyright by Nena Kozić. <span class="footer-separator">•</span> <span id="footer-datum"></span></p>
+    </footer>
+
+    <script>
+        'use strict';
+
+        const mod = sessionStorage.getItem('portfolioMod') || 'IT';
+        document.body.classList.add(mod.toLowerCase() + '-theme');
+
+        let jezik = localStorage.getItem('portfolioJezik') || 'SRB';
+        let rezim = localStorage.getItem('portfolioRezim') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+
+        const recnik = {
+            SRB: {
+                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navBlog: 'Blog', navPromeni: 'Promeni portfolio',
+                naslovBlog: 'Beleške',
+                uvod: 'Kratke i detaljne refleksije o iskustvima koja su me oblikovala — ne samo šta sam radila, već i zašto, šta sam u hodu naučila i šta bih danas primenila drugačije.',
+                tekstCitaj: 'Pročitaj kompletnu belešku',
+                bcTrenutna: 'Blog',
+                footer: '©Copyright by Nena Kozić',
+                objave: {
+                    IT: [
+                        {
+                            naslov: 'Šta sam naučila praveći ovaj e-portfolio',
+                            datum: 'Jul 2026',
+                            opis: 'Pretpostavljala sam da će najznačajniji izazov predstavljati vizuelni dizajn. Pokazalo se, međutim, da je suštinski izazov ležao u arhitekturi koda i podeli sadržaja namenjenog dvema potpuno različitim ciljnim grupama na istim stranicama.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-code"></i> Lični projekat • 2026</div>
+                                   <p class="modal-intro">Izrada ovog interaktivnog e-portfolija bila je praktična studija slučaja o tome kako balansirati kompleksnu funkcionalnost, čiste arhitektonske obrasce i besprekorno korisničko iskustvo bez oslanjanja na teške eksterne biblioteke.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-layer-group"></i> Razdvajanje podataka od prikaza</div>
+                                       <div class="modal-section-text">Kompletan tekstualni sadržaj, višejezični prevodi (SRB/ENG) i podaci specifični za režim rada (IT vs. Edukacija) izmenjeni su tako da se čuvaju unutar centralizovanih JavaScript objekata. HTML deluje isključivo kao strukturni skelet.</div>
+                                       <div class="modal-example"><strong>Svrha:</strong> Dodavanje ili ažuriranje novog projekta, kursa ili beleške zahteva izmenu samo jednog JS objekta, čime je eliminisano bilo kakvo dupliranje koda ili ručna izmena HTML/CSS datoteka.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-universal-access"></i> Napredna pristupačnost i responzivnost</div>
+                                       <div class="modal-section-text">Fokus je postavljen na univerzalnu pristupačnost (A11y). Posebna pažnja posvećena je navigaciji putem tastature, upravljanju stanja unutar modalnih prozora, ARIA atributima i podršci za korisničke preferencije prikaza.</div>
+                                       <div class="modal-example"><strong>Praktični primeri:</strong> Implementiran je skip-link za brz preskok na glavni sadržaj, jasno vidljivi focus-visible okviri za navigaciju tastaturom, meta opcije za podudaranje sistemske teme, kao i prilagođeni medijski upiti za korisnike koji preferiraju smanjene animacije (prefers-reduced-motion).</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-gears"></i> Upravljanje stanjem i sesijom</div>
+                                       <div class="modal-section-text">Aplikacija trenutno pamti izbor profila (IT vs. Pedagoški) putem <code>sessionStorage</code> objekta, dok se izabrani jezik i tema čuvaju u <code>localStorage</code> skladištu, obezbeđujući kontinuitet pri osvežavanju i prelistavanju stranica.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-wrench"></i> Identifikovani tehnički dug i plan optimizacije</div>
+                                       <div class="modal-section-text">Iako sistem odlično funkcioniše u vanmrežnom režimu bez zavisnosti, uočene su tačke za dalje unapređenje arhitekture.</div>
+                                       <div class="modal-example"><strong>Naredni korak:</strong> U sledećoj iteraciji planiram da prevaziđem duplirane skripte izdvajanjem rečnika, navigacije i podnožja u modularne Web Komponente (Custom Elements) ili samostalan JS modul radi još jednostavnijeg održavanja.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Zaključak:</strong> Sajt je iz statičke prezentacije prerastao u samostalan inženjerski projekat koji potvrđuje kompetencije u arhitekturi koda, UX/UI dizajnu i pedantnoj posvećenosti detaljima.
+                                   </div>`
+                        },
+                        {
+                            naslov: 'Ocenjivanje kvaliteta sopstvenog koda kroz ISO/IEC 9126',
+                            datum: 'Decembar 2024',
+                            opis: 'U okviru predmeta Upravljanje kvalitetom softvera na master studijama, analizirala sam sopstvenu aplikaciju Hospital Management System primenom međunarodnih standarda i metoda kvantitativne analize.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-award"></i> Master akademske studije • 2024</div>
+                                   <p class="modal-intro">Pisanje koda koji "radi" predstavlja samo prvi korak u softverskom inženjerstvu. Tokom analize sopstvenog sistema za upravljanje bolnicom (HMS), primenila sam standard ISO/IEC 9126 kako bih objektivno izmerila i procenila kvalitet izgrađenog rešenja.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-chart-diagram"></i> Struktura ISO/IEC 9126 standarda u praksi</div>
+                                       <div class="modal-section-text">Standard definiše 6 ključnih karakteristika kvaliteta: funkcionalnost, pouzdanost, upotrebljivost, efikasnost, održivost i prenosivost. Umesto oslanjanja na subjektivni utisak, izgrađen je evaluacioni model.</div>
+                                       <div class="modal-example"><strong>Primer iz analize:</strong> Troslojna arhitektura (Data Access, Business Logic, Presentation) ocenjena je izuzetno visoko u domenu održivosti (Maintainability), jer omogućava izmene na bazi podataka bez uticaja na korisnički interfejs. Sa druge strane, prenosivost (Portability) je dobila nižu ocenu usled čvrste vezanosti za .NET okruženje i Windows obrade.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-magnifying-glass"></i> Kvantitativne metrike koda (Code Metrics)</div>
+                                       <div class="modal-section-text">Analiza obima i složenosti koda pomogla je u detekciji kritičnih tačaka pre izlaska u produkciono okruženje.</div>
+                                       <div class="modal-example"><strong>Merljivi pokazatelji:</strong> Klasama domena izmereno je u proseku 32–48 LOC (linija koda), repozitorijumi za pristup podacima zauzimali su ~120 LOC, dok su forme prezentacionog sloja zadržane na oko 80 LOC po prozoru, čime je sprečeno stvaranje takozvanih "God Class" objekata.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-shield-halved"></i> Kvantifikacija bezbednosnih rizika</div>
+                                       <div class="modal-section-text">Formalna matrica rizika razotkrila je nezaštićene tačke u rukovanju osetljivim medicinskim podacima pacijenata.</div>
+                                       <div class="modal-example"><strong>Identifikovan rizik:</strong> Odsustvo rolske autentifikacije i enkripcije lokalne baze na samom početku ocenjeno je visokim nivoom izloženosti, što je postavilo jasne prioritete za naknadnu refaktorizaciju koda.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Zaključak:</strong> Proces evaluacije pružio mi je neprocenjivo uvid u to kako se sprovode verifikacija i validacija softvera u realnim poslovnim sistemima, izvan puke provere funkcionalnih zahteva.
+                                   </div>`
+                        },
+                        {
+                            naslov: 'Rad u timu na Hospital Management System-u',
+                            datum: '2024',
+                            opis: 'Prvi obimniji timski projekat razotkrio mi je dinamičku stranu softverskog inženjerstva — usaglašavanje interfejsa, dodela uloga i kontrola verzionisanja koda često su važniji od same brzine pisanja sintakse.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-users"></i> Timski projekat • 2024</div>
+                                   <p class="modal-intro">Razvoj kompleksnog softvera u tročlanom timu zahtevao je jasnu raspodelu odgovornosti, čvrste dogovore oko arhitekture i stalnu sinhronizaciju kako bi se izbegli konflikti u kôdu i kašnjenja u rokovima.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-diagram-project"></i> Podela uloga i DataLayer sloj</div>
+                                       <div class="modal-section-text">Moja primarna odgovornost obuhvatala je projektovanje i implementaciju sloja za pristup podacima (Data Access Layer) — kreiranje repozitorijuma za pacijente, lekare, zakazane preglede i dijagnoze, kao i pisanje unit testova za proveru integriteta.</div>
+                                       <div class="modal-example"><strong>Ključni trenutak:</strong> Pre pisanja prve linije koda, timski smo definisali interfejse (C# interfaces). Ovo je omogućilo kolegama koji su radili na poslovnoj logici i interfejsu da razvijaju svoje komponente nezavisno, koristeći "mocked" podatke.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-list-check"></i> Agile praksa i praćenje projekta</div>
+                                       <div class="modal-section-text">Upravljanje zadacima organizovano je putem Trello tabli po ugledu na Kanban metodologiju, uz redovne kratke sinhronizacijske sastanke.</div>
+                                       <div class="modal-example"><strong>Organizacija:</strong> Svaka kartica sadržala je definisane kriterijume prihvatljivosti (Acceptance Criteria), npr. "Doctor CRUD — provera validnosti JMBG-a pre ugradnje u bazu".</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-bug"></i> Rano otkrivanje kritičnih bagova</div>
+                                       <div class="modal-section-text">Kroz sistematski Code Review i pokrivenost jedinčnim testovima presretnute su greške koje bi u suprotnom narušile stabilnost cele baze.</div>
+                                       <div class="modal-example"><strong>Primer:</strong> Tokom pregleda koda uočen je UPDATE upit unutar logike za osvežavanje kartona koji je u određenim uslovima propuštao WHERE klauzulu. U produkciji bi ovaj previd prebrisao podatke svih pacijenata u bazi.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Zaključak:</strong> Naučila sam da su komunikacija, jasne konvencije imenovanja koda i rigorozan Code Review pre spajanja (merge) grana temelji svakog uspešnog inženjerskog tima.
+                                   </div>`
+                        },
+                        {
+                            naslov: 'E-cvećara "Rose": Razvoj mog prvog projekta i uočene lekcije',
+                            datum: '2021/2022',
+                            opis: 'E-cvećara "Rose" predstavlja prvi celovit projekat koji sam ikada realizovala — nastao u drugoj godini osnovnih studija na predmetu Objektno orijentisano programiranje. Taj projekat bio je prekretnica u kom je teorija prešla u praktičan kod.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-seedling"></i> Prvi praktični projekat • 2021/2022</div>
+                                   <p class="modal-intro">E-cvećara "Rose" predstavlja prvi softverski projekat koji sam samostalno osmislila i kodirala na drugoj godini osnovnih akademskih studija u okviru predmeta Objektno orijentisano programiranje (OOP). Do tog trenutka, OOP koncepti su za mene bili pretežno teorijska materija iz udžbenika: enkapsulacija, nasleđivanje i polimorfizam kao definicije za ispit. Tek u trenutku kada sam morala sama da projektujem kompletan sistem naručivanja, shvatila sam da najveći izazov nije sama sintaksa, već donošenje ispravnih arhitektonskih odluka — šta jeste klasa, šta treba da bude nasleđeno, a šta deljeno kroz interfejse.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-cubes"></i> Polimorfizam i interfejsi na praktičnom primeru</div>
+                                       <div class="modal-section-text">Najveći iskorak u razumevanju napravljen je implementacijom interfejsa <code>ICena</code> i <code>IFaktura</code>. Kroz njih je apstraktni teorijski koncept polimorfizma postao opipljiv alat.</div>
+                                       <div class="modal-example"><strong>Kako je to izgledalo:</strong> Metoda <code>cena()</code> kod pojedinačnog cveta vršila je prostu kalkulaciju (jedinična cena * količina). Međutim, kod složenih objekata poput <code>Buket</code> i <code>Dekoracija</code>, ista metoda je dinamički prolazila kroz liste svih upotrebljenih elemenata, dodajući cenu dodatnog materijala, rada i dostave.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-sitemap"></i> Nasleđivanje i modelovanje domena</div>
+                                       <div class="modal-section-text">Nastojala sam da smanjim dupliranje koda izgrađivanjem logičkih relacija između klasa kupaca, artikala i faktura.</div>
+                                       <div class="modal-example"><strong>Primer iz koda:</strong> Klasa <code>Dekoracija</code> direktno je nasleđivala svojstva klase <code>Kupac</code>, jer je svaka naručena aranžmanska dekoracija bila usko vezana za konkretnog naručioca sa njegovom adresom i popustima, izbegavajući ponovno pisanje polja za lične podatke.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-microscope"></i> Analiza sopstvenog koda iz današnje perspektive</div>
+                                       <div class="modal-section-text">Prilikom nedavnog pregleda ovog koda radi dokumentovanja u e-portfoliju, uočila sam početničke greške koje u trenutku pisanja, usled neiskustva i ispitnog pritiska, nisam primetila.</div>
+                                       <div class="modal-example"><strong>Uočeni previdi:</strong> Unutar metode <code>racun()</code> u klasi <code>Buket</code>, napravljen je tipičan "copy-paste" previd — umesto vrednosti promenljive <code>paprat</code>, greškom se na računu štampala vrednost promenljive <code>papir</code> za stavku "ukrasna paprat". Takođe, pojedine klase imale su nepotpune getter/setter metode (npr. nedostajući <code>getBoja()</code>), što je otežavalo naknadno osvežavanje stanja.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-vial"></i> Lekcija o potrebi za automatskim testiranjem</div>
+                                       <div class="modal-section-text">Danas znam da se ovakve greške ne sprečavaju dužim gledanjem u ekran, već pisanjem automatskih testova. Tada mi koncept automatskog testiranja nije bio blizak.</div>
+                                       <div class="modal-example"><strong>Šta bih danas uradila:</strong> Napisala bih jednostavan Unit Test koji poziva metodu računa i proverava ispisanu tekstualnu vrednost — takav test bi u sekundi detektovao pogrešno dodeljenu promenljivu.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-lightbulb"></i> <strong>Zaključak:</strong> I pored svih tehničkih nedoslednosti koje danas jasno vidim, E-cvećara "Rose" mi je pružila najvažnije iskustvo u karijeri — prvi nezaboravan osećaj kada linije apstraktnog koda sa papira ožive i postanu funkcionalna aplikacija.
+                                   </div>`
+                        }
+                    ],
+                    Edukacija: [
+                        {
+                            naslov: 'Pedagoški uvidi sa nastavne prakse u osnovnoj školi',
+                            datum: 'Maj – Jun 2026',
+                            opis: 'Nastavnu praksu iz informatike sprovela sam u Osnovnoj školi "Dr Dragiša Mišović" u Čačku radaći sa VI, VII i VIII razredom. To iskustvo razotkrilo mi je koliko se metodika rada mora menjati u zavisnosti od uzrasta i kognitivnog razvoja učenika.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-chalkboard-user"></i> Nastavna praksa • Maj – Jun 2026</div>
+                                   <p class="modal-intro">Tokom jedvomesečne prakse u OŠ "Dr Dragiša Mišović" imala sam priliku da samostalno pripremam i držim časove računarstva i informatike. Najveće pedagoško otkriće bilo je shvatanje da uspešan čas ne čini obim ispredavanog gradiva, već nivo prilagođenosti apstrakcije učenicima.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-graduation-cap"></i> Gradacija apstrakcije po uzrastima</div>
+                                       <div class="modal-section-text">Ista tema — algoritam i programski kôd — zahteva potpuno drugačiju nastavu od 6. do 8. razreda.</div>
+                                       <div class="modal-example"><strong>U praksi:</strong> U 6. razredu fokus je bio na Python Turtle grafici gde učenici odmah vide vizuelni rezultat svake naredbe (npr. skretanje kornjače). U 7. razredu u PyGame okruženju učenici su morali da usvoje apstraktne koncepte poput koordinatnog sistema i RGB palete, dok se u 8. razredu već diskredituje puko kucanje i prelazi na strukture podataka i napredno rešavanje problema.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-file-powerpoint"></i> Kreiranje autorskih nastavnih materijala</div>
+                                       <div class="modal-section-text">Uočivši da se mlađi učenici često gube u velikom broju sintaksnih pravila, izradila sam namenske vizuelne postere i podsetnike za kabinet.</div>
+                                       <div class="modal-example"><strong>Rezultat:</strong> Poster sa grafičkim prikazom komandi <code>penup()</code>, <code>pendown()</code>, <code>begin_fill()</code> i algoritmom za izračunavanje spoljašnjeg ugla višeugaonika smanjio je broj ponovljenih učeničkih pitanja za preko 50%.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-clipboard-check"></i> Formativno ocenjivanje i odbrana projekata</div>
+                                       <div class="modal-section-text">Prisustvovala sam i učestvovala u ocenjivanju završnih projekata u 8. razredu, gde sam naučila kako objektivno vrednovati originalnost, uloženi trud i tehničku tačnost.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Zaključak:</strong> Prakse u školi su potvrdile da dobar nastavnik informatike mora biti podjednako izvrstan inženjer i strpljiv komunikator koji složene pojmove ume da prevede na razumljiv jezik.
+                                   </div>`
+                        },
+                        {
+                            naslov: 'Debagovanje kao ključna pedagoška metoda u nastavi',
+                            datum: '2025/2026',
+                            opis: 'Kao programerka, grešku u kodu ne posmatram kao neuspeh već kao prirodan korak ka rešenju. Naučiti učenike kako da čitaju poruke o greškama i ne paniče pred konzolom bio je moj glavne pedagoški cilj.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-brain"></i> Pedagoška refleksija • 2025/2026</div>
+                                   <p class="modal-intro">Kada učenici počnu da uče programiranje, prva prepreka nije logika, već strah od crvenog teksta u konzoli (Error Message). Primarna uloga nastavnika jeste razvijanje inženjerskog otpora prema greškama i građenje samostalnosti u debagovanju.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-terminal"></i> Razbijanje panike pred "crvenim tekstom"</div>
+                                       <div class="modal-section-text">Postavila sam pravilo: kada se pojavi greška, učenik ne podiže odmah ruku, već čita poslednju liniju poruke i naglas objašnjava šta mu računari poručuje.</div>
+                                       <div class="modal-example"><strong>Primer:</strong> Umesto odgovora "Meni ovo ne radi", usmeravala sam učenike pitanjima: "Koji broj reda ti spominje Python?" i "Šta znači rec 'IndentationError' na engleskom?". Na taj način učenici su sami dolazili do rešenja u 80% slučajeva.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-people-arrows"></i> Vršnjačka edukacija (Peer Code Review)</div>
+                                       <div class="modal-section-text">Uvela sam metodu gde učenici iz klupe prvo proveravaju kod svog para pre traženja pomoći nastavnika.</div>
+                                       <div class="modal-example"><strong>Efekat:</strong> Ovo je stimulisalo timski duh, ubrzalo rad na času i naučilo ih da uočavaju sintaksne greške (poput zagrada i navodnika) u tuđem kodu.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-child-reaching"></i> Kinestetičko učenje apstraktnih pojmova</div>
+                                       <div class="modal-section-text">Za razumevanje rotacija i uglova u Python Turtle grafici koristili smo telesne pokrete izvan računara.</div>
+                                       <div class="modal-example"><strong>Vežba:</strong> Pre nego što ukucaju <code>left(90)</code> ili <code>right(45)</code>, učenici bi ustali i fizički okrenuli telo u smeru u kom kornjača treba da skrene. Koncept je momentalno usvojen kod svih učenika.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-lightbulb"></i> <strong>Zaključak:</strong> Programiranje ne uči decu samo kucanju koda, već ih uči rešavanju životnih problema — kako rastaviti velik problem na sitne delove i ne odustajati pred prvom preprekom.
+                                   </div>`
+                        }
+                    ]
+                }
+            },
+            ENG: {
+                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navBlog: 'Blog', navPromeni: 'Switch Portfolio',
+                naslovBlog: 'Notes',
+                uvod: 'Short and detailed reflections on the experiences that shaped me — not just what I did, but why, what I learned along the way, and what I would apply differently today.',
+                tekstCitaj: 'Read full note',
+                bcTrenutna: 'Blog',
+                footer: '©Copyright by Nena Kozić',
+                objave: {
+                    IT: [
+                        {
+                            naslov: 'What I learned building this e-portfolio',
+                            datum: 'July 2026',
+                            opis: 'I assumed the most significant challenge would be visual design. It turned out that the essential challenge lay in code architecture and structuring content for two entirely different target audiences on the same pages.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-code"></i> Personal Project • 2026</div>
+                                   <p class="modal-intro">Building this interactive e-portfolio was a practical case study in balancing complex functionality, clean architectural patterns, and a seamless user experience without relying on heavy external frameworks.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-layer-group"></i> Separation of Data and Presentation</div>
+                                       <div class="modal-section-text">All textual content, bilingual translations (SRB/ENG), and mode-specific data (IT vs. Teaching) are stored inside centralized JavaScript objects. The HTML serves strictly as a structural skeleton.</div>
+                                       <div class="modal-example"><strong>Purpose:</strong> Adding or updating a new project, course, or blog note requires modifying only a single JS object, eliminating code duplication and manual HTML/CSS edits.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-universal-access"></i> Advanced Accessibility & Responsiveness</div>
+                                       <div class="modal-section-text">Strong focus was placed on Web Accessibility (A11y). Particular attention was paid to keyboard navigation, modal focus traps, ARIA attributes, and user display preferences.</div>
+                                       <div class="modal-example"><strong>Practical examples:</strong> Implemented a skip-link for quick content jumping, clear focus-visible outlines for keyboard users, theme meta tags, and media queries for users preferring reduced motion.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-wrench"></i> Technical Debt & Optimization Plan</div>
+                                       <div class="modal-section-text">While the system works reliably offline without external dependencies, clear opportunities for further architectural refinement were identified.</div>
+                                       <div class="modal-example"><strong>Next step:</strong> In the next iteration, I plan to extract navigation, footer, and translation logic into Web Components or standalone JS modules for easier maintenance.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> The portfolio evolved from a static page into an engineering project proving core competencies in code architecture, UX design, and attention to detail.
+                                   </div>`
+                        },
+                        {
+                            naslov: 'Assessing code quality using the ISO/IEC 9126 standard',
+                            datum: 'December 2024',
+                            opis: 'As part of the Software Quality Management course in my master’s studies, I analyzed my own Hospital Management System application using international standards and quantitative code metrics.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-award"></i> Master Academic Studies • 2024</div>
+                                   <p class="modal-intro">Writing code that "just works" is only the first step in software engineering. During the analysis of my Hospital Management System (HMS), I applied the ISO/IEC 9126 framework to objectively measure software quality.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-chart-diagram"></i> ISO/IEC 9126 Framework in Practice</div>
+                                       <div class="modal-section-text">The standard defines 6 key characteristics: functionality, reliability, usability, efficiency, maintainability, and portability. An evaluation model was built instead of relying on subjective impressions.</div>
+                                       <div class="modal-example"><strong>Analysis example:</strong> The 3-tier architecture scored high in Maintainability, as database changes do not affect UI. However, Portability scored lower due to tight coupling with .NET and Windows Forms.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-magnifying-glass"></i> Quantitative Code Metrics</div>
+                                       <div class="modal-section-text">Analyzing code volume and complexity helped pinpoint critical bottlenecks prior to production release.</div>
+                                       <div class="modal-example"><strong>Measurable metrics:</strong> Domain classes averaged 32–48 LOC, data repositories ~120 LOC, and presentation forms ~80 LOC per window, successfully avoiding "God Class" anti-patterns.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> Provided invaluable insights into practical software verification and validation in enterprise systems beyond basic functional testing.
+                                   </div>`
+                        },
+                        {
+                            naslov: 'Working in a team on the Hospital Management System',
+                            datum: '2024',
+                            opis: 'My first major team project revealed the dynamic side of software engineering — interface agreements, role assignments, and version control matter just as much as coding speed.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-users"></i> Team Project • 2024</div>
+                                   <p class="modal-intro">Developing complex software within a 3-person team required clear responsibilities, architectural agreements, and continuous synchronization to avoid code conflicts.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-diagram-project"></i> Roles & DataLayer Responsibilities</div>
+                                       <div class="modal-section-text">My primary responsibility involved designing and implementing the Data Access Layer — building repositories for patients, doctors, appointments, and diagnoses, along with unit tests.</div>
+                                       <div class="modal-example"><strong>Key takeaway:</strong> We defined C# interfaces before writing implementations, allowing team members working on Business Logic and UI to develop independently using mocked data.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> Highlighted communication, clear naming conventions, and mandatory Code Reviews before merging as foundations for team success.
+                                   </div>`
+                        },
+                        {
+                            naslov: 'E-flower shop "Rose": Developing my first project & lessons learned',
+                            datum: '2021/2022',
+                            opis: 'E-flower shop "Rose" represents the very first complete project I completed during my second year of undergraduate studies in Object-Oriented Programming. It bridged textbook theory with real code.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-seedling"></i> First Practical Project • 2021/2022</div>
+                                   <p class="modal-intro">E-flower shop "Rose" represents the first software project I designed and coded during my second year of undergraduate studies in Object-Oriented Programming (OOP). Up until then, OOP concepts were abstract theory. Building a complete ordering system proved that the core challenge lies in architectural decision-making rather than syntax.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-cubes"></i> Polymorphism & Interfaces in Practice</div>
+                                       <div class="modal-section-text">Implementing <code>ICena</code> and <code>IFaktura</code> interfaces made abstract polymorphism tangible.</div>
+                                       <div class="modal-example"><strong>Implementation:</strong> The <code>cena()</code> method calculated unit cost for single flowers, but dynamically iterated over lists of components, wrapping paper, and labor for complex bouquets and decorations.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-microscope"></i> Spotting Early Learning Mistakes</div>
+                                       <div class="modal-section-text">Revisiting this codebase for portfolio documentation revealed beginner oversights typical of early learning stages.</div>
+                                       <div class="modal-example"><strong>Oversights found:</strong> Inside the <code>racun()</code> method, a copy-paste error printed the <code>papir</code> variable instead of <code>paprat</code>. Additionally, some getters/setters were missing due to time constraints.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-lightbulb"></i> <strong>Result:</strong> Despite early technical imperfections, this project provided the unforgettable moment of seeing textbook concepts come alive in working code.
+                                   </div>`
+                        }
+                    ],
+                    Edukacija: [
+                        {
+                            naslov: 'Pedagogical insights from school teaching practicum',
+                            datum: 'May – June 2026',
+                            opis: 'I conducted my teaching internship at Elementary School "Dr Dragiša Mišović" in Čačak with 6th, 7th, and 8th grades. The experience revealed how teaching methods must adapt to student age levels.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-chalkboard-user"></i> Teaching Practicum • May – June 2026</div>
+                                   <p class="modal-intro">During my teaching internship, I designed and delivered computer science lessons. The key pedagogical insight was that lesson success depends on matching abstraction levels to student cognitive readiness.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-graduation-cap"></i> Abstraction Progression across Grades</div>
+                                       <div class="modal-section-text">Grade 6 focused on Python Turtle graphics for immediate visual feedback. Grade 7 PyGame introduced coordinate systems and RGB colors, while Grade 8 emphasized data structures and logic.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> Proved that a great CS teacher must be both an able engineer and a patient communicator able to translate complex concepts.
+                                   </div>`
+                        },
+                        {
+                            naslov: 'Debugging as a core pedagogical teaching tool',
+                            datum: '2025/2026',
+                            opis: 'As a programmer, I view bugs not as failures, but as clues toward a solution. Teaching students to read error logs without panicking was my primary pedagogical goal.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-brain"></i> Pedagogical Reflection • 2025/2026</div>
+                                   <p class="modal-intro">When learning to code, the initial barrier is fear of console error messages. A teacher's role is building engineering resilience and debugging independence.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-terminal"></i> Overcoming "Red Text" Panic</div>
+                                       <div class="modal-section-text">I established a rule: when an error appears, students read the last line aloud and explain what Python tells them before raising hands.</div>
+                                       <div class="modal-example"><strong>Outcome:</strong> Guided questions enabled students to resolve issues independently in over 80% of cases.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-lightbulb"></i> <strong>Result:</strong> Programming teaches children life skills — breaking down big problems into smaller parts and persisting through challenges.
+                                   </div>`
+                        }
+                    ]
+                }
+            }
+        };
+
+        const el = {
+            navProfil: document.getElementById('nav-profil'),
+            navIskustvo: document.getElementById('nav-iskustvo'),
+            navEdukacija: document.getElementById('nav-edukacija'),
+            navProjekti: document.getElementById('nav-projekti'),
+            navBlog: document.getElementById('nav-blog'),
+            navPromeni: document.getElementById('nav-promeni'),
+            bcPocetna: document.getElementById('bc-pocetna'),
+            bcTrenutna: document.getElementById('bc-trenutna'),
+            naslovBlog: document.getElementById('naslov-blog'),
+            blogUvod: document.getElementById('blog-uvod'),
+            blogKontejner: document.getElementById('blog-kontejner'),
+            footer: document.getElementById('footer-datum'),
+            langBtn: document.getElementById('nav-lang-btn'),
+            themeBtn: document.getElementById('nav-theme-btn'),
+            hamburger: document.getElementById('nav-hamburger'),
+            navLinks: document.getElementById('navbar-links'),
+            blogModal: document.getElementById('blog-modal'),
+            blogModalNaslov: document.getElementById('blog-modal-naslov'),
+            blogModalDatum: document.getElementById('blog-modal-datum'),
+            blogModalTelo: document.getElementById('blog-modal-telo')
+        };
+
+        function karticaHTML(objava, idx) {
+            return `
+                <div class="card edu-split-card spec-course-card fade-in-up" style="animation-delay:${idx * 0.08}s">
+                    <div class="exp-header">
+                        <div>
+                            <h3>${objava.naslov}</h3>
+                        </div>
+                        <span class="block-date"><i class="fa-solid fa-calendar-days"></i> ${objava.datum}</span>
+                    </div>
+                    <p class="exp-opis">${objava.opis}</p>
+                    <div class="edu-buttons-container">
+                        <div class="btn-row">
+                            <button type="button" class="skill-tag blog-citaj-link" onclick="otvoriBlogModal(${idx})">
+                                <i class="fa-solid fa-book-open"></i> <span class="blog-citaj-tekst">${recnik[jezik].tekstCitaj}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        function otvoriBlogModal(idx) {
+            const objava = recnik[jezik].objave[mod][idx];
+            el.blogModalNaslov.innerText = objava.naslov;
+            el.blogModalDatum.innerHTML = `<i class="fa-solid fa-calendar-days"></i> ${objava.datum}`;
+            el.blogModalTelo.innerHTML = objava.telo;
+            el.blogModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function zatvoriBlogModal() {
+            el.blogModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        el.blogModal.addEventListener('click', event => {
+            if (event.target === el.blogModal) zatvoriBlogModal();
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && el.blogModal.style.display === 'flex') zatvoriBlogModal();
+        });
+
+        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
+        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        function azurirajDatumFootera() {
+            const sada = new Date();
+            const meseci = jezik === 'SRB' ? meseciSRB : meseciENG;
+            const mesec = meseci[sada.getMonth()];
+            const godina = sada.getFullYear();
+            el.footer.innerText = `${mesec} ${godina}.`;
+        }
+
+        function osvezi() {
+            const r = recnik[jezik];
+
+            el.navProfil.innerText = r.navProfil;
+            el.navIskustvo.innerText = r.navIskustvo;
+            el.navEdukacija.innerText = r.navEdukacija;
+            el.navProjekti.innerText = r.navProjekti;
+            el.navBlog.innerText = r.navBlog;
+            el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
+            el.bcPocetna.innerText = jezik === 'SRB'
+                ? (mod === 'IT' ? 'Početna IT strana' : 'Početna pedagoška strana')
+                : (mod === 'IT' ? 'Home (IT)' : 'Home (Teaching)');
+            el.bcTrenutna.innerText = r.bcTrenutna;
+            el.naslovBlog.innerHTML = `<i class="fa-solid fa-pen-nib"></i> ${r.naslovBlog}`;
+            el.blogUvod.innerText = r.uvod;
+
+            el.blogKontejner.innerHTML = (r.objave[mod] || []).map(karticaHTML).join('');
+
+            el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+            azurirajDatumFootera();
+        }
+
+        function primeniRezim() {
+            document.body.classList.toggle('light-mode', rezim === 'light');
+            el.themeBtn.innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+            const metaTema = document.getElementById('theme-color-meta');
+            if (metaTema) metaTema.setAttribute('content', rezim === 'light' ? '#f8fafc' : '#0f172a');
+        }
+
+        function toggleJezik() {
+            jezik = jezik === 'SRB' ? 'ENG' : 'SRB';
+            localStorage.setItem('portfolioJezik', jezik);
+            osvezi();
+        }
+
+        function toggleTema() {
+            rezim = rezim === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('portfolioRezim', rezim);
+            primeniRezim();
+        }
+
+        function toggleMenu() {
+            const aktivno = el.navLinks.classList.toggle('nav-active');
+            const ikonica = el.hamburger.querySelector('i');
+            ikonica.classList.toggle('fa-bars', !aktivno);
+            ikonica.classList.toggle('fa-xmark', aktivno);
+        }
+
+        function podesiEduDropdown() {
+            const wrap = document.getElementById('nav-edukacija-wrap');
+            if (!wrap) return;
+            const caret = document.getElementById('nav-edukacija-caret');
+
+            if (mod !== 'IT') {
+                wrap.classList.add('no-dropdown');
+                return;
+            }
+
+            caret.addEventListener('click', event => {
+                event.preventDefault();
+                event.stopPropagation();
+                const otvoreno = wrap.classList.toggle('open');
+                caret.setAttribute('aria-expanded', otvoreno);
+            });
+
+            document.addEventListener('click', event => {
+                if (!wrap.contains(event.target)) {
+                    wrap.classList.remove('open');
+                    caret.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape' && wrap.classList.contains('open')) {
+                    wrap.classList.remove('open');
+                    caret.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        primeniRezim();
+        osvezi();
+        podesiEduDropdown();
+    </script>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

@@ -22,32 +22,6 @@
     <link rel="stylesheet" href="style/portfolio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/print.css" media="print">
-    <style>
-        a:focus-visible,
-        button:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 3px solid #4da3ff;
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
-        .skip-link {
-            position: absolute;
-            top: -60px;
-            left: 12px;
-            z-index: 9999;
-            background-color: #0f172a;
-            color: #ffffff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: top 0.2s ease;
-        }
-        .skip-link:focus {
-            top: 12px;
-        }
-    </style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -88,6 +62,7 @@
                 </div>
             </div>
             <a href="projekti.html" id="nav-projekti">Projekti</a>
+            <a href="blog.html" id="nav-blog">Blog</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
@@ -96,7 +71,13 @@
         </div>
     </nav>
 
-    <header class="hero-section">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html" id="bc-pocetna">Početna</a>
+        <span class="bc-sep">/</span>
+        <span class="bc-current" id="bc-trenutna">Profil</span>
+    </nav>
+
+    <header class="hero-section fade-in-up">
         <div class="hero-container">
             <div class="hero-img-wrap">
                 <img src="assets/images/ja.jpg" alt="Nena Kozić" class="hero-profile-img" loading="lazy">
@@ -108,6 +89,7 @@
             <div class="hero-text">
                 <h1>Nena Kozić</h1>
                 <h2 id="hero-title">...</h2>
+                <p class="hero-pitch" id="hero-pitch">...</p>
                 <div class="cv-btn-container">
                     <a id="cv-link" href="javascript:void(0)" onclick="otvoriCvModal()" class="cv-download-btn">
                         <i class="fa-solid fa-file-pdf"></i> <span id="cv-btn-text">Prikaži CV</span>
@@ -120,7 +102,10 @@
     <div id="cv-modal" class="cv-modal" onclick="zatvoriCvModalIzvan(event)">
         <div class="cv-modal-sadrzaj">
             <button class="cv-zatvori-btn" onclick="zatvoriCvModal()"><i class="fa-solid fa-xmark"></i></button>
-            <iframe id="cv-iframe" class="cv-iframe" src=""></iframe>
+            <div class="modal-loading-wrap">
+                <div class="modal-spinner" id="cv-spinner"><div class="spinner-krug"></div></div>
+                <iframe id="cv-iframe" class="cv-iframe" src="" onload="sakrijCvSpinner()"></iframe>
+            </div>
         </div>
     </div>
 
@@ -197,14 +182,16 @@
 
         const recnik = {
             SRB: {
-                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navPromeni: 'Promeni portfolio',
+                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navBlog: 'Blog', navPromeni: 'Promeni portfolio',
                 tabOMeni: 'O meni', tabVestine: 'Veštine', tabAmbicije: 'Ambicije', tabKontakt: 'Kontakt',
                 naslovOMeni: 'Profesionalni profil', naslovAmbicije: 'Budući ciljevi i usmerenja', naslovKontakt: 'Kontakt informacije',
                 lblEmail: 'E-mail adresa:', lblLokacija: 'Lokacija:', lblLinkedin: 'LinkedIn profil:', lblGithub: 'GitHub profil:',
                 cvBtnText: 'Prikaži CV',
                 statusDostupnost: 'Otvorena za saradnju',
+                bcTrenutna: 'Profil',
                 IT: {
                     titula: 'Master inženjer informacionih tehnologija',
+                    pitch: 'Gradim moderne, pristupačne web aplikacije i volim kad tehnička rešenja imaju jasnu svrhu za korisnika.',
                     oMeni: 'Fokusirana na razvoj modernih frontend aplikacija i napredno upravljanje bazama podataka. Kroz praktičan rad u kompanijama i akademske projekte na FTN-u stekla sam iskustvo u tehnologijama kao što su Angular, React, Node.js i Flutter, kao i u radu sa relacionim bazama i softverskom arhitekturom.',
                     ambicije: 'Dugoročni fokus je usmeren na karijeru u IT industriji, sa primarnim interesovanjem za Frontend razvoj i kreiranje intuitivnih korisničkih interfejsa, kao i za projektovanje baza podataka i Power BI analitiku. Cilj mi je dalji rad sa modernim JavaScript/TypeScript okvirima, napredno upravljanje podacima i kreiranje poslovnih izveštaja koji pomažu u donošenju ključnih odluka.',
                     cvFajl: 'assets/cv/CV IT - srb.pdf',
@@ -216,6 +203,7 @@
                 },
                 Edukacija: {
                     titula: 'Master profesor stručnih predmeta oblasti informacionih tehnologija',
+                    pitch: 'Učim decu da razmišljaju kao programeri — kroz jasne, praktične i zanimljive časove informatike.',
                     oMeni: 'Strastvena prema pedagogiji, metodici nastave računarstva i digitalnoj pismenosti. Uspešno prenosim apstraktne IT koncepte (poput programiranja u Python-u) mlađim generacijama kroz interaktivne metode, konstruktivistički pristup i savremene nastavne alate.',
                     ambicije: 'Rad u prosvetnom sistemu kao profesor informatike i računarstva, kreiranje naprednih radionica i sekcija za talentovane učenike, implementacija EdTech inovacija i istraživanje primene obrazovnih softvera u nastavi.',
                     cvFajl: 'assets/cv/CV PN - srb.pdf',
@@ -227,14 +215,16 @@
                 }
             },
             ENG: {
-                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navPromeni: 'Switch Portfolio',
+                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navBlog: 'Blog', navPromeni: 'Switch Portfolio',
                 tabOMeni: 'About Me', tabVestine: 'Skills', tabAmbicije: 'Ambitions', tabKontakt: 'Contact',
                 naslovOMeni: 'Professional Profile', naslovAmbicije: 'Future Goals & Orientations', naslovKontakt: 'Contact Information',
                 lblEmail: 'Email address:', lblLokacija: 'Location:', lblLinkedin: 'LinkedIn profile:', lblGithub: 'GitHub profile:',
                 cvBtnText: 'View CV',
                 statusDostupnost: 'Open to opportunities',
+                bcTrenutna: 'Profile',
                 IT: {
                     titula: 'Master of Information Technology',
+                    pitch: 'I build modern, accessible web apps and care about technical solutions having a clear purpose for the user.',
                     oMeni: 'Focused on developing modern frontend applications and advanced database management. Through professional internships and academic projects at the Faculty of Technical Sciences, I have gained hands-on experience with Angular, React, Node.js, and Flutter, alongside relational databases and software architecture.',
                     ambicije: 'Long-term focus is oriented toward a career in the IT industry, with a primary interest in Frontend development and creating intuitive user interfaces, as well as database design and Power BI analytics. My goal is to further work with modern JavaScript/TypeScript frameworks, advanced data management, and generating business reports that drive key decision-making.',
                     cvFajl: 'assets/cv/CV IT - eng.pdf',
@@ -246,6 +236,7 @@
                 },
                 Edukacija: {
                     titula: 'Master Professor of Information Technology Vocational Subjects',
+                    pitch: 'I teach kids to think like programmers — through clear, practical, and engaging computer science lessons.',
                     oMeni: 'Passionate about pedagogy, computer science teaching methodology, and digital literacy. Successfully delivering abstract IT concepts (such as Python programming) to younger generations through interactive methods, constructivism, and contemporary educational tools.',
                     ambicije: 'Working in the education system as a professor of computer science and information technology, creating advanced workshops and sections for talented students, implementing EdTech innovations and researching the application of educational software in teaching.',
                     cvFajl: 'assets/cv/CV PN - eng.pdf',
@@ -264,6 +255,10 @@
             navEdukacija: document.getElementById('nav-edukacija'),
             navPromeni: document.getElementById('nav-promeni'),
             heroTitle: document.getElementById('hero-title'),
+            heroPitch: document.getElementById('hero-pitch'),
+            navBlog: document.getElementById('nav-blog'),
+            bcPocetna: document.getElementById('bc-pocetna'),
+            bcTrenutna: document.getElementById('bc-trenutna'),
             tekstOMeni: document.getElementById('tekst-o-meni'),
             tekstAmbicije: document.getElementById('tekst-ambicije'),
             cardNaslovOMeni: document.getElementById('card-naslov-o-meni'),
@@ -314,8 +309,12 @@
             el.navProfil.innerText = r.navProfil;
             el.navIskustvo.innerText = r.navIskustvo;
             el.navEdukacija.innerText = r.navEdukacija;
+            el.navBlog.innerText = r.navBlog;
             el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
-
+            el.bcPocetna.innerText = jezik === 'SRB'
+                ? (mod === 'IT' ? 'Početna IT strana' : 'Početna pedagoška strana')
+                : (mod === 'IT' ? 'Home (IT)' : 'Home (Teaching)');
+            el.bcTrenutna.innerText = r.bcTrenutna;
             tabDugmici.forEach(t => {
                 t.el.innerHTML = `<i class="fa-solid ${t.ikona}"></i> ${r[t.kljuc]}`;
             });
@@ -330,6 +329,7 @@
             el.lblGithub.innerText = r.lblGithub;
 
             el.heroTitle.innerText = s.titula;
+            el.heroPitch.innerText = s.pitch;
             el.tekstOMeni.innerText = s.oMeni;
             el.tekstAmbicije.innerText = s.ambicije;
             el.cvBtnText.innerText = r.cvBtnText;
@@ -338,8 +338,8 @@
 
             trenutniCvPutanja = s.cvFajl;
 
-            el.vestineKontejner.innerHTML = s.v.map(g => `
-                <div class="card skill-category">
+            el.vestineKontejner.innerHTML = s.v.map((g, idx) => `
+                <div class="card skill-category fade-in-up" style="animation-delay:${idx * 0.1}s">
                     <h4>${g.kat}</h4>
                     <ul>${g.stavke.map(x => `<li><i class="fa-solid fa-check"></i> ${x}</li>`).join('')}</ul>
                 </div>`).join('');
@@ -348,9 +348,16 @@
         }
 
         function otvoriCvModal() {
+            const spinner = document.getElementById('cv-spinner');
+            spinner.classList.remove('sakriven');
             el.cvIframe.src = trenutniCvPutanja;
             el.cvModal.classList.add('prikazi');
             document.body.style.overflow = 'hidden';
+        }
+
+        function sakrijCvSpinner() {
+            const spinner = document.getElementById('cv-spinner');
+            if (spinner) spinner.classList.add('sakriven');
         }
 
         function zatvoriCvModal() {
@@ -389,8 +396,12 @@
         function otvoriTab(evt, tabId) {
             el.tabContents.forEach(t => t.classList.remove('active'));
             el.tabBtns.forEach(t => t.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
+            const noviTab = document.getElementById(tabId);
+            noviTab.classList.add('active');
             evt.currentTarget.classList.add('active');
+            noviTab.classList.remove('fade-in-up');
+            void noviTab.offsetWidth;
+            noviTab.classList.add('fade-in-up');
         }
 
         function toggleMenu() {

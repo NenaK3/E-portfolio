@@ -22,32 +22,6 @@
     <link rel="stylesheet" href="style/iskustvo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/print.css" media="print">
-    <style>
-        a:focus-visible,
-        button:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 3px solid #4da3ff;
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
-        .skip-link {
-            position: absolute;
-            top: -60px;
-            left: 12px;
-            z-index: 9999;
-            background-color: #0f172a;
-            color: #ffffff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: top 0.2s ease;
-        }
-        .skip-link:focus {
-            top: 12px;
-        }
-    </style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -88,6 +62,7 @@
                 </div>
             </div>
             <a href="projekti.html" id="nav-projekti">Projekti</a>
+            <a href="blog.html" id="nav-blog">Blog</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
@@ -96,7 +71,13 @@
         </div>
     </nav>
 
-    <main class="page-main-container" id="glavni-sadrzaj" tabindex="-1">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html" id="bc-pocetna">Početna</a>
+        <span class="bc-sep">/</span>
+        <span class="bc-current" id="bc-trenutna">Iskustvo</span>
+    </nav>
+
+    <main class="page-main-container fade-in-up" id="glavni-sadrzaj" tabindex="-1">
         <h2 class="page-section-title" id="str-naslov"><i class="fa-solid fa-briefcase"></i> Radno iskustvo & prakse</h2>
         <div class="experience-stack" id="iskustvo-kontejner"></div>
     </main>
@@ -121,9 +102,11 @@
                 navProfil: 'Profil',
                 navIskustvo: 'Iskustvo',
                 navEdukacija: 'Edukacija',
+                navBlog: 'Blog',
                 navPromeni: 'Promeni portfolio',
                 naslovSve: 'Radno iskustvo & profesionalne prakse',
                 footer: '©Copyright by Nena Kozić',
+                bcTrenutna: 'Iskustvo',
                 IT: [
                     {
                         pozicija: 'Softverski programer (Praksa)',
@@ -159,9 +142,11 @@
                 navProfil: 'Profile',
                 navIskustvo: 'Experience',
                 navEdukacija: 'Education',
+                navBlog: 'Blog',
                 navPromeni: 'Switch Portfolio',
                 naslovSve: 'Work experience & professional internships',
                 footer: '©Copyright by Nena Kozić',
+                bcTrenutna: 'Experience',
                 IT: [
                     {
                         pozicija: 'Software Developer (Internship)',
@@ -200,6 +185,9 @@
             navIskustvo: document.getElementById('nav-iskustvo'),
             navEdukacija: document.getElementById('nav-edukacija'),
             navPromeni: document.getElementById('nav-promeni'),
+            navBlog: document.getElementById('nav-blog'),
+            bcPocetna: document.getElementById('bc-pocetna'),
+            bcTrenutna: document.getElementById('bc-trenutna'),
             strNaslov: document.getElementById('str-naslov'),
             footer: document.getElementById('idx-footer-copy'),
             footerDatum: document.getElementById('idx-footer-datum'),
@@ -210,7 +198,7 @@
             navLinks: document.getElementById('navbar-links')
         };
 
-        function karticaHTML(i) {
+        function karticaHTML(i, idx = 0) {
             const tagoviDeo = i.tagovi
                 ? `<div class="tag-container">${i.tagovi.map(t => `<span class="skill-tag">${t}</span>`).join('')}</div>`
                 : '';
@@ -219,7 +207,7 @@
                 : '';
 
             return `
-                <div class="card experience-card">
+                <div class="card experience-card fade-in-up" style="animation-delay:${idx * 0.1}s">
                     <div class="exp-header">
                         <div>
                             <h3>${i.pozicija}</h3>
@@ -252,13 +240,18 @@
             el.navProfil.innerText = r.navProfil;
             el.navIskustvo.innerText = r.navIskustvo;
             el.navEdukacija.innerText = r.navEdukacija;
+            el.navBlog.innerText = r.navBlog;
             el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
+            el.bcPocetna.innerText = jezik === 'SRB'
+                ? (mod === 'IT' ? 'Početna IT strana' : 'Početna pedagoška strana')
+                : (mod === 'IT' ? 'Home (IT)' : 'Home (Teaching)');
+            el.bcTrenutna.innerText = r.bcTrenutna;
             el.strNaslov.innerHTML = `<i class="fa-solid fa-briefcase"></i> ${r.naslovSve}`;
             el.footer.innerText = r.footer;
             azurirajDatumFootera();
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
 
-            el.kontejner.innerHTML = (r[mod] || []).map(karticaHTML).join('');
+            el.kontejner.innerHTML = (r[mod] || []).map((i, idx) => karticaHTML(i, idx)).join('');
         }
 
         function primeniRezim() {

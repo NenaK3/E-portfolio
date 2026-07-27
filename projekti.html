@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="style/projekti.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style/print.css" media="print">
-   
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -63,6 +62,7 @@
                 </div>
             </div>
             <a href="projekti.html" class="active" id="nav-projekti">Projekti</a>
+            <a href="blog.html" id="nav-blog">Blog</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
@@ -71,7 +71,13 @@
         </div>
     </nav>
 
-    <main class="education-split-container" id="edu-glavni-kontejner" style="grid-template-columns: 1fr; max-width: 900px;" tabindex="-1">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html" id="bc-pocetna">Početna</a>
+        <span class="bc-sep">/</span>
+        <span class="bc-current" id="bc-trenutna">Projekti</span>
+    </nav>
+
+    <main class="education-split-container fade-in-up" id="edu-glavni-kontejner" style="grid-template-columns: 1fr; max-width: 900px;" tabindex="-1">
 
         <section class="edu-column" id="kolona-projekti">
             <h2 class="column-title" id="naslov-projekata"><i class="fa-solid fa-folder-open"></i> Moji projekti</h2>
@@ -87,7 +93,10 @@
                 <button class="modal-close-btn" onclick="zatvoriModal()"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="modal-body">
-                <iframe id="pdf-viewer" src=""></iframe>
+                <div class="modal-loading-wrap">
+                    <div class="modal-spinner" id="pdf-spinner"><div class="spinner-krug"></div></div>
+                    <iframe id="pdf-viewer" src="" onload="document.getElementById('pdf-spinner')?.classList.add('sakriven')"></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -121,8 +130,9 @@
 
         const recnik = {
             SRB: {
-                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navPromeni: 'Promeni portfolio',
+                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navBlog: 'Blog', navPromeni: 'Promeni portfolio',
                 naslovProjekata: 'Moji projekti',
+                bcTrenutna: 'Projekti',
                 tekstLinka: 'Pogledaj kod',
                 tekstDetaljnije: 'Detaljnije o projektu',
                 btnMaterijal: 'Materijal za đake',
@@ -162,29 +172,29 @@
                             naziv: 'Hospital management system',
                             podnaslov: 'Timski projekat na fakultetu',
                             period: '2024',
-                            opis: 'Kompleksan sistem za upravljanje bolničkim podacima urađen u saradnji sa kolegama Jelenom Ilić i Filipom Šaranovićem. Omogućava efikasno upravljanje pacijentima, pregledima i osobljem. U sklopu projekta odrađeni su i testovi za jedan sloj aplikacije.',
-                            vestine: ['C#', '.NET Core', 'Angular', 'Node.js', 'SQL', 'Visual Studio', 'Unit Testing'],
+                            opis: 'Kompleksan sistem za upravljanje bolničkim podacima urađen u saradnji sa kolegama Jelenom Ilić i Filipom Šaranovićem. Sistem prati troslojnu arhitekturu — Data Layer (modeli i repozitorijumi), Business Layer i sloj za testiranje — sa zasebnim klasama za pacijente, lekare i dijagnoze. Moja odgovornost bila je Data Layer sloj: repozitorijumi sa ADO.NET pristupom SQL bazi (parametrizovani upiti za Insert, Update, Delete i GetAll operacije nad entitetima Patient, Doctor i Diagnosis) i pripadajući unit testovi pisani u MSTest okviru.',
+                            vestine: ['C#', '.NET Core', 'Angular', 'Node.js', 'ADO.NET', 'SQL Server', 'MSTest', 'Visual Studio'],
                             link: 'https://github.com/NenaK3/hospital-management-system.git',
                             highlights: [
-                                { ikona: 'fa-users', naslov: 'Timski rad', opis: 'Tri člana tima, sa jasnom podelom odgovornosti po slojevima aplikacije.', primer: 'Primer: frontend, backend API i baza podataka razvijani paralelno uz redovnu integraciju.' },
-                                { ikona: 'fa-layer-group', naslov: 'Full-stack arhitektura', opis: 'Angular frontend povezan sa .NET Core i Node.js servisima na backend-u.', primer: 'Primer: REST API sloj koji povezuje Angular klijent sa SQL bazom podataka.' },
-                                { ikona: 'fa-vial', naslov: 'Unit testiranje', opis: 'Testovi koji pokrivaju ključni sloj aplikacije radi provere ispravnosti logike.', primer: 'Primer: testiranje logike za zakazivanje pregleda i validaciju unetih podataka.' }
+                                { ikona: 'fa-layer-group', naslov: 'Slojevita arhitektura', opis: 'Data Layer (Model + Repository) povezan sa Business Layer slojem preko poziva repozitorijuma; svaki entitet (Patient, Doctor, Diagnosis) ima sopstvenu Model, Repository i Business klasu.', primer: 'Primer: PatientBusiness poziva PatientRepository.InsertPatient() i, nakon validacije unosa, vraća bool rezultat pozivaocu.' },
+                                { ikona: 'fa-database', naslov: 'ADO.NET sa parametrizovanim upitima', opis: 'Direktan rad sa SQL Server bazom preko SqlConnection i SqlCommand, uz parametrizovane upite (AddWithValue) za CRUD operacije nad pacijentima, lekarima i dijagnozama.', primer: 'Primer: InsertPatient() i GetAllPatient() metode u Patient repozitorijumu koriste parametrizovane SQL upite radi zaštite od SQL injekcija.' },
+                                { ikona: 'fa-vial', naslov: 'Unit testiranje (MSTest)', opis: 'Testovi za sve tri ključne klase (Patient, Doctor, Diagnosis) koji proveravaju Insert, Update i GetAll operacije, uz automatsko čišćenje test podataka nakon svakog testa.', primer: 'Primer: DoctorTest koristi TestCleanup metodu koja briše sve test unose iz baze nakon izvršenih testova, kako bi baza ostala čista.' }
                             ],
-                            kljucniIshod: 'Sistem uspešno objedinjuje upravljanje pacijentima, pregledima i osobljem u jednoj platformi, uz testovima pokriven ključni sloj aplikacije.'
+                            kljucniIshod: 'Data Layer sloj koji sam razvila objedinjuje modele, repozitorijume i pripadajuće unit testove za pacijente, lekare i dijagnoze, uz doslednu primenu parametrizovanih upita i slojevite arhitekture.'
                         },
                         {
                             naziv: 'E-cvećara "Rose"',
                             podnaslov: 'Samostalni projekat na fakultetu',
                             period: '2021/2022',
-                            opis: 'Desktop aplikacija za upravljanje poslovanjem cvećare, razvijena u Java Swing-u. Omogućava kupovinu cveća i buketa, pravljenje sopstvenog buketa, zakazivanje dekoracije prostora i prijavu zaposlenih. Projekat je izrađen samostalno u okviru predmeta Objektno orijentisano programiranje, sa naglaskom na primenu enkapsulacije, nasleđivanja, polimorfizma i rada sa interfejsima.',
+                            opis: 'Desktop aplikacija za upravljanje poslovanjem cvećare, razvijena u Java Swing-u. Omogućava kupovinu cveća i buketa, pravljenje sopstvenog buketa, zakazivanje dekoracije prostora i prijavu zaposlenih. Aplikacija je strukturirana oko ICena i IFaktura interfejsa (metode cena() i racun()) koje implementiraju klase Cvece, Buket i Dekoracija, dok Dekoracija nasleđuje Kupac klasu za podatke o klijentu. Projekat je izrađen samostalno u okviru predmeta Objektno orijentisano programiranje, sa naglaskom na primenu enkapsulacije, nasleđivanja, polimorfizma i rada sa interfejsima.',
                             vestine: ['Java', 'Java Swing', 'OOP', 'Rad sa fajlovima'],
                             link: 'https://github.com/NenaK3/e-cvecara-e-flower-shop-',
                             highlights: [
-                                { ikona: 'fa-sitemap', naslov: 'OOP principi', opis: 'Primena enkapsulacije, nasleđivanja, polimorfizma i rada sa interfejsima.', primer: 'Primer: zajednička klasa za proizvode nasleđena od strane cveća, buketa i dekoracija.' },
-                                { ikona: 'fa-desktop', naslov: 'Java Swing desktop UI', opis: 'Kompletna desktop aplikacija razvijena bez korišćenja web tehnologija.', primer: 'Primer: grafički interfejs za pregled kataloga i formiranje porudžbine unutar iste aplikacije.' },
-                                { ikona: 'fa-briefcase', naslov: 'Poslovna logika', opis: 'Kupovina, prilagođeni buketi, zakazivanje dekoracije i prijava zaposlenih.', primer: 'Primer: korisnik bira cveće po komadu i aplikacija automatski sastavlja cenu buketa.' }
+                                { ikona: 'fa-plug', naslov: 'Interfejsi ICena i IFaktura', opis: 'Zajednički interfejsi koje implementiraju klase Cvece, Buket i Dekoracija, sa metodama cena() i racun() za uniformno računanje cene i generisanje računa.', primer: 'Primer: cena() metoda u Buket i Dekoracija klasama sabira cenu svih cvetova iz liste, dok ista metoda u Cvece klasi množi broj cvetova sa cenom po komadu.' },
+                                { ikona: 'fa-sitemap', naslov: 'Nasleđivanje i kompozicija', opis: 'Dekoracija nasleđuje Kupac klasu radi podataka o klijentu, a i Buket i Dekoracija kompozicijom sadrže listu Cvece objekata od kojih se sastavljaju.', primer: 'Primer: Dekoracija extends Kupac dodaje polja za lokal, datum i dodatne usluge uz nasleđene podatke o klijentu (ime, adresa, telefon).' },
+                                { ikona: 'fa-briefcase', naslov: 'Poslovna logika obračuna cene', opis: 'Ukupna cena buketa i dekoracije kombinuje osnovnu cenu cveća sa fiksnim doplatama za izabrane dodatke.', primer: 'Primer: ukopnaCena() u Buket klasi dodaje fiksne iznose za šljokice, paprat, papir i kutiju na osnovnu cenu cveća.' }
                             ],
-                            kljucniIshod: 'Samostalno razvijen projekat koji pokazuje solidno razumevanje objektno-orijentisanog programiranja u praktičnoj primeni.'
+                            kljucniIshod: 'Samostalno razvijen projekat koji kroz konkretnu klasnu hijerarhiju (interfejsi ICena/IFaktura, nasleđivanje Dekoracija–Kupac, kompozicija sa Cvece) pokazuje solidno razumevanje objektno-orijentisanog programiranja u praktičnoj primeni.'
                         }
                     ],
                     Edukacija: [
@@ -208,8 +218,9 @@
                 }
             },
             ENG: {
-                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navPromeni: 'Switch Portfolio',
+                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navBlog: 'Blog', navPromeni: 'Switch Portfolio',
                 naslovProjekata: 'My projects',
+                bcTrenutna: 'Projects',
                 tekstLinka: 'View Code',
                 tekstDetaljnije: 'Project Details',
                 btnMaterijal: 'Student materials',
@@ -249,29 +260,29 @@
                             naziv: 'Hospital management system',
                             podnaslov: 'University team project',
                             period: '2024',
-                            opis: 'A complex hospital data management system developed in collaboration with codebase colleagues Jelena Ilić and Filip Šaranović. It features patient, appointment, and staff management, including unit tests for a specific application layer.',
-                            vestine: ['C#', '.NET Core', 'Angular', 'Node.js', 'SQL', 'Visual Studio', 'Unit Testing'],
+                            opis: 'A complex hospital data management system developed in collaboration with codebase colleagues Jelena Ilić and Filip Šaranović. The system follows a three-layer architecture — Data Layer (models and repositories), Business Layer, and a test layer — with separate classes for patients, doctors, and diagnoses. My responsibility was the Data Layer: repositories using ADO.NET to access the SQL database (parameterized queries for Insert, Update, Delete, and GetAll operations on the Patient, Doctor, and Diagnosis entities) and the corresponding unit tests written with MSTest.',
+                            vestine: ['C#', '.NET Core', 'Angular', 'Node.js', 'ADO.NET', 'SQL Server', 'MSTest', 'Visual Studio'],
                             link: 'https://github.com/NenaK3/hospital-management-system.git',
                             highlights: [
-                                { ikona: 'fa-users', naslov: 'Team collaboration', opis: 'Three team members, with a clear division of responsibilities across application layers.', primer: 'Example: frontend, backend API, and database developed in parallel with regular integration.' },
-                                { ikona: 'fa-layer-group', naslov: 'Full-stack architecture', opis: 'Angular frontend connected to .NET Core and Node.js services on the backend.', primer: 'Example: a REST API layer connecting the Angular client to the SQL database.' },
-                                { ikona: 'fa-vial', naslov: 'Unit testing', opis: 'Tests covering a key application layer to verify the correctness of the logic.', primer: 'Example: testing appointment-scheduling logic and input validation.' }
+                                { ikona: 'fa-layer-group', naslov: 'Layered architecture', opis: 'Data Layer (Model + Repository) connected to the Business Layer through repository calls; each entity (Patient, Doctor, Diagnosis) has its own Model, Repository, and Business class.', primer: 'Example: PatientBusiness calls PatientRepository.InsertPatient() and, after validating the input, returns a bool result to the caller.' },
+                                { ikona: 'fa-database', naslov: 'ADO.NET with parameterized queries', opis: 'Direct access to the SQL Server database through SqlConnection and SqlCommand, using parameterized queries (AddWithValue) for CRUD operations on patients, doctors, and diagnoses.', primer: 'Example: the InsertPatient() and GetAllPatient() methods in the Patient repository use parameterized SQL queries to guard against SQL injection.' },
+                                { ikona: 'fa-vial', naslov: 'Unit testing (MSTest)', opis: 'Tests for all three core classes (Patient, Doctor, Diagnosis) verifying Insert, Update, and GetAll operations, with automatic cleanup of test data after each test.', primer: 'Example: DoctorTest uses a TestCleanup method that deletes all test entries from the database after the tests run, keeping the database clean.' }
                             ],
-                            kljucniIshod: 'The system successfully unifies patient, appointment, and staff management on one platform, with a key layer covered by tests.'
+                            kljucniIshod: 'The Data Layer I built brings together the models, repositories, and their unit tests for patients, doctors, and diagnoses, consistently applying parameterized queries and a layered architecture.'
                         },
                         {
                             naziv: 'E-flower shop "Rose"',
                             podnaslov: 'Independent university project',
                             period: '2021/2022',
-                            opis: 'A desktop application for managing a flower shop\'s business, built with Java Swing. It supports buying flowers and bouquets, building a custom bouquet, scheduling venue decoration, and employee login. Developed independently for the Object-Oriented Programming course, with a focus on encapsulation, inheritance, polymorphism, and interfaces.',
+                            opis: 'A desktop application for managing a flower shop\'s business, built with Java Swing. It supports buying flowers and bouquets, building a custom bouquet, scheduling venue decoration, and employee login. The application is structured around the ICena and IFaktura interfaces (cena() and racun() methods) implemented by the Cvece, Buket, and Dekoracija classes, while Dekoracija inherits from the Kupac class for client data. Developed independently for the Object-Oriented Programming course, with a focus on encapsulation, inheritance, polymorphism, and interfaces.',
                             vestine: ['Java', 'Java Swing', 'OOP', 'File Handling'],
                             link: 'https://github.com/NenaK3/e-cvecara-e-flower-shop-',
                             highlights: [
-                                { ikona: 'fa-sitemap', naslov: 'OOP principles', opis: 'Applying encapsulation, inheritance, polymorphism, and interfaces.', primer: 'Example: a shared product class inherited by flowers, bouquets, and decorations.' },
-                                { ikona: 'fa-desktop', naslov: 'Java Swing desktop UI', opis: 'A complete desktop application built without any web technologies.', primer: 'Example: a graphical interface for browsing the catalog and placing an order within the same app.' },
-                                { ikona: 'fa-briefcase', naslov: 'Business logic', opis: 'Purchasing, custom bouquets, decoration scheduling, and employee login.', primer: 'Example: the user picks flowers individually and the app automatically calculates the bouquet price.' }
+                                { ikona: 'fa-plug', naslov: 'ICena and IFaktura interfaces', opis: 'Shared interfaces implemented by the Cvece, Buket, and Dekoracija classes, with cena() and racun() methods for uniform price calculation and invoice generation.', primer: 'Example: the cena() method in the Buket and Dekoracija classes sums the price of all flowers in the list, while the same method in Cvece multiplies the flower count by the unit price.' },
+                                { ikona: 'fa-sitemap', naslov: 'Inheritance and composition', opis: 'Dekoracija inherits from the Kupac class for client data, and both Buket and Dekoracija use composition to hold a list of Cvece objects they are built from.', primer: 'Example: Dekoracija extends Kupac adds fields for the venue, date, and extra services on top of the inherited client data (name, address, phone).' },
+                                { ikona: 'fa-briefcase', naslov: 'Pricing business logic', opis: 'The total price of a bouquet or decoration combines the base flower price with fixed surcharges for the selected extras.', primer: 'Example: the ukopnaCena() method in Buket adds fixed amounts for glitter, fern, wrapping paper, and a box on top of the base flower price.' }
                             ],
-                            kljucniIshod: 'An independently developed project demonstrating a solid understanding of object-oriented programming in practice.'
+                            kljucniIshod: 'An independently developed project that, through a concrete class hierarchy (ICena/IFaktura interfaces, Dekoracija–Kupac inheritance, composition with Cvece), demonstrates a solid understanding of object-oriented programming in practice.'
                         }
                     ],
                     Edukacija: [
@@ -301,7 +312,10 @@
             navIskustvo: document.getElementById('nav-iskustvo'),
             navEdukacija: document.getElementById('nav-edukacija'),
             navProjekti: document.getElementById('nav-projekti'),
+            navBlog: document.getElementById('nav-blog'),
             navPromeni: document.getElementById('nav-promeni'),
+            bcPocetna: document.getElementById('bc-pocetna'),
+            bcTrenutna: document.getElementById('bc-trenutna'),
             naslovProjekata: document.getElementById('naslov-projekata'),
             projektiKontejner: document.getElementById('projekti-kontejner'),
             langBtn: document.getElementById('nav-lang-btn'),
@@ -366,7 +380,7 @@
                 : '';
 
             return `
-                <div class="card experience-card edu-split-card ${eduCard}">
+                <div class="card experience-card edu-split-card fade-in-up ${eduCard}" style="animation-delay:${idx * 0.08}s">
                     <div class="exp-header">
                         <div><h3>${p.naziv}</h3><h4>${p.podnaslov}</h4></div>
                         <span class="block-date ${eduDate}">${p.period}</span>
@@ -400,7 +414,12 @@
             el.navIskustvo.innerText = r.navIskustvo;
             el.navEdukacija.innerText = r.navEdukacija;
             el.navProjekti.innerText = r.navProjekti;
+            el.navBlog.innerText = r.navBlog;
             el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
+            el.bcPocetna.innerText = jezik === 'SRB'
+                ? (mod === 'IT' ? 'Početna IT strana' : 'Početna pedagoška strana')
+                : (mod === 'IT' ? 'Home (IT)' : 'Home (Teaching)');
+            el.bcTrenutna.innerText = r.bcTrenutna;
             el.naslovProjekata.innerHTML = `<i class="fa-solid fa-folder-open"></i> ${r.naslovProjekata}`;
 
             el.projektiKontejner.innerHTML = r.projekti[mod].map((p, idx) => karticaHTML(p, r, idx)).join('');
@@ -411,6 +430,7 @@
 
         function otvoriModal(pdfPutanja, naslov) {
             el.modalTitleText.innerText = naslov;
+            document.getElementById('pdf-spinner')?.classList.remove('sakriven');
             el.pdfViewer.src = pdfPutanja;
             el.pdfModal.style.display = 'flex';
         }

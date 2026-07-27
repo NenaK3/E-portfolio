@@ -210,6 +210,17 @@ body.index-body {
 }
 
 /* ==========================================================================
+   Fokus prilikom navigacije tastaturom (pristupačnost — focus-visible)
+   ========================================================================== */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid #4da3ff;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
    Skip link (pristupačnost — "Preskoči na sadržaj")
    ========================================================================== */
 .skip-link {
