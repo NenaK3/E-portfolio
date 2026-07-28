@@ -212,18 +212,6 @@
             elementi.forEach(e => posmatrac.observe(e));
         }
 
-        function animirajSkillBarove(root) {
-            const kontejner = root || document;
-            kontejner.querySelectorAll('.skill-bar-fill').forEach(bar => {
-                bar.style.width = '0%';
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        bar.style.width = bar.dataset.nivo + '%';
-                    });
-                });
-            });
-        }
-
         function azurirajDatumFootera() {
             const sada = new Date();
             const meseci = jezik === 'SRB' ? meseciSRB : meseciENG;
@@ -273,21 +261,12 @@
             el.vestineKontejner.innerHTML = s.v.map((g, idx) => `
                 <div class="card skill-category fade-in-up" style="animation-delay:${idx * 0.1}s">
                     <h4>${g.kat}</h4>
-                    <ul class="skill-bar-list">${g.stavke.map(x => `
-                        <li class="skill-bar-item">
-                            <div class="skill-bar-label">
-                                <span>${x.naziv}</span>
-                                <span class="skill-bar-percent">${x.nivo}%</span>
-                            </div>
-                            <div class="skill-bar-track">
-                                <div class="skill-bar-fill" data-nivo="${x.nivo}" style="width:0%"></div>
-                            </div>
-                        </li>`).join('')}</ul>
+                    <ul class="skill-list">${g.stavke.map(x => `
+                        <li>${x.naziv}</li>`).join('')}</ul>
                 </div>`).join('');
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
             initFadeInReveal();
-            animirajSkillBarove();
         }
 
         function otvoriCvModal() {
@@ -346,7 +325,6 @@
             void noviTab.offsetWidth;
             noviTab.classList.add('fade-in-up');
             initFadeInReveal(noviTab);
-            if (tabId === 'vestine') animirajSkillBarove(noviTab);
         }
 
         function toggleMenu() {
