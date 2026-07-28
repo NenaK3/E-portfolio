@@ -15,8 +15,13 @@
     <link rel="canonical" href="https://e-portfolio-nena-kozic.vercel.app/blog.html">
     <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png">
     <link rel="icon" type="image/png" href="assets/images/logo.png">
-    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon-180x180.png">
     <link rel="manifest" href="manifest.json">
 
     <link rel="stylesheet" href="style/blog.css">
@@ -81,7 +86,21 @@
         <section class="edu-column" id="kolona-blog">
             <h2 class="column-title" id="naslov-blog"><i class="fa-solid fa-pen-nib"></i> Beleške</h2>
             <p class="blog-uvod" id="blog-uvod" style="opacity:0.85; margin-bottom: 24px; line-height: 1.6;"></p>
+
+            <div class="blog-toolbar">
+                <div class="blog-search-wrap">
+                    <i class="fa-solid fa-magnifying-glass blog-search-icon"></i>
+                    <input type="search" id="blog-search-input" class="blog-search-input" autocomplete="off">
+                    <button type="button" id="blog-search-clear" class="blog-search-clear" aria-label="Obriši pretragu" style="display:none;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <p class="blog-search-rezultati" id="blog-search-rezultati" style="display:none;"></p>
+
             <div class="experience-stack" id="blog-kontejner"></div>
+            <p class="blog-nema-rezultata" id="blog-nema-rezultata" style="display:none;"></p>
         </section>
     </main>
 
@@ -103,6 +122,10 @@
         <p>©Copyright by Nena Kozić. <span class="footer-separator">•</span> <span id="footer-datum"></span></p>
     </footer>
 
+    <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Nazad na vrh / Back to top" title="Nazad na vrh">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
     <script>
         'use strict';
 
@@ -118,12 +141,18 @@
                 naslovBlog: 'Beleške',
                 uvod: 'Kratke i detaljne refleksije o iskustvima koja su me oblikovala — ne samo šta sam radila, već i zašto, šta sam u hodu naučila i šta bih danas primenila drugačije.',
                 tekstCitaj: 'Pročitaj kompletnu belešku',
+                tekstVreme: (n) => n === 1 ? '1 min čitanja' : `${n} min čitanja`,
+                naslovPovezano: 'Povezane beleške',
                 bcTrenutna: 'Blog',
                 footer: '©Copyright by Nena Kozić',
+                pretragaPlaceholder: 'Pretraži beleške...',
+                pretragaRezultati: (n) => n === 1 ? '1 rezultat pretrage' : `${n} rezultata pretrage`,
+                pretragaNemaRezultata: 'Nema beleški koje odgovaraju pretrazi. Pokušajte drugi pojam.',
                 objave: {
                     IT: [
                         {
                             naslov: 'Šta sam naučila praveći ovaj e-portfolio',
+                            id: 'it-portfolio',
                             datum: 'Jul 2026',
                             opis: 'Pretpostavljala sam da će najznačajniji izazov predstavljati vizuelni dizajn. Pokazalo se, međutim, da je suštinski izazov ležao u arhitekturi koda i podeli sadržaja namenjenog dvema potpuno različitim ciljnim grupama na istim stranicama.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-code"></i> Lični projekat • 2026</div>
@@ -158,6 +187,8 @@
                         },
                         {
                             naslov: 'Ocenjivanje kvaliteta sopstvenog koda kroz ISO/IEC 9126',
+                            id: 'it-iso9126',
+                            povezano: ['it-tim-hms'],
                             datum: 'Decembar 2024',
                             opis: 'U okviru predmeta Upravljanje kvalitetom softvera na master studijama, analizirala sam sopstvenu aplikaciju Hospital Management System primenom međunarodnih standarda i metoda kvantitativne analize.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-award"></i> Master akademske studije • 2024</div>
@@ -187,6 +218,8 @@
                         },
                         {
                             naslov: 'Rad u timu na Hospital Management System-u',
+                            id: 'it-tim-hms',
+                            povezano: ['it-iso9126'],
                             datum: '2024',
                             opis: 'Prvi obimniji timski projekat razotkrio mi je dinamičku stranu softverskog inženjerstva — usaglašavanje interfejsa, dodela uloga i kontrola verzionisanja koda često su važniji od same brzine pisanja sintakse.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-users"></i> Timski projekat • 2024</div>
@@ -216,6 +249,7 @@
                         },
                         {
                             naslov: 'E-cvećara "Rose": Razvoj mog prvog projekta i uočene lekcije',
+                            id: 'it-cvecara',
                             datum: '2021/2022',
                             opis: 'E-cvećara "Rose" predstavlja prvi celovit projekat koji sam ikada realizovala — nastao u drugoj godini osnovnih studija na predmetu Objektno orijentisano programiranje. Taj projekat bio je prekretnica u kom je teorija prešla u praktičan kod.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-seedling"></i> Prvi praktični projekat • 2021/2022</div>
@@ -253,6 +287,8 @@
                     Edukacija: [
                         {
                             naslov: 'Pedagoški uvidi sa nastavne prakse u osnovnoj školi',
+                            id: 'edu-praksa',
+                            povezano: ['edu-debug'],
                             datum: 'Maj – Jun 2026',
                             opis: 'Nastavnu praksu iz informatike sprovela sam u Osnovnoj školi "Dr Dragiša Mišović" u Čačku radaći sa VI, VII i VIII razredom. To iskustvo razotkrilo mi je koliko se metodika rada mora menjati u zavisnosti od uzrasta i kognitivnog razvoja učenika.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-chalkboard-user"></i> Nastavna praksa • Maj – Jun 2026</div>
@@ -281,6 +317,8 @@
                         },
                         {
                             naslov: 'Debagovanje kao ključna pedagoška metoda u nastavi',
+                            id: 'edu-debug',
+                            povezano: ['edu-praksa'],
                             datum: '2025/2026',
                             opis: 'Kao programerka, grešku u kodu ne posmatram kao neuspeh već kao prirodan korak ka rešenju. Naučiti učenike kako da čitaju poruke o greškama i ne paniče pred konzolom bio je moj glavne pedagoški cilj.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-brain"></i> Pedagoška refleksija • 2025/2026</div>
@@ -316,12 +354,19 @@
                 naslovBlog: 'Notes',
                 uvod: 'Short and detailed reflections on the experiences that shaped me — not just what I did, but why, what I learned along the way, and what I would apply differently today.',
                 tekstCitaj: 'Read full note',
+                tekstVreme: (n) => n === 1 ? '1 min read' : `${n} min read`,
+                naslovPovezano: 'Related notes',
                 bcTrenutna: 'Blog',
                 footer: '©Copyright by Nena Kozić',
+                pretragaPlaceholder: 'Search notes...',
+                pretragaRezultati: (n) => n === 1 ? '1 search result' : `${n} search results`,
+                pretragaNemaRezultata: 'No notes match your search. Try a different term.',
                 objave: {
                     IT: [
                         {
                             naslov: 'What I learned building this e-portfolio',
+                            id: 'it-portfolio',
+                            povezano: ['it-cvecara', 'it-iso9126'],
                             datum: 'July 2026',
                             opis: 'I assumed the most significant challenge would be visual design. It turned out that the essential challenge lay in code architecture and structuring content for two entirely different target audiences on the same pages.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-code"></i> Personal Project • 2026</div>
@@ -351,6 +396,8 @@
                         },
                         {
                             naslov: 'Assessing code quality using the ISO/IEC 9126 standard',
+                            id: 'it-iso9126',
+                            povezano: ['it-tim-hms', 'it-portfolio'],
                             datum: 'December 2024',
                             opis: 'As part of the Software Quality Management course in my master’s studies, I analyzed my own Hospital Management System application using international standards and quantitative code metrics.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-award"></i> Master Academic Studies • 2024</div>
@@ -374,6 +421,8 @@
                         },
                         {
                             naslov: 'Working in a team on the Hospital Management System',
+                            id: 'it-tim-hms',
+                            povezano: ['it-iso9126'],
                             datum: '2024',
                             opis: 'My first major team project revealed the dynamic side of software engineering — interface agreements, role assignments, and version control matter just as much as coding speed.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-users"></i> Team Project • 2024</div>
@@ -391,6 +440,8 @@
                         },
                         {
                             naslov: 'E-flower shop "Rose": Developing my first project & lessons learned',
+                            id: 'it-cvecara',
+                            povezano: ['it-portfolio'],
                             datum: '2021/2022',
                             opis: 'E-flower shop "Rose" represents the very first complete project I completed during my second year of undergraduate studies in Object-Oriented Programming. It bridged textbook theory with real code.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-seedling"></i> First Practical Project • 2021/2022</div>
@@ -416,6 +467,8 @@
                     Edukacija: [
                         {
                             naslov: 'Pedagogical insights from school teaching practicum',
+                            id: 'edu-praksa',
+                            povezano: ['edu-debug'],
                             datum: 'May – June 2026',
                             opis: 'I conducted my teaching internship at Elementary School "Dr Dragiša Mišović" in Čačak with 6th, 7th, and 8th grades. The experience revealed how teaching methods must adapt to student age levels.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-chalkboard-user"></i> Teaching Practicum • May – June 2026</div>
@@ -432,6 +485,8 @@
                         },
                         {
                             naslov: 'Debugging as a core pedagogical teaching tool',
+                            id: 'edu-debug',
+                            povezano: ['edu-praksa'],
                             datum: '2025/2026',
                             opis: 'As a programmer, I view bugs not as failures, but as clues toward a solution. Teaching students to read error logs without panicking was my primary pedagogical goal.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-brain"></i> Pedagogical Reflection • 2025/2026</div>
@@ -472,19 +527,28 @@
             blogModal: document.getElementById('blog-modal'),
             blogModalNaslov: document.getElementById('blog-modal-naslov'),
             blogModalDatum: document.getElementById('blog-modal-datum'),
-            blogModalTelo: document.getElementById('blog-modal-telo')
+            blogModalTelo: document.getElementById('blog-modal-telo'),
+            searchInput: document.getElementById('blog-search-input'),
+            searchClear: document.getElementById('blog-search-clear'),
+            searchRezultati: document.getElementById('blog-search-rezultati'),
+            nemaRezultata: document.getElementById('blog-nema-rezultata')
         };
+
+        let trenutnaPretraga = '';
 
         function karticaHTML(objava, idx) {
             return `
                 <div class="card edu-split-card spec-course-card fade-in-up" style="animation-delay:${idx * 0.08}s">
                     <div class="exp-header">
                         <div>
-                            <h3>${objava.naslov}</h3>
+                            <h3>${istakniPretragu(objava.naslov)}</h3>
                         </div>
-                        <span class="block-date"><i class="fa-solid fa-calendar-days"></i> ${objava.datum}</span>
+                        <div class="exp-header-meta">
+                            <span class="block-date"><i class="fa-solid fa-calendar-days"></i> ${objava.datum}</span>
+                            <span class="block-date blog-vreme-citanja"><i class="fa-solid fa-clock"></i> ${recnik[jezik].tekstVreme(vremeCitanja(objava.telo))}</span>
+                        </div>
                     </div>
-                    <p class="exp-opis">${objava.opis}</p>
+                    <p class="exp-opis">${istakniPretragu(objava.opis)}</p>
                     <div class="edu-buttons-container">
                         <div class="btn-row">
                             <button type="button" class="skill-tag blog-citaj-link" onclick="otvoriBlogModal(${idx})">
@@ -495,11 +559,71 @@
                 </div>`;
         }
 
+        function vremeCitanja(html) {
+            const cistTekst = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+            const brojReci = cistTekst ? cistTekst.split(' ').length : 0;
+            return Math.max(1, Math.ceil(brojReci / 200));
+        }
+
+        function escapeHtml(tekst) {
+            const div = document.createElement('div');
+            div.textContent = tekst;
+            return div.innerHTML;
+        }
+
+        function escapeRegExp(tekst) {
+            return tekst.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function istakniPretragu(tekst) {
+            const upit = trenutnaPretraga.trim();
+            if (!upit) return escapeHtml(tekst);
+            const regex = new RegExp(`(${escapeRegExp(upit)})`, 'ig');
+            return escapeHtml(tekst).replace(regex, '<mark class="blog-search-mark">$1</mark>');
+        }
+
+        function objaveZaPrikaz() {
+            const sve = (recnik[jezik].objave[mod] || []).map((objava, idx) => ({ objava, idx }));
+            const upit = trenutnaPretraga.trim().toLowerCase();
+            if (!upit) return sve;
+            return sve.filter(({ objava }) =>
+                objava.naslov.toLowerCase().includes(upit) || objava.opis.toLowerCase().includes(upit)
+            );
+        }
+
+        function povezanePostoveHTML(idx) {
+            const r = recnik[jezik];
+            const sve = r.objave[mod] || [];
+            const trenutna = sve[idx];
+            if (!trenutna || !Array.isArray(trenutna.povezano) || !trenutna.povezano.length) return '';
+
+            const izabrani = trenutna.povezano
+                .map(id => {
+                    const i = sve.findIndex(o => o.id === id);
+                    return i === -1 ? null : { o: sve[i], i };
+                })
+                .filter(Boolean);
+
+            if (!izabrani.length) return '';
+
+            return `<div class="modal-section modal-povezano">
+                        <div class="modal-section-title"><i class="fa-solid fa-link"></i> ${r.naslovPovezano}</div>
+                        <div class="povezano-lista">
+                            ${izabrani.map(({ o, i }) => `
+                                <button type="button" class="povezano-stavka" onclick="otvoriBlogModal(${i})">
+                                    <span class="povezano-naslov">${escapeHtml(o.naslov)}</span>
+                                    <span class="block-date"><i class="fa-solid fa-calendar-days"></i> ${o.datum} <span class="bc-sep">•</span> ${r.tekstVreme(vremeCitanja(o.telo))}</span>
+                                </button>`).join('')}
+                        </div>
+                    </div>`;
+        }
+
         function otvoriBlogModal(idx) {
             const objava = recnik[jezik].objave[mod][idx];
             el.blogModalNaslov.innerText = objava.naslov;
-            el.blogModalDatum.innerHTML = `<i class="fa-solid fa-calendar-days"></i> ${objava.datum}`;
-            el.blogModalTelo.innerHTML = objava.telo;
+            el.blogModalDatum.innerHTML = `<i class="fa-solid fa-calendar-days"></i> ${objava.datum} <span class="bc-sep">•</span> <i class="fa-solid fa-clock"></i> ${recnik[jezik].tekstVreme(vremeCitanja(objava.telo))}`;
+            el.blogModalTelo.innerHTML = objava.telo + povezanePostoveHTML(idx);
+            el.blogModalTelo.scrollTop = 0;
             el.blogModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -528,6 +652,86 @@
             el.footer.innerText = `${mesec} ${godina}.`;
         }
 
+        function initFadeInReveal(root) {
+            const kontejner = root || document;
+            const elementi = Array.from(kontejner.querySelectorAll('.fade-in-up:not(.fade-in-visible)'));
+            if (kontejner.nodeType === 1 && kontejner.classList.contains('fade-in-up') && !kontejner.classList.contains('fade-in-visible')) {
+                elementi.push(kontejner);
+            }
+            if (!elementi.length) return;
+
+            if (!('IntersectionObserver' in window)) {
+                elementi.forEach(e => e.classList.add('fade-in-visible'));
+                return;
+            }
+
+            const posmatrac = new IntersectionObserver((unosi, obs) => {
+                unosi.forEach(unos => {
+                    if (unos.isIntersecting) {
+                        unos.target.classList.add('fade-in-visible');
+                        obs.unobserve(unos.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+            elementi.forEach(e => posmatrac.observe(e));
+        }
+
+        function initScrollTopButton() {
+            const dugme = document.getElementById('scroll-top-btn');
+            if (!dugme) return;
+            window.addEventListener('scroll', () => {
+                dugme.classList.toggle('visible', window.scrollY > 400);
+            }, { passive: true });
+            dugme.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        function prikaziBlogListu() {
+            const r = recnik[jezik];
+            const stavke = objaveZaPrikaz();
+
+            el.blogKontejner.innerHTML = stavke.map(({ objava, idx }) => karticaHTML(objava, idx)).join('');
+
+            const upit = trenutnaPretraga.trim();
+            const ukupno = (r.objave[mod] || []).length;
+
+            if (upit) {
+                el.searchRezultati.style.display = 'block';
+                el.searchRezultati.innerText = r.pretragaRezultati(stavke.length);
+            } else {
+                el.searchRezultati.style.display = 'none';
+            }
+
+            if (upit && stavke.length === 0) {
+                el.nemaRezultata.style.display = 'block';
+                el.nemaRezultata.innerText = r.pretragaNemaRezultata;
+                el.blogKontejner.style.display = 'none';
+            } else {
+                el.nemaRezultata.style.display = 'none';
+                el.blogKontejner.style.display = '';
+            }
+
+            el.searchClear.style.display = upit ? 'flex' : 'none';
+
+            initFadeInReveal();
+        }
+
+        function podesiPretragu() {
+            if (!el.searchInput) return;
+            el.searchInput.addEventListener('input', event => {
+                trenutnaPretraga = event.target.value;
+                prikaziBlogListu();
+            });
+            el.searchClear.addEventListener('click', () => {
+                trenutnaPretraga = '';
+                el.searchInput.value = '';
+                el.searchInput.focus();
+                prikaziBlogListu();
+            });
+        }
+
         function osvezi() {
             const r = recnik[jezik];
 
@@ -543,8 +747,10 @@
             el.bcTrenutna.innerText = r.bcTrenutna;
             el.naslovBlog.innerHTML = `<i class="fa-solid fa-pen-nib"></i> ${r.naslovBlog}`;
             el.blogUvod.innerText = r.uvod;
+            el.searchInput.placeholder = r.pretragaPlaceholder;
+            el.searchInput.setAttribute('aria-label', r.pretragaPlaceholder);
 
-            el.blogKontejner.innerHTML = (r.objave[mod] || []).map(karticaHTML).join('');
+            prikaziBlogListu();
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
             azurirajDatumFootera();
@@ -611,6 +817,8 @@
         primeniRezim();
         osvezi();
         podesiEduDropdown();
+        podesiPretragu();
+        initScrollTopButton();
     </script>
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };

@@ -367,6 +367,104 @@ body {
 }
 
 /* ==========================================================================
+   6b. Traka za pretragu bloga
+   ========================================================================== */
+.blog-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.blog-search-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+}
+
+.blog-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.blog-search-input {
+    width: 100%;
+    padding: 12px 42px;
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-search-input:focus {
+    outline: none;
+    border-color: var(--theme-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-accent) 25%, transparent);
+}
+
+.blog-search-input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.blog-search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 0.75rem;
+}
+
+.blog-search-clear:hover {
+    background-color: var(--btn-hover);
+}
+
+.blog-search-rezultati {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 16px;
+}
+
+.blog-nema-rezultata {
+    color: var(--text-muted);
+    font-size: 1rem;
+    text-align: center;
+    padding: 40px 20px;
+    border: 1px dashed var(--card-border);
+    border-radius: 14px;
+}
+
+.blog-search-mark {
+    background-color: var(--pastel-blue-accent);
+    color: #0f172a;
+    padding: 0 3px;
+    border-radius: 3px;
+}
+
+body.edukacija-theme .blog-search-mark {
+    background-color: var(--pastel-pink-accent);
+}
+
+/* ==========================================================================
    7. Kartice beleški
    ========================================================================== */
 .experience-stack {
@@ -634,13 +732,81 @@ body {
 }
 
 /* ==========================================================================
+   8b. Vreme čitanja i povezane beleške
+   ========================================================================== */
+.exp-header-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.blog-vreme-citanja {
+    background-color: transparent;
+    color: var(--text-muted);
+    border-color: transparent;
+    padding: 0 12px 0 0;
+    font-weight: 500;
+}
+
+.modal-povezano {
+    border-left-color: var(--card-border);
+    margin-top: 32px;
+    padding-top: 4px;
+}
+
+.povezano-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.povezano-stavka {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    text-align: left;
+    background-color: var(--btn-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.25s ease;
+}
+
+.povezano-stavka:hover {
+    border-color: var(--theme-accent);
+    transform: translateY(-2px);
+}
+
+.povezano-naslov {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+.povezano-stavka .block-date {
+    font-size: 0.78rem;
+    padding: 4px 10px;
+}
+
+/* ==========================================================================
    9. Mikro-animacije i Footer
    ========================================================================== */
 @media (prefers-reduced-motion: no-preference) {
     .fade-in-up {
         opacity: 0;
         transform: translateY(18px);
-        animation: fadeInUp 0.6s ease forwards;
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in-up.fade-in-visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -751,9 +917,11 @@ body {
     }
 
     .block-date { align-self: flex-start; }
+    .exp-header-meta { align-self: flex-start; align-items: flex-start; }
     .edu-buttons-container { flex-direction: column; gap: 10px; }
     .edu-buttons-container .btn-row { flex-direction: column; gap: 10px; }
     .edu-buttons-container .skill-tag { width: 100%; justify-content: center; }
+    .blog-search-wrap { max-width: none; }
     .card { padding: 25px 20px; }
     .modal-content { max-height: 90vh; }
     .modal-header { padding: 16px 20px; }
@@ -766,6 +934,53 @@ button:focus-visible,
     outline: 3px solid #4da3ff;
     outline-offset: 3px;
     border-radius: 4px;
+}
+
+/* ==========================================================================
+   Scroll-to-top dugme
+   ========================================================================== */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 15px -3px var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+    z-index: 999;
+}
+
+.scroll-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .scroll-top-btn {
+        bottom: 20px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+    }
 }
 
 .skip-link {
@@ -793,4 +1008,3 @@ button:focus-visible,
         scroll-behavior: auto !important;
     }
 }
-

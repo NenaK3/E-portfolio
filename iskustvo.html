@@ -10,13 +10,18 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Nena Kozić | Iskustvo">
     <meta property="og:description" content="Radno iskustvo i stručne prakse Nene Kozić u IT industriji i prosveti.">
-    <meta property="og:image" content="https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image.png">
+    <meta property="og:image" content="https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image-iskustvo.png">
     <meta property="og:url" content="https://e-portfolio-nena-kozic.vercel.app/iskustvo.html">
     <link rel="canonical" href="https://e-portfolio-nena-kozic.vercel.app/iskustvo.html">
     <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png">
     <link rel="icon" type="image/png" href="assets/images/logo.png">
-    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon-180x180.png">
     <link rel="manifest" href="manifest.json">
 
     <link rel="stylesheet" href="style/iskustvo.css">
@@ -79,7 +84,7 @@
 
     <main class="page-main-container fade-in-up" id="glavni-sadrzaj" tabindex="-1">
         <h2 class="page-section-title" id="str-naslov"><i class="fa-solid fa-briefcase"></i> Radno iskustvo & prakse</h2>
-        <div class="experience-stack" id="iskustvo-kontejner"></div>
+        <div class="experience-stack timeline" id="iskustvo-kontejner"></div>
     </main>
 
     <footer id="idx-footer">
@@ -207,22 +212,50 @@
                 : '';
 
             return `
-                <div class="card experience-card fade-in-up" style="animation-delay:${idx * 0.1}s">
-                    <div class="exp-header">
-                        <div>
-                            <h3>${i.pozicija}</h3>
-                            <h4><a href="${i.link}" target="_blank" style="color: inherit; text-decoration: none;"><i class="fa-solid fa-link" style="font-size: 12px; margin-right: 5px;"></i>${i.firma}</a></h4>
+                <div class="timeline-item fade-in-up" style="animation-delay:${idx * 0.1}s">
+                    <span class="timeline-dot"><i class="fa-solid fa-briefcase"></i></span>
+                    <div class="card experience-card timeline-content">
+                        <div class="exp-header">
+                            <div>
+                                <h3>${i.pozicija}</h3>
+                                <h4><a href="${i.link}" target="_blank" style="color: inherit; text-decoration: none;"><i class="fa-solid fa-link" style="font-size: 12px; margin-right: 5px;"></i>${i.firma}</a></h4>
+                            </div>
+                            <span class="block-date">${i.period}</span>
                         </div>
-                        <span class="block-date">${i.period}</span>
+                        <p class="exp-opis">${i.opis}</p>
+                        ${tagoviDeo}
+                        ${mentorDeo}
                     </div>
-                    <p class="exp-opis">${i.opis}</p>
-                    ${tagoviDeo}
-                    ${mentorDeo}
                 </div>`;
         }
 
         const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
         const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        function initFadeInReveal(root) {
+            const kontejner = root || document;
+            const elementi = Array.from(kontejner.querySelectorAll('.fade-in-up:not(.fade-in-visible)'));
+            if (kontejner.nodeType === 1 && kontejner.classList.contains('fade-in-up') && !kontejner.classList.contains('fade-in-visible')) {
+                elementi.push(kontejner);
+            }
+            if (!elementi.length) return;
+
+            if (!('IntersectionObserver' in window)) {
+                elementi.forEach(e => e.classList.add('fade-in-visible'));
+                return;
+            }
+
+            const posmatrac = new IntersectionObserver((unosi, obs) => {
+                unosi.forEach(unos => {
+                    if (unos.isIntersecting) {
+                        unos.target.classList.add('fade-in-visible');
+                        obs.unobserve(unos.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+            elementi.forEach(e => posmatrac.observe(e));
+        }
 
         function azurirajDatumFootera() {
             const sada = new Date();
@@ -252,6 +285,7 @@
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
 
             el.kontejner.innerHTML = (r[mod] || []).map((i, idx) => karticaHTML(i, idx)).join('');
+            initFadeInReveal();
         }
 
         function primeniRezim() {
@@ -315,6 +349,7 @@
         primeniRezim();
         osvezi();
         podesiEduDropdown();
+        initFadeInReveal();
     </script>
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };

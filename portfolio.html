@@ -15,8 +15,13 @@
     <link rel="canonical" href="https://e-portfolio-nena-kozic.vercel.app/portfolio.html">
     <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="icon" href="assets/images/favicon.ico" sizes="any">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png">
     <link rel="icon" type="image/png" href="assets/images/logo.png">
-    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon-180x180.png">
     <link rel="manifest" href="manifest.json">
 
     <link rel="stylesheet" href="style/portfolio.css">
@@ -191,26 +196,60 @@
                 bcTrenutna: 'Profil',
                 IT: {
                     titula: 'Master inženjer informacionih tehnologija',
-                    pitch: 'Gradim moderne, pristupačne web aplikacije i volim kad tehnička rešenja imaju jasnu svrhu za korisnika.',
+                    pitch: 'Razvijam moderne, pristupačne veb aplikacije, uz uverenje da svako tehničko rešenje treba da ima jasnu svrhu za korisnika.',
                     oMeni: 'Fokusirana na razvoj modernih frontend aplikacija i napredno upravljanje bazama podataka. Kroz praktičan rad u kompanijama i akademske projekte na FTN-u stekla sam iskustvo u tehnologijama kao što su Angular, React, Node.js i Flutter, kao i u radu sa relacionim bazama i softverskom arhitekturom.',
                     ambicije: 'Dugoročni fokus je usmeren na karijeru u IT industriji, sa primarnim interesovanjem za Frontend razvoj i kreiranje intuitivnih korisničkih interfejsa, kao i za projektovanje baza podataka i Power BI analitiku. Cilj mi je dalji rad sa modernim JavaScript/TypeScript okvirima, napredno upravljanje podacima i kreiranje poslovnih izveštaja koji pomažu u donošenju ključnih odluka.',
                     cvFajl: 'assets/cv/CV IT - srb.pdf',
                     v: [
-                        { kat: 'Frontend & Mobile', stavke: ['Angular / AngularJS', 'React.js', 'Flutter', 'JavaScript (ES6)', 'HTML5 / CSS3', 'Bootstrap'] },
-                        { kat: 'Backend & Baze podataka', stavke: ['Node.js', 'SQL / MySQL', 'Oracle APEX / Oracle DB', 'C / C++ / C#', 'Java / Kotlin', 'PHP'] },
-                        { kat: 'Alati & Metodologije', stavke: ['Git / GitHub', 'Web Mining & Data Mining', 'Human-Computer Interaction (HCI)', 'JSON / Web Design', 'WordPress / CRM'] }
+                        { kat: 'Frontend & Mobile', stavke: [
+                            { naziv: 'Angular / AngularJS', nivo: 85 },
+                            { naziv: 'React.js', nivo: 80 },
+                            { naziv: 'Flutter', nivo: 70 },
+                            { naziv: 'JavaScript (ES6)', nivo: 85 },
+                            { naziv: 'HTML5 / CSS3', nivo: 90 },
+                            { naziv: 'Bootstrap', nivo: 85 }
+                        ] },
+                        { kat: 'Backend & Baze podataka', stavke: [
+                            { naziv: 'Node.js', nivo: 75 },
+                            { naziv: 'SQL / MySQL', nivo: 80 },
+                            { naziv: 'Oracle APEX / Oracle DB', nivo: 70 },
+                            { naziv: 'C / C++ / C#', nivo: 65 },
+                            { naziv: 'Java / Kotlin', nivo: 70 },
+                            { naziv: 'PHP', nivo: 60 }
+                        ] },
+                        { kat: 'Alati & Metodologije', stavke: [
+                            { naziv: 'Git / GitHub', nivo: 85 },
+                            { naziv: 'Web Mining & Data Mining', nivo: 65 },
+                            { naziv: 'Human-Computer Interaction (HCI)', nivo: 70 },
+                            { naziv: 'JSON / Web Design', nivo: 80 },
+                            { naziv: 'WordPress / CRM', nivo: 60 }
+                        ] }
                     ]
                 },
                 Edukacija: {
                     titula: 'Master profesor stručnih predmeta oblasti informacionih tehnologija',
-                    pitch: 'Učim decu da razmišljaju kao programeri — kroz jasne, praktične i zanimljive časove informatike.',
-                    oMeni: 'Strastvena prema pedagogiji, metodici nastave računarstva i digitalnoj pismenosti. Uspešno prenosim apstraktne IT koncepte (poput programiranja u Python-u) mlađim generacijama kroz interaktivne metode, konstruktivistički pristup i savremene nastavne alate.',
+                    pitch: 'Podučavam učenike informatičkom načinu razmišljanja kroz jasne, praktično usmerene i podsticajne časove.',
+                    oMeni: 'Posvećena pedagogiji, metodici nastave računarstva i digitalnoj pismenosti. Uspešno prenosim apstraktne IT koncepte (poput programiranja u Python-u) mlađim generacijama kroz interaktivne metode, konstruktivistički pristup i savremene nastavne alate.',
                     ambicije: 'Rad u prosvetnom sistemu kao profesor informatike i računarstva, kreiranje naprednih radionica i sekcija za talentovane učenike, implementacija EdTech inovacija i istraživanje primene obrazovnih softvera u nastavi.',
                     cvFajl: 'assets/cv/CV PN - srb.pdf',
                     v: [
-                        { kat: 'Metodika i pedagogija', stavke: ['Konstruktivizam u nastavi', 'Programirano učenje', 'Digitalna pismenost', 'Individualizacija nastave'] },
-                        { kat: 'Nastavni alati', stavke: ['Izrada e-testova', 'Google Forms', 'Interaktivni materijali (Python Turtle, Pygame)'] },
-                        { kat: 'Lične osobine', stavke: ['Empatija', 'Strpljenje u radu sa učenicima', 'Organizovanost', 'Jasna komunikacija'] }
+                        { kat: 'Metodika i pedagogija', stavke: [
+                            { naziv: 'Konstruktivizam u nastavi', nivo: 80 },
+                            { naziv: 'Programirano učenje', nivo: 75 },
+                            { naziv: 'Digitalna pismenost', nivo: 85 },
+                            { naziv: 'Individualizacija nastave', nivo: 75 }
+                        ] },
+                        { kat: 'Nastavni alati', stavke: [
+                            { naziv: 'Izrada e-testova', nivo: 80 },
+                            { naziv: 'Google Forms', nivo: 85 },
+                            { naziv: 'Interaktivni materijali (Python Turtle, Pygame)', nivo: 80 }
+                        ] },
+                        { kat: 'Lične osobine', stavke: [
+                            { naziv: 'Empatija', nivo: 90 },
+                            { naziv: 'Strpljenje u radu sa učenicima', nivo: 90 },
+                            { naziv: 'Organizovanost', nivo: 85 },
+                            { naziv: 'Jasna komunikacija', nivo: 85 }
+                        ] }
                     ]
                 }
             },
@@ -224,26 +263,60 @@
                 bcTrenutna: 'Profile',
                 IT: {
                     titula: 'Master of Information Technology',
-                    pitch: 'I build modern, accessible web apps and care about technical solutions having a clear purpose for the user.',
+                    pitch: 'I develop modern, accessible web applications, guided by the principle that every technical solution should serve a clear purpose for the user.',
                     oMeni: 'Focused on developing modern frontend applications and advanced database management. Through professional internships and academic projects at the Faculty of Technical Sciences, I have gained hands-on experience with Angular, React, Node.js, and Flutter, alongside relational databases and software architecture.',
                     ambicije: 'Long-term focus is oriented toward a career in the IT industry, with a primary interest in Frontend development and creating intuitive user interfaces, as well as database design and Power BI analytics. My goal is to further work with modern JavaScript/TypeScript frameworks, advanced data management, and generating business reports that drive key decision-making.',
                     cvFajl: 'assets/cv/CV IT - eng.pdf',
                     v: [
-                        { kat: 'Frontend & Mobile', stavke: ['Angular / AngularJS', 'React.js', 'Flutter', 'JavaScript (ES6)', 'HTML5 / CSS3', 'Bootstrap'] },
-                        { kat: 'Backend & Databases', stavke: ['Node.js', 'SQL / MySQL', 'Oracle APEX / Oracle DB', 'C / C++ / C#', 'Java / Kotlin', 'PHP'] },
-                        { kat: 'Tools & Methodologies', stavke: ['Git / GitHub', 'Web Mining & Data Mining', 'Human-Computer Interaction (HCI)', 'JSON / Web Design', 'WordPress / CRM'] }
+                        { kat: 'Frontend & Mobile', stavke: [
+                            { naziv: 'Angular / AngularJS', nivo: 85 },
+                            { naziv: 'React.js', nivo: 80 },
+                            { naziv: 'Flutter', nivo: 70 },
+                            { naziv: 'JavaScript (ES6)', nivo: 85 },
+                            { naziv: 'HTML5 / CSS3', nivo: 90 },
+                            { naziv: 'Bootstrap', nivo: 85 }
+                        ] },
+                        { kat: 'Backend & Databases', stavke: [
+                            { naziv: 'Node.js', nivo: 75 },
+                            { naziv: 'SQL / MySQL', nivo: 80 },
+                            { naziv: 'Oracle APEX / Oracle DB', nivo: 70 },
+                            { naziv: 'C / C++ / C#', nivo: 65 },
+                            { naziv: 'Java / Kotlin', nivo: 70 },
+                            { naziv: 'PHP', nivo: 60 }
+                        ] },
+                        { kat: 'Tools & Methodologies', stavke: [
+                            { naziv: 'Git / GitHub', nivo: 85 },
+                            { naziv: 'Web Mining & Data Mining', nivo: 65 },
+                            { naziv: 'Human-Computer Interaction (HCI)', nivo: 70 },
+                            { naziv: 'JSON / Web Design', nivo: 80 },
+                            { naziv: 'WordPress / CRM', nivo: 60 }
+                        ] }
                     ]
                 },
                 Edukacija: {
                     titula: 'Master Professor of Information Technology Vocational Subjects',
-                    pitch: 'I teach kids to think like programmers — through clear, practical, and engaging computer science lessons.',
-                    oMeni: 'Passionate about pedagogy, computer science teaching methodology, and digital literacy. Successfully delivering abstract IT concepts (such as Python programming) to younger generations through interactive methods, constructivism, and contemporary educational tools.',
+                    pitch: 'I guide students toward computational thinking through clear, practically oriented, and engaging computer science lessons.',
+                    oMeni: 'Dedicated to pedagogy, computer science teaching methodology, and digital literacy. I successfully convey abstract IT concepts (such as Python programming) to younger generations through interactive methods, a constructivist approach, and contemporary educational tools.',
                     ambicije: 'Working in the education system as a professor of computer science and information technology, creating advanced workshops and sections for talented students, implementing EdTech innovations and researching the application of educational software in teaching.',
                     cvFajl: 'assets/cv/CV PN - eng.pdf',
                     v: [
-                        { kat: 'Methodology & Pedagogy', stavke: ['Constructivism in Education', 'Programmed Learning', 'Digital Literacy', 'Individualized Teaching'] },
-                        { kat: 'Educational Tools', stavke: ['E-tests Generation', 'Google Forms', 'Interactive Materials (Python Turtle, Pygame)'] },
-                        { kat: 'Personal Traits', stavke: ['Empathy', 'Patience with Students', 'Organizational Skills', 'Clear Communication'] }
+                        { kat: 'Methodology & Pedagogy', stavke: [
+                            { naziv: 'Constructivism in Education', nivo: 80 },
+                            { naziv: 'Programmed Learning', nivo: 75 },
+                            { naziv: 'Digital Literacy', nivo: 85 },
+                            { naziv: 'Individualized Teaching', nivo: 75 }
+                        ] },
+                        { kat: 'Educational Tools', stavke: [
+                            { naziv: 'E-tests Generation', nivo: 80 },
+                            { naziv: 'Google Forms', nivo: 85 },
+                            { naziv: 'Interactive Materials (Python Turtle, Pygame)', nivo: 80 }
+                        ] },
+                        { kat: 'Personal Traits', stavke: [
+                            { naziv: 'Empathy', nivo: 90 },
+                            { naziv: 'Patience with Students', nivo: 90 },
+                            { naziv: 'Organizational Skills', nivo: 85 },
+                            { naziv: 'Clear Communication', nivo: 85 }
+                        ] }
                     ]
                 }
             }
@@ -291,6 +364,43 @@
 
         const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
         const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        function initFadeInReveal(root) {
+            const kontejner = root || document;
+            const elementi = Array.from(kontejner.querySelectorAll('.fade-in-up:not(.fade-in-visible)'));
+            if (kontejner.nodeType === 1 && kontejner.classList.contains('fade-in-up') && !kontejner.classList.contains('fade-in-visible')) {
+                elementi.push(kontejner);
+            }
+            if (!elementi.length) return;
+
+            if (!('IntersectionObserver' in window)) {
+                elementi.forEach(e => e.classList.add('fade-in-visible'));
+                return;
+            }
+
+            const posmatrac = new IntersectionObserver((unosi, obs) => {
+                unosi.forEach(unos => {
+                    if (unos.isIntersecting) {
+                        unos.target.classList.add('fade-in-visible');
+                        obs.unobserve(unos.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+            elementi.forEach(e => posmatrac.observe(e));
+        }
+
+        function animirajSkillBarove(root) {
+            const kontejner = root || document;
+            kontejner.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                bar.style.width = '0%';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        bar.style.width = bar.dataset.nivo + '%';
+                    });
+                });
+            });
+        }
 
         function azurirajDatumFootera() {
             const sada = new Date();
@@ -341,10 +451,21 @@
             el.vestineKontejner.innerHTML = s.v.map((g, idx) => `
                 <div class="card skill-category fade-in-up" style="animation-delay:${idx * 0.1}s">
                     <h4>${g.kat}</h4>
-                    <ul>${g.stavke.map(x => `<li><i class="fa-solid fa-check"></i> ${x}</li>`).join('')}</ul>
+                    <ul class="skill-bar-list">${g.stavke.map(x => `
+                        <li class="skill-bar-item">
+                            <div class="skill-bar-label">
+                                <span>${x.naziv}</span>
+                                <span class="skill-bar-percent">${x.nivo}%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-nivo="${x.nivo}" style="width:0%"></div>
+                            </div>
+                        </li>`).join('')}</ul>
                 </div>`).join('');
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+            initFadeInReveal();
+            animirajSkillBarove();
         }
 
         function otvoriCvModal() {
@@ -399,9 +520,11 @@
             const noviTab = document.getElementById(tabId);
             noviTab.classList.add('active');
             evt.currentTarget.classList.add('active');
-            noviTab.classList.remove('fade-in-up');
+            noviTab.classList.remove('fade-in-up', 'fade-in-visible');
             void noviTab.offsetWidth;
             noviTab.classList.add('fade-in-up');
+            initFadeInReveal(noviTab);
+            if (tabId === 'vestine') animirajSkillBarove(noviTab);
         }
 
         function toggleMenu() {
@@ -446,6 +569,7 @@
         primeniRezim();
         osveziSadrzaj();
         podesiEduDropdown();
+        initFadeInReveal();
     </script>
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
