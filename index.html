@@ -26,10 +26,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet"></noscript>
 
     <link rel="stylesheet" href="style/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'; this.onload=null;">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="style/print.css" media="print">
     <script type="application/ld+json">
     {
@@ -54,7 +59,7 @@
         <button onclick="promeniTemu()" class="control-btn" id="theme-btn" aria-label="Promeni temu / Switch theme"><i class="fa-solid fa-sun"></i></button>
     </div>
 
-    <div class="welcome-container" id="glavni-sadrzaj" tabindex="-1">
+    <main class="welcome-container" id="glavni-sadrzaj" tabindex="-1">
         <h1 id="idx-ime">Nena Kozić</h1>
         <p class="subtitle" id="idx-podnaslov">Dobrodošli na moj digitalni portfolio. Izaberite profil koji želite da istražite:</p>
         <div class="split-grid">
@@ -73,7 +78,7 @@
                 <button id="idx-edu-btn">Uđi u Prosvetni Portfolio <i class="fa-solid fa-arrow-right"></i></button>
             </div>
         </div>
-    </div>
+    </main>
 
     <footer id="idx-footer">
         <span id="idx-footer-copy">©Copyright by Nena Kozić</span>
@@ -81,117 +86,8 @@
         <span id="idx-footer-datum"></span>
     </footer>
 
-    <script>
-        'use strict';
-
-        let trenutniJezik = localStorage.getItem('portfolioJezik') || 'SRB';
-        let trenutniRezim = localStorage.getItem('portfolioRezim') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-
-        const prevodiIndex = {
-            SRB: {
-                sub: 'Dobrodošli na moj digitalni portfolio. Izaberite profil koji želite da istražite:',
-                itNaslov: 'IT Inženjering',
-                itSub: 'Master inženjer informacionih tehnologija',
-                itOpis: 'Razvoj frontend aplikacija, napredno upravljanje bazama podataka i softverska arhitektura.',
-                itBtn: 'Uđi u IT Portfolio',
-                eduNaslov: 'Edukacija / Prosveta',
-                eduSub: 'Master profesor stručnih predmeta oblasti informacionih tehnologija',
-                eduOpis: 'Metodika nastave računarstva, pedagoški rad sa decom, konstruktivizam i evaluacija znanja.',
-                eduBtn: 'Uđi u Prosvetni Portfolio',
-                footer: '©Copyright by Nena Kozić'
-            },
-            ENG: {
-                sub: 'Welcome to my digital portfolio. Choose the profile you want to explore:',
-                itNaslov: 'IT Engineering',
-                itSub: 'Master of Information Technology',
-                itOpis: 'Frontend application development, advanced database management, and software architecture.',
-                itBtn: 'Enter IT Portfolio',
-                eduNaslov: 'Education / Teaching',
-                eduSub: 'Master professor of vocational subjects in information technology',
-                eduOpis: 'Computer science teaching methodology, pedagogical work with children, constructivism, and evaluation.',
-                eduBtn: 'Enter Educational Portfolio',
-                footer: '©Copyright by Nena Kozić'
-            }
-        };
-
-        const poljaZaPrevod = [
-            { id: 'idx-podnaslov', kljuc: 'sub' },
-            { id: 'idx-it-naslov', kljuc: 'itNaslov' },
-            { id: 'idx-it-sub', kljuc: 'itSub' },
-            { id: 'idx-it-opis', kljuc: 'itOpis' },
-            { id: 'idx-it-btn', kljuc: 'itBtn', btn: true },
-            { id: 'idx-edu-naslov', kljuc: 'eduNaslov' },
-            { id: 'idx-edu-sub', kljuc: 'eduSub' },
-            { id: 'idx-edu-opis', kljuc: 'eduOpis' },
-            { id: 'idx-edu-btn', kljuc: 'eduBtn', btn: true },
-            { id: 'idx-footer-copy', kljuc: 'footer' }
-        ];
-
-        const el = Object.fromEntries(
-            poljaZaPrevod.map(p => [p.id, document.getElementById(p.id)])
-        );
-        el['lang-btn'] = document.getElementById('lang-btn');
-        el['theme-btn'] = document.getElementById('theme-btn');
-        el['idx-footer-datum'] = document.getElementById('idx-footer-datum');
-
-        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
-        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-        function azurirajDatumFootera() {
-            const sada = new Date();
-            const meseci = trenutniJezik === 'SRB' ? meseciSRB : meseciENG;
-            const mesec = meseci[sada.getMonth()];
-            const godina = sada.getFullYear();
-            el['idx-footer-datum'].innerText = trenutniJezik === 'SRB'
-                ? `${mesec} ${godina}.`
-                : `${mesec} ${godina}.`;
-        }
-
-        function primeniRezim() {
-            document.body.classList.toggle('light-mode', trenutniRezim === 'light');
-            el['theme-btn'].innerHTML = trenutniRezim === 'light'
-                ? '<i class="fa-solid fa-moon"></i>'
-                : '<i class="fa-solid fa-sun"></i>';
-            const metaTema = document.getElementById('theme-color-meta');
-            if (metaTema) metaTema.setAttribute('content', trenutniRezim === 'light' ? '#f8fafc' : '#0f172a');
-        }
-
-        function primeniJezik() {
-            const p = prevodiIndex[trenutniJezik];
-
-            poljaZaPrevod.forEach(({ id, kljuc, btn }) => {
-                el[id][btn ? 'innerHTML' : 'innerText'] = btn
-                    ? `${p[kljuc]} <i class="fa-solid fa-arrow-right"></i>`
-                    : p[kljuc];
-            });
-
-            el['lang-btn'].innerText = trenutniJezik === 'SRB' ? 'EN' : 'SRB';
-            azurirajDatumFootera();
-        }
-
-        function promeniTemu() {
-            trenutniRezim = trenutniRezim === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('portfolioRezim', trenutniRezim);
-            primeniRezim();
-        }
-
-        function promeniJezik() {
-            trenutniJezik = trenutniJezik === 'SRB' ? 'ENG' : 'SRB';
-            localStorage.setItem('portfolioJezik', trenutniJezik);
-            primeniJezik();
-        }
-
-        function izaberiMod(mod) {
-            sessionStorage.setItem('portfolioMod', mod);
-            window.location.href = 'portfolio.html';
-        }
-
-        primeniRezim();
-        primeniJezik();
-    </script>
-    <script>
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
+    <script src="script/index.js" defer></script>
+    <script src="script/analytics.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
