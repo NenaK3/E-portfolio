@@ -153,6 +153,7 @@
                         {
                             naslov: 'Šta sam naučila praveći ovaj e-portfolio',
                             id: 'it-portfolio',
+                            povezano: ['it-cvecara', 'it-iso9126'],
                             datum: 'Jul 2026',
                             opis: 'Pretpostavljala sam da će najznačajniji izazov predstavljati vizuelni dizajn. Pokazalo se, međutim, da je suštinski izazov ležao u arhitekturi koda i podeli sadržaja namenjenog dvema potpuno različitim ciljnim grupama na istim stranicama.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-code"></i> Lični projekat • 2026</div>
@@ -185,10 +186,92 @@
                                        <i class="fa-solid fa-circle-check"></i> <strong>Zaključak:</strong> Sajt je iz statičke prezentacije prerastao u samostalan inženjerski projekat koji potvrđuje kompetencije u arhitekturi koda, UX/UI dizajnu i pedantnoj posvećenosti detaljima.
                                    </div>`
                         },
+                                                {
+                            naslov: 'Rudarstvo veba u praksi: Od analize grafa do rudarenja sentimenta',
+                            id: 'it-webmining',
+                            datum: 'Jul 2025',
+                            opis: 'Pregled pet praktičnih domaćih zadataka u okviru predmeta Web Mining na master studijama — analiza linkova algoritmima PageRank i HITS (Moz), analiza log fajlova veb servera (Nihuo), analiza socijalnih mreža na Marvel Universe skupu podataka (Gephi), klasterovanje K-Means i DBSCAN algoritmima u Python-u i analiza mišljenja u alatu Altair AI Studio.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-brain"></i> Master akademske studije • 2024/2025</div>
+                                   <p class="modal-intro">Predmet Web Mining na master studijama obuhvatio je niz praktičnih domaćih zadataka kroz koje sam primenila teorijske koncepte veb rudarenja na realne podatke — od algoritama za analizu linkova, preko analize socijalnih mreža, do obrade log fajlova veb servera.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-link"></i> 1. Analiza linkova: algoritmi PageRank i HITS</div>
+                                       <div class="modal-section-text">Analiza linkova predstavlja ključnu oblast Web Structure Mining-a. U okviru prvog domaćeg zadatka izučila sam dva najznačajnija algoritma za rangiranje veb stranica na osnovu strukture njihove povezanosti.</div>
+                                       <div class="modal-example"><strong>Teorijska osnova:</strong> PageRank (Brin & Page) dodeljuje svakoj stranici ocenu ranga prema formuli PR(u) = C·Σ(PR(v)/N<sub>v</sub>), gde relevantnost stranice zavisi od broja i kvaliteta stranica koje na nju upućuju. HITS (Kleinberg) razlikuje dve uloge stranica: hub-ove, koji upućuju na mnogo autoriteta, i autoritete, koji primaju linkove od mnogo hub-ova.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-magnifying-glass-chart"></i> 1.1. Praktična analiza: sajt knjižare "Vulkan" (Moz Link Explorer)</div>
+                                       <div class="modal-section-text">Za praktičan deo zadatka analizirala sam profil povratnih linkova sajta knjizare-vulkan.rs alatom Moz Link Explorer.</div>
+                                       <div class="modal-example"><strong>Ključni rezultati:</strong> Domain Authority 38/100, 4.900 povezanih domena (neto gubitak od 544 u poslednjih 60 dana — 48 novih naspram 592 izgubljenih), 155.500 dolaznih linkova, Page Authority u rasponu 50–55%, sajt se rangira po 277 ključnih reči, a spam score iznosi svega 1% (73,9% povezujućih domena ima nizak rizik).</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-diagram-project"></i> 2. Analiza socijalnih mreža: Gephi i Marvel Universe</div>
+                                       <div class="modal-section-text">Treći domaći zadatak bio je posvećen analizi socijalnih mreža (SNA) u alatu Gephi, na skupu podataka o zajedničkom pojavljivanju 327 Marvel likova u stripovima iz perioda 1961–1999/2000, povezanih sa 9.891 vezom izračunatom na osnovu učestalosti zajedničkih pojavljivanja.</div>
+                                       <div class="modal-example"><strong>Vizuelizacija:</strong> mreža je usmerena (Directed) i prikazana Force Atlas rasporedom, uz Ranking obojenih čvorova prema stepenu povezanosti (Degree) radi lakšeg uočavanja centralnih likova.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-circle-nodes"></i> 2.1. Mere centralnosti u praksi</div>
+                                       <div class="modal-section-text">Primenila sam četiri standardne mere centralnosti kako bih identifikovala najuticajnije likove u mreži.</div>
+                                       <div class="modal-example"><strong>Rezultati:</strong> Degree centralnost: prosečno 30,25 veza po čvoru (od 12 do preko 240). Closeness centralnost: prosečna dužina putanje 2,123. Betweenness centralnost: izdvojila čvorove-mostove između klastera likova. Eigenvector centralnost: 0,00375 nakon 100 iteracija, što ukazuje na uticaj povezanosti sa drugim visoko-centralnim čvorovima.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-explosion"></i> 2.2. Simulacija uklanjanja ključnog čvora</div>
+                                       <div class="modal-section-text">Da bih razumela otpornost mreže, simulirala sam uklanjanje čvora sa najvećim brojem veza.</div>
+                                       <div class="modal-example"><strong>Efekat uklanjanja:</strong> broj čvorova pao je sa 327 na 326, broj veza sa 9.891 na 9.633 (−258), prosečan stepen povezanosti opao je sa 30,248 na 29,549, prečnik mreže porastao je sa 4 na 5, a modularnost sa 0,436 na 0,442 — mreža nakon gubitka centralnog čvora postaje nešto fragmentiranija, ali ostaje povezana.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-server"></i> 3. Analiza log fajlova: Nihuo Web Log Analyzer</div>
+                                       <div class="modal-section-text">Drugi domaći zadatak fokusiran je na analizu Apache log fajlova generisanih na lokalnom XAMPP serveru za PHP aplikaciju za pretragu fajlova, uz pomoć alata Nihuo Web Log Analyzer.</div>
+                                       <div class="modal-example"><strong>Opšta statistika (06–28.09.2004):</strong> 370 ukupnih pogodaka, 72 pregleda stranica, 60 poseta i ukupan protok od 24,31 MB. Prosečno trajanje posete iznosilo je 1 minut i 41 sekundu, a prosečan broj pregleda po poseti 1,20 — što ukazuje na kratke, fokusirane posete.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-clock-rotate-left"></i> 3.1. Obrasci ponašanja korisnika</div>
+                                       <div class="modal-section-text">Analiza vremenskih i geografskih obrazaca otkrila je jasne trendove u korišćenju sajta.</div>
+                                       <div class="modal-example"><strong>Nalazi:</strong> aktivnost je bila najveća u ranim jutarnjim (00–05h) i večernjim satima (18–21h), dok je period 10–14h bio gotovo neaktivan. Petak je bio najaktivniji dan u nedelji, a subota najmanje aktivna. Geografski, najviše poseta dolazilo je iz SAD (najaktivnija država Kalifornija), dok su Internet Explorer 6.x i Windows XP bili dominantni pregledač i platforma. Google je bio jedini izvor organskog saobraćaja, uz visoku stopu odbijanja od 93,22%.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-chart-line"></i> 4. Klasterovanje i mašinsko učenje (K-Means vs. DBSCAN) — Domaći zadatak 4</div>
+                                       <div class="modal-section-text">Četvrti domaći zadatak (predmet Web mining, "Data mining") sproveden je u Python-u, u JupyterLab okruženju, nad datasetom Republike Srbije sa Portala otvorenih podataka koji opisuje emisije zagađujućih materija u vode. Cilj je bio uporediti <code>K-Means</code> i <code>DBSCAN</code> algoritme klasterovanja na istim podacima.</div>
+                                       <div class="modal-example"><strong>Priprema i učitavanje podataka:</strong> Rad je organizovan u JupyterLab okruženju uz standardne biblioteke za analizu podataka (Pandas, NumPy), vizualizaciju (Matplotlib, Seaborn) i mašinsko učenje (Scikit-learn). Dataset je učitan iz CSV fajla preuzetog sa Portala otvorenih podataka, nakon čega je provereno da li sve potrebne kolone (Godina, Opština, Mesto, Zagađujuća materija, Količina) zaista postoje u tabeli.</div>
+
+                                       <div class="modal-example"><strong>Čišćenje i deskriptivna analiza:</strong> Kolona sa količinom zagađivača pretvorena je u numerički format, a redovi sa nedostajućim vrednostima uklonjeni su iz skupa. Prikazane su osnovne deskriptivne statistike, broj uzoraka po godinama i deset najzastupljenijih zagađujućih materija, uz histogram i boxplot distribucije količine, kao i stubičasti grafikon top 10 opština po ukupnoj količini zagađenja.</div>
+
+                                       <div class="modal-example"><strong>Filtriranje i Elbow metoda:</strong> Za klasterovanje su izdvojeni samo redovi sa parnom vrednošću u koloni Šifra mesta, a numerička kolona sa količinom zagađenja je standardizovana. Elbow metodom (praćenjem promene inercije za broj klastera od 1 do 9) grafički je određen optimalan broj klastera za K-Means algoritam.</div>
+
+                                       <div class="modal-example"><strong>K-Means klasterovanje:</strong> Podaci su podeljeni u 5 klastera pomoću K-Means algoritma, a rezultat je vizuelno prikazan na dvodimenzionalnom grafiku (uz dodatu nasumičnu X osu, s obzirom da je klasterovana samo jedna numerička promenljiva).</div>
+
+                                       <div class="modal-example"><strong>Grupisanje po okruzima:</strong> Dobijeni klasteri su grupisani po okruzima kako bi se videlo koliko elemenata iz svakog klastera pripada kom okrugu, a rezultat je prikazan i tabelarno i kroz stacked bar grafikon.</div>
+
+                                       <div class="modal-example"><strong>Binarizacija podataka:</strong> Na osnovu medijane kolone sa količinom zagađenja, vrednosti su binarizovane (0 za vrednosti ispod ili jednake medijani, 1 za vrednosti iznad nje), a rezultat je prikazan tabelarno za prvih 100 redova i vizuelizovan stubičastim grafikonom. Rezultati K-Means klasterovanja sačuvani su u novi CSV fajl.</div>
+
+                                       <div class="modal-example"><strong>DBSCAN klasterovanje:</strong> Nad istim podacima (uz uklanjanje redova sa količinom jednakom nuli) primenjen je DBSCAN algoritam sa parametrima eps=0.5 i min_samples=5. Prikazan je broj elemenata po dobijenim klasterima, kao i najzastupljenije zagađujuće materije unutar svakog klastera, uz dve vizualizacije — po indeksu uzorka i po nazivu zagađujuće materije. Rezultati su sačuvani u poseban CSV fajl.</div>
+
+                                       <div class="modal-example"><strong>K-Means vs. DBSCAN — rezultati poređenja:</strong> K-Means je podelio podatke u 5 klastera (1105 / 1 / 3 / 6 / 1 elemenata) — izrazito neuravnoteženo, jer algoritam prisiljava svaku tačku da pripada nekom klasteru, čak i kad je znatno odudara od ostalih. DBSCAN je, nasuprot tome, formirao 1 prirodan klaster od 1737 elemenata i izdvojio tačno 16 tačaka kao šum (klaster -1), bez potrebe da unapred definišem broj klastera.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-face-smile"></i> 5. Analiza mišljenja / sentimenta — Domaći zadatak 5</div>
+                                       <div class="modal-section-text">Peti domaći zadatak bio je posvećen analizi sentimenta (rudarenju mišljenja) — identifikaciji i klasifikaciji stavova, emocija i tonaliteta izraženih u tekstu, korišćenjem tehnika obrade prirodnog jezika (NLP) i alata bez pisanja koda, kroz vizuelno okruženje <strong>Altair AI Studio</strong> (RapidMiner-based platforma).</div>
+                                       <div class="modal-example"><strong>Skup podataka:</strong> Korišćen je Kaggle skup podataka o TV serijama (IMDb TV Series Data) sa atributima poput naslova, žanra, broja sezona, rejtinga, broja glasova i sinopsisa — spreman za analizu bez dodatnog čišćenja.</div>
+                                       <div class="modal-example"><strong>Tok rada u Altair AI Studio:</strong> 1) Import Data — uvoz CSV skupa (11.933 primera) u Repository karticu. 2) Design kartica — povezivanje uvezenog seta sa operatorom <code>Filter Examples</code> (Operators/Blending/Examples/Filter). 3) Definisanje kriterijuma filtriranja — npr. <code>Title starts with N</code>, čime se skup sužava na 235 primera. 4) Dodavanje drugog uslova <code>Rating &gt; 7</code>, čime se skup dalje sužava na 100 primera. 5) Vizualizacija rezultata kroz Scatter/Bubble dijagram (naslov serije na X-osi, rejting na Y-osi) i Pie/Donut dijagram (agregacija po žanru, funkcija Count).</div>
+                                       <div class="modal-example"><strong>Nalaz iz Pie dijagrama:</strong> Najveći udeo (49 serija) zauzimaju serije žanra komedija/romantika sa ocenom većom od 7 i nazivom koji počinje na slovo N, dok je dodavanjem trećeg filtera <code>Genre equals "Animation, Adventure, Comedy"</code> izdvojena samo jedna serija — najmanji udeo u čitavom skupu.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Rezultat:</strong> Pet sprovedenih domaćih zadataka pokazuje kako se ista teorijska oblast — veb rudarenje — grana na potpuno različite analitičke izazove: prvi domaći zadatak (analiza linkova) otkriva strukturu grafa i autoritet stranica, drugi (analiza logova) ponašanje stvarnih korisnika u vremenu, treći (analiza socijalnih mreža) dinamiku i uticaj unutar mreže, četvrti (data mining) grupisanje podataka bez oznaka kroz klasterovanje, a peti (analiza mišljenja) razumevanje subjektivnog stava korisnika kroz analizu sentimenta. Zajedno, oni potvrđuju značaj multidisciplinarnog pristupa u donošenju strateških i inženjerskih odluka na osnovu velikih podataka.
+                                   </div>`
+                        },
                         {
                             naslov: 'Ocenjivanje kvaliteta sopstvenog koda kroz ISO/IEC 9126',
                             id: 'it-iso9126',
-                            povezano: ['it-tim-hms'],
+                            povezano: ['it-tim-hms', 'it-webmining'],
                             datum: 'Decembar 2024',
                             opis: 'U okviru predmeta Upravljanje kvalitetom softvera na master studijama, analizirala sam sopstvenu aplikaciju Hospital Management System primenom međunarodnih standarda i metoda kvantitativne analize.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-award"></i> Master akademske studije • 2024</div>
@@ -250,6 +333,7 @@
                         {
                             naslov: 'E-cvećara "Rose": Razvoj mog prvog projekta i uočene lekcije',
                             id: 'it-cvecara',
+                            povezano: ['it-portfolio'],
                             datum: '2021/2022',
                             opis: 'E-cvećara "Rose" predstavlja prvi celovit projekat koji sam ikada realizovala — nastao u drugoj godini osnovnih studija na predmetu Objektno orijentisano programiranje. Taj projekat bio je prekretnica u kom je teorija prešla u praktičan kod.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-seedling"></i> Prvi praktični projekat • 2021/2022</div>
@@ -394,10 +478,92 @@
                                        <i class="fa-solid fa-circle-check"></i> <strong>Result:</strong> The portfolio evolved from a static page into an engineering project proving core competencies in code architecture, UX design, and attention to detail.
                                    </div>`
                         },
+                                                {
+                            naslov: 'Web Mining in Practice: From Graph Theory to Sentiment Analysis',
+                            id: 'it-webmining',
+                            datum: 'July 2025',
+                            opis: 'An overview of five practical assignments completed during the Web Mining master course — link analysis with PageRank and HITS (Moz), web server log analysis (Nihuo), social network analysis on the Marvel Universe dataset (Gephi), K-Means and DBSCAN clustering in Python, and opinion analysis in Altair AI Studio.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-brain"></i> Master Academic Studies • 2024/2025</div>
+                                   <p class="modal-intro">The Web Mining course included a series of practical assignments through which I applied theoretical web mining concepts to real data — from link analysis algorithms, through social network analysis, to web server log processing.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-link"></i> 1. Link Analysis: PageRank and HITS Algorithms</div>
+                                       <div class="modal-section-text">Link analysis is a core area of Web Structure Mining. For the first assignment, I studied the two most significant algorithms for ranking web pages based on their link structure.</div>
+                                       <div class="modal-example"><strong>Theoretical basis:</strong> PageRank (Brin & Page) assigns each page a rank score using PR(u) = C·Σ(PR(v)/N<sub>v</sub>), where a page's relevance depends on the number and quality of pages linking to it. HITS (Kleinberg) distinguishes two roles: hubs, which point to many authorities, and authorities, which receive links from many hubs.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-magnifying-glass-chart"></i> 1.1. Practical Analysis: Bookstore "Vulkan" Website (Moz Link Explorer)</div>
+                                       <div class="modal-section-text">For the practical part of the assignment, I analyzed the backlink profile of knjizare-vulkan.rs using Moz Link Explorer.</div>
+                                       <div class="modal-example"><strong>Key results:</strong> Domain Authority 38/100, 4,900 linking domains (a net loss of 544 over the past 60 days — 48 discovered vs. 592 lost), 155,500 inbound links, Page Authority of 50–55%, ranking for 277 keywords, and a spam score of just 1% (73.9% of linking domains carry low risk).</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-diagram-project"></i> 2. Social Network Analysis: Gephi and the Marvel Universe</div>
+                                       <div class="modal-section-text">The third assignment focused on social network analysis (SNA) in Gephi, using a dataset of 327 Marvel characters co-appearing in comics from 1961–1999/2000, connected by 9,891 edges weighted by co-appearance frequency.</div>
+                                       <div class="modal-example"><strong>Visualization:</strong> the network is directed and was rendered using the Force Atlas layout, with node color ranked by Degree to highlight the most central characters.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-circle-nodes"></i> 2.1. Centrality Measures in Practice</div>
+                                       <div class="modal-section-text">I applied four standard centrality measures to identify the most influential characters in the network.</div>
+                                       <div class="modal-example"><strong>Results:</strong> Degree centrality: an average of 30.25 connections per node (ranging from 12 to over 240). Closeness centrality: an average path length of 2.123. Betweenness centrality: highlighted bridge nodes between character clusters. Eigenvector centrality: 0.00375 after 100 iterations, reflecting influence derived from connections to other highly central nodes.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-explosion"></i> 2.2. Simulating the Removal of a Key Node</div>
+                                       <div class="modal-section-text">To understand the network's resilience, I simulated removing the node with the highest degree.</div>
+                                       <div class="modal-example"><strong>Effect of removal:</strong> node count dropped from 327 to 326, edge count from 9,891 to 9,633 (−258), average degree fell from 30.248 to 29.549, network diameter increased from 4 to 5, and modularity rose from 0.436 to 0.442 — the network becomes somewhat more fragmented after losing its central node, but remains connected.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-server"></i> 3. Log Analysis: Nihuo Web Log Analyzer</div>
+                                       <div class="modal-section-text">The second assignment focused on analyzing Apache log files generated by a local XAMPP server for a PHP file-search application, using the Nihuo Web Log Analyzer tool.</div>
+                                       <div class="modal-example"><strong>General statistics (Sep 6–28, 2004):</strong> 370 total hits, 72 page views, 60 visits, and 24.31 MB of total bandwidth. Average visit length was 1 minute 41 seconds, with an average of 1.20 page views per visit — indicating short, focused visits.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-clock-rotate-left"></i> 3.1. User Behavior Patterns</div>
+                                       <div class="modal-section-text">Analysis of temporal and geographic patterns revealed clear trends in site usage.</div>
+                                       <div class="modal-example"><strong>Findings:</strong> activity peaked in the early morning (00:00–04:59) and evening hours (18:00–20:59), while the 10:00–13:59 window was nearly inactive. Friday was the most active day of the week, Saturday the least. Geographically, most visits came from the US (California being the most active state), while Internet Explorer 6.x and Windows XP were the dominant browser and platform. Google was the sole source of organic traffic, with a high bounce rate of 93.22%.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-chart-line"></i> 4. Clustering & Machine Learning (K-Means vs. DBSCAN) — Assignment 4</div>
+                                       <div class="modal-section-text">The fourth assignment (Web Mining course, "Data mining") was implemented in Python inside JupyterLab, using an open dataset from the Serbian Open Data Portal describing pollutant emissions into water. The goal was to compare <code>K-Means</code> and <code>DBSCAN</code> clustering algorithms on the same data.</div>
+                                       <div class="modal-example"><strong>Setup and loading the data:</strong> The work was organized in JupyterLab using standard libraries for data analysis (Pandas, NumPy), visualization (Matplotlib, Seaborn), and machine learning (Scikit-learn). The dataset was loaded from a CSV file downloaded from the Open Data Portal, and all required columns (Year, Municipality, Place, Pollutant, Amount) were checked for existence.</div>
+
+                                       <div class="modal-example"><strong>Cleaning and descriptive analysis:</strong> The pollutant amount column was converted to numeric format and rows with missing values were removed. Basic descriptive statistics, sample counts per year, and the ten most common pollutants were displayed, along with a histogram and boxplot of the amount distribution and a bar chart of the top 10 municipalities by total pollution.</div>
+
+                                       <div class="modal-example"><strong>Filtering and the Elbow method:</strong> Only rows with an even value in the "Place code" column were kept for clustering, and the numeric pollution-amount column was standardized. The Elbow method (tracking inertia for cluster counts from 1 to 9) was used to visually determine the optimal number of clusters for K-Means.</div>
+
+                                       <div class="modal-example"><strong>K-Means clustering:</strong> The data was split into 5 clusters using K-Means, with the result plotted on a two-dimensional chart (a random X axis was added for display purposes, since only one numeric variable was being clustered).</div>
+
+                                       <div class="modal-example"><strong>Grouping by county:</strong> The resulting clusters were grouped by county to see how many elements from each cluster belonged to each county, shown both as a table and as a stacked bar chart.</div>
+
+                                       <div class="modal-example"><strong>Data binarization:</strong> Based on the median of the pollution-amount column, values were binarized (0 for values at or below the median, 1 for values above it), shown in a table for the first 100 rows and visualized with a bar chart. The K-Means clustering results were saved to a new CSV file.</div>
+
+                                       <div class="modal-example"><strong>DBSCAN clustering:</strong> DBSCAN (eps=0.5, min_samples=5) was applied to the same data (after removing rows with zero amount). The element count per resulting cluster was shown, along with the most common pollutants within each cluster, plus two visualizations — by sample index and by pollutant name. The results were saved to a separate CSV file.</div>
+
+                                       <div class="modal-example"><strong>K-Means vs. DBSCAN — comparison results:</strong> K-Means split the data into 5 clusters (1,105 / 1 / 3 / 6 / 1 elements) — highly unbalanced, since the algorithm forces every point into some cluster even when it clearly differs from the rest. DBSCAN, by contrast, formed 1 natural cluster of 1,737 elements and isolated exactly 16 points as noise (cluster -1), without needing the number of clusters defined in advance.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-face-smile"></i> 5. Opinion / Sentiment Analysis — Assignment 5</div>
+                                       <div class="modal-section-text">The fifth assignment focused on sentiment analysis (opinion mining) — identifying and classifying attitudes, emotions, and tone expressed in text using natural language processing (NLP), performed code-free through the visual <strong>Altair AI Studio</strong> platform (a RapidMiner-based environment).</div>
+                                       <div class="modal-example"><strong>Dataset:</strong> A Kaggle dataset of TV series (IMDb TV Series Data) was used, with attributes such as title, genre, number of seasons, rating, vote count, and synopsis — already formatted as CSV and ready for analysis without additional cleaning.</div>
+                                       <div class="modal-example"><strong>Workflow in Altair AI Studio:</strong> 1) Import Data — importing the CSV dataset (11,933 examples) into the Repository tab. 2) Design tab — connecting the imported set to a <code>Filter Examples</code> operator (Operators/Blending/Examples/Filter). 3) Defining the filter criteria — e.g. <code>Title starts with N</code>, narrowing the set to 235 examples. 4) Adding a second condition, <code>Rating &gt; 7</code>, further narrowing the set to 100 examples. 5) Visualizing the results via a Scatter/Bubble chart (series title on the X axis, rating on the Y axis) and a Pie/Donut chart (aggregated by genre, using the Count function).</div>
+                                       <div class="modal-example"><strong>Finding from the Pie chart:</strong> The largest share (49 series) belongs to comedy/romance series rated above 7 whose title starts with N, while adding a third filter, <code>Genre equals "Animation, Adventure, Comedy"</code>, isolated just a single series — the smallest share in the whole set.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Outcome:</strong> The five assignments show how a single field — web mining — branches into distinct analytical challenges: the first assignment (link analysis) uncovers graph structure and page authority, the second (log analysis) real user behavior over time, the third (social network analysis) influence and dynamics within a network, the fourth (data mining) grouping unlabeled data through clustering, and the fifth (opinion analysis) understanding a user's subjective stance through sentiment analysis. Together, they demonstrate the value of a multidisciplinary approach to data-informed engineering and business decisions.
+                                   </div>`
+                        },
                         {
                             naslov: 'Assessing code quality using the ISO/IEC 9126 standard',
                             id: 'it-iso9126',
-                            povezano: ['it-tim-hms', 'it-portfolio'],
+                            povezano: ['it-tim-hms', 'it-webmining'],
                             datum: 'December 2024',
                             opis: 'As part of the Software Quality Management course in my master’s studies, I analyzed my own Hospital Management System application using international standards and quantitative code metrics.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-award"></i> Master Academic Studies • 2024</div>
