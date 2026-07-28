@@ -352,9 +352,11 @@ body {
 }
 
 .hero-text h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-family: 'Parisienne', cursive;
+    font-size: 3.2rem;
+    font-weight: 400;
     margin-bottom: 6px;
+    line-height: 1.2;
 }
 
 .hero-text h2 {
@@ -393,7 +395,7 @@ body {
 }
 
 /* ==========================================================================
-   5a. Novi dodatak: stilovi za CV modalni prozor
+   5a. Modalni prozor za CV
    ========================================================================== */
 .cv-modal {
     display: flex;
@@ -613,7 +615,7 @@ body {
 }
 
 /* ==========================================================================
-   9b. Vizuelni progress bar za veštine
+   9b. Vizuelni progress bar za veštine sa  efektom 
    ========================================================================== */
 .skill-bar-list {
     list-style: none;
@@ -647,7 +649,7 @@ body {
 
 .skill-bar-track {
     width: 100%;
-    height: 8px;
+    height: 9px;
     border-radius: 999px;
     background-color: var(--btn-bg);
     overflow: hidden;
@@ -656,7 +658,8 @@ body {
 .skill-bar-fill {
     height: 100%;
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--theme-accent), var(--theme-accent-hover));
+    background: linear-gradient(90deg, #fedfdf 0%, var(--theme-accent) 100%);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
     width: 0%;
     transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -741,7 +744,7 @@ body {
 }
 
 /* ==========================================================================
-   11. Prilagođavanje za mobilne uređaje (responsive design)
+   11. Responsive design (prilagođavanje za mobilne)
    ========================================================================== */
 @media (max-width: 768px) {
     .navbar {
@@ -868,7 +871,7 @@ body {
     }
 
     .hero-text h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .cv-btn-container {
@@ -963,7 +966,7 @@ body {
 }
 
 /* ==========================================================================
-   15. Spinner za CV modal (učitavanje PDF-a)
+   15. Spinner za CV modal
    ========================================================================== */
 .modal-loading-wrap {
     position: relative;
@@ -1002,7 +1005,7 @@ body {
 }
 
 /* ==========================================================================
-   Fokus prilikom navigacije tastaturom (pristupačnost — focus-visible)
+   Pristupačnost (focus-visible, skip-link, reduced-motion)
    ========================================================================== */
 a:focus-visible,
 button:focus-visible,
@@ -1012,9 +1015,6 @@ button:focus-visible,
     border-radius: 4px;
 }
 
-/* ==========================================================================
-   Skip link (pristupačnost — "Preskoči na sadržaj")
-   ========================================================================== */
 .skip-link {
     position: absolute;
     top: -60px;
@@ -1034,9 +1034,6 @@ button:focus-visible,
     top: 12px;
 }
 
-/* ==========================================================================
-   Podrška za prefers-reduced-motion (pristupačnost)
-   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
