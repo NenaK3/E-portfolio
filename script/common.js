@@ -1,17 +1,5 @@
 'use strict';
 
-/*
- * common.js — deljene funkcije za sve stranice digitalnog portfolija.
- *
- * Cilj ovog fajla je da se ukloni ponavljanje koda koje je ranije postojalo
- * u skoro svakoj stranici pojedinačno (nazivi meseci, ažuriranje footera,
- * primena tamnog/svetlog režima, edukacija-dropdown, scroll-in animacije i
- * upravljanje fokusom unutar modalnih prozora). Svaka stranica i dalje ima
- * sopstvenu skriptu sa svojim sadržajem i prevodima — ona samo poziva ove
- * zajedničke funkcije umesto da ih iznova definiše.
- *
- * Učitava se PRE svake stranične skripte: <script src="script/common.js" defer></script>
- */
 window.Common = (function () {
 
     const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
