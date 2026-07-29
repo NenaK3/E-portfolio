@@ -100,6 +100,7 @@
         <p id="glavni-podnaslov">Klikni na roze, podvučene linije koda kako bi pogledao video objašnjenje za njih!</p>
 
         <div class="kod-toolbar">
+            <button type="button" id="pokreni-kod-btn" class="run-code-btn"><i class="fa-solid fa-play"></i> Pokreni kod</button>
             <button type="button" id="kopiraj-kod-btn" class="copy-code-btn"><i class="fa-regular fa-copy"></i> Kopiraj kod</button>
         </div>
 
@@ -168,6 +169,20 @@
         <div class="modal-content">
             <button class="close-btn" onclick="zatvoriVideo()">&times;</button>
             <iframe id="videoPlayer" src="" allow="autoplay" title="Video objašnjenje linije koda"></iframe>
+        </div>
+    </div>
+
+    <div id="runModal" class="modal run-modal">
+        <div class="modal-content run-modal-content">
+            <button class="close-btn" onclick="zatvoriRun()">&times;</button>
+            <div class="run-modal-header">
+                <h3 id="run-modal-naslov">Simulacija crtanja</h3>
+                <button type="button" id="run-ponovo-btn" class="run-again-btn">
+                    <i class="fa-solid fa-rotate-right"></i> <span id="run-ponovo-tekst">Pokreni ponovo</span>
+                </button>
+            </div>
+            <p class="run-napomena"><i class="fa-solid fa-circle-info"></i> <span id="run-napomena-tekst">Napomena: ovo je pojednostavljen vizuelni prikaz koda, pa može doći do sitnih odstupanja u odnosu na izgled crteža kada se isti kod pokrene u Python Turtle okruženju na računaru.</span></p>
+            <canvas id="turtleCanvas"></canvas>
         </div>
     </div>
 

@@ -165,7 +165,7 @@ window.Common = (function () {
     }
 
     // -----------------------------------------------------------------
-    // Kopiranje teksta u klipbord (npr. dugme "Kopiraj kod")
+    // Kopiranje teksta u klipbord (dugme "Kopiraj kod")
     // -----------------------------------------------------------------
     function kopirajTekst(tekst, dugmeEl, poruke) {
         const uspeh = poruke && poruke.uspeh ? poruke.uspeh : 'Kopirano!';
