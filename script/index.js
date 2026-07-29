@@ -50,26 +50,13 @@
         el['theme-btn'] = document.getElementById('theme-btn');
         el['idx-footer-datum'] = document.getElementById('idx-footer-datum');
 
-        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
-        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
         function azurirajDatumFootera() {
-            const sada = new Date();
-            const meseci = trenutniJezik === 'SRB' ? meseciSRB : meseciENG;
-            const mesec = meseci[sada.getMonth()];
-            const godina = sada.getFullYear();
-            el['idx-footer-datum'].innerText = trenutniJezik === 'SRB'
-                ? `${mesec} ${godina}.`
-                : `${mesec} ${godina}.`;
+            Common.azurirajFooter(trenutniJezik);
+            Common.azurirajJezikDugme(trenutniJezik);
         }
 
         function primeniRezim() {
-            document.body.classList.toggle('light-mode', trenutniRezim === 'light');
-            el['theme-btn'].innerHTML = trenutniRezim === 'light'
-                ? '<i class="fa-solid fa-moon"></i>'
-                : '<i class="fa-solid fa-sun"></i>';
-            const metaTema = document.getElementById('theme-color-meta');
-            if (metaTema) metaTema.setAttribute('content', trenutniRezim === 'light' ? '#f8fafc' : '#0f172a');
+            Common.primeniRezim(trenutniRezim);
         }
 
         function primeniJezik() {

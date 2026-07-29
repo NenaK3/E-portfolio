@@ -225,10 +225,12 @@
                 <p class="exp-mentor" style="font-style: italic; font-weight: 500; margin-top: 15px;"><i class="fa-solid fa-user-tie" style="margin-right: 8px;"></i>${r.mentor}</p>
             `;
             el.radModal.style.display = 'flex';
+            Common.otvoriModal(el.radModal);
         }
 
         function zatvoriRadModal() {
             el.radModal.style.display = 'none';
+            Common.zatvoriModal(el.radModal);
         }
 
         el.radModal.addEventListener('click', event => {
@@ -247,7 +249,7 @@
                 el.sertifikatModalTelo.innerHTML = `
                     <div class="modal-loading-wrap">
                         <div class="modal-spinner" id="sertifikat-spinner"><div class="spinner-krug"></div></div>
-                        <iframe src="${putanja}" onload="document.getElementById('sertifikat-spinner')?.classList.add('sakriven')"></iframe>
+                        <iframe src="${putanja}" title="${naslov}" onload="document.getElementById('sertifikat-spinner')?.classList.add('sakriven')"></iframe>
                     </div>`;
             } else if (staza.endsWith('.png') || staza.endsWith('.jpg') || staza.endsWith('.jpeg')) {
                 el.sertifikatModalTelo.innerHTML = `<img src="${putanja}" alt="${naslov}" loading="lazy">`;
@@ -262,11 +264,13 @@
             }
 
             el.sertifikatModal.style.display = 'flex';
+            Common.otvoriModal(el.sertifikatModal);
         }
 
         function zatvoriSertifikatModal() {
             el.sertifikatModal.style.display = 'none';
             el.sertifikatModalTelo.innerHTML = '';
+            Common.zatvoriModal(el.sertifikatModal);
         }
 
         el.sertifikatModal.addEventListener('click', event => {
@@ -277,42 +281,13 @@
             if (event.key === 'Escape' && el.sertifikatModal.style.display === 'flex') zatvoriSertifikatModal();
         });
 
-        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
-        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
         function azurirajDatumFootera() {
-            const sada = new Date();
-            const meseci = jezik === 'SRB' ? meseciSRB : meseciENG;
-            const mesec = meseci[sada.getMonth()];
-            const godina = sada.getFullYear();
-            el.footerDatum.innerText = jezik === 'SRB'
-                ? `${mesec} ${godina}.`
-                : `${mesec} ${godina}.`;
+            Common.azurirajFooter(jezik);
+            Common.azurirajJezikDugme(jezik);
         }
 
         function initFadeInReveal(root) {
-            const kontejner = root || document;
-            const elementi = Array.from(kontejner.querySelectorAll('.fade-in-up:not(.fade-in-visible)'));
-            if (kontejner.nodeType === 1 && kontejner.classList.contains('fade-in-up') && !kontejner.classList.contains('fade-in-visible')) {
-                elementi.push(kontejner);
-            }
-            if (!elementi.length) return;
-
-            if (!('IntersectionObserver' in window)) {
-                elementi.forEach(e => e.classList.add('fade-in-visible'));
-                return;
-            }
-
-            const posmatrac = new IntersectionObserver((unosi, obs) => {
-                unosi.forEach(unos => {
-                    if (unos.isIntersecting) {
-                        unos.target.classList.add('fade-in-visible');
-                        obs.unobserve(unos.target);
-                    }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-
-            elementi.forEach(e => posmatrac.observe(e));
+            Common.initFadeInReveal(root);
         }
 
         function initScrollTopButton() {
@@ -390,10 +365,7 @@
         }
 
         function primeniRezim() {
-            document.body.classList.toggle('light-mode', rezim === 'light');
-            el.themeBtn.innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-            const metaTema = document.getElementById('theme-color-meta');
-            if (metaTema) metaTema.setAttribute('content', rezim === 'light' ? '#f8fafc' : '#0f172a');
+            Common.primeniRezim(rezim);
         }
 
         function toggleJezik() {
@@ -415,35 +387,7 @@
         }
 
         function podesiEduDropdown() {
-            const wrap = document.getElementById('nav-edukacija-wrap');
-            if (!wrap) return;
-            const caret = document.getElementById('nav-edukacija-caret');
-
-            if (mod !== 'IT') {
-                wrap.classList.add('no-dropdown');
-                return;
-            }
-
-            caret.addEventListener('click', event => {
-                event.preventDefault();
-                event.stopPropagation();
-                const otvoreno = wrap.classList.toggle('open');
-                caret.setAttribute('aria-expanded', otvoreno);
-            });
-
-            document.addEventListener('click', event => {
-                if (!wrap.contains(event.target)) {
-                    wrap.classList.remove('open');
-                    caret.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            document.addEventListener('keydown', event => {
-                if (event.key === 'Escape' && wrap.classList.contains('open')) {
-                    wrap.classList.remove('open');
-                    caret.setAttribute('aria-expanded', 'false');
-                }
-            });
+            Common.initEduDropdown(mod);
         }
 
         primeniRezim();

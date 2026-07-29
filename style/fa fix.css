@@ -1,13 +1,3 @@
-/* ==========================================================================
-   Override za Font Awesome font-display
-   Font Awesome 6.4.0 (cdnjs) po defaultu koristi font-display: block,
-   zbog čega PageSpeed Insights prijavljuje "Font display" upozorenje.
-   Ovaj fajl MORA biti učitan POSLE Font Awesome linka u <head> —
-   poslednje @font-face pravilo za isti font-family/weight/style
-   pobeđuje u kaskadi, pa ovim samo menjamo font-display na swap,
-   bez ikakvog drugog uticaja na izgled ikonica.
-   ========================================================================== */
-
 @font-face {
     font-family: "Font Awesome 6 Free";
     font-style: normal;

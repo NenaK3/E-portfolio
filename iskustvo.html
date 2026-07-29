@@ -46,8 +46,19 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Početna", "item": "https://e-portfolio-nena-kozic.vercel.app/index.html" },
+        { "@type": "ListItem", "position": 2, "name": "Iskustvo", "item": "https://e-portfolio-nena-kozic.vercel.app/iskustvo.html" }
+      ]
+    }
+    </script>
 </head>
 <body>
+    <script>(function(){try{var t=localStorage.getItem('portfolioRezim')||(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(t==='light')document.body.classList.add('light-mode');}catch(e){}})();</script>
     <a href="#glavni-sadrzaj" class="skip-link">Preskoči na sadržaj / Skip to content</a>
 
     <nav class="navbar">
@@ -59,7 +70,7 @@
 
         <div class="nav-links" id="navbar-links">
             <a href="portfolio.html" id="nav-profil">Profil</a>
-            <a href="iskustvo.html" class="active" id="nav-iskustvo">Iskustvo</a>
+            <a href="iskustvo.html" class="active" id="nav-iskustvo" aria-current="page">Iskustvo</a>
             <div class="nav-dropdown" id="nav-edukacija-wrap">
                 <a href="edukacija.html" id="nav-edukacija">Edukacija</a>
                 <button type="button" class="nav-dropdown-caret" id="nav-edukacija-caret" aria-label="Prikaži opcije edukacije" aria-expanded="false">
@@ -91,12 +102,13 @@
         <div class="experience-stack timeline" id="iskustvo-kontejner"></div>
     </main>
 
-    <footer id="idx-footer">
+    <footer class="site-footer" id="idx-footer">
         <span id="idx-footer-copy">©Copyright by Nena Kozić</span>
         <span class="footer-separator">•</span>
         <span id="idx-footer-datum"></span>
     </footer>
 
+    <script src="script/common.js" defer></script>
     <script src="script/iskustvo.js" defer></script>
     <script src="script/analytics.js" defer></script>
     <script defer src="/_vercel/insights/script.js"></script>

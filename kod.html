@@ -10,7 +10,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Nena Kozić | Python Turtle - Kod na delu">
     <meta property="og:description" content="Interaktivni Python Turtle kod sa video objašnjenjima za svaku liniju.">
-    <meta property="og:image" content="https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image-kod-na-delu">
+    <meta property="og:image" content="https://e-portfolio-nena-kozic.vercel.app/assets/images/og-image-kod-na-delu.png">
     <meta property="og:url" content="https://e-portfolio-nena-kozic.vercel.app/kod.html">
     <link rel="canonical" href="https://e-portfolio-nena-kozic.vercel.app/kod.html">
     <meta name="twitter:card" content="summary_large_image">
@@ -46,8 +46,20 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Početna", "item": "https://e-portfolio-nena-kozic.vercel.app/index.html" },
+        { "@type": "ListItem", "position": 2, "name": "Projekti", "item": "https://e-portfolio-nena-kozic.vercel.app/projekti.html" },
+        { "@type": "ListItem", "position": 3, "name": "Interaktivni kod", "item": "https://e-portfolio-nena-kozic.vercel.app/kod.html" }
+      ]
+    }
+    </script>
 </head>
 <body>
+    <script>(function(){try{var t=localStorage.getItem('portfolioRezim')||(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(t==='light')document.body.classList.add('light-mode');}catch(e){}})();</script>
     <a href="#glavni-sadrzaj" class="skip-link">Preskoči na sadržaj / Skip to content</a>
 
     <a href="projekti.html" class="kod-close-btn" id="kod-close-btn" aria-label="Zatvori i vrati se na projekte" title="Nazad na projekte">
@@ -74,7 +86,7 @@
                     <a href="edukacija.html?tip=neformalno" id="nav-edu-neformalno">Neformalno obrazovanje</a>
                 </div>
             </div>
-            <a href="projekti.html" class="active" id="nav-projekti">Projekti</a>
+            <a href="projekti.html" class="active" id="nav-projekti" aria-current="page">Projekti</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
@@ -86,6 +98,10 @@
     <main class="turtle-main-container fade-in-up" id="glavni-sadrzaj" tabindex="-1">
         <h1 id="glavni-naslov">Interaktivni Python Turtle kod</h1>
         <p id="glavni-podnaslov">Klikni na roze, podvučene linije koda kako bi pogledao video objašnjenje za njih!</p>
+
+        <div class="kod-toolbar">
+            <button type="button" id="kopiraj-kod-btn" class="copy-code-btn"><i class="fa-regular fa-copy"></i> Kopiraj kod</button>
+        </div>
 
         <pre id="kod-blok">
             <span class="video-link" data-video="https://drive.google.com/file/d/1rU3Yo1VJkbWSDP-W5UEI484VcTZ0Mt_Z/view?usp=sharing">import turtle</span>
@@ -151,16 +167,17 @@
     <div id="videoModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="zatvoriVideo()">&times;</button>
-            <iframe id="videoPlayer" src="" allow="autoplay"></iframe>
+            <iframe id="videoPlayer" src="" allow="autoplay" title="Video objašnjenje linije koda"></iframe>
         </div>
     </div>
 
-    <footer id="idx-footer">
+    <footer class="site-footer" id="idx-footer">
         <span id="idx-footer-copy">©Copyright by Nena Kozić</span>
         <span class="footer-separator">•</span>
         <span id="idx-footer-datum"></span>
     </footer>
 
+    <script src="script/common.js" defer></script>
     <script src="script/kod.js" defer></script>
     <script src="script/analytics.js" defer></script>
     <script defer src="/_vercel/insights/script.js"></script>

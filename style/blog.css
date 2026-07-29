@@ -363,7 +363,6 @@ body {
     color: var(--text-muted);
     font-size: 1.02rem;
     line-height: 1.7;
-    max-width: 700px;
 }
 
 /* ==========================================================================
@@ -683,6 +682,18 @@ body.edukacija-theme .blog-search-mark {
     line-height: 1.6;
 }
 
+.modal-body a {
+    color: var(--theme-accent);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.25s ease;
+}
+
+.modal-body a:hover {
+    color: var(--theme-accent-hover);
+}
+
 .modal-section {
     margin-bottom: 20px;
     padding-left: 14px;
@@ -748,6 +759,89 @@ body.edukacija-theme .blog-search-mark {
     border-color: transparent;
     padding: 0 12px 0 0;
     font-weight: 500;
+}
+
+/* ==========================================================================
+   6c. Zakačena (pin) beleška
+   ========================================================================== */
+.blog-pin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--theme-accent);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-right: 10px;
+    vertical-align: middle;
+    transform: translateY(-2px);
+}
+
+.blog-pinned-card {
+    border: 1px solid var(--theme-accent);
+    box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+/* ==========================================================================
+   6d. Značka projekta unutar beleške (modal-badge) i PageSpeed rezultati
+   ========================================================================== */
+.modal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.pagespeed-score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+}
+
+.pagespeed-score-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 16px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    background-color: var(--btn-bg);
+    text-align: center;
+}
+
+.pagespeed-score-broj {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.pagespeed-score-naziv {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.pagespeed-score-card.score-perfect .pagespeed-score-broj {
+    color: #16a34a;
+}
+
+.pagespeed-score-card.score-good .pagespeed-score-broj {
+    color: var(--theme-accent);
 }
 
 .modal-povezano {
@@ -817,6 +911,7 @@ body.edukacija-theme .blog-search-mark {
     }
 }
 
+#idx-footer,
 .site-footer {
     width: 100%;
     text-align: center;

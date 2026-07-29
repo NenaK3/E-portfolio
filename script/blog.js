@@ -19,12 +19,58 @@
                 pretragaPlaceholder: 'Pretraži beleške...',
                 pretragaRezultati: (n) => n === 1 ? '1 rezultat pretrage' : `${n} rezultata pretrage`,
                 pretragaNemaRezultata: 'Nema beleški koje odgovaraju pretrazi. Pokušajte drugi pojam.',
+                oznakaPin: 'Zakačeno',
                 objave: {
                     IT: [
+                        {
+                            naslov: 'PageSpeed Insights rezultati mog portfolija',
+                            id: 'it-pagespeed',
+                            datum: 'Jul 2026',
+                            pin: true,
+                            povezano: ['it-portfolio'],
+                            opis: 'Proverila sam sajt kroz Google PageSpeed Insights na mobilnom i desktop uređaju — rezultat je potvrda da su prethodne optimizacije performansi, pristupačnosti i SEO-a zaista dale opipljive rezultate.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-gauge-high"></i> Lični projekat • Merenje performansi • 2026</div>
+                                   <p class="modal-intro">Nakon serije unapređenja sajta — od optimizacije slika i skripti, preko ujednačavanja koda, do detaljnog rada na pristupačnosti — odlučila sam da rezultate proverim objektivnim alatom. Pokrenula sam <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">Google PageSpeed Insights</a> i uporedila ocene na mobilnom i desktop uređaju.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-mobile-screen-button"></i> Rezultati — Mobilni uređaj</div>
+                                       <div class="pagespeed-score-grid">
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">89</span><span class="pagespeed-score-naziv">Performance</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">95</span><span class="pagespeed-score-naziv">Accessibility</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">96</span><span class="pagespeed-score-naziv">Best Practices</span></div>
+                                           <div class="pagespeed-score-card score-perfect"><span class="pagespeed-score-broj">100</span><span class="pagespeed-score-naziv">SEO</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">2/2</span><span class="pagespeed-score-naziv">Agentic Browsing</span></div>
+                                       </div>
+                                       <div class="modal-example"><strong>Napomena:</strong> ocena za Performance na mobilnom uređaju varira između merenja i ide do 94, u zavisnosti od trenutnog opterećenja mreže i uređaja na kom se test pokreće — što je uobičajena pojava kod mobilnih Lighthouse merenja.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-desktop"></i> Rezultati — Desktop uređaj</div>
+                                       <div class="pagespeed-score-grid">
+                                           <div class="pagespeed-score-card score-perfect"><span class="pagespeed-score-broj">100</span><span class="pagespeed-score-naziv">Performance</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">95</span><span class="pagespeed-score-naziv">Accessibility</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">96</span><span class="pagespeed-score-naziv">Best Practices</span></div>
+                                           <div class="pagespeed-score-card score-perfect"><span class="pagespeed-score-broj">100</span><span class="pagespeed-score-naziv">SEO</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">2/2</span><span class="pagespeed-score-naziv">Agentic Browsing</span></div>
+                                       </div>
+                                       <div class="modal-example"><strong>Napomena:</strong> na desktop uređaju Performance dosledno dostiže maksimalnih 100, dok kategorija Agentic Browsing povremeno pokaže 1/2 umesto 2/2, u zavisnosti od merenja.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-magnifying-glass-chart"></i> Šta ove ocene zapravo pokazuju</div>
+                                       <div class="modal-section-text">Kategorije Performance, Accessibility, Best Practices i SEO predstavljaju standardni Lighthouse okvir za merenje kvaliteta veb stranice, dok je Agentic Browsing novija kategorija koja procenjuje koliko je sajt razumljiv i lako upotrebljiv AI agentima i automatizovanim alatima koji pretražuju sadržaj u ime korisnika.</div>
+                                       <div class="modal-example"><strong>Veza sa prethodnim radom:</strong> visoke ocene za pristupačnost i SEO direktno su rezultat ranijih izmena — jedinstvenih ARIA atributa, semantičkog HTML-a, strukturiranih JSON-LD podataka, sitemap.xml fajla i optimizovanih slika opisanih u prethodnim beleškama ovog bloga.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Zaključak:</strong> Konzistentne visoke ocene na oba tipa uređaja potvrđuju da tehnički temelji sajta — brzina učitavanja, pristupačnost i optimizacija za pretraživače — rade kako treba, a manja odstupanja na mobilnom Performance rezultatu ostaju sledeći cilj za dalju optimizaciju.
+                                   </div>`
+                        },
                         {
                             naslov: 'Šta sam naučila praveći ovaj e-portfolio',
                             id: 'it-portfolio',
                             datum: 'Jul 2026',
+                            povezano: ['it-pagespeed'],
                             opis: 'Pretpostavljala sam da će najznačajniji izazov predstavljati vizuelni dizajn. Pokazalo se, međutim, da je suštinski izazov ležao u arhitekturi koda i podeli sadržaja namenjenog dvema potpuno različitim ciljnim grupama na istim stranicama.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-code"></i> Lični projekat • 2026</div>
                                    <p class="modal-intro">Izrada ovog interaktivnog e-portfolija bila je praktična studija slučaja o tome kako balansirati kompleksnu funkcionalnost, čiste arhitektonske obrasce i besprekorno korisničko iskustvo bez oslanjanja na teške eksterne biblioteke.</p>
@@ -144,7 +190,7 @@
                             povezano: ['it-tim-hms'],
                             datum: 'Decembar 2024',
                             opis: 'U okviru predmeta Upravljanje kvalitetom softvera na master studijama, analizirala sam sopstvenu aplikaciju Hospital Management System primenom međunarodnih standarda i metoda kvantitativne analize.',
-                            telo: `<div class="modal-badge"><i class="fa-solid fa-award"></i> Master akademske studije • 2024</div>
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-award"></i> Master akademske studije • 2024/2025</div>
                                    <p class="modal-intro">Pisanje koda koji "radi" predstavlja samo prvi korak u softverskom inženjerstvu. Tokom analize sopstvenog sistema za upravljanje bolnicom (HMS), primenila sam standard ISO/IEC 9126 kako bih objektivno izmerila i procenila kvalitet izgrađenog rešenja.</p>
 
                                    <div class="modal-section">
@@ -173,9 +219,9 @@
                             naslov: 'Rad u timu na Hospital Management System-u',
                             id: 'it-tim-hms',
                             povezano: ['it-iso9126'],
-                            datum: '2024',
+                            datum: '2023/2024',
                             opis: 'Prvi obimniji timski projekat razotkrio mi je dinamičku stranu softverskog inženjerstva — usaglašavanje interfejsa, dodela uloga i kontrola verzionisanja koda često su važniji od same brzine pisanja sintakse.',
-                            telo: `<div class="modal-badge"><i class="fa-solid fa-users"></i> Timski projekat • 2024</div>
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-users"></i> Timski projekat • 2023/2024</div>
                                    <p class="modal-intro">Razvoj kompleksnog softvera u tročlanom timu zahtevao je jasnu raspodelu odgovornosti, čvrste dogovore oko arhitekture i stalnu sinhronizaciju kako bi se izbegli konflikti u kôdu i kašnjenja u rokovima.</p>
 
                                    <div class="modal-section">
@@ -298,6 +344,75 @@
                                    <div class="modal-result">
                                        <i class="fa-solid fa-lightbulb"></i> <strong>Zaključak:</strong> Programiranje ne uči decu samo kucanju koda, već ih uči rešavanju životnih problema — kako rastaviti velik problem na sitne delove i ne odustajati pred prvom preprekom.
                                    </div>`
+                        },
+                        {
+                            naslov: 'Kvalitet doživljaja korisnika: šta seminarski rad o multimediji otkriva o dobroj nastavi',
+                            id: 'edu-multimedija',
+                            datum: '2026',
+                            opis: 'Seminarski rad iz predmeta Metodički praktikum iz multimedijalnih tehnologija i komunikacija naterao me je da preispitam nešto što svaki nastavnik intuitivno zna, ali retko imenuje — da tehnički ispravan čas i čas koji učenici dožive kao dobar nisu uvek ista stvar.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-photo-film"></i> Seminarski rad • Metodički praktikum iz multimedijalnih tehnologija i komunikacija • 2026</div>
+                                   <p class="modal-intro">Rad sam pisala na temu razvoja i implementacije savremenih multimedijalnih sistema u edukaciji i poslovanju, pod mentorstvom dr Marine Milošević. Iako je tema tehnički orijentisana, najviše me je iznenadilo koliko se direktno prevodi na pedagošku praksu — posebno razlika između toga da sistem tehnički radi i da ga korisnik zaista doživi kao kvalitetan.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-gauge"></i> QoS naspram QoE — tehnička ispravnost nije isto što i dobar utisak</div>
+                                       <div class="modal-section-text">Rad razlikuje kvalitet servisa (QoS) — merljive tehničke parametre poput kašnjenja, gubitka paketa i propusnog opsega — od kvaliteta doživljaja korisnika (QoE), koji je subjektivna procena koliko je neko zadovoljan uslugom.</div>
+                                       <div class="modal-example"><strong>Paralela sa učionicom:</strong> Video-predavanje bez ijednog tehničkog prekida (visok QoS) učenicima može i dalje delovati zbunjujuće i neangažujuće ako je materijal loše strukturiran (nizak QoE) — tehnička besprekornost ne garantuje da je čas dobro primljen.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-mobile-screen-button"></i> Mobilno učenje i pristupačnost u svakom trenutku</div>
+                                       <div class="modal-section-text">Poglavlje o mobilnim i pametnim uređajima pokazuje kako je razvoj 4G/5G mreža i pametnih telefona omogućio koncept učenja "bilo kada i bilo gde" (m-learning), gde učenici pristupaju materijalima nezavisno od fizičkog prisustva u učionici.</div>
+                                       <div class="modal-example"><strong>Veza sa praksom:</strong> Ovo direktno potvrđuje ono što sam primetila i tokom nastavne prakse — mlađi učenici uče najbrže kada mogu odmah da vide vizuelni rezultat svoje akcije, bez obzira na uređaj sa kog pristupaju sadržaju.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-database"></i> Multimedijalni informacioni sistemi kao osnova LMS platformi</div>
+                                       <div class="modal-section-text">Analizirala sam i arhitekturu multimedijalnih informacionih sistema — višeslojni model koji razdvaja prezentacioni, aplikativni i sloj podataka — na kom se, u suštini, zasnivaju sve platforme za učenje na daljinu (LMS) koje škole danas koriste.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Trendovi koji stižu u učionicu: AI, VR/AR i IoT</div>
+                                       <div class="modal-section-text">Poslednji deo rada bavi se pravcima daljeg razvoja — personalizacijom nastave putem veštačke inteligencije, virtuelnim laboratorijama zasnovanim na VR/AR tehnologiji i pametnim učionicama povezanim putem Interneta stvari.</div>
+                                       <div class="modal-example"><strong>Zašto je ovo relevantno:</strong> Kao budući nastavnik informatike, ove trendove ne posmatram kao daleku budućnost, već kao alate koje ću vrlo verovatno koristiti već u prvim godinama rada u učionici.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Zaključak:</strong> Rad me je naučio da kvalitetna nastava — kao i kvalitetan multimedijalni sistem — nije samo pitanje tehničke ispravnosti, već i pažljivog dizajniranja iskustva sa gledišta onoga ko ga prima.
+                                   </div>`
+                        },
+                        {
+                            naslov: 'Šta sam naučila pišući o prevenciji elektronskog nasilja kroz školski kurikulum',
+                            id: 'edu-e-nasilje',
+                            datum: '2026',
+                            opis: 'Seminarski rad o etičkim i pedagoškim aspektima prevencije elektronskog nasilja promenio je način na koji razmišljam o ulozi nastave računarstva i informatike — ne samo kao predmeta koji uči tehnička znanja, već i digitalnu etiku i odgovorno ponašanje.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-shield-heart"></i> Seminarski rad • Etički i pedagoški aspekti prevencije elektronskog nasilja kroz školski kurikulum • 2026</div>
+                                   <p class="modal-intro">Ovaj rad bavi se etičkim i pedagoškim aspektima prevencije elektronskog nasilja kroz školski kurikulum, na osnovu analize savremene naučne literature. Pisanje rada me je navelo da preispitam sopstvenu ulogu — kao budućeg nastavnika informatike, ali i kao nekoga ko svakodnevno gradi digitalne proizvode — u oblikovanju odgovornog ponašanja mladih na internetu.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-magnifying-glass"></i> Šta pokazuje literatura</div>
+                                       <div class="modal-section-text">Analizirala sam tri sistematska pregleda i meta-analize (Lan, Law i Pan, 2022; Kamaruddin i sar., 2023; Tozzo i sar., 2022), kao i priručnik Saveta Evrope o digitalnom građanstvu. Zajednički zaključak svih izvora: tehničke mere zaštite same po sebi nisu dovoljne — najveći efekat imaju obrazovne intervencije koje aktivno uključuju učenike.</div>
+                                       <div class="modal-example"><strong>Konkretan nalaz:</strong> Programi koji su uključivali grupne aktivnosti, diskusiju i razvoj empatije pokazali su bolje rezultate od onih zasnovanih isključivo na predavanjima — pasivno slušanje pravila bezbednosti na internetu jednostavno ne menja ponašanje.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-globe"></i> Digitalno građanstvo kao širi okvir od "internet bezbednosti"</div>
+                                       <div class="modal-section-text">Priručnik Saveta Evrope posmatra digitalnu bezbednost kao samo jedan deo šireg koncepta digitalnog građanstva, koji obuhvata i etiku, empatiju, prava i odgovornosti, kao i kritičko mišljenje u digitalnom okruženju.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-chalkboard-user"></i> Uloga nastave računarstva i informatike</div>
+                                       <div class="modal-section-text">Rad posebno ističe da ovaj predmet ima jedinstvenu priliku da temu digitalne bezbednosti ne tretira kao izdvojenu lekciju, već je integriše u redovan rad — kroz razgovor o odgovornoj upotrebi tehnologija koje učenici i inače uče da koriste.</div>
+                                       <div class="modal-example"><strong>Moj zaključak kao (buduće) nastavnice:</strong> Čas na kom učenici prave sopstvenu Python igru savršena je prilika da se, usput, popriča i o tome šta znači deliti tuđe podatke bez dozvole ili se sakriti iza anonimnosti na internetu.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-people-group"></i> Socioekološki pristup: niko ovo ne rešava sam</div>
+                                       <div class="modal-section-text">Jedan od najvažnijih uvida bio je socioekološki model prevencije — uspešni programi uključuju učenike, nastavnike, roditelje i širu zajednicu istovremeno, a ne samo školu ili samo porodicu.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Zaključak:</strong> Prevencija elektronskog nasilja nije jednokratna lekcija, već trajan deo vaspitno-obrazovnog procesa — a nastava informatike ima priliku da u tome bude mnogo više od pukog "časa o pravilima interneta".
+                                   </div>`
                         }
                     ]
                 }
@@ -314,12 +429,58 @@
                 pretragaPlaceholder: 'Search notes...',
                 pretragaRezultati: (n) => n === 1 ? '1 search result' : `${n} search results`,
                 pretragaNemaRezultata: 'No notes match your search. Try a different term.',
+                oznakaPin: 'Pinned',
                 objave: {
                     IT: [
+                        {
+                            naslov: 'PageSpeed Insights results for my portfolio',
+                            id: 'it-pagespeed',
+                            datum: 'July 2026',
+                            pin: true,
+                            povezano: ['it-portfolio'],
+                            opis: 'I ran the site through Google PageSpeed Insights on both mobile and desktop — the results confirm that the earlier performance, accessibility, and SEO optimizations actually paid off.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-gauge-high"></i> Personal Project • Performance Audit • 2026</div>
+                                   <p class="modal-intro">After a series of site upgrades — from optimizing images and scripts, through unifying the codebase, to detailed accessibility work — I decided to check the results with an objective tool. I ran <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">Google PageSpeed Insights</a> and compared the scores on mobile and desktop.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-mobile-screen-button"></i> Results — Mobile</div>
+                                       <div class="pagespeed-score-grid">
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">89</span><span class="pagespeed-score-naziv">Performance</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">95</span><span class="pagespeed-score-naziv">Accessibility</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">96</span><span class="pagespeed-score-naziv">Best Practices</span></div>
+                                           <div class="pagespeed-score-card score-perfect"><span class="pagespeed-score-broj">100</span><span class="pagespeed-score-naziv">SEO</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">2/2</span><span class="pagespeed-score-naziv">Agentic Browsing</span></div>
+                                       </div>
+                                       <div class="modal-example"><strong>Note:</strong> the mobile Performance score fluctuates between runs and reaches as high as 94, depending on current network load and the device running the test — a common trait of mobile Lighthouse audits.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-desktop"></i> Results — Desktop</div>
+                                       <div class="pagespeed-score-grid">
+                                           <div class="pagespeed-score-card score-perfect"><span class="pagespeed-score-broj">100</span><span class="pagespeed-score-naziv">Performance</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">95</span><span class="pagespeed-score-naziv">Accessibility</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">96</span><span class="pagespeed-score-naziv">Best Practices</span></div>
+                                           <div class="pagespeed-score-card score-perfect"><span class="pagespeed-score-broj">100</span><span class="pagespeed-score-naziv">SEO</span></div>
+                                           <div class="pagespeed-score-card score-good"><span class="pagespeed-score-broj">2/2</span><span class="pagespeed-score-naziv">Agentic Browsing</span></div>
+                                       </div>
+                                       <div class="modal-example"><strong>Note:</strong> on desktop, Performance consistently reaches a perfect 100, while the Agentic Browsing category occasionally shows 1/2 instead of 2/2, depending on the run.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-magnifying-glass-chart"></i> What these scores actually show</div>
+                                       <div class="modal-section-text">Performance, Accessibility, Best Practices, and SEO make up the standard Lighthouse framework for measuring web page quality, while Agentic Browsing is a newer category that evaluates how well a site can be understood and used by AI agents and automated tools browsing on a user's behalf.</div>
+                                       <div class="modal-example"><strong>Connection to earlier work:</strong> the high accessibility and SEO scores are a direct result of earlier changes — consistent ARIA attributes, semantic HTML, structured JSON-LD data, a sitemap.xml file, and optimized images described in previous posts on this blog.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Conclusion:</strong> Consistently high scores across both device types confirm that the site's technical foundations — load speed, accessibility, and search-engine optimization — are working as intended, and the minor mobile Performance fluctuation remains the next target for further optimization.
+                                   </div>`
+                        },
                         {
                             naslov: 'What I learned building this e-portfolio',
                             id: 'it-portfolio',
                             datum: 'July 2026',
+                            povezano: ['it-pagespeed'],
                             opis: 'I assumed the most significant challenge would be visual design. It turned out that the essential challenge lay in code architecture and structuring content for two entirely different target audiences on the same pages.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-code"></i> Personal Project • 2026</div>
                                    <p class="modal-intro">Building this interactive e-portfolio was a practical case study in balancing complex functionality, clean architectural patterns, and a seamless user experience without relying on heavy external frameworks.</p>
@@ -434,7 +595,7 @@
                             povezano: ['it-tim-hms'],
                             datum: 'December 2024',
                             opis: 'As part of the Software Quality Management course in my master’s studies, I analyzed my own Hospital Management System application using international standards and quantitative code metrics.',
-                            telo: `<div class="modal-badge"><i class="fa-solid fa-award"></i> Master Academic Studies • 2024</div>
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-award"></i> Master Academic Studies • 2024/2025</div>
                                    <p class="modal-intro">Writing code that "just works" is only the first step in software engineering. During the analysis of my Hospital Management System (HMS), I applied the ISO/IEC 9126 framework to objectively measure software quality.</p>
 
                                    <div class="modal-section">
@@ -457,9 +618,9 @@
                             naslov: 'Working in a team on the Hospital Management System',
                             id: 'it-tim-hms',
                             povezano: ['it-iso9126'],
-                            datum: '2024',
+                            datum: '2023/2024',
                             opis: 'My first major team project revealed the dynamic side of software engineering — interface agreements, role assignments, and version control matter just as much as coding speed.',
-                            telo: `<div class="modal-badge"><i class="fa-solid fa-users"></i> Team Project • 2024</div>
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-users"></i> Team Project • 2023/2024</div>
                                    <p class="modal-intro">Developing complex software within a 3-person team required clear responsibilities, architectural agreements, and continuous synchronization to avoid code conflicts.</p>
 
                                    <div class="modal-section">
@@ -534,6 +695,75 @@
                                    <div class="modal-result">
                                        <i class="fa-solid fa-lightbulb"></i> <strong>Result:</strong> Programming teaches children life skills — breaking down big problems into smaller parts and persisting through challenges.
                                    </div>`
+                        },
+                        {
+                            naslov: 'User Experience Quality: what a multimedia seminar paper reveals about good teaching',
+                            id: 'edu-multimedija',
+                            datum: '2026',
+                            opis: 'A seminar paper for the Multimedia Technologies and Communications Teaching Practicum course made me reconsider something every teacher senses intuitively but rarely names — that a technically flawless class and a class students experience as good are not always the same thing.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-photo-film"></i> Seminar Paper • Multimedia Technologies and Communications Teaching Practicum • 2026</div>
+                                   <p class="modal-intro">I wrote this paper on the development and implementation of modern multimedia systems in education and business, mentored by Dr Marina Milošević. Although the topic is technically oriented, what surprised me most was how directly it translates to teaching practice — especially the distinction between a system working correctly and a user actually experiencing it as good.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-gauge"></i> QoS vs. QoE — technical correctness isn't the same as a good impression</div>
+                                       <div class="modal-section-text">The paper distinguishes Quality of Service (QoS) — measurable technical parameters like latency, packet loss, and bandwidth — from Quality of Experience (QoE), a subjective measure of how satisfied a user actually feels.</div>
+                                       <div class="modal-example"><strong>Classroom parallel:</strong> A video lecture with zero technical interruptions (high QoS) can still leave students confused and disengaged if the material is poorly structured (low QoE) — technical flawlessness doesn't guarantee a well-received lesson.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-mobile-screen-button"></i> Mobile learning and anytime access</div>
+                                       <div class="modal-section-text">The chapter on smart and mobile devices shows how 4G/5G networks and smartphones enabled "anytime, anywhere" learning (m-learning), where students access materials regardless of physical classroom presence.</div>
+                                       <div class="modal-example"><strong>Link to practice:</strong> This directly confirms what I noticed during my teaching practicum — younger students learn fastest when they can immediately see the visual result of their action, regardless of which device they're using.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-database"></i> Multimedia information systems behind every LMS platform</div>
+                                       <div class="modal-section-text">I also analyzed the architecture of multimedia information systems — the layered model separating presentation, application, and data layers — which is, at its core, what every learning management system (LMS) schools use today is built on.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Trends heading into the classroom: AI, VR/AR, and IoT</div>
+                                       <div class="modal-section-text">The final part of the paper covers future directions — AI-driven personalized learning, VR/AR-based virtual labs, and smart classrooms connected through the Internet of Things.</div>
+                                       <div class="modal-example"><strong>Why this matters:</strong> As a future computer science teacher, I don't see these trends as a distant future, but as tools I'll very likely be using in my first years in the classroom.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Conclusion:</strong> The paper taught me that quality teaching — like a quality multimedia system — isn't just about technical correctness, but about carefully designing the experience from the recipient's point of view.
+                                   </div>`
+                        },
+                        {
+                            naslov: 'What I learned writing about preventing cyberbullying through the school curriculum',
+                            id: 'edu-e-nasilje',
+                            datum: '2026',
+                            opis: 'A seminar paper on the ethical and pedagogical aspects of preventing electronic violence changed how I think about the role of computer science classes — not just as a subject teaching technical skills, but digital ethics and responsible behavior too.',
+                            telo: `<div class="modal-badge"><i class="fa-solid fa-shield-heart"></i> Seminar Paper • Ethical and Pedagogical Aspects of Preventing Electronic Violence through the School Curriculum • 2026</div>
+                                   <p class="modal-intro">This paper examines the ethical and pedagogical aspects of preventing electronic violence through the school curriculum, based on an analysis of current scientific literature. Writing it made me reconsider my own role — as a future computer science teacher, but also as someone who builds digital products every day — in shaping responsible online behavior among young people.</p>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-magnifying-glass"></i> What the literature shows</div>
+                                       <div class="modal-section-text">I analyzed three systematic reviews and meta-analyses (Lan, Law & Pan, 2022; Kamaruddin et al., 2023; Tozzo et al., 2022), along with the Council of Europe's Digital Citizenship Education Handbook. The shared conclusion across all sources: technical protection measures alone aren't enough — educational interventions that actively involve students have the largest effect.</div>
+                                       <div class="modal-example"><strong>Concrete finding:</strong> Programs that included group activities, discussion, and empathy-building showed better results than those based solely on lectures — passively listening to internet safety rules simply doesn't change behavior.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-globe"></i> Digital citizenship as a wider frame than "internet safety"</div>
+                                       <div class="modal-section-text">The Council of Europe handbook frames digital safety as just one part of a broader concept of digital citizenship, which also includes ethics, empathy, rights and responsibilities, and critical thinking in digital environments.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-chalkboard-user"></i> The role of computer science classes</div>
+                                       <div class="modal-section-text">The paper specifically highlights that this subject has a unique opportunity to not treat digital safety as an isolated lesson, but to integrate it into regular coursework — through conversations about responsible use of the very technologies students are already learning to use.</div>
+                                       <div class="modal-example"><strong>My takeaway as a (future) teacher:</strong> A class where students build their own Python game is a perfect opportunity to also talk, in passing, about what it means to share someone else's data without permission or hide behind online anonymity.</div>
+                                   </div>
+
+                                   <div class="modal-section">
+                                       <div class="modal-section-title"><i class="fa-solid fa-people-group"></i> A socio-ecological approach: no one solves this alone</div>
+                                       <div class="modal-section-text">One of the most important insights was the socio-ecological model of prevention — successful programs involve students, teachers, parents, and the wider community at the same time, not just the school or just the family alone.</div>
+                                   </div>
+
+                                   <div class="modal-result">
+                                       <i class="fa-solid fa-circle-check"></i> <strong>Conclusion:</strong> Preventing cyberbullying isn't a one-time lesson but an ongoing part of the educational process — and computer science classes have the opportunity to be far more than just a "lesson about internet rules".
+                                   </div>`
                         }
                     ]
                 }
@@ -552,7 +782,7 @@
             naslovBlog: document.getElementById('naslov-blog'),
             blogUvod: document.getElementById('blog-uvod'),
             blogKontejner: document.getElementById('blog-kontejner'),
-            footer: document.getElementById('footer-datum'),
+            footer: document.getElementById('idx-footer-datum'),
             langBtn: document.getElementById('nav-lang-btn'),
             themeBtn: document.getElementById('nav-theme-btn'),
             hamburger: document.getElementById('nav-hamburger'),
@@ -570,11 +800,14 @@
         let trenutnaPretraga = '';
 
         function karticaHTML(objava, idx) {
+            const pinDeo = objava.pin
+                ? `<span class="blog-pin-badge"><i class="fa-solid fa-thumbtack"></i> ${recnik[jezik].oznakaPin}</span>`
+                : '';
             return `
-                <div class="card edu-split-card spec-course-card fade-in-up" style="animation-delay:${idx * 0.08}s">
+                <div class="card edu-split-card spec-course-card fade-in-up${objava.pin ? ' blog-pinned-card' : ''}" style="animation-delay:${idx * 0.08}s">
                     <div class="exp-header">
                         <div>
-                            <h3>${istakniPretragu(objava.naslov)}</h3>
+                            <h3>${pinDeo}${istakniPretragu(objava.naslov)}</h3>
                         </div>
                         <div class="exp-header-meta">
                             <span class="block-date"><i class="fa-solid fa-calendar-days"></i> ${objava.datum}</span>
@@ -618,10 +851,10 @@
         function objaveZaPrikaz() {
             const sve = (recnik[jezik].objave[mod] || []).map((objava, idx) => ({ objava, idx }));
             const upit = trenutnaPretraga.trim().toLowerCase();
-            if (!upit) return sve;
-            return sve.filter(({ objava }) =>
+            const filtrirano = !upit ? sve : sve.filter(({ objava }) =>
                 objava.naslov.toLowerCase().includes(upit) || objava.opis.toLowerCase().includes(upit)
             );
+            return filtrirano.slice().sort((a, b) => (b.objava.pin ? 1 : 0) - (a.objava.pin ? 1 : 0));
         }
 
         function povezanePostoveHTML(idx) {
@@ -659,11 +892,13 @@
             el.blogModalTelo.scrollTop = 0;
             el.blogModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
+            Common.otvoriModal(el.blogModal);
         }
 
         function zatvoriBlogModal() {
             el.blogModal.style.display = 'none';
             document.body.style.overflow = '';
+            Common.zatvoriModal(el.blogModal);
         }
 
         el.blogModal.addEventListener('click', event => {
@@ -674,40 +909,13 @@
             if (event.key === 'Escape' && el.blogModal.style.display === 'flex') zatvoriBlogModal();
         });
 
-        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
-        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
         function azurirajDatumFootera() {
-            const sada = new Date();
-            const meseci = jezik === 'SRB' ? meseciSRB : meseciENG;
-            const mesec = meseci[sada.getMonth()];
-            const godina = sada.getFullYear();
-            el.footer.innerText = `${mesec} ${godina}.`;
+            Common.azurirajFooter(jezik);
+            Common.azurirajJezikDugme(jezik);
         }
 
         function initFadeInReveal(root) {
-            const kontejner = root || document;
-            const elementi = Array.from(kontejner.querySelectorAll('.fade-in-up:not(.fade-in-visible)'));
-            if (kontejner.nodeType === 1 && kontejner.classList.contains('fade-in-up') && !kontejner.classList.contains('fade-in-visible')) {
-                elementi.push(kontejner);
-            }
-            if (!elementi.length) return;
-
-            if (!('IntersectionObserver' in window)) {
-                elementi.forEach(e => e.classList.add('fade-in-visible'));
-                return;
-            }
-
-            const posmatrac = new IntersectionObserver((unosi, obs) => {
-                unosi.forEach(unos => {
-                    if (unos.isIntersecting) {
-                        unos.target.classList.add('fade-in-visible');
-                        obs.unobserve(unos.target);
-                    }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-
-            elementi.forEach(e => posmatrac.observe(e));
+            Common.initFadeInReveal(root);
         }
 
         function initScrollTopButton() {
@@ -790,10 +998,7 @@
         }
 
         function primeniRezim() {
-            document.body.classList.toggle('light-mode', rezim === 'light');
-            el.themeBtn.innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-            const metaTema = document.getElementById('theme-color-meta');
-            if (metaTema) metaTema.setAttribute('content', rezim === 'light' ? '#f8fafc' : '#0f172a');
+            Common.primeniRezim(rezim);
         }
 
         function toggleJezik() {
@@ -816,35 +1021,7 @@
         }
 
         function podesiEduDropdown() {
-            const wrap = document.getElementById('nav-edukacija-wrap');
-            if (!wrap) return;
-            const caret = document.getElementById('nav-edukacija-caret');
-
-            if (mod !== 'IT') {
-                wrap.classList.add('no-dropdown');
-                return;
-            }
-
-            caret.addEventListener('click', event => {
-                event.preventDefault();
-                event.stopPropagation();
-                const otvoreno = wrap.classList.toggle('open');
-                caret.setAttribute('aria-expanded', otvoreno);
-            });
-
-            document.addEventListener('click', event => {
-                if (!wrap.contains(event.target)) {
-                    wrap.classList.remove('open');
-                    caret.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            document.addEventListener('keydown', event => {
-                if (event.key === 'Escape' && wrap.classList.contains('open')) {
-                    wrap.classList.remove('open');
-                    caret.setAttribute('aria-expanded', 'false');
-                }
-            });
+            Common.initEduDropdown(mod);
         }
 
         primeniRezim();

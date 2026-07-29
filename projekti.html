@@ -46,8 +46,19 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Početna", "item": "https://e-portfolio-nena-kozic.vercel.app/index.html" },
+        { "@type": "ListItem", "position": 2, "name": "Projekti", "item": "https://e-portfolio-nena-kozic.vercel.app/projekti.html" }
+      ]
+    }
+    </script>
 </head>
 <body>
+    <script>(function(){try{var t=localStorage.getItem('portfolioRezim')||(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(t==='light')document.body.classList.add('light-mode');}catch(e){}})();</script>
     <a href="#edu-glavni-kontejner" class="skip-link">Preskoči na sadržaj / Skip to content</a>
 
     <nav class="navbar">
@@ -70,7 +81,7 @@
                     <a href="edukacija.html?tip=neformalno" id="nav-edu-neformalno">Neformalno obrazovanje</a>
                 </div>
             </div>
-            <a href="projekti.html" class="active" id="nav-projekti">Projekti</a>
+            <a href="projekti.html" class="active" id="nav-projekti" aria-current="page">Projekti</a>
             <a href="blog.html" id="nav-blog">Blog</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
@@ -104,7 +115,7 @@
             <div class="modal-body">
                 <div class="modal-loading-wrap">
                     <div class="modal-spinner" id="pdf-spinner"><div class="spinner-krug"></div></div>
-                    <iframe id="pdf-viewer" src="" onload="document.getElementById('pdf-spinner')?.classList.add('sakriven')"></iframe>
+                    <iframe id="pdf-viewer" src="" onload="document.getElementById('pdf-spinner')?.classList.add('sakriven')" title="Priprema za čas — PDF dokument"></iframe>
                 </div>
             </div>
         </div>
@@ -120,14 +131,17 @@
         </div>
     </div>
 
-    <footer class="site-footer">
-        <p>©Copyright by Nena Kozić. <span class="footer-separator">•</span> <span id="footer-datum"></span></p>
+    <footer class="site-footer" id="idx-footer">
+        <span id="idx-footer-copy">©Copyright by Nena Kozić</span>
+        <span class="footer-separator">•</span>
+        <span id="idx-footer-datum"></span>
     </footer>
 
     <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Nazad na vrh / Back to top" title="Nazad na vrh">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
+    <script src="script/common.js" defer></script>
     <script src="script/projekti.js" defer></script>
     <script src="script/analytics.js" defer></script>
     <script defer src="/_vercel/insights/script.js"></script>

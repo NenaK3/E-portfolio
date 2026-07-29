@@ -38,20 +38,18 @@
             navLinks: document.getElementById('nav-links-id'),
             kodBlok: document.getElementById('kod-blok'),
             modal: document.getElementById('videoModal'),
-            player: document.getElementById('videoPlayer')
+            player: document.getElementById('videoPlayer'),
+            kopirajBtn: document.getElementById('kopiraj-kod-btn')
         };
 
-        const meseciSRB = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
-        const meseciENG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const prevodiKopiraj = {
+            SRB: { podrazumevano: '<i class="fa-regular fa-copy"></i> Kopiraj kod', uspeh: 'Kopirano!', greska: 'Greška' },
+            ENG: { podrazumevano: '<i class="fa-regular fa-copy"></i> Copy code', uspeh: 'Copied!', greska: 'Error' }
+        };
 
         function azurirajDatumFootera() {
-            const sada = new Date();
-            const meseci = jezik === 'SRB' ? meseciSRB : meseciENG;
-            const mesec = meseci[sada.getMonth()];
-            const godina = sada.getFullYear();
-            el.footerDatum.innerText = jezik === 'SRB'
-                ? `${mesec} ${godina}.`
-                : `${mesec} ${godina}.`;
+            Common.azurirajFooter(jezik);
+            Common.azurirajJezikDugme(jezik);
         }
 
         function osvezi() {
@@ -68,13 +66,12 @@
             azurirajDatumFootera();
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
+
+            if (el.kopirajBtn) el.kopirajBtn.innerHTML = prevodiKopiraj[jezik].podrazumevano;
         }
 
         function primeniRezim() {
-            document.body.classList.toggle('light-mode', rezim === 'light');
-            el.themeBtn.innerHTML = rezim === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-            const metaTema = document.getElementById('theme-color-meta');
-            if (metaTema) metaTema.setAttribute('content', rezim === 'light' ? '#f8fafc' : '#0f172a');
+            Common.primeniRezim(rezim);
         }
 
         function toggleJezik() {
@@ -103,11 +100,23 @@
             const embedLink = link.dataset.video.replace('/view?usp=sharing', '/preview');
             el.player.src = embedLink;
             el.modal.style.display = 'flex';
+            Common.otvoriModal(el.modal);
         });
 
         function zatvoriVideo() {
             el.modal.style.display = 'none';
             el.player.src = '';
+            Common.zatvoriModal(el.modal);
+        }
+
+        if (el.kopirajBtn) {
+            el.kopirajBtn.addEventListener('click', () => {
+                const tekstKoda = el.kodBlok.innerText;
+                Common.kopirajTekst(tekstKoda, el.kopirajBtn, {
+                    uspeh: prevodiKopiraj[jezik].uspeh,
+                    greska: prevodiKopiraj[jezik].greska
+                });
+            });
         }
 
         el.modal.addEventListener('click', event => {
@@ -119,35 +128,7 @@
         });
 
         function podesiEduDropdown() {
-            const wrap = document.getElementById('nav-edukacija-wrap');
-            if (!wrap) return;
-            const caret = document.getElementById('nav-edukacija-caret');
-
-            if (mod !== 'IT') {
-                wrap.classList.add('no-dropdown');
-                return;
-            }
-
-            caret.addEventListener('click', event => {
-                event.preventDefault();
-                event.stopPropagation();
-                const otvoreno = wrap.classList.toggle('open');
-                caret.setAttribute('aria-expanded', otvoreno);
-            });
-
-            document.addEventListener('click', event => {
-                if (!wrap.contains(event.target)) {
-                    wrap.classList.remove('open');
-                    caret.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            document.addEventListener('keydown', event => {
-                if (event.key === 'Escape' && wrap.classList.contains('open')) {
-                    wrap.classList.remove('open');
-                    caret.setAttribute('aria-expanded', 'false');
-                }
-            });
+            Common.initEduDropdown(mod);
         }
 
         primeniRezim();

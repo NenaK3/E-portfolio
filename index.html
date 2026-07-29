@@ -53,6 +53,7 @@
     </script>
 </head>
 <body class="index-body">
+    <script>(function(){try{var t=localStorage.getItem('portfolioRezim')||(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(t==='light')document.body.classList.add('light-mode');}catch(e){}})();</script>
     <a href="#glavni-sadrzaj" class="skip-link">Preskoči na sadržaj / Skip to content</a>
     <div class="index-controls">
         <button onclick="promeniJezik()" class="control-btn" id="lang-btn" aria-label="Promeni jezik / Switch language">EN</button>
@@ -80,12 +81,13 @@
         </div>
     </main>
 
-    <footer id="idx-footer">
+    <footer class="site-footer" id="idx-footer">
         <span id="idx-footer-copy">©Copyright by Nena Kozić</span>
         <span class="footer-separator">•</span>
         <span id="idx-footer-datum"></span>
     </footer>
 
+    <script src="script/common.js" defer></script>
     <script src="script/index.js" defer></script>
     <script src="script/analytics.js" defer></script>
     <script defer src="/_vercel/insights/script.js"></script>

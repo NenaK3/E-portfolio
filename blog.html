@@ -46,8 +46,19 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Početna", "item": "https://e-portfolio-nena-kozic.vercel.app/index.html" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://e-portfolio-nena-kozic.vercel.app/blog.html" }
+      ]
+    }
+    </script>
 </head>
 <body>
+    <script>(function(){try{var t=localStorage.getItem('portfolioRezim')||(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(t==='light')document.body.classList.add('light-mode');}catch(e){}})();</script>
     <a href="#blog-glavni" class="skip-link">Preskoči na sadržaj / Skip to content</a>
 
     <nav class="navbar">
@@ -71,7 +82,7 @@
                 </div>
             </div>
             <a href="projekti.html" id="nav-projekti">Projekti</a>
-            <a href="blog.html" class="active" id="nav-blog">Blog</a>
+            <a href="blog.html" class="active" id="nav-blog" aria-current="page">Blog</a>
             <a href="index.html" class="switch-btn" id="nav-promeni"><i class="fa-solid fa-repeat"></i> Promeni portfolio</a>
         </div>
         <div class="nav-controls">
@@ -121,14 +132,17 @@
         </div>
     </div>
 
-    <footer class="site-footer">
-        <p>©Copyright by Nena Kozić. <span class="footer-separator">•</span> <span id="footer-datum"></span></p>
+    <footer class="site-footer" id="idx-footer">
+        <span id="idx-footer-copy">©Copyright by Nena Kozić</span>
+        <span class="footer-separator">•</span>
+        <span id="idx-footer-datum"></span>
     </footer>
 
     <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Nazad na vrh / Back to top" title="Nazad na vrh">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
+    <script src="script/common.js" defer></script>
     <script src="script/blog.js" defer></script>
     <script src="script/analytics.js" defer></script>
     <script defer src="/_vercel/insights/script.js"></script>
