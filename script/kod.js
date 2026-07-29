@@ -131,6 +131,11 @@
             Common.initEduDropdown(mod);
         }
 
+        function initFadeInReveal(root) {
+            Common.initFadeInReveal(root);
+        }
+
         primeniRezim();
         osvezi();
         podesiEduDropdown();
+        initFadeInReveal();
