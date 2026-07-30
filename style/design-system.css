@@ -1,0 +1,257 @@
+
+:root {
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-md: 1.125rem;   /* 18px */
+    --font-size-lg: 1.375rem;   /* 22px */
+    --font-size-xl: 1.75rem;    /* 28px */
+    --font-size-2xl: 2.25rem;   /* 36px */
+    --font-size-3xl: 3rem;      /* 48px */
+
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.18), 0 1px 1px rgba(0, 0, 0, 0.10);
+    --shadow-md: 0 6px 16px -4px rgba(0, 0, 0, 0.28), 0 3px 6px -2px rgba(0, 0, 0, 0.16);
+    --shadow-lg: 0 20px 40px -12px rgba(0, 0, 0, 0.38), 0 8px 16px -4px rgba(0, 0, 0, 0.22);
+
+    --scroll-progress-color: linear-gradient(90deg, var(--pastel-blue-accent, #38bdf8), var(--pastel-pink-accent, #f472b6));
+    --cursor-glow-color: rgba(56, 189, 248, 0.12);
+    --scrollbar-track: var(--bg-color, #0f172a);
+    --scrollbar-thumb: var(--card-border, #334155);
+    --scrollbar-thumb-hover: var(--btn-hover, #475569);
+}
+
+body.light-mode {
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 1px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 6px 16px -4px rgba(15, 23, 42, 0.10), 0 3px 6px -2px rgba(15, 23, 42, 0.06);
+    --shadow-lg: 0 20px 40px -12px rgba(15, 23, 42, 0.14), 0 8px 16px -4px rgba(15, 23, 42, 0.08);
+    --cursor-glow-color: rgba(56, 189, 248, 0.08);
+}
+
+body.edukacija-theme,
+body.edu-theme {
+    --cursor-glow-color: rgba(244, 114, 182, 0.14);
+}
+
+/* ==========================================================================
+   1. Monospace utility klase — tagovi, datumi, oznake
+   ========================================================================== */
+.skill-tag,
+.tag-container .skill-tag,
+.block-date,
+.eyebrow,
+code,
+pre,
+.kod-toolbar button {
+    font-family: var(--font-mono);
+    letter-spacing: 0.01em;
+}
+
+.skill-tag,
+.block-date {
+    font-size: var(--font-size-xs);
+}
+
+/* ==========================================================================
+   1b. Primena tipografske skale na ključne naslove
+   ========================================================================== */
+.column-title,
+.page-section-title,
+#glavni-naslov {
+    font-size: var(--font-size-xl);
+}
+
+.hero-text h2,
+#hero-title {
+    font-size: var(--font-size-md);
+}
+
+.card h3,
+.experience-card h3,
+.selection-card h2 {
+    font-size: var(--font-size-lg);
+}
+
+.hero-pitch,
+.subtitle {
+    font-size: var(--font-size-md);
+}
+
+/* ==========================================================================
+   2. Elevation sistem primenjen na kartice
+   ========================================================================== */
+.card,
+.experience-card,
+.selection-card,
+.edu-split-card,
+.spec-course-card,
+.project-card,
+.timeline-content,
+.blog-toolbar,
+.control-btn {
+    box-shadow: var(--shadow-sm);
+}
+
+.card:hover,
+.experience-card:hover,
+.timeline-content:hover,
+.spec-course-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.selection-card:hover {
+    box-shadow: var(--shadow-lg) !important;
+}
+
+/* ==========================================================================
+   3. Dot-grid pozadina za hero sekcije (index.html, portfolio.html)
+   ========================================================================== */
+.welcome-container,
+.hero-section {
+    position: relative;
+}
+
+body.index-body::before,
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--card-border) 1px, transparent 1px);
+    background-size: 26px 26px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 85%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 85%);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.index-body {
+    position: relative;
+}
+
+.welcome-container,
+.hero-container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   4. Custom scrollbar (WebKit) — prati temu
+   ========================================================================== */
+::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 8px;
+    border: 2px solid var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* ==========================================================================
+   5. Cursor-glow (samo desktop, dark mode)
+   ========================================================================== */
+#cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--cursor-glow-color), transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+    transition: opacity 0.3s ease;
+}
+
+body.light-mode #cursor-glow {
+    opacity: 0.6;
+}
+
+@media (max-width: 900px), (hover: none) {
+    #cursor-glow {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   6. Scroll-progress traka
+   ========================================================================== */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--scroll-progress-color);
+    z-index: 9998;
+    transition: width 0.1s ease-out;
+}
+
+/* ==========================================================================
+   7. 3D tilt kartice (projekti.html)
+   ========================================================================== */
+.tilt-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.15s ease-out, box-shadow 0.25s ease;
+    will-change: transform;
+}
+
+.tilt-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none) {
+    .tilt-card {
+        transform: none !important;
+    }
+}
+
+/* ==========================================================================
+   8. Devicon — tech-stack ikonice u boji sekcije
+   ========================================================================== */
+.devicon-skill-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.it-theme .devicon-skill-icon.colorless {
+    color: var(--pastel-blue-accent);
+}
+
+body.edukacija-theme .devicon-skill-icon.colorless,
+body.edu-theme .devicon-skill-icon.colorless {
+    color: var(--pastel-pink-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #cursor-glow,
+    #scroll-progress {
+        transition: none;
+    }
+}

@@ -262,7 +262,7 @@
                 : '';
 
             return `
-                <div class="card experience-card edu-split-card fade-in-up ${eduCard}" style="animation-delay:${idx * 0.08}s">
+                <div class="card experience-card edu-split-card tilt-card fade-in-up ${eduCard}" style="animation-delay:${idx * 0.08}s">
                     <div class="exp-header">
                         <div><h3>${p.naziv}</h3><h4>${p.podnaslov}</h4></div>
                         <span class="block-date ${eduDate}">${p.period}</span>
@@ -313,6 +313,7 @@
 
             el.projektiKontejner.innerHTML = r.projekti[mod].map((p, idx) => karticaHTML(p, r, idx)).join('');
             initFadeInReveal();
+            if (window.Enhancements) window.Enhancements.initTilt(el.projektiKontejner);
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
             azurirajDatumFootera();

@@ -611,13 +611,11 @@ body {
     margin-bottom: 0;
 }
 
-.skill-list li::before {
-    content: '';
+.skill-list li .devicon-skill-icon {
     flex-shrink: 0;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background-color: var(--theme-accent);
+    width: 1.4em;
+    text-align: center;
+    color: var(--theme-accent);
 }
 
 /* ==========================================================================

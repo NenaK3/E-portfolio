@@ -184,6 +184,34 @@
             { el: document.getElementById('tab-kontakt-btn'), ikona: 'fa-envelope', kljuc: 'tabKontakt' }
         ];
 
+        const devIconMapa = [
+            [/angular/i, 'devicon-angularjs-plain colored'],
+            [/react/i, 'devicon-react-original colored'],
+            [/flutter/i, 'devicon-flutter-plain colored'],
+            [/javascript/i, 'devicon-javascript-plain colored'],
+            [/html5/i, 'devicon-html5-plain colored'],
+            [/css3/i, 'devicon-css3-plain colored'],
+            [/bootstrap/i, 'devicon-bootstrap-plain colored'],
+            [/node\.?js/i, 'devicon-nodejs-plain colored'],
+            [/mysql/i, 'devicon-mysql-plain colored'],
+            [/oracle/i, 'devicon-oracle-original colored'],
+            [/c \/ c\+\+ \/ c#/i, 'devicon-cplusplus-plain colored'],
+            [/java \/ kotlin/i, 'devicon-java-plain colored'],
+            [/php/i, 'devicon-php-plain colored'],
+            [/git \/ github/i, 'devicon-git-plain colored'],
+            [/json/i, 'devicon-json-plain colorless'],
+            [/wordpress/i, 'devicon-wordpress-plain colored']
+        ];
+
+        function ikonicaZaVestinu(naziv) {
+            if (mod !== 'IT') {
+                return '<i class="fa-solid fa-circle-check devicon-skill-icon colorless"></i>';
+            }
+            const poklapanje = devIconMapa.find(([regex]) => regex.test(naziv));
+            const klasa = poklapanje ? poklapanje[1] : 'devicon-devicon-plain colorless';
+            return `<i class="${klasa} devicon-skill-icon"></i>`;
+        }
+
         function initFadeInReveal(root) {
             Common.initFadeInReveal(root);
         }
@@ -233,7 +261,7 @@
                 <div class="card skill-category fade-in-up" style="animation-delay:${idx * 0.1}s">
                     <h4>${g.kat}</h4>
                     <ul class="skill-list">${g.stavke.map(x => `
-                        <li>${x.naziv}</li>`).join('')}</ul>
+                        <li>${ikonicaZaVestinu(x.naziv)} <span>${x.naziv}</span></li>`).join('')}</ul>
                 </div>`).join('');
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
