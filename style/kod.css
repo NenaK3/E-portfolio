@@ -510,94 +510,6 @@ body.light-mode .video-link:hover {
 }
 
 /* ==========================================================================
-   5d. Modal za "Probaj sam" (mini turtle plejgraund)
-   ========================================================================== */
-.probaj-modal-content {
-    background-color: #ffffff;
-    width: 92vw;
-    max-width: 900px;
-    max-height: 92vh;
-    aspect-ratio: auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    overflow-y: auto;
-}
-
-.probaj-layout {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    align-items: flex-start;
-}
-
-.probaj-levo {
-    flex: 1 1 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.probaj-desno {
-    flex: 1 1 280px;
-    display: flex;
-    justify-content: center;
-}
-
-.probaj-textarea {
-    width: 100%;
-    min-height: 220px;
-    resize: vertical;
-    font-family: 'Consolas', 'Courier New', Courier, monospace;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #cbd5e1;
-    background-color: #f8fafc;
-    color: #0f172a;
-}
-
-.probaj-textarea:focus {
-    outline: 2px solid var(--theme-accent);
-    outline-offset: 1px;
-}
-
-.probaj-dugmad {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.probaj-greska {
-    background-color: #fee2e2;
-    color: #b91c1c;
-    border: 1px solid #fecaca;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    line-height: 1.4;
-}
-
-#probajCanvas {
-    max-width: 100%;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    background-color: #ffffff;
-}
-
-@media (max-width: 768px) {
-    .probaj-modal-content {
-        padding: 14px;
-    }
-
-    .probaj-textarea {
-        min-height: 160px;
-    }
-}
-
-/* ==========================================================================
    5b. Dugme za povratak na projekte (X u gornjem desnom uglu stranice)
    ========================================================================== */
 .kod-close-btn {
@@ -640,7 +552,6 @@ body.light-mode .video-link:hover {
 }
 
 .run-code-btn,
-.try-code-btn,
 .copy-code-btn {
     background-color: transparent;
     color: var(--theme-accent);
@@ -657,7 +568,6 @@ body.light-mode .video-link:hover {
 }
 
 .run-code-btn:hover,
-.try-code-btn:hover,
 .copy-code-btn:hover {
     background-color: var(--theme-accent);
     color: #ffffff;

@@ -95,13 +95,16 @@
         </div>
     </nav>
 
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html" id="bc-pocetna">Početna</a>
+    </nav>
+
     <main class="turtle-main-container fade-in-up" id="glavni-sadrzaj" tabindex="-1">
         <h1 id="glavni-naslov">Interaktivni Python Turtle kod</h1>
         <p id="glavni-podnaslov">Klikni na roze, podvučene linije koda kako bi pogledao video objašnjenje za njih!</p>
 
         <div class="kod-toolbar">
             <button type="button" id="pokreni-kod-btn" class="run-code-btn"><i class="fa-solid fa-play"></i> Pokreni kod</button>
-            <button type="button" id="probaj-kod-btn" class="try-code-btn"><i class="fa-solid fa-flask"></i> Probaj sam</button>
             <button type="button" id="kopiraj-kod-btn" class="copy-code-btn"><i class="fa-regular fa-copy"></i> Kopiraj kod</button>
         </div>
 
@@ -184,29 +187,6 @@
             </div>
             <p class="run-napomena"><i class="fa-solid fa-circle-info"></i> <span id="run-napomena-tekst">Napomena: ovo je pojednostavljen vizuelni prikaz koda, pa može doći do sitnih odstupanja u odnosu na izgled crteža kada se isti kod pokrene u Python Turtle okruženju na računaru.</span></p>
             <canvas id="turtleCanvas"></canvas>
-        </div>
-    </div>
-
-    <div id="probajModal" class="modal probaj-modal">
-        <div class="modal-content probaj-modal-content">
-            <button class="close-btn" onclick="zatvoriProbaj()">&times;</button>
-            <div class="run-modal-header">
-                <h3 id="probaj-modal-naslov">Probaj sam</h3>
-            </div>
-            <p class="run-napomena"><i class="fa-solid fa-circle-info"></i> <span id="probaj-pomoc-tekst">Podržane komande: forward/fd, backward/bk, left/lt, right/rt, penup, pendown, color, goto, begin_fill, end_fill, width, shape, shapesize, stamp, setheading, home, bgcolor i for _ in range(n):</span></p>
-            <div class="probaj-layout">
-                <div class="probaj-levo">
-                    <textarea id="probaj-unos" class="probaj-textarea" spellcheck="false"></textarea>
-                    <div class="probaj-dugmad">
-                        <button type="button" id="probaj-pokreni-btn" class="run-code-btn"><i class="fa-solid fa-play"></i> <span id="probaj-pokreni-tekst">Pokreni</span></button>
-                        <button type="button" id="probaj-ocisti-btn" class="run-again-btn"><i class="fa-solid fa-eraser"></i> <span id="probaj-ocisti-tekst">Očisti platno</span></button>
-                    </div>
-                    <p id="probaj-greska" class="probaj-greska" style="display:none;"></p>
-                </div>
-                <div class="probaj-desno">
-                    <canvas id="probajCanvas"></canvas>
-                </div>
-            </div>
         </div>
     </div>
 
