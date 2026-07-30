@@ -9,7 +9,8 @@
 
         const recnik = {
             SRB: {
-                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navPromeni: 'Promeni portfolio',
+                navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navProjekti: 'Projekti', navBlog: 'Blog', navPromeni: 'Promeni portfolio',
+                bcPocetna: 'Početna pedagoška strana', bcProjekti: 'Projekti', bcKod: 'Kod',
                 naslovStrane: 'Interaktivni Python Turtle Kod',
                 podnaslovStrane: 'Klikni na roze, podvučene linije koda kako bi pogledao video objašnjenje za njih!',
                 btnPokreniKod: 'Pokreni kod',
@@ -19,7 +20,8 @@
                 footer: '©Copyright by Nena Kozić'
             },
             ENG: {
-                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navPromeni: 'Switch Portfolio',
+                navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navProjekti: 'Projects', navBlog: 'Blog', navPromeni: 'Switch Portfolio',
+                bcPocetna: 'Home (Teaching)', bcProjekti: 'Projects', bcKod: 'Code',
                 naslovStrane: 'Interactive Python Turtle Code',
                 podnaslovStrane: 'Click on the pink, underlined lines of code to watch their video explanation!',
                 btnPokreniKod: 'Run code',
@@ -35,7 +37,11 @@
             navIskustvo: document.getElementById('nav-iskustvo'),
             navEdukacija: document.getElementById('nav-edukacija'),
             navProjekti: document.getElementById('nav-projekti'),
+            navBlog: document.getElementById('nav-blog'),
             navPromeni: document.getElementById('nav-promeni'),
+            bcPocetna: document.getElementById('bc-pocetna'),
+            bcTrenutna: document.getElementById('bc-trenutna'),
+            bcDalje: document.getElementById('bc-dalje'),
             glavniNaslov: document.getElementById('glavni-naslov'),
             glavniPodnaslov: document.getElementById('glavni-podnaslov'),
             footer: document.getElementById('idx-footer-copy'),
@@ -73,7 +79,12 @@
             el.navIskustvo.innerText = r.navIskustvo;
             el.navEdukacija.innerText = r.navEdukacija;
             el.navProjekti.innerText = r.navProjekti;
+            el.navBlog.innerText = r.navBlog;
             el.navPromeni.innerHTML = `<i class="fa-solid fa-repeat"></i> ${r.navPromeni}`;
+
+            el.bcPocetna.innerText = r.bcPocetna;
+            el.bcTrenutna.innerText = r.bcProjekti;
+            el.bcDalje.innerText = r.bcKod;
 
             el.glavniNaslov.innerText = r.naslovStrane;
             el.glavniPodnaslov.innerText = r.podnaslovStrane;
