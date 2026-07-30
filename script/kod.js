@@ -16,6 +16,13 @@
                 naslovRunModala: 'Simulacija crtanja',
                 btnPonovoPokreni: 'Pokreni ponovo',
                 napomenaRun: 'Napomena: ovo je pojednostavljen vizuelni prikaz koda, pa može doći do sitnih odstupanja u odnosu na izgled crteža kada se isti kod pokrene u Python Turtle okruženju na računaru.',
+                btnProbajSam: 'Probaj sam',
+                naslovProbajModala: 'Probaj sam',
+                probajPomocTekst: 'Podržane komande: forward/fd, backward/bk, left/lt, right/rt, penup, pendown, color, goto, begin_fill, end_fill, width, shape, shapesize, stamp, setheading, home, bgcolor i for _ in range(n):',
+                probajPokreniTekst: 'Pokreni',
+                probajOcistiTekst: 'Očisti platno',
+                probajGreskaPrefix: 'Greška u liniji',
+                probajPrimer: 'color("purple")\nbegin_fill()\nfor _ in range(4):\n    forward(100)\n    left(90)\nend_fill()',
                 footer: '©Copyright by Nena Kozić'
             },
             ENG: {
@@ -26,6 +33,13 @@
                 naslovRunModala: 'Drawing simulation',
                 btnPonovoPokreni: 'Run again',
                 napomenaRun: 'Note: this is a simplified visual representation of the code, so there may be small differences compared to how the drawing actually looks when the same code runs in a Python Turtle environment on a computer.',
+                btnProbajSam: 'Try it yourself',
+                naslovProbajModala: 'Try it yourself',
+                probajPomocTekst: 'Supported commands: forward/fd, backward/bk, left/lt, right/rt, penup, pendown, color, goto, begin_fill, end_fill, width, shape, shapesize, stamp, setheading, home, bgcolor, and for _ in range(n):',
+                probajPokreniTekst: 'Run',
+                probajOcistiTekst: 'Clear canvas',
+                probajGreskaPrefix: 'Error on line',
+                probajPrimer: 'color("purple")\nbegin_fill()\nfor _ in range(4):\n    forward(100)\n    left(90)\nend_fill()',
                 footer: '©Copyright by Nena Kozić'
             }
         };
@@ -54,7 +68,18 @@
             runNaslov: document.getElementById('run-modal-naslov'),
             ponovoBtn: document.getElementById('run-ponovo-btn'),
             ponovoTekst: document.getElementById('run-ponovo-tekst'),
-            napomenaRun: document.getElementById('run-napomena-tekst')
+            napomenaRun: document.getElementById('run-napomena-tekst'),
+            probajBtn: document.getElementById('probaj-kod-btn'),
+            probajModal: document.getElementById('probajModal'),
+            probajModalNaslov: document.getElementById('probaj-modal-naslov'),
+            probajPomoc: document.getElementById('probaj-pomoc-tekst'),
+            probajUnos: document.getElementById('probaj-unos'),
+            probajPokreniBtn: document.getElementById('probaj-pokreni-btn'),
+            probajPokreniTekst: document.getElementById('probaj-pokreni-tekst'),
+            probajOcistiBtn: document.getElementById('probaj-ocisti-btn'),
+            probajOcistiTekst: document.getElementById('probaj-ocisti-tekst'),
+            probajGreska: document.getElementById('probaj-greska'),
+            probajCanvas: document.getElementById('probajCanvas')
         };
 
         const prevodiKopiraj = {
@@ -88,6 +113,12 @@
             el.runNaslov.innerText = r.naslovRunModala;
             el.ponovoTekst.innerText = r.btnPonovoPokreni;
             el.napomenaRun.innerText = r.napomenaRun;
+
+            el.probajBtn.innerHTML = `<i class="fa-solid fa-flask"></i> ${r.btnProbajSam}`;
+            el.probajModalNaslov.innerText = r.naslovProbajModala;
+            el.probajPomoc.innerText = r.probajPomocTekst;
+            el.probajPokreniTekst.innerText = r.probajPokreniTekst;
+            el.probajOcistiTekst.innerText = r.probajOcistiTekst;
         }
 
         function primeniRezim() {
@@ -429,3 +460,511 @@
         osvezi();
         podesiEduDropdown();
         initFadeInReveal();
+
+        // ============================================================
+        // "Probaj sam" — mini Turtle interpreter i plejgraund
+        // ============================================================
+        function probajOcistiKomentar(linija) {
+            let rezultat = '';
+            let uNavodnicima = null;
+            for (let i = 0; i < linija.length; i++) {
+                const c = linija[i];
+                if (uNavodnicima) {
+                    rezultat += c;
+                    if (c === uNavodnicima) uNavodnicima = null;
+                    continue;
+                }
+                if (c === '"' || c === "'") { uNavodnicima = c; rezultat += c; continue; }
+                if (c === '#') break;
+                rezultat += c;
+            }
+            return rezultat;
+        }
+
+        function probajBrojIndentacije(linija) {
+            const m = linija.match(/^[ \t]*/);
+            return m ? m[0].replace(/\t/g, '    ').length : 0;
+        }
+
+        function probajParsirajArgumente(tekst) {
+            return tekst.split(',').map(a => a.trim()).filter(a => a.length > 0);
+        }
+
+        function probajArgKaoBroj(arg) {
+            if (arg === undefined) return null;
+            const broj = parseFloat(arg);
+            return Number.isNaN(broj) ? null : broj;
+        }
+
+        function probajArgKaoString(arg) {
+            const m = arg.match(/^['"](.*)['"]$/);
+            return m ? m[1] : arg;
+        }
+
+        const PROBAJ_IGNORISI = /import\s|Screen\s*\(|Turtle\s*\(|mainloop\s*\(|exitonclick\s*\(|title\s*\(|speed\s*\(|done\s*\(\s*\)/;
+
+        function probajParsirajLiniju(sirovaLinija, brojLinije) {
+            const linija = probajOcistiKomentar(sirovaLinija).trim();
+            if (!linija) return { koraci: [] };
+            if (PROBAJ_IGNORISI.test(linija)) return { koraci: [] };
+
+            const m = linija.match(/^(?:[a-zA-Z_]\w*\.)?([a-zA-Z_]\w*)\s*\(([^)]*)\)\s*$/);
+            if (!m) {
+                return { greska: { linija: brojLinije, poruka: `nepoznata ili nepodržana instrukcija: "${linija}"` } };
+            }
+
+            const komanda = m[1].toLowerCase();
+            const argumenti = probajParsirajArgumente(m[2]);
+
+            switch (komanda) {
+                case 'forward': case 'fd': {
+                    const v = probajArgKaoBroj(argumenti[0]);
+                    if (v === null) return { greska: { linija: brojLinije, poruka: `${komanda}() zahteva broj` } };
+                    return { koraci: [{ t: 'forward', v }] };
+                }
+                case 'backward': case 'bk': case 'back': {
+                    const v = probajArgKaoBroj(argumenti[0]);
+                    if (v === null) return { greska: { linija: brojLinije, poruka: `${komanda}() zahteva broj` } };
+                    return { koraci: [{ t: 'forward', v: -v }] };
+                }
+                case 'left': case 'lt': {
+                    const v = probajArgKaoBroj(argumenti[0]);
+                    if (v === null) return { greska: { linija: brojLinije, poruka: `${komanda}() zahteva ugao` } };
+                    return { koraci: [{ t: 'levo', v }] };
+                }
+                case 'right': case 'rt': {
+                    const v = probajArgKaoBroj(argumenti[0]);
+                    if (v === null) return { greska: { linija: brojLinije, poruka: `${komanda}() zahteva ugao` } };
+                    return { koraci: [{ t: 'desno', v }] };
+                }
+                case 'penup': case 'pu': return { koraci: [{ t: 'penup' }] };
+                case 'pendown': case 'pd': return { koraci: [{ t: 'pendown' }] };
+                case 'color': case 'pencolor': case 'fillcolor': {
+                    if (!argumenti.length) return { greska: { linija: brojLinije, poruka: 'color() zahteva naziv boje' } };
+                    return { koraci: [{ t: 'boja', v: probajArgKaoString(argumenti[0]) }] };
+                }
+                case 'goto': case 'setpos': case 'setposition': {
+                    const x = probajArgKaoBroj(argumenti[0]);
+                    const y = probajArgKaoBroj(argumenti[1]);
+                    if (x === null || y === null) return { greska: { linija: brojLinije, poruka: `${komanda}() zahteva dve koordinate (x, y)` } };
+                    return { koraci: [{ t: 'goto', x, y }] };
+                }
+                case 'setx': {
+                    const x = probajArgKaoBroj(argumenti[0]);
+                    if (x === null) return { greska: { linija: brojLinije, poruka: 'setx() zahteva broj' } };
+                    return { koraci: [{ t: 'gotoRelX', x }] };
+                }
+                case 'sety': {
+                    const y = probajArgKaoBroj(argumenti[0]);
+                    if (y === null) return { greska: { linija: brojLinije, poruka: 'sety() zahteva broj' } };
+                    return { koraci: [{ t: 'gotoRelY', y }] };
+                }
+                case 'begin_fill': return { koraci: [{ t: 'beginfill' }] };
+                case 'end_fill': return { koraci: [{ t: 'endfill' }] };
+                case 'width': case 'pensize': {
+                    const v = probajArgKaoBroj(argumenti[0]);
+                    if (v === null) return { greska: { linija: brojLinije, poruka: `${komanda}() zahteva broj` } };
+                    return { koraci: [{ t: 'sirina', v }] };
+                }
+                case 'shape': {
+                    if (!argumenti.length) return { greska: { linija: brojLinije, poruka: 'shape() zahteva naziv oblika' } };
+                    return { koraci: [{ t: 'oblik', v: probajArgKaoString(argumenti[0]) }] };
+                }
+                case 'shapesize': case 'turtlesize': {
+                    const a = probajArgKaoBroj(argumenti[0]);
+                    if (a === null) return { greska: { linija: brojLinije, poruka: `${komanda}() zahteva broj` } };
+                    const b = probajArgKaoBroj(argumenti[1]);
+                    return { koraci: [{ t: 'velicina', a, b: b === null ? a : b }] };
+                }
+                case 'stamp': return { koraci: [{ t: 'stamp' }] };
+                case 'setheading': case 'seth': {
+                    const v = probajArgKaoBroj(argumenti[0]);
+                    if (v === null) return { greska: { linija: brojLinije, poruka: `${komanda}() zahteva ugao` } };
+                    return { koraci: [{ t: 'heading', v }] };
+                }
+                case 'home': return { koraci: [{ t: 'goto', x: 0, y: 0 }, { t: 'heading', v: 0 }] };
+                case 'bgcolor': {
+                    if (!argumenti.length) return { greska: { linija: brojLinije, poruka: 'bgcolor() zahteva naziv boje' } };
+                    return { koraci: [{ t: 'pozadina', v: probajArgKaoString(argumenti[0]) }] };
+                }
+                default:
+                    return { greska: { linija: brojLinije, poruka: `nepoznata komanda "${komanda}()"` } };
+            }
+        }
+
+        function probajParsirajPodlinije(trim, brojLinije, koraci) {
+            const podLinije = trim.split(';').map(s => s.trim()).filter(s => s.length > 0);
+            for (const pod of podLinije) {
+                const rez = probajParsirajLiniju(pod, brojLinije);
+                if (rez.greska) return rez.greska;
+                koraci.push(...rez.koraci);
+            }
+            return null;
+        }
+
+        function probajParsirajKod(tekst) {
+            const sveLinije = tekst.replace(/\r\n/g, '\n').split('\n');
+            const koraci = [];
+            let i = 0;
+
+            while (i < sveLinije.length) {
+                const sirova = sveLinije[i];
+                const trim = probajOcistiKomentar(sirova).trim();
+                const brojLinije = i + 1;
+
+                if (!trim) { i++; continue; }
+
+                const forInline = trim.match(/^for\s+\S+\s+in\s+range\(\s*(\d+)\s*\)\s*:\s*(.+)$/);
+                const forBlok = trim.match(/^for\s+\S+\s+in\s+range\(\s*(\d+)\s*\)\s*:\s*$/);
+
+                if (forInline) {
+                    const broj = parseInt(forInline[1], 10);
+                    for (let k = 0; k < broj; k++) {
+                        const greska = probajParsirajPodlinije(forInline[2], brojLinije, koraci);
+                        if (greska) return { greska };
+                    }
+                    i++;
+                    continue;
+                }
+
+                if (forBlok) {
+                    const broj = parseInt(forBlok[1], 10);
+                    const indentPetlje = probajBrojIndentacije(sirova);
+                    const telo = [];
+                    let j = i + 1;
+                    while (j < sveLinije.length) {
+                        const sledecaTrim = probajOcistiKomentar(sveLinije[j]).trim();
+                        if (!sledecaTrim) { telo.push({ linija: sveLinije[j], broj: j + 1 }); j++; continue; }
+                        if (probajBrojIndentacije(sveLinije[j]) <= indentPetlje) break;
+                        telo.push({ linija: sveLinije[j], broj: j + 1 });
+                        j++;
+                    }
+                    if (!telo.some(t => probajOcistiKomentar(t.linija).trim())) {
+                        return { greska: { linija: brojLinije, poruka: 'for petlja nema telo (uvučene linije ispod nje)' } };
+                    }
+                    for (let k = 0; k < broj; k++) {
+                        for (const t of telo) {
+                            const trimTela = probajOcistiKomentar(t.linija).trim();
+                            if (!trimTela) continue;
+                            const greska = probajParsirajPodlinije(trimTela, t.broj, koraci);
+                            if (greska) return { greska };
+                        }
+                    }
+                    i = j;
+                    continue;
+                }
+
+                const greska = probajParsirajPodlinije(trim, brojLinije, koraci);
+                if (greska) return { greska };
+                i++;
+            }
+
+            if (!koraci.length) {
+                return { greska: { linija: 1, poruka: 'nema instrukcija za izvršavanje — upiši bar jednu turtle komandu' } };
+            }
+
+            return { koraci };
+        }
+
+        function probajPocetnoStanje() {
+            return {
+                x: 0, y: 0, heading: 0, dolePenu: true, boja: 'black', linijaSirina: 1,
+                oblik: 'turtle', velicina: { a: 1, b: 1 }, punjenje: false,
+                tackePunjenja: [], ops: [], pozadina: '#ffffff'
+            };
+        }
+
+        function probajPrimeniInstant(stanje, korak) {
+            switch (korak.t) {
+                case 'sirina': stanje.linijaSirina = korak.v; break;
+                case 'boja': stanje.boja = korak.v; break;
+                case 'pozadina': stanje.pozadina = korak.v; break;
+                case 'penup': stanje.dolePenu = false; break;
+                case 'pendown': stanje.dolePenu = true; break;
+                case 'levo': stanje.heading = (stanje.heading + korak.v + 360) % 360; break;
+                case 'desno': stanje.heading = (stanje.heading - korak.v + 360) % 360; break;
+                case 'heading': stanje.heading = korak.v; break;
+                case 'oblik': stanje.oblik = korak.v; break;
+                case 'velicina': stanje.velicina = { a: korak.a, b: korak.b || korak.a }; break;
+                case 'beginfill':
+                    stanje.punjenje = true;
+                    stanje.tackePunjenja = [{ x: stanje.x, y: stanje.y }];
+                    break;
+                case 'endfill':
+                    stanje.punjenje = false;
+                    stanje.ops.push({ type: 'popuna', tacke: stanje.tackePunjenja, boja: stanje.boja });
+                    stanje.tackePunjenja = [];
+                    break;
+                case 'stamp':
+                    stanje.ops.push({
+                        type: 'stamp', x: stanje.x, y: stanje.y, a: stanje.velicina.a,
+                        b: stanje.velicina.b, boja: stanje.boja, oblik: stanje.oblik, heading: stanje.heading
+                    });
+                    break;
+                case 'forward': case 'goto': case 'gotoRelX': case 'gotoRelY': {
+                    let krajX, krajY;
+                    if (korak.t === 'forward') {
+                        const rad = stanje.heading * Math.PI / 180;
+                        krajX = stanje.x + korak.v * Math.cos(rad);
+                        krajY = stanje.y + korak.v * Math.sin(rad);
+                    } else if (korak.t === 'goto') {
+                        krajX = korak.x; krajY = korak.y;
+                    } else if (korak.t === 'gotoRelX') {
+                        krajX = korak.x; krajY = stanje.y;
+                    } else {
+                        krajX = stanje.x; krajY = korak.y;
+                    }
+                    if (stanje.dolePenu) {
+                        stanje.ops.push({ type: 'linija', x1: stanje.x, y1: stanje.y, x2: krajX, y2: krajY, boja: stanje.boja, sirina: stanje.linijaSirina });
+                    }
+                    if (stanje.punjenje) stanje.tackePunjenja.push({ x: krajX, y: krajY });
+                    stanje.x = krajX; stanje.y = krajY;
+                    break;
+                }
+            }
+        }
+
+        function probajIzracunajGranice(koraci) {
+            const stanje = probajPocetnoStanje();
+            let minX = 0, maxX = 0, minY = 0, maxY = 0;
+
+            function belezi(x, y, margina) {
+                minX = Math.min(minX, x - margina); maxX = Math.max(maxX, x + margina);
+                minY = Math.min(minY, y - margina); maxY = Math.max(maxY, y + margina);
+            }
+
+            belezi(stanje.x, stanje.y, 10);
+
+            for (const korak of koraci) {
+                probajPrimeniInstant(stanje, korak);
+                const margina = korak.t === 'stamp'
+                    ? 15 * Math.max(stanje.velicina.a, stanje.velicina.b)
+                    : 10;
+                belezi(stanje.x, stanje.y, margina);
+            }
+
+            return { minX, maxX, minY, maxY };
+        }
+
+        function probajUTacku(prostor, x, y) {
+            return {
+                x: (x - prostor.minX) * prostor.skala,
+                y: (prostor.maxY - y) * prostor.skala
+            };
+        }
+
+        function probajCrtajTrouglic(ctx, prostor, cx, cy, ugaoRad, velicina) {
+            const duzina = 14 * velicina * prostor.skala;
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(ugaoRad);
+            ctx.beginPath();
+            ctx.moveTo(duzina, 0);
+            ctx.lineTo(-duzina * 0.6, duzina * 0.55);
+            ctx.lineTo(-duzina * 0.6, -duzina * 0.55);
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        function probajCrtajOp(ctx, prostor, op) {
+            if (op.type === 'linija') {
+                const a = probajUTacku(prostor, op.x1, op.y1);
+                const b = probajUTacku(prostor, op.x2, op.y2);
+                ctx.strokeStyle = op.boja;
+                ctx.lineWidth = (op.sirina || 3) * 0.8;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y);
+                ctx.lineTo(b.x, b.y);
+                ctx.stroke();
+            } else if (op.type === 'popuna') {
+                ctx.fillStyle = op.boja;
+                ctx.beginPath();
+                op.tacke.forEach((t, i) => {
+                    const p = probajUTacku(prostor, t.x, t.y);
+                    if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+                });
+                ctx.closePath();
+                ctx.fill();
+            } else if (op.type === 'stamp') {
+                const p = probajUTacku(prostor, op.x, op.y);
+                ctx.fillStyle = op.boja;
+                if (op.oblik === 'square') {
+                    const sirina = 20 * op.a * prostor.skala;
+                    const visina = 20 * op.b * prostor.skala;
+                    ctx.fillRect(p.x - sirina / 2, p.y - visina / 2, sirina, visina);
+                    ctx.strokeStyle = 'rgba(15,23,42,0.25)';
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(p.x - sirina / 2, p.y - visina / 2, sirina, visina);
+                } else {
+                    probajCrtajTrouglic(ctx, prostor, p.x, p.y, -op.heading * Math.PI / 180, op.a);
+                }
+            }
+        }
+
+        function probajCrtajKornjacu(ctx, prostor, stanje) {
+            const p = probajUTacku(prostor, stanje.x, stanje.y);
+            ctx.fillStyle = stanje.boja;
+            if (stanje.oblik === 'square') {
+                const s = 20 * (stanje.velicina.a || 1) * prostor.skala;
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(-stanje.heading * Math.PI / 180);
+                ctx.strokeStyle = '#334155';
+                ctx.lineWidth = 1.5;
+                ctx.fillRect(-s / 2, -s / 2, s, s);
+                ctx.strokeRect(-s / 2, -s / 2, s, s);
+                ctx.restore();
+            } else {
+                probajCrtajTrouglic(ctx, prostor, p.x, p.y, -stanje.heading * Math.PI / 180, stanje.velicina.a || 1);
+            }
+        }
+
+        function probajNacrtajScenu(canvas, ctx, prostor, stanje, privremenaLinija) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = stanje.pozadina || '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            stanje.ops.forEach(op => probajCrtajOp(ctx, prostor, op));
+            if (privremenaLinija) probajCrtajOp(ctx, prostor, privremenaLinija);
+
+            probajCrtajKornjacu(ctx, prostor, stanje);
+        }
+
+        let probajToken = 0;
+
+        async function probajAnimirajKorak(stanje, canvas, ctx, prostor, korak, token) {
+            if (token !== probajToken) return;
+
+            if (korak.t === 'forward' || korak.t === 'goto' || korak.t === 'gotoRelX' || korak.t === 'gotoRelY') {
+                const pocetakX = stanje.x, pocetakY = stanje.y;
+                let krajX, krajY;
+                if (korak.t === 'forward') {
+                    const rad = stanje.heading * Math.PI / 180;
+                    krajX = pocetakX + korak.v * Math.cos(rad);
+                    krajY = pocetakY + korak.v * Math.sin(rad);
+                } else if (korak.t === 'goto') {
+                    krajX = korak.x; krajY = korak.y;
+                } else if (korak.t === 'gotoRelX') {
+                    krajX = korak.x; krajY = pocetakY;
+                } else {
+                    krajX = pocetakX; krajY = korak.y;
+                }
+                const rastojanje = Math.hypot(krajX - pocetakX, krajY - pocetakY);
+                const trajanje = Math.min(700, Math.max(120, rastojanje * 2.4));
+                const start = performance.now();
+
+                await new Promise(resolve => {
+                    function frame(now) {
+                        if (token !== probajToken) { resolve(); return; }
+                        const t = Math.min(1, (now - start) / trajanje);
+                        stanje.x = pocetakX + (krajX - pocetakX) * t;
+                        stanje.y = pocetakY + (krajY - pocetakY) * t;
+                        const privremena = stanje.dolePenu
+                            ? { type: 'linija', x1: pocetakX, y1: pocetakY, x2: stanje.x, y2: stanje.y, boja: stanje.boja, sirina: stanje.linijaSirina }
+                            : null;
+                        probajNacrtajScenu(canvas, ctx, prostor, stanje, privremena);
+                        if (t < 1) requestAnimationFrame(frame); else resolve();
+                    }
+                    requestAnimationFrame(frame);
+                });
+
+                stanje.x = krajX; stanje.y = krajY;
+                if (stanje.dolePenu) {
+                    stanje.ops.push({ type: 'linija', x1: pocetakX, y1: pocetakY, x2: krajX, y2: krajY, boja: stanje.boja, sirina: stanje.linijaSirina });
+                }
+                if (stanje.punjenje) stanje.tackePunjenja.push({ x: krajX, y: krajY });
+                probajNacrtajScenu(canvas, ctx, prostor, stanje);
+                return;
+            }
+
+            probajPrimeniInstant(stanje, korak);
+            probajNacrtajScenu(canvas, ctx, prostor, stanje);
+
+            const pauze = { levo: 130, desno: 130, heading: 120, oblik: 90, stamp: 180, beginfill: 60, endfill: 200 };
+            await sacekaj(pauze[korak.t] || 60);
+        }
+
+        function probajPrikaziGresku(poruka) {
+            el.probajGreska.textContent = poruka;
+            el.probajGreska.style.display = 'block';
+        }
+
+        function probajSakrijGresku() {
+            el.probajGreska.style.display = 'none';
+            el.probajGreska.textContent = '';
+        }
+
+        async function pokreniProbaj() {
+            probajSakrijGresku();
+            const parsirano = probajParsirajKod(el.probajUnos.value);
+
+            if (parsirano.greska) {
+                probajPrikaziGresku(`${recnik[jezik].probajGreskaPrefix} ${parsirano.greska.linija}: ${parsirano.greska.poruka}`);
+                return;
+            }
+
+            probajToken++;
+            const token = probajToken;
+
+            const granice = probajIzracunajGranice(parsirano.koraci);
+            const rangeX = Math.max(40, granice.maxX - granice.minX);
+            const rangeY = Math.max(40, granice.maxY - granice.minY);
+            let skala = Math.min(420 / rangeX, 420 / rangeY);
+            skala = Math.min(4, Math.max(0.4, skala));
+
+            const prostor = { minX: granice.minX, maxX: granice.maxX, minY: granice.minY, maxY: granice.maxY, skala };
+
+            const canvas = el.probajCanvas;
+            canvas.width = rangeX * skala;
+            canvas.height = rangeY * skala;
+            const ctx = canvas.getContext('2d');
+
+            const stanje = probajPocetnoStanje();
+            probajNacrtajScenu(canvas, ctx, prostor, stanje);
+
+            for (const korak of parsirano.koraci) {
+                if (token !== probajToken) return;
+                await probajAnimirajKorak(stanje, canvas, ctx, prostor, korak, token);
+            }
+        }
+
+        function probajOcistiPlatno() {
+            probajToken++;
+            probajSakrijGresku();
+            const canvas = el.probajCanvas;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function otvoriProbaj() {
+            el.probajModal.style.display = 'flex';
+            Common.otvoriModal(el.probajModal);
+            if (!el.probajUnos.value.trim()) {
+                el.probajUnos.value = recnik[jezik].probajPrimer;
+            }
+        }
+
+        function zatvoriProbaj() {
+            probajToken++;
+            el.probajModal.style.display = 'none';
+            Common.zatvoriModal(el.probajModal);
+        }
+
+        if (el.probajBtn) el.probajBtn.addEventListener('click', otvoriProbaj);
+        if (el.probajPokreniBtn) el.probajPokreniBtn.addEventListener('click', pokreniProbaj);
+        if (el.probajOcistiBtn) el.probajOcistiBtn.addEventListener('click', probajOcistiPlatno);
+
+        el.probajModal.addEventListener('click', event => {
+            if (event.target === el.probajModal) zatvoriProbaj();
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && el.probajModal.style.display === 'flex') zatvoriProbaj();
+        });
