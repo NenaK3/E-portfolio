@@ -8,14 +8,14 @@
 }
 
 :root {
-    --bg-color: #0f172a;
-    --text-color: #f8fafc;
-    --text-muted: #94a3b8;
-    --card-bg: #1e293b;
-    --card-border: #334155;
-    --btn-bg: #334155;
-    --btn-hover: #475569;
-    --shadow: rgba(0, 0, 0, 0.3);
+    --bg-color: #0b1120;
+    --text-color: #f5f7fb;
+    --text-muted: #98a3bc;
+    --card-bg: #151d30;
+    --card-border: #26314a;
+    --btn-bg: #26314a;
+    --btn-hover: #2e3a56;
+    --shadow: rgba(2, 6, 20, 0.5);
     
     --pastel-blue-bg: #e0f2fe;
     --pastel-blue-accent: #38bdf8;
@@ -50,27 +50,31 @@ body.edukacija-theme {
 }
 
 body.light-mode {
-    --bg-color: #f8fafc;
-    --text-color: #0f172a;
-    --text-muted: #64748b;
+    --bg-color: #f5f7fb;
+    --text-color: #0b1120;
+    --text-muted: #5c6579;
     --card-bg: #ffffff;
-    --card-border: #e2e8f0;
-    --btn-bg: #e2e8f0;
-    --btn-hover: #cbd5e1;
-    --shadow: rgba(0, 0, 0, 0.05);
-    --theme-tab-active-bg: #e2e8f0;
+    --card-border: #e6e9f2;
+    --btn-bg: #e6e9f2;
+    --btn-hover: #dde2ea;
+    --shadow: rgba(16, 23, 42, 0.06);
+    --theme-tab-active-bg: #e6e9f2;
 }
 
 body.light-mode.it-theme {
     --theme-accent: var(--pastel-blue-dark);
     --theme-accent-hover: var(--pastel-blue-text);
     --hamburger-color: #0369a1;
+    --theme-shadow-soft: rgba(56, 189, 248, 0.12);
+    --theme-shadow-strong: rgba(56, 189, 248, 0.24);
 }
 
 body.light-mode.edukacija-theme {
     --theme-accent: var(--pastel-pink-dark);
     --theme-accent-hover: var(--pastel-pink-text);
     --hamburger-color: #f472b6;
+    --theme-shadow-soft: rgba(244, 114, 182, 0.12);
+    --theme-shadow-strong: rgba(244, 114, 182, 0.24);
 }
 
 /* ==========================================================================
@@ -98,7 +102,7 @@ body {
     height: 70px;
     background-color: var(--card-bg);
     border-bottom: 1px solid var(--card-border);
-    box-shadow: 0 4px 6px -1px var(--shadow);
+    box-shadow: 0 4px 6px -1px var(--theme-shadow-soft, var(--shadow));
     position: sticky;
     top: 0;
     z-index: 100;
@@ -221,7 +225,7 @@ body {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 10px;
-    box-shadow: 0 10px 15px -3px var(--shadow);
+    box-shadow: 0 10px 15px -3px var(--theme-shadow-strong, var(--shadow));
     padding: 8px;
     z-index: 200;
 }
@@ -306,15 +310,29 @@ body {
     height: 200px;
     border-radius: 8px;
     object-fit: cover;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px var(--theme-shadow-strong, rgba(0,0,0,0.2));
     max-width: 100%;
     display: block;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
 }
 
 .hero-img-wrap {
     position: relative;
     display: inline-block;
     margin-bottom: 16px;
+}
+
+.hero-img-wrap:hover .hero-profile-img {
+    transform: scale(1.06) rotate(-1deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-profile-img {
+        transition: none;
+    }
+    .hero-img-wrap:hover .hero-profile-img {
+        transform: none;
+    }
 }
 
 .status-badge {
@@ -329,7 +347,7 @@ body {
     border: 1px solid var(--card-border);
     padding: 6px 14px;
     border-radius: 999px;
-    box-shadow: 0 4px 10px var(--shadow);
+    box-shadow: 0 4px 10px var(--theme-shadow-soft, var(--shadow));
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--text-color);
@@ -365,6 +383,38 @@ body {
     color: var(--text-muted);
 }
 
+/* ==========================================================================
+   Efekat kucanja pisaće mašine (typewriter) — na h2 podnaslovu titule ispod
+   imena u hero sekciji
+   ========================================================================== */
+.typewriter-tekst {
+    font-family: var(--font-mono, 'JetBrains Mono', ui-monospace, Consolas, monospace);
+    min-height: 1.4em;
+}
+
+.typewriter-tekst::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 0.95em;
+    margin-left: 3px;
+    vertical-align: -0.12em;
+    background-color: currentColor;
+    animation: typewriterTreptanje 0.85s step-end infinite;
+}
+
+@keyframes typewriterTreptanje {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .typewriter-tekst::after {
+        animation: none;
+        opacity: 0;
+    }
+}
+
 .cv-btn-container {
     margin-top: 18px;
 }
@@ -380,14 +430,14 @@ body {
     border-radius: 8px;
     font-weight: 600;
     font-size: 0.95rem;
-    box-shadow: 0 4px 6px -1px var(--shadow);
+    box-shadow: 0 4px 6px -1px var(--theme-shadow-soft, var(--shadow));
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cv-download-btn:hover {
     background-color: var(--theme-accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px -1px var(--shadow);
+    box-shadow: 0 6px 8px -1px var(--theme-shadow-strong, var(--shadow));
 }
 
 .cv-download-btn i {
@@ -427,7 +477,7 @@ body {
     height: 85vh;
     border-radius: 12px;
     position: relative;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 25px -5px var(--theme-shadow-strong, rgba(0, 0, 0, 0.4));
     display: flex;
     flex-direction: column;
     padding: 40px 20px 20px 20px;
@@ -540,7 +590,7 @@ body {
     border: 1px solid var(--card-border);
     border-radius: 14px;
     padding: 30px;
-    box-shadow: 0 10px 15px -3px var(--shadow);
+    box-shadow: 0 10px 15px -3px var(--theme-shadow-soft, var(--shadow));
 }
 
 .card h3 {
@@ -744,7 +794,7 @@ body {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease-in-out;
-        box-shadow: 0 10px 15px -3px var(--shadow);
+        box-shadow: 0 10px 15px -3px var(--theme-shadow-strong, var(--shadow));
         z-index: 99;
     }
 
@@ -960,20 +1010,13 @@ body {
 /* ==========================================================================
    Pristupačnost (focus-visible, skip-link, reduced-motion)
    ========================================================================== */
-a:focus-visible,
-button:focus-visible,
-[tabindex]:focus-visible {
-    outline: 3px solid #4da3ff;
-    outline-offset: 3px;
-    border-radius: 4px;
-}
 
 .skip-link {
     position: absolute;
     top: -60px;
     left: 12px;
     z-index: 9999;
-    background-color: #0f172a;
+    background-color: #0b1120;
     color: #ffffff;
     padding: 12px 20px;
     border-radius: 8px;

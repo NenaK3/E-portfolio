@@ -89,12 +89,21 @@
         });
     }
 
+    function initGrainOverlay() {
+        if (document.getElementById('grain-overlay')) return;
+        const grain = document.createElement('div');
+        grain.id = 'grain-overlay';
+        grain.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(grain);
+    }
+
     window.Enhancements = { initTilt };
 
     document.addEventListener('DOMContentLoaded', () => {
         initScrollProgress();
         initCursorGlow();
         initTilt();
+        initGrainOverlay();
     });
 
 })();

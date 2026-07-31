@@ -1,4 +1,3 @@
-
 :root {
     --font-size-xs: 0.75rem;    /* 12px */
     --font-size-sm: 0.875rem;   /* 14px */
@@ -11,27 +10,41 @@
 
     --font-mono: 'JetBrains Mono', 'Fira Code', 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.18), 0 1px 1px rgba(0, 0, 0, 0.10);
-    --shadow-md: 0 6px 16px -4px rgba(0, 0, 0, 0.28), 0 3px 6px -2px rgba(0, 0, 0, 0.16);
-    --shadow-lg: 0 20px 40px -12px rgba(0, 0, 0, 0.38), 0 8px 16px -4px rgba(0, 0, 0, 0.22);
+    --shadow-sm: 0 1px 2px rgba(2, 6, 20, 0.35), 0 1px 1px rgba(2, 6, 20, 0.22);
+    --shadow-md: 0 8px 20px -6px rgba(2, 6, 20, 0.48), 0 3px 8px -2px rgba(2, 6, 20, 0.30);
+    --shadow-lg: 0 26px 48px -14px rgba(2, 6, 20, 0.58), 0 10px 20px -6px rgba(2, 6, 20, 0.34);
+    --card-edge: rgba(255, 255, 255, 0.045);
 
     --scroll-progress-color: linear-gradient(90deg, var(--pastel-blue-accent, #38bdf8), var(--pastel-pink-accent, #f472b6));
     --cursor-glow-color: rgba(56, 189, 248, 0.12);
-    --scrollbar-track: var(--bg-color, #0f172a);
-    --scrollbar-thumb: var(--card-border, #334155);
-    --scrollbar-thumb-hover: var(--btn-hover, #475569);
+    --scrollbar-track: var(--bg-color, #0b1120);
+    --scrollbar-thumb: var(--card-border, #26314a);
+    --scrollbar-thumb-hover: var(--btn-hover, #2e3a56);
+
+    --dot-grid-color: var(--card-border);
+
+    --focus-ring-color: #4da3ff;
 }
 
 body.light-mode {
-    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 1px rgba(15, 23, 42, 0.04);
-    --shadow-md: 0 6px 16px -4px rgba(15, 23, 42, 0.10), 0 3px 6px -2px rgba(15, 23, 42, 0.06);
-    --shadow-lg: 0 20px 40px -12px rgba(15, 23, 42, 0.14), 0 8px 16px -4px rgba(15, 23, 42, 0.08);
+    --shadow-sm: 0 2px 6px -1px rgba(15, 23, 42, 0.09), 0 1px 3px -1px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 10px 20px -6px rgba(15, 23, 42, 0.14), 0 4px 8px -2px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 24px 44px -14px rgba(15, 23, 42, 0.20), 0 10px 18px -4px rgba(15, 23, 42, 0.10);
     --cursor-glow-color: rgba(56, 189, 248, 0.08);
+
+    --scrollbar-thumb: #dde2ea;
+    --scrollbar-thumb-hover: #98a3bc;
+
+    --dot-grid-color: rgba(56, 189, 248, 0.28);
+
+    --focus-ring-color: #0284c7;
+    --card-edge: rgba(255, 255, 255, 0.9);
 }
 
-body.edukacija-theme,
-body.edu-theme {
-    --cursor-glow-color: rgba(244, 114, 182, 0.14);
+body.light-mode.edukacija-theme,
+body.light-mode.edu-theme {
+    --dot-grid-color: rgba(244, 114, 182, 0.28);
+    --focus-ring-color: #db2777;
 }
 
 /* ==========================================================================
@@ -90,18 +103,105 @@ pre,
 .timeline-content,
 .blog-toolbar,
 .control-btn {
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-sm), inset 0 1px 0 var(--card-edge);
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .card:hover,
 .experience-card:hover,
 .timeline-content:hover,
 .spec-course-card:hover {
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md), inset 0 1px 0 var(--card-edge);
 }
 
 .selection-card:hover {
-    box-shadow: var(--shadow-lg) !important;
+    box-shadow: var(--shadow-lg), inset 0 1px 0 var(--card-edge) !important;
+}
+
+.card,
+.experience-card,
+.spec-course-card,
+.timeline-content {
+    position: relative;
+}
+
+.card::after,
+.experience-card::after,
+.spec-course-card::after,
+.timeline-content::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    border-radius: 0 0 2px 2px;
+    background: linear-gradient(90deg, var(--pastel-blue-accent), var(--pastel-blue-dark));
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+body.edukacija-theme .card::after,
+body.edu-theme .card::after,
+body.edukacija-theme .experience-card::after,
+body.edu-theme .experience-card::after,
+body.edukacija-theme .spec-course-card::after,
+body.edu-theme .spec-course-card::after,
+body.edukacija-theme .timeline-content::after,
+body.edu-theme .timeline-content::after {
+    background: linear-gradient(90deg, var(--pastel-pink-accent), var(--pastel-pink-dark));
+}
+
+.card:hover::after,
+.experience-card:hover::after,
+.spec-course-card:hover::after,
+.timeline-content:hover::after {
+    transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card::after,
+    .experience-card::after,
+    .spec-course-card::after,
+    .timeline-content::after {
+        transition: none;
+    }
+}
+
+body.light-mode .it-card,
+body.light-mode.it-theme .card,
+body.light-mode.it-theme .experience-card,
+body.light-mode.it-theme .timeline-content {
+    box-shadow: 0 2px 10px -2px rgba(56, 189, 248, 0.14), 0 1px 3px -1px rgba(56, 189, 248, 0.10);
+}
+
+body.light-mode .it-card:hover,
+body.light-mode.it-theme .card:hover,
+body.light-mode.it-theme .experience-card:hover,
+body.light-mode.it-theme .timeline-content:hover {
+    box-shadow: 0 14px 26px -8px rgba(56, 189, 248, 0.22), 0 4px 10px -2px rgba(56, 189, 248, 0.14);
+}
+
+body.light-mode .edu-card,
+body.light-mode.edukacija-theme .card,
+body.light-mode.edu-theme .card,
+body.light-mode.edukacija-theme .experience-card,
+body.light-mode.edu-theme .experience-card,
+body.light-mode.edukacija-theme .timeline-content,
+body.light-mode.edu-theme .timeline-content {
+    box-shadow: 0 2px 10px -2px rgba(244, 114, 182, 0.14), 0 1px 3px -1px rgba(244, 114, 182, 0.10);
+}
+
+body.light-mode .edu-card:hover,
+body.light-mode.edukacija-theme .card:hover,
+body.light-mode.edu-theme .card:hover,
+body.light-mode.edukacija-theme .experience-card:hover,
+body.light-mode.edu-theme .experience-card:hover,
+body.light-mode.edukacija-theme .timeline-content:hover,
+body.light-mode.edu-theme .timeline-content:hover {
+    box-shadow: 0 14px 26px -8px rgba(244, 114, 182, 0.22), 0 4px 10px -2px rgba(244, 114, 182, 0.14);
 }
 
 /* ==========================================================================
@@ -117,13 +217,18 @@ body.index-body::before,
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(var(--card-border) 1px, transparent 1px);
+    background-image: radial-gradient(var(--dot-grid-color) 1px, transparent 1px);
     background-size: 26px 26px;
     -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 85%);
     mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 85%);
     opacity: 0.5;
     pointer-events: none;
     z-index: 0;
+}
+
+body.light-mode.index-body::before,
+body.light-mode .hero-section::before {
+    opacity: 1;
 }
 
 body.index-body {
@@ -168,7 +273,7 @@ body.index-body {
 }
 
 /* ==========================================================================
-   5. Cursor-glow (samo desktop, dark mode)
+   5. Cursor-glow (samo desktop)
    ========================================================================== */
 #cursor-glow {
     position: fixed;
@@ -186,7 +291,12 @@ body.index-body {
 }
 
 body.light-mode #cursor-glow {
-    opacity: 0.6;
+    opacity: 0.55;
+}
+
+body.light-mode.edukacija-theme #cursor-glow,
+body.light-mode.edu-theme #cursor-glow {
+    display: none;
 }
 
 @media (max-width: 900px), (hover: none) {
@@ -249,9 +359,266 @@ body.edu-theme .devicon-skill-icon.colorless {
     color: var(--pastel-pink-accent);
 }
 
+/* ==========================================================================
+   8b. Obeleženi tekst (::selection) — prati temu (plava za IT, roze za
+      edukaciju) umesto podrazumevane plave boje pregledača
+   ========================================================================== */
+body.it-theme ::selection {
+    background-color: var(--pastel-blue-accent);
+    color: #ffffff;
+}
+
+body.edukacija-theme ::selection,
+body.edu-theme ::selection {
+    background-color: var(--pastel-pink-accent);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   9. Fokus prilikom navigacije tastaturom — jedinstven kroz sajt,
+      sa jačim kontrastom u light modu (pristupačnost)
+   ========================================================================== */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid var(--focus-ring-color);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
 @media (prefers-reduced-motion: reduce) {
     #cursor-glow,
     #scroll-progress {
         transition: none;
     }
+}
+
+/* ==========================================================================
+   10. Glassmorphism navbar — poluprozirna, zamućena pozadina umesto pune
+       boje; sadržaj se blago nazire ispod prilikom skrolovanja
+   ========================================================================== */
+.navbar {
+    background-color: color-mix(in srgb, var(--card-bg) 82%, transparent) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    backdrop-filter: blur(12px) saturate(160%);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+    .navbar {
+        background-color: var(--card-bg) !important;
+    }
+}
+
+/* ==========================================================================
+   11. Suptilna dot-grid tekstura na CELOM sajtu (ne samo hero sekcijama) —
+       vrlo nizak opacity, fiksirana pozadina iza sadržaja svake stranice
+   ========================================================================== */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(var(--dot-grid-color) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: -2;
+}
+
+body.light-mode::after {
+    opacity: 0.35;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::after {
+        opacity: 0.12;
+    }
+}
+
+/* ==========================================================================
+   12. Grain/noise podloga (samo dark mode) — injektuje se kao #grain-overlay
+       div preko enhancements.js; ovde samo definišemo izgled
+   ========================================================================== */
+#grain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    transition: opacity 0.4s ease;
+}
+
+body:not(.light-mode) #grain-overlay {
+    opacity: 0.035;
+}
+
+/* ==========================================================================
+   13. Animacija ikonice sunce/mesec pri promeni teme
+   ========================================================================== */
+.control-btn i.fa-sun,
+.control-btn i.fa-moon {
+    display: inline-block;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.control-btn:active i.fa-sun,
+.control-btn:active i.fa-moon {
+    transform: rotate(180deg) scale(0.8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .control-btn i.fa-sun,
+    .control-btn i.fa-moon {
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   14. Stagger fade-in za tagove veština unutar kartice — svaki tag se
+       pojavljuje sa malim odlaganjem u odnosu na prethodni, pošto roditeljska
+       kartica postane vidljiva (IntersectionObserver dodaje .fade-in-visible)
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+    .fade-in-visible .tag-container .skill-tag,
+    .fade-in-visible .skill-list li {
+        opacity: 0;
+        animation: skillTagIn 0.45s ease forwards;
+    }
+
+    .fade-in-visible .tag-container .skill-tag:nth-child(1),
+    .fade-in-visible .skill-list li:nth-child(1) { animation-delay: 0.05s; }
+    .fade-in-visible .tag-container .skill-tag:nth-child(2),
+    .fade-in-visible .skill-list li:nth-child(2) { animation-delay: 0.10s; }
+    .fade-in-visible .tag-container .skill-tag:nth-child(3),
+    .fade-in-visible .skill-list li:nth-child(3) { animation-delay: 0.15s; }
+    .fade-in-visible .tag-container .skill-tag:nth-child(4),
+    .fade-in-visible .skill-list li:nth-child(4) { animation-delay: 0.20s; }
+    .fade-in-visible .tag-container .skill-tag:nth-child(5),
+    .fade-in-visible .skill-list li:nth-child(5) { animation-delay: 0.25s; }
+    .fade-in-visible .tag-container .skill-tag:nth-child(6),
+    .fade-in-visible .skill-list li:nth-child(6) { animation-delay: 0.30s; }
+    .fade-in-visible .tag-container .skill-tag:nth-child(n+7),
+    .fade-in-visible .skill-list li:nth-child(n+7) { animation-delay: 0.35s; }
+}
+
+@keyframes skillTagIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   15. Skeleton (placeholder) kartice — prikazuju se dok JS ne popuni
+       kontejner stvarnim sadržajem (iskustvo, edukacija, projekti, blog)
+   ========================================================================== */
+.skeleton-card {
+    height: 150px;
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    background: linear-gradient(100deg, var(--card-bg) 30%, var(--btn-bg) 50%, var(--card-bg) 70%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeletonShimmer {
+    0% { background-position: 150% 0; }
+    100% { background-position: -50% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skeleton-card {
+        animation: none;
+        background: var(--card-bg);
+    }
+}
+
+/* ==========================================================================
+   16. Ambient "aurora" pozadina — dva vrlo suptilna difuzna sjaja (plavi i
+       roze) fiksirana iza celog sadržaja, ispod dot-grid teksture. Dodaje
+       dubinu i toplinu pozadini bez ometanja čitljivosti teksta.
+   ========================================================================== */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    background:
+        radial-gradient(680px circle at 12% -6%, rgba(56, 189, 248, 0.16), transparent 60%),
+        radial-gradient(620px circle at 108% 18%, rgba(244, 114, 182, 0.12), transparent 60%),
+        radial-gradient(760px circle at 50% 118%, rgba(56, 189, 248, 0.08), transparent 65%);
+}
+
+body.light-mode::before {
+    background:
+        radial-gradient(680px circle at 12% -6%, rgba(56, 189, 248, 0.12), transparent 60%),
+        radial-gradient(620px circle at 108% 18%, rgba(244, 114, 182, 0.10), transparent 60%),
+        radial-gradient(760px circle at 50% 118%, rgba(56, 189, 248, 0.07), transparent 65%);
+}
+
+body.edukacija-theme::before,
+body.edu-theme::before {
+    background:
+        radial-gradient(680px circle at 12% -6%, rgba(244, 114, 182, 0.15), transparent 60%),
+        radial-gradient(620px circle at 108% 18%, rgba(56, 189, 248, 0.10), transparent 60%),
+        radial-gradient(760px circle at 50% 118%, rgba(244, 114, 182, 0.08), transparent 65%);
+}
+
+body.light-mode.edukacija-theme::before,
+body.light-mode.edu-theme::before {
+    background:
+        radial-gradient(680px circle at 12% -6%, rgba(244, 114, 182, 0.11), transparent 60%),
+        radial-gradient(620px circle at 108% 18%, rgba(56, 189, 248, 0.08), transparent 60%),
+        radial-gradient(760px circle at 50% 118%, rgba(244, 114, 182, 0.06), transparent 65%);
+}
+
+/* ==========================================================================
+   17. Sheen (sjaj) na primarnim dugmadima — tanka dijagonalna svetla traka
+       koja prelazi preko dugmeta pri hover-u, kao odsjaj na staklu
+   ========================================================================== */
+.selection-card button,
+.cv-download-btn,
+.error-actions button,
+.tab-btn.active {
+    position: relative;
+    overflow: hidden;
+}
+
+.selection-card button::after,
+.cv-download-btn::after,
+.error-actions button::after,
+.tab-btn.active::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+    transition: left 0.65s ease;
+}
+
+.selection-card:hover button::after,
+.cv-download-btn:hover::after,
+.error-actions button:hover::after {
+    left: 130%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .selection-card button::after,
+    .cv-download-btn::after,
+    .error-actions button::after,
+    .tab-btn.active::after {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   18. Ujednačen zamućen overlay iza modala na svim stranicama
+   ========================================================================== */
+.modal-overlay {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }

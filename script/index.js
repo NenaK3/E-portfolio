@@ -33,14 +33,17 @@
         const poljaZaPrevod = [
             { id: 'idx-podnaslov', kljuc: 'sub' },
             { id: 'idx-it-naslov', kljuc: 'itNaslov' },
-            { id: 'idx-it-sub', kljuc: 'itSub' },
             { id: 'idx-it-opis', kljuc: 'itOpis' },
             { id: 'idx-it-btn', kljuc: 'itBtn', btn: true },
             { id: 'idx-edu-naslov', kljuc: 'eduNaslov' },
-            { id: 'idx-edu-sub', kljuc: 'eduSub' },
             { id: 'idx-edu-opis', kljuc: 'eduOpis' },
             { id: 'idx-edu-btn', kljuc: 'eduBtn', btn: true },
             { id: 'idx-footer-copy', kljuc: 'footer' }
+        ];
+
+        const poljaZaTipkanje = [
+            { id: 'idx-it-sub', kljuc: 'itSub' },
+            { id: 'idx-edu-sub', kljuc: 'eduSub' }
         ];
 
         const el = Object.fromEntries(
@@ -49,6 +52,7 @@
         el['lang-btn'] = document.getElementById('lang-btn');
         el['theme-btn'] = document.getElementById('theme-btn');
         el['idx-footer-datum'] = document.getElementById('idx-footer-datum');
+        poljaZaTipkanje.forEach(p => { el[p.id] = document.getElementById(p.id); });
 
         function azurirajDatumFootera() {
             Common.azurirajFooter(trenutniJezik);
@@ -59,6 +63,34 @@
             Common.primeniRezim(trenutniRezim);
         }
 
+        function otkucajTekst(element, tekst, brzinaMs = 32) {
+            if (!element) return;
+
+            if (element._tipkanjeTimer) {
+                clearInterval(element._tipkanjeTimer);
+                element._tipkanjeTimer = null;
+            }
+
+            const smanjenoKretanje = window.matchMedia
+                && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (smanjenoKretanje) {
+                element.innerText = tekst;
+                return;
+            }
+
+            element.innerText = '';
+            let i = 0;
+            element._tipkanjeTimer = setInterval(() => {
+                i++;
+                element.innerText = tekst.slice(0, i);
+                if (i >= tekst.length) {
+                    clearInterval(element._tipkanjeTimer);
+                    element._tipkanjeTimer = null;
+                }
+            }, brzinaMs);
+        }
+
         function primeniJezik() {
             const p = prevodiIndex[trenutniJezik];
 
@@ -66,6 +98,10 @@
                 el[id][btn ? 'innerHTML' : 'innerText'] = btn
                     ? `${p[kljuc]} <i class="fa-solid fa-arrow-right"></i>`
                     : p[kljuc];
+            });
+
+            poljaZaTipkanje.forEach(({ id, kljuc }) => {
+                otkucajTekst(el[id], p[kljuc]);
             });
 
             el['lang-btn'].innerText = trenutniJezik === 'SRB' ? 'EN' : 'SRB';

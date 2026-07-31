@@ -8,14 +8,14 @@
 }
 
 :root {
-    --bg-color: #0f172a;
-    --text-color: #f8fafc;
-    --text-muted: #94a3b8;
-    --card-bg: #1e293b;
-    --card-border: #334155;
-    --btn-bg: #334155;
-    --btn-hover: #475569;
-    --shadow: rgba(0, 0, 0, 0.3);
+    --bg-color: #0b1120;
+    --text-color: #f5f7fb;
+    --text-muted: #98a3bc;
+    --card-bg: #151d30;
+    --card-border: #26314a;
+    --btn-bg: #26314a;
+    --btn-hover: #2e3a56;
+    --shadow: rgba(2, 6, 20, 0.5);
     --modal-overlay: rgba(15, 23, 42, 0.85);
 
     --pastel-blue-bg: #e0f2fe;
@@ -45,6 +45,8 @@ body.it-theme {
     --theme-tag-bg: rgba(56, 189, 248, 0.15);
     --theme-tag-text: var(--pastel-blue-accent);
     --hamburger-color: #0369a1;
+    --bg-color: #0d1526;
+    --theme-glow: 0 0 26px -4px rgba(56, 189, 248, 0.38);
 }
 
 body.edukacija-theme {
@@ -53,17 +55,19 @@ body.edukacija-theme {
     --theme-tag-bg: rgba(244, 114, 182, 0.15);
     --theme-tag-text: var(--pastel-pink-accent);
     --hamburger-color: #f472b6;
+    --bg-color: #170f1c;
+    --theme-glow: 0 0 26px -4px rgba(244, 114, 182, 0.38);
 }
 
 body.light-mode {
-    --bg-color: #f8fafc;
-    --text-color: #0f172a;
-    --text-muted: #64748b;
+    --bg-color: #f5f7fb;
+    --text-color: #0b1120;
+    --text-muted: #5c6579;
     --card-bg: #ffffff;
-    --card-border: #e2e8f0;
-    --btn-bg: #e2e8f0;
-    --btn-hover: #cbd5e1;
-    --shadow: rgba(0, 0, 0, 0.05);
+    --card-border: #e6e9f2;
+    --btn-bg: #e6e9f2;
+    --btn-hover: #dde2ea;
+    --shadow: rgba(16, 23, 42, 0.06);
     --modal-overlay: rgba(15, 23, 42, 0.6);
 }
 
@@ -73,6 +77,9 @@ body.light-mode.it-theme {
     --theme-tag-bg: var(--pastel-blue-bg);
     --theme-tag-text: var(--pastel-blue-text);
     --hamburger-color: #0369a1;
+    --theme-shadow-soft: rgba(56, 189, 248, 0.12);
+    --theme-shadow-strong: rgba(56, 189, 248, 0.24);
+    --theme-glow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
 body.light-mode.edukacija-theme {
@@ -81,6 +88,9 @@ body.light-mode.edukacija-theme {
     --theme-tag-bg: var(--pastel-pink-bg);
     --theme-tag-text: var(--pastel-pink-text);
     --hamburger-color: #f472b6;
+    --theme-shadow-soft: rgba(244, 114, 182, 0.12);
+    --theme-shadow-strong: rgba(244, 114, 182, 0.24);
+    --theme-glow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
 /* ==========================================================================
@@ -109,7 +119,7 @@ body {
     height: 70px;
     background-color: var(--card-bg);
     border-bottom: 1px solid var(--card-border);
-    box-shadow: 0 4px 6px -1px var(--shadow);
+    box-shadow: 0 4px 6px -1px var(--theme-shadow-soft, var(--shadow));
     position: sticky;
     top: 0;
     z-index: 100;
@@ -229,7 +239,7 @@ body {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 10px;
-    box-shadow: 0 10px 15px -3px var(--shadow);
+    box-shadow: 0 10px 15px -3px var(--theme-shadow-strong, var(--shadow));
     padding: 8px;
     z-index: 200;
 }
@@ -454,7 +464,7 @@ body {
 
 .blog-search-mark {
     background-color: var(--pastel-blue-accent);
-    color: #0f172a;
+    color: #0b1120;
     padding: 0 3px;
     border-radius: 3px;
 }
@@ -477,14 +487,14 @@ body.edukacija-theme .blog-search-mark {
     border: 1px solid var(--card-border);
     border-radius: 16px;
     padding: 30px;
-    box-shadow: 0 10px 15px -3px var(--shadow);
+    box-shadow: 0 10px 15px -3px var(--theme-shadow-soft, var(--shadow));
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .edu-split-card:hover {
     transform: translateY(-4px);
     border-color: var(--theme-accent);
-    box-shadow: 0 20px 25px -5px var(--shadow);
+    box-shadow: 0 20px 25px -5px var(--theme-shadow-strong, var(--shadow)), var(--theme-glow, 0 0 0 rgba(0, 0, 0, 0));
 }
 
 .spec-course-card {
@@ -567,7 +577,7 @@ body.edukacija-theme .blog-search-mark {
     color: #ffffff !important;
     border-color: transparent;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--shadow);
+    box-shadow: 0 4px 12px var(--theme-shadow-strong, var(--shadow));
 }
 
 /* ==========================================================================
@@ -596,7 +606,7 @@ body.edukacija-theme .blog-search-mark {
     max-height: 85vh;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 50px -12px var(--theme-shadow-strong, rgba(0, 0, 0, 0.5));
     overflow: hidden;
     animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
@@ -783,7 +793,7 @@ body.edukacija-theme .blog-search-mark {
 
 .blog-pinned-card {
     border: 1px solid var(--theme-accent);
-    box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 20px -6px var(--theme-shadow-strong, rgba(0, 0, 0, 0.25));
     position: relative;
 }
 
@@ -953,7 +963,7 @@ body.edukacija-theme .blog-search-mark {
         border-bottom: 1px solid var(--card-border);
         padding: 20px;
         gap: 16px;
-        box-shadow: 0 10px 15px -3px var(--shadow);
+        box-shadow: 0 10px 15px -3px var(--theme-shadow-strong, var(--shadow));
         z-index: 99;
     }
 
@@ -1023,14 +1033,6 @@ body.edukacija-theme .blog-search-mark {
     .modal-body { padding: 20px; }
 }
 
-a:focus-visible,
-button:focus-visible,
-[tabindex]:focus-visible {
-    outline: 3px solid #4da3ff;
-    outline-offset: 3px;
-    border-radius: 4px;
-}
-
 /* ==========================================================================
    Scroll-to-top dugme
    ========================================================================== */
@@ -1049,7 +1051,7 @@ button:focus-visible,
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 10px 15px -3px var(--shadow);
+    box-shadow: 0 10px 15px -3px var(--theme-shadow-soft, var(--shadow));
     opacity: 0;
     visibility: hidden;
     transform: translateY(12px);
@@ -1083,7 +1085,7 @@ button:focus-visible,
     top: -60px;
     left: 12px;
     z-index: 9999;
-    background-color: #0f172a;
+    background-color: #0b1120;
     color: #ffffff;
     padding: 12px 20px;
     border-radius: 8px;
