@@ -636,6 +636,8 @@ body.light-mode.edu-theme::before {
        animacije na dodirnim uređajima
    ========================================================================== */
 
+/* 19a. Uklanja podrazumevani sivi "flash" pri dodiru i zamenjuje ga tankim,
+   temi prilagođenim odsjajem — samo na dodirnim uređajima */
 @media (hover: none) {
     a, button, [role="button"] {
         -webkit-tap-highlight-color: transparent;
@@ -646,18 +648,23 @@ body.light-mode.edu-theme::before {
     }
 }
 
+/* 19b. Minimalna veličina dodirnog cilja (44×44px, po preporuci pristupačnosti)
+   za dugmad koja su samo ikonice */
 @media (max-width: 900px), (hover: none) {
     .control-btn,
     .scroll-top-btn,
     .modal-close-btn,
     .nav-dropdown-caret,
     .hamburger-menu,
-    .blog-search-clear {
+    .blog-search-clear,
+    .copy-email-btn {
         min-width: 44px;
         min-height: 44px;
     }
 }
 
+/* 19c. iOS "notch" / safe-area podrška — navbar i dugme za povratak na vrh
+   ne sme da upadne ispod zareza ili home-indikatora */
 .navbar {
     padding-left: max(40px, env(safe-area-inset-left));
     padding-right: max(40px, env(safe-area-inset-right));
@@ -675,6 +682,8 @@ body.light-mode.edu-theme::before {
     }
 }
 
+/* 19d. Fluidnija, čitljivija tipografija na vrlo uskim telefonima
+   (npr. iPhone SE, starije Android uređaje ~360-400px) */
 @media (max-width: 400px) {
     :root {
         --font-size-2xl: 1.9rem;
@@ -698,6 +707,8 @@ body.light-mode.edu-theme::before {
     }
 }
 
+/* 19e. Lakše ambijentalne animacije na dodirnim uređajima — aurora sjaj i
+   dot-grid ostaju, ali suptilniji, da ne opterećuju slabiji GPU i bateriju */
 @media (hover: none) and (max-width: 900px) {
     body::before {
         background:
@@ -717,11 +728,15 @@ body.light-mode.edu-theme::before {
     }
 }
 
+/* 19f. Sprečava horizontalni scroll koji na mobilnom najčešće nastaje usled
+   širokih elemenata (npr. tabele veština, dugi nazivi tagova) */
 html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
 
+/* 19g. Udobnije predviđeno pomeranje (momentum scroll) unutar modala i
+   drugih skrolabilnih kontejnera na iOS-u */
 .modal-body,
 .blog-toolbar {
     -webkit-overflow-scrolling: touch;
@@ -825,4 +840,49 @@ html {
     a, .contact-link, .modal-body a {
         text-decoration: underline;
     }
+}
+
+/* ==========================================================================
+   23. Animacija "talasa" pri promeni teme (light/dark) — širi se od dugmeta
+       za temu koje je kliknuto. Radi preko View Transitions API-ja; radi
+       samo u pregledačima koji ga podržavaju, inače tema prelazi trenutno
+       (isto kao ranije) — nikad ne pravi grešku. Zakačeno na klasu koju
+       common.js dodaje/uklanja na <html>, da se ne meša sa tranzicijom
+       između stranica ispod.
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+    html.tema-val-u-toku::view-transition-old(root) {
+        animation: none;
+    }
+
+    html.tema-val-u-toku::view-transition-new(root) {
+        animation: temaValAnimacija 0.55s ease forwards;
+        clip-path: circle(0% at var(--tema-x, 90%) var(--tema-y, 24px));
+    }
+}
+
+@keyframes temaValAnimacija {
+    to {
+        clip-path: circle(150% at var(--tema-x, 90%) var(--tema-y, 24px));
+    }
+}
+
+/* ==========================================================================
+   24. Blaga tranzicija između stranica (Profil → Iskustvo → Edukacija...)
+       — koristi Cross-Document View Transitions, ugrađenu funkciju
+       pregledača za "fade" prelaz pri navigaciji na novu stranicu. Ne
+       zahteva JavaScript i potpuno je bezbedno: pregledači koji ovo ne
+       podržavaju (stariji Safari, Firefox) jednostavno učitavaju stranicu
+       kao i do sada, bez ikakvog efekta ili greške.
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+        navigation: auto;
+    }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.22s;
+    animation-timing-function: ease;
 }

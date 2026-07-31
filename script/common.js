@@ -29,7 +29,7 @@ window.Common = (function () {
     // -----------------------------------------------------------------
     // Tamni / svetli režim — postavlja klasu, ikonicu i aria-pressed stanje
     // -----------------------------------------------------------------
-    function primeniRezim(rezim) {
+    function primeniRezimInterno(rezim) {
         document.body.classList.toggle('light-mode', rezim === 'light');
 
         const themeBtn = document.getElementById('nav-theme-btn') || document.getElementById('theme-btn');
@@ -42,6 +42,38 @@ window.Common = (function () {
 
         const metaTema = document.getElementById('theme-color-meta');
         if (metaTema) metaTema.setAttribute('content', rezim === 'light' ? '#f8fafc' : '#0f172a');
+    }
+
+    // -----------------------------------------------------------------
+    // Promena teme uz animaciju "talasa" koji se širi od dugmeta za temu
+    // (View Transitions API). Ako pregledač ne podržava ovu API, ili je
+    // korisnik u sistemu tražio smanjeno kretanje, tema se menja trenutno
+    // — isto kao i do sada — bez ikakve greške.
+    // -----------------------------------------------------------------
+    function primeniRezim(rezim) {
+        const smanjenoKretanje = window.matchMedia
+            && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const podrzanoTranzicije = typeof document.startViewTransition === 'function';
+
+        if (!podrzanoTranzicije || smanjenoKretanje) {
+            primeniRezimInterno(rezim);
+            return;
+        }
+
+        const dugme = document.getElementById('nav-theme-btn') || document.getElementById('theme-btn');
+        if (dugme) {
+            const r = dugme.getBoundingClientRect();
+            document.documentElement.style.setProperty('--tema-x', `${r.left + r.width / 2}px`);
+            document.documentElement.style.setProperty('--tema-y', `${r.top + r.height / 2}px`);
+        }
+
+        document.documentElement.classList.add('tema-val-u-toku');
+        const tranzicija = document.startViewTransition(() => {
+            primeniRezimInterno(rezim);
+        });
+        tranzicija.finished.finally(() => {
+            document.documentElement.classList.remove('tema-val-u-toku');
+        });
     }
 
     // -----------------------------------------------------------------

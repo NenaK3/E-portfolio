@@ -205,7 +205,7 @@
 
         function ikonicaZaVestinu(naziv) {
             if (mod !== 'IT') {
-                return '<i class="fa-solid fa-circle-check devicon-skill-icon colorless"></i>';
+                return '<span class="skill-bullet-dot" aria-hidden="true"></span>';
             }
             const poklapanje = devIconMapa.find(([regex]) => regex.test(naziv));
             const klasa = poklapanje ? poklapanje[1] : 'devicon-devicon-plain colorless';
@@ -219,6 +219,39 @@
         function azurirajDatumFootera() {
             Common.azurirajFooter(jezik);
             Common.azurirajJezikDugme(jezik);
+        }
+
+        // -----------------------------------------------------------------
+        // Efekat kucanja pisaće mašine — ispisuje tekst karakter po karakter
+        // umesto da ga trenutno ubaci u element. Poštuje prefers-reduced-motion
+        // i prekida prethodnu animaciju ako se jezik/mod brzo promeni.
+        // -----------------------------------------------------------------
+        function otkucajTekst(element, tekst, brzinaMs = 32) {
+            if (!element) return;
+
+            if (element._tipkanjeTimer) {
+                clearInterval(element._tipkanjeTimer);
+                element._tipkanjeTimer = null;
+            }
+
+            const smanjenoKretanje = window.matchMedia
+                && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (smanjenoKretanje) {
+                element.innerText = tekst;
+                return;
+            }
+
+            element.innerText = '';
+            let i = 0;
+            element._tipkanjeTimer = setInterval(() => {
+                i++;
+                element.innerText = tekst.slice(0, i);
+                if (i >= tekst.length) {
+                    clearInterval(element._tipkanjeTimer);
+                    element._tipkanjeTimer = null;
+                }
+            }, brzinaMs);
         }
 
         function osveziSadrzaj() {
@@ -247,7 +280,7 @@
             el.lblLinkedin.innerText = r.lblLinkedin;
             el.lblGithub.innerText = r.lblGithub;
 
-            el.heroTitle.innerText = s.titula;
+            otkucajTekst(el.heroTitle, s.titula);
             el.heroPitch.innerText = s.pitch;
             el.tekstOMeni.innerText = s.oMeni;
             el.tekstAmbicije.innerText = s.ambicije;
@@ -336,7 +369,19 @@
             Common.initEduDropdown(mod);
         }
 
+        function podesiKopiranjeEmaila() {
+            const dugme = document.getElementById('copy-email-btn');
+            if (!dugme) return;
+            dugme.addEventListener('click', () => {
+                Common.kopirajTekst('nena.kozic3@gmail.com', dugme, {
+                    uspeh: jezik === 'SRB' ? 'Kopirano' : 'Copied',
+                    greska: jezik === 'SRB' ? 'Greška' : 'Error'
+                });
+            });
+        }
+
         primeniRezim();
         osveziSadrzaj();
         podesiEduDropdown();
+        podesiKopiranjeEmaila();
         initFadeInReveal();

@@ -668,6 +668,16 @@ body {
     color: var(--theme-accent);
 }
 
+.skill-bullet-dot {
+    flex-shrink: 0;
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--pastel-pink-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--pastel-pink-accent) 18%, transparent);
+}
+
 /* ==========================================================================
    10. Kontakt sekcija i footer
    ========================================================================== */
@@ -700,6 +710,41 @@ body.light-mode.edukacija-theme {
 .contact-link:hover {
     color: var(--link-hover) !important;
     text-decoration: underline;
+}
+
+.copy-email-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    border: 1px solid var(--card-border);
+    background-color: var(--btn-bg);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: all 0.25s ease;
+}
+
+.copy-email-btn:hover {
+    background-color: var(--btn-hover);
+    color: var(--theme-accent);
+    transform: translateY(-1px);
+}
+
+.copy-email-btn.copy-uspesno {
+    width: auto;
+    padding: 0 10px;
+    gap: 6px;
+    background-color: var(--theme-accent);
+    color: #ffffff;
+    border-color: transparent;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
 }
         
 .contact-list {
