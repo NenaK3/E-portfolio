@@ -672,13 +672,23 @@ body {
    10. Kontakt sekcija i footer
    ========================================================================== */
 .it-theme {
-    --link-color: #0284c7;
-    --link-hover: #38bdf8;
+    --link-color: var(--pastel-blue-accent);
+    --link-hover: var(--pastel-blue-dark);
 }
 
 .edukacija-theme {
-    --link-color: #db2777;
-    --link-hover: #f472b6;
+    --link-color: var(--pastel-pink-accent);
+    --link-hover: var(--pastel-pink-dark);
+}
+
+body.light-mode.it-theme {
+    --link-color: var(--pastel-blue-dark);
+    --link-hover: var(--pastel-blue-text);
+}
+
+body.light-mode.edukacija-theme {
+    --link-color: var(--pastel-pink-dark);
+    --link-hover: var(--pastel-pink-text);
 }
         
 .contact-link {

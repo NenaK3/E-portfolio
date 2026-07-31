@@ -26,7 +26,7 @@
     --hamburger-color: #0369a1; 
     
     --code-bg: #151d30;           
-    --comment-color: #5c6579;  
+    --comment-color: #8b98b8;  
     
     --nav-bg: var(--card-bg); 
 }
@@ -42,7 +42,7 @@ body.light-mode {
     --shadow: rgba(16, 23, 42, 0.06);
     
     --code-bg: #f1f5f9;          
-    --comment-color: #98a3bc;
+    --comment-color: #5c6579;
     --nav-bg: var(--card-bg);
 }
 

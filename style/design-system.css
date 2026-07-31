@@ -1,4 +1,6 @@
 :root {
+    color-scheme: dark;
+
     --font-size-xs: 0.75rem;    /* 12px */
     --font-size-sm: 0.875rem;   /* 14px */
     --font-size-base: 1rem;     /* 16px */
@@ -27,6 +29,8 @@
 }
 
 body.light-mode {
+    color-scheme: light;
+
     --shadow-sm: 0 2px 6px -1px rgba(15, 23, 42, 0.09), 0 1px 3px -1px rgba(15, 23, 42, 0.06);
     --shadow-md: 0 10px 20px -6px rgba(15, 23, 42, 0.14), 0 4px 8px -2px rgba(15, 23, 42, 0.08);
     --shadow-lg: 0 24px 44px -14px rgba(15, 23, 42, 0.20), 0 10px 18px -4px rgba(15, 23, 42, 0.10);
@@ -118,6 +122,9 @@ pre,
     box-shadow: var(--shadow-lg), inset 0 1px 0 var(--card-edge) !important;
 }
 
+/* Signature touch: a thin accent line that sweeps in along the top edge of a
+   card on hover — blue on the IT side, pink on the teaching side — a quiet
+   nod to the site's two-profile identity without adding new markup. */
 .card,
 .experience-card,
 .spec-course-card,
@@ -621,4 +628,201 @@ body.light-mode.edu-theme::before {
 .modal-overlay {
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
+}
+
+/* ==========================================================================
+   19. Mobilna doterivanja — dodirni ciljevi, tap-highlight, iOS safe-area,
+       sitnija tipografija na uskim ekranima i lakše (jeftinije) ambijentalne
+       animacije na dodirnim uređajima
+   ========================================================================== */
+
+@media (hover: none) {
+    a, button, [role="button"] {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    a:active, button:active {
+        opacity: 0.85;
+    }
+}
+
+@media (max-width: 900px), (hover: none) {
+    .control-btn,
+    .scroll-top-btn,
+    .modal-close-btn,
+    .nav-dropdown-caret,
+    .hamburger-menu,
+    .blog-search-clear {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+.navbar {
+    padding-left: max(40px, env(safe-area-inset-left));
+    padding-right: max(40px, env(safe-area-inset-right));
+}
+
+.scroll-top-btn {
+    bottom: max(24px, env(safe-area-inset-bottom));
+    right: max(24px, env(safe-area-inset-right));
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+    }
+}
+
+@media (max-width: 400px) {
+    :root {
+        --font-size-2xl: 1.9rem;
+        --font-size-xl: 1.5rem;
+        --font-size-lg: 1.2rem;
+    }
+
+    #idx-ime {
+        font-size: 2.5rem !important;
+    }
+
+    .hero-text h1 {
+        font-size: 2.4rem !important;
+    }
+
+    .selection-card,
+    .card,
+    .experience-card {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+}
+
+@media (hover: none) and (max-width: 900px) {
+    body::before {
+        background:
+            radial-gradient(420px circle at 12% -6%, rgba(56, 189, 248, 0.12), transparent 60%),
+            radial-gradient(380px circle at 108% 18%, rgba(244, 114, 182, 0.09), transparent 60%);
+    }
+
+    body.edukacija-theme::before,
+    body.edu-theme::before {
+        background:
+            radial-gradient(420px circle at 12% -6%, rgba(244, 114, 182, 0.11), transparent 60%),
+            radial-gradient(380px circle at 108% 18%, rgba(56, 189, 248, 0.08), transparent 60%);
+    }
+
+    #grain-overlay {
+        display: none;
+    }
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.modal-body,
+.blog-toolbar {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ==========================================================================
+   20. Glatko pomeranje pri kliku na sidra (breadcrumbs, skip-link, interni
+       linkovi) — bez naglog "skoka" na stranici. Automatski se isključuje
+       za osobe koje su u sistemu tražile smanjeno kretanje (već postoji
+       @media (prefers-reduced-motion: reduce) pravilo u svakom fajlu koje
+       vraća scroll-behavior na auto i ima prednost nad ovim).
+   ========================================================================== */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   21. Dodirna povratna informacija (tap feedback) — pošto se hover efekat
+       na telefonu nikad ne aktivira, kartice i dugmad na dodir se blago
+       "ulegnu" da korisnik oseti da je dodir registrovan. Samo na
+       uređajima bez hover-a (telefoni/tableti), da se ne kosi sa
+       postojećim hover animacijama na desktopu.
+   ========================================================================== */
+@media (hover: none) {
+    .card:active,
+    .experience-card:active,
+    .spec-course-card:active,
+    .timeline-content:active,
+    .project-card:active {
+        transform: scale(0.985);
+        transition: transform 0.15s ease;
+    }
+
+    .selection-card:active {
+        transform: scale(0.97) !important;
+        transition: transform 0.15s ease !important;
+    }
+
+    .skill-tag:active,
+    .filter-chip:active,
+    .block-date:active {
+        transform: scale(0.94);
+        transition: transform 0.12s ease;
+    }
+
+    .selection-card button:active,
+    .cv-download-btn:active,
+    .error-actions button:active,
+    .run-code-btn:active,
+    .copy-code-btn:active {
+        transform: scale(0.96);
+        transition: transform 0.12s ease;
+    }
+}
+
+@media (hover: none) and (prefers-reduced-motion: reduce) {
+    .card:active,
+    .experience-card:active,
+    .spec-course-card:active,
+    .timeline-content:active,
+    .project-card:active,
+    .selection-card:active,
+    .skill-tag:active,
+    .filter-chip:active,
+    .block-date:active,
+    .selection-card button:active,
+    .cv-download-btn:active,
+    .error-actions button:active,
+    .run-code-btn:active,
+    .copy-code-btn:active {
+        transform: none;
+    }
+}
+
+/* ==========================================================================
+   22. Podrška za "Povećaj kontrast" opciju telefona/OS-a
+       (prefers-contrast: more) — pojačava ivice kartica, tekst i fokus
+       prsten za osobe koje su tu postavku uključile u sistemu
+   ========================================================================== */
+@media (prefers-contrast: more) {
+    :root {
+        --card-border: #5a6a8c;
+        --text-muted: #c3cbdc;
+        --focus-ring-color: #7cc5ff;
+    }
+
+    body.light-mode {
+        --card-border: #8891a3;
+        --text-muted: #33394a;
+        --focus-ring-color: #005a8c;
+    }
+
+    .card,
+    .experience-card,
+    .selection-card,
+    .timeline-content,
+    .spec-course-card {
+        border-width: 2px;
+    }
+
+    a, .contact-link, .modal-body a {
+        text-decoration: underline;
+    }
 }
