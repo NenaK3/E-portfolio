@@ -218,11 +218,6 @@
             Common.initFadeInReveal(root);
         }
 
-        // -----------------------------------------------------------------
-        // Pomera klizeći indikator ispod aktivnog tab dugmeta. Poziva se pri
-        // promeni taba, ali i nakon osveženja sadržaja (jezik može promeniti
-        // širinu teksta dugmeta) i pri promeni veličine prozora.
-        // -----------------------------------------------------------------
         function pomeriTabIndikator(dugme) {
             if (!el.tabIndicator || !el.tabButtonsWrap || !dugme) return;
             const wrapRect = el.tabButtonsWrap.getBoundingClientRect();
@@ -240,11 +235,6 @@
             Common.azurirajJezikDugme(jezik);
         }
 
-        // -----------------------------------------------------------------
-        // Efekat kucanja pisaće mašine — ispisuje tekst karakter po karakter
-        // umesto da ga trenutno ubaci u element. Poštuje prefers-reduced-motion
-        // i prekida prethodnu animaciju ako se jezik/mod brzo promeni.
-        // -----------------------------------------------------------------
         function otkucajTekst(element, tekst, brzinaMs = 32) {
             if (!element) return;
 

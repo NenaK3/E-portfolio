@@ -760,8 +760,6 @@ body.light-mode .skill-tag {
 }
 
 @media (max-width: 768px) {
-    /* Justify poravnanje na uskom ekranu pravi ružne "reke" praznog
-       prostora između reči — na mobilnom je čitljivije levo poravnanje */
     .exp-opis {
         text-align: left;
     }

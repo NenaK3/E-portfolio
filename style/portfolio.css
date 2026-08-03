@@ -384,8 +384,7 @@ body {
 }
 
 /* ==========================================================================
-   Efekat kucanja pisaće mašine (typewriter) — na h2 podnaslovu titule ispod
-   imena u hero sekciji
+   Efekat kucanja pisaće mašine (typewriter) 
    ========================================================================== */
 .typewriter-tekst {
     font-family: var(--font-mono, 'JetBrains Mono', ui-monospace, Consolas, monospace);

@@ -126,7 +126,6 @@ body.index-body {
     position: relative;
 }
 
-/* Tanka razdvojna linija između IT i edukacijske kartice (samo desktop) */
 @media (min-width: 769px) {
     .split-grid::before {
         content: '';
@@ -232,8 +231,7 @@ body.index-body {
 }
 
 /* ==========================================================================
-   1b. Efekat kucanja pisaće mašine (typewriter) — na h3 podnaslovima ispod
-   naslova "IT Inženjering" i "Edukacija / Prosveta"
+   1b. Efekat kucanja pisaće mašine (typewriter) 
    ========================================================================== */
 .typewriter-tekst {
     font-family: var(--font-mono, 'JetBrains Mono', ui-monospace, Consolas, monospace);
@@ -287,7 +285,6 @@ body.index-body {
     overflow: hidden;
 }
 
-/* Dijagonalni "shimmer" sjaj koji pređe preko dugmeta na hover */
 .selection-card button::after {
     content: '';
     position: absolute;

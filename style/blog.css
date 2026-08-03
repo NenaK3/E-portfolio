@@ -985,14 +985,10 @@ body.edukacija-theme .blog-search-mark {
     .hamburger-menu { display: block; order: 2; }
     .nav-controls { order: 3; }
 
-    /* Font-size mora biti bar 16px, inače iOS Safari automatski zumira
-       stranicu kad se input fokusira — neprijatno iskustvo na telefonu */
     .blog-search-input {
         font-size: 16px;
     }
 
-    /* Justify poravnanje na uskom ekranu pravi ružne "reke" praznog
-       prostora između reči — na mobilnom je čitljivije levo poravnanje */
     .exp-opis {
         text-align: left;
     }

@@ -11,7 +11,7 @@ window.Common = (function () {
     };
 
     // -----------------------------------------------------------------
-    // Footer: datum i copyright tekst (jedinstveni ID-jevi na svim stranicama)
+    // Footer: datum i copyright tekst 
     // -----------------------------------------------------------------
     function formatDatum(jezik) {
         const sada = new Date();
@@ -27,7 +27,7 @@ window.Common = (function () {
     }
 
     // -----------------------------------------------------------------
-    // Tamni / svetli režim — postavlja klasu, ikonicu i aria-pressed stanje
+    // Tamni / svetli režim 
     // -----------------------------------------------------------------
     function primeniRezimInterno(rezim) {
         document.body.classList.toggle('light-mode', rezim === 'light');
@@ -45,10 +45,7 @@ window.Common = (function () {
     }
 
     // -----------------------------------------------------------------
-    // Promena teme uz animaciju "talasa" koji se širi od dugmeta za temu
-    // (View Transitions API). Ako pregledač ne podržava ovu API, ili je
-    // korisnik u sistemu tražio smanjeno kretanje, tema se menja trenutno
-    // — isto kao i do sada — bez ikakve greške.
+    // Promena teme uz animaciju "talasa" 
     // -----------------------------------------------------------------
     function primeniRezim(rezim) {
         const smanjenoKretanje = window.matchMedia
@@ -150,8 +147,7 @@ window.Common = (function () {
     }
 
     // -----------------------------------------------------------------
-    // Pristupačnost modalnih prozora: zarobljavanje fokusa (focus trap) i
-    // vraćanje fokusa na element koji je otvorio modal, nakon zatvaranja.
+    // Pristupačnost modalnih prozora
     // -----------------------------------------------------------------
     const FOKUSABILNI_SELEKTOR = 'a[href], button:not([disabled]), textarea, input, select, iframe, [tabindex]:not([tabindex="-1"])';
     let poslednjiFokus = null;
@@ -197,7 +193,7 @@ window.Common = (function () {
     }
 
     // -----------------------------------------------------------------
-    // Kopiranje teksta u klipbord (dugme "Kopiraj kod")
+    // Dugme "Kopiraj kod"
     // -----------------------------------------------------------------
     function kopirajTekst(tekst, dugmeEl, poruke) {
         const uspeh = poruke && poruke.uspeh ? poruke.uspeh : 'Kopirano!';

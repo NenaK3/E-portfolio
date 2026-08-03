@@ -499,14 +499,11 @@ body.light-mode .skill-tag {
    8. Prilagođavanje za mobilne uređaje (responsive design)
    ========================================================================== */
 @media (max-width: 768px) {
-    /* Justify poravnanje na uskom ekranu pravi ružne "reke" praznog
-       prostora između reči — na mobilnom je čitljivije levo poravnanje */
+
     .exp-opis {
         text-align: left;
     }
 
-    /* Naslov pozicije i bedž sa datumom se na uskom ekranu slažu jedan
-       ispod drugog umesto zbijanja u istom redu */
     .exp-header {
         flex-direction: column;
         align-items: flex-start;

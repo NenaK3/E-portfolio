@@ -122,9 +122,6 @@ pre,
     box-shadow: var(--shadow-lg), inset 0 1px 0 var(--card-edge) !important;
 }
 
-/* Signature touch: a thin accent line that sweeps in along the top edge of a
-   card on hover — blue on the IT side, pink on the teaching side — a quiet
-   nod to the site's two-profile identity without adding new markup. */
 .card,
 .experience-card,
 .spec-course-card,
@@ -367,8 +364,7 @@ body.edu-theme .devicon-skill-icon.colorless {
 }
 
 /* ==========================================================================
-   8b. Obeleženi tekst (::selection) — prati temu (plava za IT, roze za
-      edukaciju) umesto podrazumevane plave boje pregledača
+   8b. Obeleženi tekst (::selection)
    ========================================================================== */
 body.it-theme ::selection {
     background-color: var(--pastel-blue-accent);
@@ -382,8 +378,7 @@ body.edu-theme ::selection {
 }
 
 /* ==========================================================================
-   9. Fokus prilikom navigacije tastaturom — jedinstven kroz sajt,
-      sa jačim kontrastom u light modu (pristupačnost)
+   9. Fokus prilikom navigacije tastaturom 
    ========================================================================== */
 a:focus-visible,
 button:focus-visible,
@@ -401,8 +396,7 @@ button:focus-visible,
 }
 
 /* ==========================================================================
-   10. Glassmorphism navbar — poluprozirna, zamućena pozadina umesto pune
-       boje; sadržaj se blago nazire ispod prilikom skrolovanja
+   10. Glassmorphism navbar 
    ========================================================================== */
 .navbar {
     background-color: color-mix(in srgb, var(--card-bg) 82%, transparent) !important;
@@ -417,8 +411,7 @@ button:focus-visible,
 }
 
 /* ==========================================================================
-   11. Suptilna dot-grid tekstura na CELOM sajtu (ne samo hero sekcijama) —
-       vrlo nizak opacity, fiksirana pozadina iza sadržaja svake stranice
+   11. Suptilna dot-grid tekstura na CELOM sajtu (ne samo hero sekcijama)
    ========================================================================== */
 body::after {
     content: "";
@@ -442,8 +435,7 @@ body.light-mode::after {
 }
 
 /* ==========================================================================
-   12. Grain/noise podloga (samo dark mode) — injektuje se kao #grain-overlay
-       div preko enhancements.js; ovde samo definišemo izgled
+   12. Grain/noise podloga (samo dark mode) 
    ========================================================================== */
 #grain-overlay {
     position: fixed;
@@ -482,9 +474,7 @@ body:not(.light-mode) #grain-overlay {
 }
 
 /* ==========================================================================
-   14. Stagger fade-in za tagove veština unutar kartice — svaki tag se
-       pojavljuje sa malim odlaganjem u odnosu na prethodni, pošto roditeljska
-       kartica postane vidljiva (IntersectionObserver dodaje .fade-in-visible)
+   14. Stagger fade-in za tagove veština unutar kartice 
    ========================================================================== */
 @media (prefers-reduced-motion: no-preference) {
     .fade-in-visible .tag-container .skill-tag,
@@ -515,8 +505,7 @@ body:not(.light-mode) #grain-overlay {
 }
 
 /* ==========================================================================
-   15. Skeleton (placeholder) kartice — prikazuju se dok JS ne popuni
-       kontejner stvarnim sadržajem (iskustvo, edukacija, projekti, blog)
+   15. Skeleton (placeholder) kartice 
    ========================================================================== */
 .skeleton-card {
     height: 150px;
@@ -540,8 +529,7 @@ body:not(.light-mode) #grain-overlay {
 }
 
 /* ==========================================================================
-   17. Sheen (sjaj) na primarnim dugmadima — tanka dijagonalna svetla traka
-       koja prelazi preko dugmeta pri hover-u, kao odsjaj na staklu
+   17. Sheen (sjaj) na primarnim dugmadima 
    ========================================================================== */
 .selection-card button,
 .cv-download-btn,
@@ -591,13 +579,9 @@ body:not(.light-mode) #grain-overlay {
 }
 
 /* ==========================================================================
-   19. Mobilna doterivanja — dodirni ciljevi, tap-highlight, iOS safe-area,
-       sitnija tipografija na uskim ekranima i lakše (jeftinije) ambijentalne
-       animacije na dodirnim uređajima
+   19. Mobilna doterivanja 
    ========================================================================== */
 
-/* 19a. Uklanja podrazumevani sivi "flash" pri dodiru i zamenjuje ga tankim,
-   temi prilagođenim odsjajem — samo na dodirnim uređajima */
 @media (hover: none) {
     a, button, [role="button"] {
         -webkit-tap-highlight-color: transparent;
@@ -608,8 +592,6 @@ body:not(.light-mode) #grain-overlay {
     }
 }
 
-/* 19b. Minimalna veličina dodirnog cilja (44×44px, po preporuci pristupačnosti)
-   za dugmad koja su samo ikonice */
 @media (max-width: 900px), (hover: none) {
     .control-btn,
     .scroll-top-btn,
@@ -623,8 +605,6 @@ body:not(.light-mode) #grain-overlay {
     }
 }
 
-/* 19c. iOS "notch" / safe-area podrška — navbar i dugme za povratak na vrh
-   ne sme da upadne ispod zareza ili home-indikatora */
 .navbar {
     padding-left: max(40px, env(safe-area-inset-left));
     padding-right: max(40px, env(safe-area-inset-right));
@@ -642,8 +622,6 @@ body:not(.light-mode) #grain-overlay {
     }
 }
 
-/* 19d. Fluidnija, čitljivija tipografija na vrlo uskim telefonima
-   (npr. iPhone SE, starije Android uređaje ~360-400px) */
 @media (max-width: 400px) {
     :root {
         --font-size-2xl: 1.9rem;
@@ -667,23 +645,17 @@ body:not(.light-mode) #grain-overlay {
     }
 }
 
-/* 19e. Lakše ambijentalne animacije na dodirnim uređajima — dot-grid ostaje,
-   ali suptilniji, da ne opterećuje slabiji GPU i bateriju */
 @media (hover: none) and (max-width: 900px) {
     #grain-overlay {
         display: none;
     }
 }
 
-/* 19f. Sprečava horizontalni scroll koji na mobilnom najčešće nastaje usled
-   širokih elemenata (npr. tabele veština, dugi nazivi tagova) */
 html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
 
-/* 19g. Udobnije predviđeno pomeranje (momentum scroll) unutar modala i
-   drugih skrolabilnih kontejnera na iOS-u */
 .modal-body,
 .blog-toolbar {
     -webkit-overflow-scrolling: touch;
@@ -691,21 +663,14 @@ html, body {
 
 /* ==========================================================================
    20. Glatko pomeranje pri kliku na sidra (breadcrumbs, skip-link, interni
-       linkovi) — bez naglog "skoka" na stranici. Automatski se isključuje
-       za osobe koje su u sistemu tražile smanjeno kretanje (već postoji
-       @media (prefers-reduced-motion: reduce) pravilo u svakom fajlu koje
-       vraća scroll-behavior na auto i ima prednost nad ovim).
+       linkovi) 
    ========================================================================== */
 html {
     scroll-behavior: smooth;
 }
 
 /* ==========================================================================
-   21. Dodirna povratna informacija (tap feedback) — pošto se hover efekat
-       na telefonu nikad ne aktivira, kartice i dugmad na dodir se blago
-       "ulegnu" da korisnik oseti da je dodir registrovan. Samo na
-       uređajima bez hover-a (telefoni/tableti), da se ne kosi sa
-       postojećim hover animacijama na desktopu.
+   21. Dodirna povratna informacija (tap feedback) 
    ========================================================================== */
 @media (hover: none) {
     .card:active,
@@ -760,8 +725,6 @@ html {
 
 /* ==========================================================================
    22. Podrška za "Povećaj kontrast" opciju telefona/OS-a
-       (prefers-contrast: more) — pojačava ivice kartica, tekst i fokus
-       prsten za osobe koje su tu postavku uključile u sistemu
    ========================================================================== */
 @media (prefers-contrast: more) {
     :root {
@@ -790,12 +753,7 @@ html {
 }
 
 /* ==========================================================================
-   23. Animacija "talasa" pri promeni teme (light/dark) — širi se od dugmeta
-       za temu koje je kliknuto. Radi preko View Transitions API-ja; radi
-       samo u pregledačima koji ga podržavaju, inače tema prelazi trenutno
-       (isto kao ranije) — nikad ne pravi grešku. Zakačeno na klasu koju
-       common.js dodaje/uklanja na <html>, da se ne meša sa tranzicijom
-       između stranica ispod.
+   23. Animacija "talasa" pri promeni teme (light/dark) 
    ========================================================================== */
 @media (prefers-reduced-motion: no-preference) {
     html.tema-val-u-toku::view-transition-old(root) {
@@ -815,12 +773,7 @@ html {
 }
 
 /* ==========================================================================
-   24. Blaga tranzicija između stranica (Profil → Iskustvo → Edukacija...)
-       — koristi Cross-Document View Transitions, ugrađenu funkciju
-       pregledača za "fade" prelaz pri navigaciji na novu stranicu. Ne
-       zahteva JavaScript i potpuno je bezbedno: pregledači koji ovo ne
-       podržavaju (stariji Safari, Firefox) jednostavno učitavaju stranicu
-       kao i do sada, bez ikakvog efekta ili greške.
+   24. Blaga tranzicija između stranica 
    ========================================================================== */
 @media (prefers-reduced-motion: no-preference) {
     @view-transition {
