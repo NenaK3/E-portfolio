@@ -144,11 +144,12 @@
     </div>
 
     <main class="tabs-container" id="glavni-sadrzaj" tabindex="-1">
-        <div class="tab-buttons">
+        <div class="tab-buttons" id="tab-buttons">
             <button class="tab-btn active" onclick="otvoriTab(event, 'o-meni')" id="tab-o-meni-btn"><i class="fa-solid fa-address-card"></i> O meni</button>
             <button class="tab-btn" onclick="otvoriTab(event, 'vestine')" id="tab-vestine-btn"><i class="fa-solid fa-list-check"></i> Veštine</button>
             <button class="tab-btn" onclick="otvoriTab(event, 'ambicije')" id="tab-ambicije-btn"><i class="fa-solid fa-bullseye"></i> Ambicije</button>
             <button class="tab-btn" onclick="otvoriTab(event, 'kontakt')" id="tab-kontakt-btn"><i class="fa-solid fa-envelope"></i> Contact</button>
+            <span class="tab-indicator" id="tab-indicator" aria-hidden="true"></span>
         </div>
 
         <div class="tab-content-wrapper">
@@ -174,30 +175,39 @@
             <div id="kontakt" class="tab-content">
                 <div class="card">
                     <h3 id="card-naslov-kontakt">Kontakt informacije</h3>
-                    <ul class="contact-list">
-                        <li>
-                            <i class="fa-solid fa-envelope"></i>
-                            <span id="lbl-email">E-mail adresa:</span>
-                            <a href="mailto:nena.kozic3@gmail.com" class="contact-link">nena.kozic3@gmail.com</a>
+                    <div class="contact-cards">
+                        <div class="contact-card">
+                            <div class="contact-card-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="contact-card-body">
+                                <span class="contact-card-label" id="lbl-email">E-mail adresa</span>
+                                <a href="mailto:nena.kozic3@gmail.com" class="contact-link contact-card-value">nena.kozic3@gmail.com</a>
+                            </div>
                             <button type="button" class="copy-email-btn" id="copy-email-btn" aria-label="Kopiraj email adresu" title="Kopiraj email adresu">
                                 <i class="fa-solid fa-copy"></i>
                             </button>
-                        </li>
-                        <li>
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span id="lbl-lokacija">Lokacija:</span> Čačak, Srbija
-                        </li>
-                        <li>
-                            <i class="fa-solid fa-linkedin"></i>
-                            <span id="lbl-linkedin">LinkedIn profil:</span>
-                            <a href="https://www.linkedin.com/in/nena-kozi%C4%87-9665552b7/" target="_blank" class="contact-link">Nena Kozić</a>
-                        </li>
-                        <li>
-                            <i class="fa-solid fa-brands fa-github"></i>
-                            <span id="lbl-github">GitHub profil:</span>
-                            <a href="https://github.com/NenaK3" target="_blank" class="contact-link">NenaK3</a>
-                        </li>
-                    </ul>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="contact-card-body">
+                                <span class="contact-card-label" id="lbl-lokacija">Lokacija</span>
+                                <span class="contact-card-value">Čačak, Srbija</span>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-icon"><i class="fa-brands fa-linkedin"></i></div>
+                            <div class="contact-card-body">
+                                <span class="contact-card-label" id="lbl-linkedin">LinkedIn profil</span>
+                                <a href="https://www.linkedin.com/in/nena-kozi%C4%87-9665552b7/" target="_blank" class="contact-link contact-card-value">Nena Kozić</a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-icon"><i class="fa-brands fa-github"></i></div>
+                            <div class="contact-card-body">
+                                <span class="contact-card-label" id="lbl-github">GitHub profil</span>
+                                <a href="https://github.com/NenaK3" target="_blank" class="contact-link contact-card-value">NenaK3</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

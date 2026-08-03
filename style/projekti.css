@@ -899,7 +899,7 @@ body.light-mode .skill-tag {
 .breadcrumbs {
     max-width: 900px;
     margin: 24px auto 0;
-    padding: 0 20px;
+    padding: 10px 20px;
     font-size: 0.88rem;
     color: var(--text-muted);
     display: flex;
@@ -915,6 +915,39 @@ body.light-mode .skill-tag {
 .breadcrumbs a:hover {
     color: var(--theme-accent);
     text-decoration: underline;
+}
+
+#bc-pocetna {
+    position: relative;
+    color: var(--theme-accent);
+    font-weight: 600;
+    padding: 3px 10px 3px 20px;
+    border-radius: 999px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#bc-pocetna::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    background-color: var(--theme-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-accent) 22%, transparent);
+    transition: box-shadow 0.3s ease;
+}
+
+#bc-pocetna:hover {
+    color: var(--theme-accent-hover, var(--theme-accent));
+    background-color: color-mix(in srgb, var(--theme-accent) 14%, transparent);
+    text-decoration: none;
+}
+
+#bc-pocetna:hover::before {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--theme-accent) 30%, transparent);
 }
 
 .breadcrumbs .bc-sep {

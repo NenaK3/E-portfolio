@@ -529,6 +529,24 @@ body {
     gap: 10px;
     border-bottom: 2px solid var(--card-border);
     margin-bottom: 30px;
+    position: relative;
+}
+
+.tab-indicator {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 2px;
+    background-color: var(--theme-accent);
+    border-radius: 2px;
+    transition: left 0.3s cubic-bezier(0.65, 0, 0.35, 1), width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tab-indicator {
+        transition: none;
+    }
 }
 
 .tab-btn {
@@ -558,7 +576,6 @@ body {
 
 .tab-btn.active {
     color: var(--theme-accent);
-    border-bottom-color: var(--theme-accent);
 }
 
 /* ==========================================================================
@@ -570,7 +587,7 @@ body {
 
 .tab-content {
     display: none;
-    animation: fadeIn 0.5s ease forwards;
+    animation: fadeIn 0.22s ease forwards;
 }
 
 .tab-content.active {
@@ -578,8 +595,14 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tab-content {
+        animation: none;
+    }
 }
 
 /* ==========================================================================
@@ -666,6 +689,18 @@ body {
     width: 1.4em;
     text-align: center;
     color: var(--theme-accent);
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+
+.skill-list li:hover .devicon-skill-icon {
+    transform: scale(1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skill-list li .devicon-skill-icon {
+        transition: none;
+    }
 }
 
 .skill-bullet-dot {
@@ -747,36 +782,77 @@ body.light-mode.edukacija-theme {
     white-space: nowrap;
 }
         
-.contact-list {
-    list-style: none;
-    padding: 0;
-    margin: 25px 0 0 0;
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 25px;
 }
 
-.contact-list li {
-    margin-bottom: 20px;
-    color: var(--text-muted);
-    font-size: 1.05rem;  
-    font-weight: 400;   
-    line-height: 1.7;    
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background-color: var(--btn-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
 }
 
-.contact-list li span {
-    font-weight: 600;
-    color: var(--text-color);
-    margin-right: 4px;
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px -5px var(--theme-shadow-soft, var(--shadow));
+    border-color: var(--theme-accent);
 }
 
-.contact-list li:last-child {
-    margin-bottom: 0;
-}
-
-.contact-list i {
-    margin-right: 14px;
-    width: 24px;
-    text-align: center;
+.contact-card-icon {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
     color: var(--theme-accent);
     font-size: 1.15rem;
+}
+
+.contact-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    flex: 1;
+}
+
+.contact-card-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.contact-card-value {
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: var(--text-color);
+    word-break: break-word;
+}
+
+.contact-card .copy-email-btn {
+    margin-left: 0;
+    flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-card {
+        transition: none;
+    }
 }
 
 #idx-footer,
@@ -955,6 +1031,17 @@ body.light-mode.edukacija-theme {
         width: 95%;
         padding: 40px 10px 10px 10px;
     }
+
+    .contact-card {
+        padding: 14px 14px;
+        gap: 12px;
+    }
+
+    .contact-card-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
 }
 
 /* ==========================================================================
@@ -974,7 +1061,7 @@ body.light-mode.edukacija-theme {
 .breadcrumbs {
     max-width: 900px;
     margin: 24px auto 0;
-    padding: 0 20px;
+    padding: 10px 20px;
     font-size: 0.88rem;
     color: var(--text-muted);
     display: flex;
@@ -990,6 +1077,39 @@ body.light-mode.edukacija-theme {
 .breadcrumbs a:hover {
     color: var(--theme-accent);
     text-decoration: underline;
+}
+
+#bc-pocetna {
+    position: relative;
+    color: var(--theme-accent);
+    font-weight: 600;
+    padding: 3px 10px 3px 20px;
+    border-radius: 999px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#bc-pocetna::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    background-color: var(--theme-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-accent) 22%, transparent);
+    transition: box-shadow 0.3s ease;
+}
+
+#bc-pocetna:hover {
+    color: var(--theme-accent-hover, var(--theme-accent));
+    background-color: color-mix(in srgb, var(--theme-accent) 14%, transparent);
+    text-decoration: none;
+}
+
+#bc-pocetna:hover::before {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--theme-accent) 30%, transparent);
 }
 
 .breadcrumbs .bc-sep {

@@ -174,7 +174,9 @@
             cvModal: document.getElementById('cv-modal'),
             cvIframe: document.getElementById('cv-iframe'),
             tabContents: document.querySelectorAll('.tab-content'),
-            tabBtns: document.querySelectorAll('.tab-btn')
+            tabBtns: document.querySelectorAll('.tab-btn'),
+            tabButtonsWrap: document.getElementById('tab-buttons'),
+            tabIndicator: document.getElementById('tab-indicator')
         };
 
         const tabDugmici = [
@@ -214,6 +216,23 @@
 
         function initFadeInReveal(root) {
             Common.initFadeInReveal(root);
+        }
+
+        // -----------------------------------------------------------------
+        // Pomera klizeći indikator ispod aktivnog tab dugmeta. Poziva se pri
+        // promeni taba, ali i nakon osveženja sadržaja (jezik može promeniti
+        // širinu teksta dugmeta) i pri promeni veličine prozora.
+        // -----------------------------------------------------------------
+        function pomeriTabIndikator(dugme) {
+            if (!el.tabIndicator || !el.tabButtonsWrap || !dugme) return;
+            const wrapRect = el.tabButtonsWrap.getBoundingClientRect();
+            const dugmeRect = dugme.getBoundingClientRect();
+            el.tabIndicator.style.left = (dugmeRect.left - wrapRect.left) + 'px';
+            el.tabIndicator.style.width = dugmeRect.width + 'px';
+        }
+
+        function aktivniTabDugme() {
+            return el.tabButtonsWrap ? el.tabButtonsWrap.querySelector('.tab-btn.active') : null;
         }
 
         function azurirajDatumFootera() {
@@ -299,6 +318,7 @@
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
             initFadeInReveal();
+            pomeriTabIndikator(aktivniTabDugme());
         }
 
         function otvoriCvModal() {
@@ -356,6 +376,7 @@
             void noviTab.offsetWidth;
             noviTab.classList.add('fade-in-up');
             initFadeInReveal(noviTab);
+            pomeriTabIndikator(evt.currentTarget);
         }
 
         function toggleMenu() {
@@ -385,3 +406,5 @@
         podesiEduDropdown();
         podesiKopiranjeEmaila();
         initFadeInReveal();
+
+        window.addEventListener('resize', () => pomeriTabIndikator(aktivniTabDugme()));

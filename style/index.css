@@ -103,6 +103,10 @@ body.index-body {
     margin-bottom: 12px;
     letter-spacing: 0.5px;
     line-height: 1.2;
+    background: linear-gradient(100deg, var(--pastel-blue-accent) 0%, var(--pastel-pink-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
@@ -119,6 +123,23 @@ body.index-body {
     gap: 30px;
     padding: 10px;
     width: 100%;
+    position: relative;
+}
+
+/* Tanka razdvojna linija između IT i edukacijske kartice (samo desktop) */
+@media (min-width: 769px) {
+    .split-grid::before {
+        content: '';
+        position: absolute;
+        top: 8%;
+        bottom: 8%;
+        left: 50%;
+        width: 1px;
+        transform: translateX(-50%);
+        background: linear-gradient(to bottom, transparent, var(--pastel-blue-accent) 20%, var(--pastel-pink-accent) 80%, transparent);
+        opacity: 0.45;
+        pointer-events: none;
+    }
 }
 
 .selection-card {
@@ -138,12 +159,63 @@ body.index-body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    opacity: 0;
+    animation: kartaUlazak 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+.it-card {
+    animation-delay: 0.05s;
+}
+
+.edu-card {
+    animation-delay: 0.2s;
+}
+
+@keyframes kartaUlazak {
+    from {
+        opacity: 0;
+        transform: translateY(26px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .selection-card {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+/* ==========================================================================
+   1c. Suptilno lebdenje ikonice na kartici (pauzira se na hover)
+   ========================================================================== */
 .card-icon {
     font-size: 2.5rem;
     margin-bottom: 24px;
+    animation: ikonicaLebdenje 3.6s ease-in-out infinite;
+}
+
+.card-icon i {
+    display: inline-block;
     transition: transform 0.3s ease;
+}
+
+.selection-card:hover .card-icon {
+    animation-play-state: paused;
+}
+
+@keyframes ikonicaLebdenje {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-icon {
+        animation: none;
+    }
 }
 
 .selection-card h2 {
@@ -211,6 +283,36 @@ body.index-body {
     justify-content: center;
     gap: 10px;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dijagonalni "shimmer" sjaj koji pređe preko dugmeta na hover */
+.selection-card button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
+
+.selection-card button:hover::after {
+    animation: dugmeSjaj 0.6s ease forwards;
+}
+
+@keyframes dugmeSjaj {
+    from { left: -75%; }
+    to { left: 125%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .selection-card button::after {
+        display: none;
+    }
 }
 
 .selection-card button i {
@@ -221,7 +323,7 @@ body.index-body {
     transform: translateY(-8px);
 }
 
-.selection-card:hover .card-icon {
+.selection-card:hover .card-icon i {
     transform: scale(1.1);
 }
 
