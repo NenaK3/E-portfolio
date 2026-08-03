@@ -540,46 +540,6 @@ body:not(.light-mode) #grain-overlay {
 }
 
 /* ==========================================================================
-   16. Ambient "aurora" pozadina — dva vrlo suptilna difuzna sjaja (plavi i
-       roze) fiksirana iza celog sadržaja, ispod dot-grid teksture. Dodaje
-       dubinu i toplinu pozadini bez ometanja čitljivosti teksta.
-   ========================================================================== */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -3;
-    pointer-events: none;
-    background:
-        radial-gradient(680px circle at 12% -6%, rgba(56, 189, 248, 0.16), transparent 60%),
-        radial-gradient(620px circle at 108% 18%, rgba(244, 114, 182, 0.12), transparent 60%),
-        radial-gradient(760px circle at 50% 118%, rgba(56, 189, 248, 0.08), transparent 65%);
-}
-
-body.light-mode::before {
-    background:
-        radial-gradient(680px circle at 12% -6%, rgba(56, 189, 248, 0.12), transparent 60%),
-        radial-gradient(620px circle at 108% 18%, rgba(244, 114, 182, 0.10), transparent 60%),
-        radial-gradient(760px circle at 50% 118%, rgba(56, 189, 248, 0.07), transparent 65%);
-}
-
-body.edukacija-theme::before,
-body.edu-theme::before {
-    background:
-        radial-gradient(680px circle at 12% -6%, rgba(244, 114, 182, 0.15), transparent 60%),
-        radial-gradient(620px circle at 108% 18%, rgba(56, 189, 248, 0.10), transparent 60%),
-        radial-gradient(760px circle at 50% 118%, rgba(244, 114, 182, 0.08), transparent 65%);
-}
-
-body.light-mode.edukacija-theme::before,
-body.light-mode.edu-theme::before {
-    background:
-        radial-gradient(680px circle at 12% -6%, rgba(244, 114, 182, 0.11), transparent 60%),
-        radial-gradient(620px circle at 108% 18%, rgba(56, 189, 248, 0.08), transparent 60%),
-        radial-gradient(760px circle at 50% 118%, rgba(244, 114, 182, 0.06), transparent 65%);
-}
-
-/* ==========================================================================
    17. Sheen (sjaj) na primarnim dugmadima — tanka dijagonalna svetla traka
        koja prelazi preko dugmeta pri hover-u, kao odsjaj na staklu
    ========================================================================== */
@@ -707,22 +667,9 @@ body.light-mode.edu-theme::before {
     }
 }
 
-/* 19e. Lakše ambijentalne animacije na dodirnim uređajima — aurora sjaj i
-   dot-grid ostaju, ali suptilniji, da ne opterećuju slabiji GPU i bateriju */
+/* 19e. Lakše ambijentalne animacije na dodirnim uređajima — dot-grid ostaje,
+   ali suptilniji, da ne opterećuje slabiji GPU i bateriju */
 @media (hover: none) and (max-width: 900px) {
-    body::before {
-        background:
-            radial-gradient(420px circle at 12% -6%, rgba(56, 189, 248, 0.12), transparent 60%),
-            radial-gradient(380px circle at 108% 18%, rgba(244, 114, 182, 0.09), transparent 60%);
-    }
-
-    body.edukacija-theme::before,
-    body.edu-theme::before {
-        background:
-            radial-gradient(420px circle at 12% -6%, rgba(244, 114, 182, 0.11), transparent 60%),
-            radial-gradient(380px circle at 108% 18%, rgba(56, 189, 248, 0.08), transparent 60%);
-    }
-
     #grain-overlay {
         display: none;
     }
