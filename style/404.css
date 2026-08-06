@@ -11,13 +11,12 @@
     --bg-color: #0b1120;
     --text-color: #f5f7fb;
     --text-muted: #98a3bc;
-    --card-bg: #151d30;
+    --card-bg: #1a2338;
     --card-border: #26314a;
     --card-edge: rgba(255, 255, 255, 0.045);
     --btn-bg: #26314a;
     --btn-hover: #2e3a56;
     --shadow: rgba(2, 6, 20, 0.5);
-    --shadow-lg: 0 25px 50px -12px rgba(2, 6, 20, 0.55);
     --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
 
     --pastel-blue-bg: #e0f2fe;
@@ -32,16 +31,65 @@
 }
 
 body.light-mode {
-    --bg-color: #f2f4fb;
     --text-color: #0c1324;
-    --text-muted: #4a5372;
-    --card-bg: #ffffff;
-    --card-border: #c6d0ea;
-    --card-edge: rgba(255, 255, 255, 0.85);
-    --btn-bg: #e9edf9;
-    --btn-hover: #dbe3f6;
-    --shadow: rgba(30, 41, 74, 0.15);
-    --shadow-lg: 0 25px 45px -12px rgba(30, 41, 74, 0.24);
+    --shadow: rgba(120, 100, 70, 0.09);
+}
+
+/* --------------------------------------------------------------------------
+   1b. Light mode — pozadinski sjaj, senke i akcenti fino podešeni za svetlu temu
+   -------------------------------------------------------------------------- */
+body.light-mode.index-body {
+    background-image:
+        radial-gradient(circle at 12% 6%, color-mix(in srgb, var(--pastel-blue-accent) 20%, transparent), transparent 46%),
+        radial-gradient(circle at 90% 88%, color-mix(in srgb, var(--pastel-pink-accent) 18%, transparent), transparent 48%),
+        linear-gradient(180deg, #ffffff 0%, #f6f8fd 100%);
+}
+
+body.light-mode .digit-rain span {
+    opacity: 0;
+    filter: drop-shadow(0 0 3px color-mix(in srgb, var(--pastel-blue-accent) 35%, transparent));
+}
+
+body.light-mode .control-btn {
+    box-shadow: 0 4px 10px -2px var(--shadow);
+}
+
+body.light-mode .control-btn:hover {
+    background-color: var(--btn-hover);
+    border-color: color-mix(in srgb, var(--pastel-blue-accent) 45%, var(--card-border));
+}
+
+body.light-mode .robot-404-stage::before {
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--pastel-blue-accent) 32%, transparent), transparent 72%),
+                radial-gradient(closest-side at 70% 70%, color-mix(in srgb, var(--pastel-pink-accent) 26%, transparent), transparent 75%);
+    filter: blur(20px);
+}
+
+body.light-mode .robot-404-svg {
+    --card-border: var(--pastel-blue-dark);
+    filter: drop-shadow(0 14px 20px rgba(30, 41, 74, 0.15));
+}
+
+body.light-mode .error-card {
+    background: color-mix(in srgb, var(--card-bg) 94%, transparent);
+    box-shadow: var(--shadow-lg), inset 0 1px 0 var(--card-edge), 0 1px 2px rgba(30, 41, 74, 0.06);
+}
+
+body.light-mode .error-code {
+    filter: saturate(1.15);
+}
+
+body.light-mode .subtitle {
+    color: var(--text-muted);
+}
+
+body.light-mode .error-actions button {
+    box-shadow: 0 8px 18px -6px var(--shadow);
+}
+
+body.light-mode .skip-link {
+    background-color: #0c1324;
+    color: #ffffff;
 }
 
 /* ==========================================================================
@@ -50,6 +98,10 @@ body.light-mode {
 body.index-body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
+    background-image:
+        radial-gradient(circle at 15% 8%, color-mix(in srgb, var(--pastel-blue-accent) 10%, transparent), transparent 42%),
+        radial-gradient(circle at 88% 82%, color-mix(in srgb, var(--pastel-pink-accent) 10%, transparent), transparent 45%);
+    background-attachment: fixed;
     color: var(--text-color);
     min-height: 100vh;
     display: flex;
@@ -115,7 +167,7 @@ body.index-body {
     color: var(--text-color);
     border: 1px solid var(--card-border);
     padding: 10px 16px;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
     font-size: 0.95rem;
@@ -124,16 +176,22 @@ body.index-body {
     justify-content: center;
     min-width: 45px;
     box-shadow: 0 4px 6px -1px var(--shadow);
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .control-btn:hover {
     background-color: var(--btn-hover);
+    border-color: color-mix(in srgb, var(--pastel-blue-accent) 40%, var(--card-border));
     transform: translateY(-2px);
 }
 
 .control-btn:active {
     transform: translateY(0);
+}
+
+.control-btn:focus-visible {
+    outline: 2px solid var(--pastel-blue-accent);
+    outline-offset: 2px;
 }
 
 /* --------------------------------------------------------------------------
@@ -170,7 +228,7 @@ body.light-mode .robot-404-orbit {
     position: relative;
     width: 220px;
     max-width: 62%;
-    margin: 0 auto 4px auto;
+    margin: 0 auto 6px auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -182,10 +240,20 @@ body.light-mode .robot-404-orbit {
     inset: -22%;
     z-index: -1;
     border-radius: 50%;
-    background: radial-gradient(closest-side, color-mix(in srgb, var(--pastel-blue-accent) 26%, transparent), transparent 72%),
-                radial-gradient(closest-side at 70% 70%, color-mix(in srgb, var(--pastel-pink-accent) 20%, transparent), transparent 75%);
-    filter: blur(22px);
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--pastel-blue-accent) 28%, transparent), transparent 72%),
+                radial-gradient(closest-side at 70% 70%, color-mix(in srgb, var(--pastel-pink-accent) 22%, transparent), transparent 75%);
+    filter: blur(24px);
     opacity: 0.9;
+    animation: sjajPulsiranje 4.5s ease-in-out infinite;
+}
+
+@keyframes sjajPulsiranje {
+    0%, 100% { opacity: 0.75; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .robot-404-stage::before { animation: none; }
 }
 
 .robot-404-orbit {
@@ -270,6 +338,7 @@ body.light-mode .robot-404-orbit {
 .robot-404-svg {
     width: 100%;
     height: auto;
+    filter: drop-shadow(0 12px 18px var(--shadow));
     animation: robotLebdenje 3.2s ease-in-out infinite;
 }
 
@@ -318,7 +387,7 @@ body.light-mode .robot-404-orbit {
 }
 
 /* --------------------------------------------------------------------------
-   3b. Kartica sa greškom — sada sa rotirajućim gradijent-prstenom
+   3b. Kartica sa greškom — sa rotirajućim gradijent-prstenom i staklastim efektom
    -------------------------------------------------------------------------- */
 @property --ring-ugao {
     syntax: '<angle>';
@@ -329,15 +398,15 @@ body.light-mode .robot-404-orbit {
 .error-card {
     position: relative;
     isolation: isolate;
-    max-width: 540px;
+    max-width: 560px;
     width: 100%;
-    margin: 6px auto 0;
-    padding: 40px 44px 44px;
-    border-radius: 24px;
+    margin: 10px auto 0;
+    padding: 44px 48px 48px;
+    border-radius: 26px;
     border: 1px solid var(--card-border);
     background: color-mix(in srgb, var(--card-bg) 88%, transparent);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
-    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(165%);
+    backdrop-filter: blur(16px) saturate(165%);
     box-shadow: var(--shadow-lg), inset 0 1px 0 var(--card-edge);
     opacity: 0;
     transform: translateY(22px);
@@ -398,16 +467,17 @@ body.light-mode .error-card::before {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 16px;
+    padding: 7px 18px;
     border-radius: 999px;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
     font-family: var(--font-mono);
     color: var(--pastel-pink-dark);
     background: color-mix(in srgb, var(--pastel-pink-accent) 14%, transparent);
     border: 1px solid color-mix(in srgb, var(--pastel-pink-accent) 32%, transparent);
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 body.light-mode .error-eyebrow {
@@ -418,18 +488,18 @@ body.light-mode .error-eyebrow {
 
 @media (max-width: 768px) {
     .error-card {
-        padding: 32px 24px 34px;
+        padding: 34px 26px 36px;
         border-radius: 20px;
     }
 }
 
 .error-code {
-    font-size: 3rem;
+    font-family: var(--font-mono);
+    font-size: 3.4rem;
     font-weight: 800;
     line-height: 1;
-    margin: 0 0 12px 0;
+    margin: 0 0 14px 0;
     letter-spacing: -1px;
-    opacity: 0.85;
     background: linear-gradient(135deg, var(--pastel-blue-accent), var(--pastel-pink-accent));
     -webkit-background-clip: text;
     background-clip: text;
@@ -448,19 +518,21 @@ body.light-mode .error-eyebrow {
     color: var(--text-muted);
     max-width: 520px;
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 .error-actions {
-    margin-top: 40px;
+    margin-top: 42px;
     display: flex;
     justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
 }
 
 .error-actions button {
-    padding: 14px 28px;
+    padding: 14px 30px;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -471,7 +543,36 @@ body.light-mode .error-eyebrow {
     color: var(--text-color);
     border: 1px solid var(--card-border);
     box-shadow: 0 10px 15px -3px var(--shadow);
+    position: relative;
+    overflow: hidden;
     transition: background 0.35s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.error-actions button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
+
+.error-actions button:hover::after {
+    animation: dugmeSjaj 0.6s ease forwards;
+}
+
+@keyframes dugmeSjaj {
+    from { left: -75%; }
+    to { left: 125%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .error-actions button::after {
+        display: none;
+    }
 }
 
 .error-actions button i {
@@ -490,6 +591,11 @@ body.light-mode .error-eyebrow {
     transform: translateX(5px);
 }
 
+.error-actions button:focus-visible {
+    outline: 2px solid var(--pastel-blue-accent);
+    outline-offset: 3px;
+}
+
 body.light-mode .error-actions button:hover {
     box-shadow: 0 16px 28px -8px rgba(219, 39, 119, 0.22), 0 16px 28px -8px rgba(2, 132, 199, 0.18);
 }
@@ -504,7 +610,7 @@ body.light-mode .error-actions button:hover {
     }
 
     .error-code {
-        font-size: 4rem;
+        font-size: 2.6rem;
     }
 
     #err-naslov {
@@ -513,6 +619,11 @@ body.light-mode .error-actions button:hover {
 
     .subtitle {
         font-size: 1rem;
+    }
+
+    .error-actions button {
+        width: 100%;
+        justify-content: center;
     }
 }
 

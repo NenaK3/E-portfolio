@@ -18,7 +18,7 @@
                 bcTrenutna: 'Profil',
                 IT: {
                     titula: 'Master inženjer informacionih tehnologija',
-                    pitch: 'Razvijam moderne, pristupačne veb aplikacije, uz uverenje da svako tehničko rešenje treba da ima jasnu svrhu za korisnika.',
+                    pitch: '',
                     oMeni: 'Fokusirana na razvoj modernih frontend aplikacija i napredno upravljanje bazama podataka. Kroz praktičan rad u kompanijama i akademske projekte na FTN-u stekla sam iskustvo u tehnologijama kao što su Angular, React, Node.js i Flutter, kao i u radu sa relacionim bazama i softverskom arhitekturom.',
                     ambicije: 'Dugoročni fokus je usmeren na karijeru u IT industriji, sa primarnim interesovanjem za Frontend razvoj i kreiranje intuitivnih korisničkih interfejsa, kao i za projektovanje baza podataka i Power BI analitiku. Cilj mi je dalji rad sa modernim JavaScript/TypeScript okvirima, napredno upravljanje podacima i kreiranje poslovnih izveštaja koji pomažu u donošenju ključnih odluka.',
                     cvFajl: 'assets/cv/CV IT - srb.pdf',
@@ -50,7 +50,7 @@
                 },
                 Edukacija: {
                     titula: 'Master profesor stručnih predmeta oblasti informacionih tehnologija',
-                    pitch: 'Podučavam učenike informatičkom načinu razmišljanja kroz jasne, praktično usmerene i podsticajne časove.',
+                    pitch: '',
                     oMeni: 'Posvećena pedagogiji, metodici nastave računarstva i digitalnoj pismenosti. Uspešno prenosim apstraktne IT koncepte (poput programiranja u Python-u) mlađim generacijama kroz interaktivne metode, konstruktivistički pristup i savremene nastavne alate.',
                     ambicije: 'Rad u prosvetnom sistemu kao profesor informatike i računarstva, kreiranje naprednih radionica i sekcija za talentovane učenike, implementacija EdTech inovacija i istraživanje primene obrazovnih softvera u nastavi.',
                     cvFajl: 'assets/cv/CV PN - srb.pdf',
@@ -85,7 +85,7 @@
                 bcTrenutna: 'Profile',
                 IT: {
                     titula: 'Master of Information Technology',
-                    pitch: 'I develop modern, accessible web applications, guided by the principle that every technical solution should serve a clear purpose for the user.',
+                    pitch: '',
                     oMeni: 'Focused on developing modern frontend applications and advanced database management. Through professional internships and academic projects at the Faculty of Technical Sciences, I have gained hands-on experience with Angular, React, Node.js, and Flutter, alongside relational databases and software architecture.',
                     ambicije: 'Long-term focus is oriented toward a career in the IT industry, with a primary interest in Frontend development and creating intuitive user interfaces, as well as database design and Power BI analytics. My goal is to further work with modern JavaScript/TypeScript frameworks, advanced data management, and generating business reports that drive key decision-making.',
                     cvFajl: 'assets/cv/CV IT - eng.pdf',
@@ -117,7 +117,7 @@
                 },
                 Edukacija: {
                     titula: 'Master Professor of Information Technology Vocational Subjects',
-                    pitch: 'I guide students toward computational thinking through clear, practically oriented, and engaging computer science lessons.',
+                    pitch: '',
                     oMeni: 'Dedicated to pedagogy, computer science teaching methodology, and digital literacy. I successfully convey abstract IT concepts (such as Python programming) to younger generations through interactive methods, a constructivist approach, and contemporary educational tools.',
                     ambicije: 'Working in the education system as a professor of computer science and information technology, creating advanced workshops and sections for talented students, implementing EdTech innovations and researching the application of educational software in teaching.',
                     cvFajl: 'assets/cv/CV PN - eng.pdf',
