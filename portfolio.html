@@ -71,7 +71,7 @@
     }
     </script>
 </head>
-<body>
+<body data-magnet="off">
     <script>(function(){try{var t=localStorage.getItem('portfolioRezim')||(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(t==='light')document.body.classList.add('light-mode');}catch(e){}})();</script>
     <a href="#glavni-sadrzaj" class="skip-link">Preskoči na sadržaj / Skip to content</a>
 
@@ -218,6 +218,10 @@
         <span class="footer-separator">•</span>
         <span id="idx-footer-datum"></span>
     </footer>
+
+    <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Nazad na vrh / Back to top" title="Nazad na vrh">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
     <script src="script/common.js" defer></script>
     <script src="script/enhancements.js" defer></script>

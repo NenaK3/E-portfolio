@@ -193,6 +193,71 @@ window.Common = (function () {
     }
 
     // -----------------------------------------------------------------
+    // "Nazad na vrh" dugme — zajednička logika za sve stranice
+    // -----------------------------------------------------------------
+    let scrollTopVezan = false;
+
+    function initScrollTopButton() {
+        const dugme = document.getElementById('scroll-top-btn');
+        if (!dugme || scrollTopVezan) return;
+        scrollTopVezan = true;
+
+        const osveziVidljivost = () => {
+            dugme.classList.toggle('visible', window.scrollY > 400);
+        };
+
+        window.addEventListener('scroll', osveziVidljivost, { passive: true });
+        dugme.addEventListener('click', () => {
+            const smanjenoKretanje = window.matchMedia
+                && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: smanjenoKretanje ? 'auto' : 'smooth' });
+        });
+
+        osveziVidljivost();
+    }
+
+    // -----------------------------------------------------------------
+    // "Magnetni" hover na dugmadima — blagi pomeraj ka kursoru
+    // -----------------------------------------------------------------
+    const MAGNET_SELEKTOR = '.control-btn, .selection-card button, .cv-download-btn, ' +
+        '.error-actions button, .switch-btn, .tab-btn, .scroll-top-btn';
+
+    function primeniMagnet(el) {
+        const jacina = 0.28;
+        const maxPomeraj = 7;
+
+        function pomeraj(e) {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - (rect.left + rect.width / 2);
+            const y = e.clientY - (rect.top + rect.height / 2);
+            const px = Math.max(-maxPomeraj, Math.min(maxPomeraj, x * jacina));
+            const py = Math.max(-maxPomeraj, Math.min(maxPomeraj, y * jacina));
+            el.style.transform = `translate(${px.toFixed(2)}px, ${py.toFixed(2)}px)`;
+        }
+
+        function resetuj() {
+            el.style.transform = '';
+        }
+
+        el.addEventListener('mousemove', pomeraj);
+        el.addEventListener('mouseleave', resetuj);
+        el.addEventListener('blur', resetuj);
+    }
+
+    function initMagneticButtons(root) {
+        const nemaHover = window.matchMedia && window.matchMedia('(hover: none)').matches;
+        const smanjenoKretanje = window.matchMedia
+            && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (nemaHover || smanjenoKretanje) return;
+
+        const kontejner = root || document;
+        kontejner.querySelectorAll(MAGNET_SELEKTOR + ':not([data-magnet-init])').forEach(el => {
+            el.setAttribute('data-magnet-init', '1');
+            primeniMagnet(el);
+        });
+    }
+
+    // -----------------------------------------------------------------
     // Dugme "Kopiraj kod"
     // -----------------------------------------------------------------
     function kopirajTekst(tekst, dugmeEl, poruke) {
@@ -242,6 +307,8 @@ window.Common = (function () {
         azurirajJezikDugme,
         initEduDropdown,
         initFadeInReveal,
+        initScrollTopButton,
+        initMagneticButtons,
         otvoriModal,
         zatvoriModal,
         kopirajTekst

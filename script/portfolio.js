@@ -396,5 +396,6 @@
         podesiEduDropdown();
         podesiKopiranjeEmaila();
         initFadeInReveal();
+        Common.initScrollTopButton();
 
         window.addEventListener('resize', () => pomeriTabIndikator(aktivniTabDugme()));

@@ -97,13 +97,21 @@
         document.body.appendChild(grain);
     }
 
-    window.Enhancements = { initTilt };
+    function initMagnetic() {
+        if (document.body.dataset.magnet === 'off') return;
+        if (window.Common && typeof window.Common.initMagneticButtons === 'function') {
+            window.Common.initMagneticButtons();
+        }
+    }
+
+    window.Enhancements = { initTilt, initMagnetic };
 
     document.addEventListener('DOMContentLoaded', () => {
         initScrollProgress();
         initCursorGlow();
         initTilt();
         initGrainOverlay();
+        initMagnetic();
     });
 
 })();

@@ -16,7 +16,8 @@
     --btn-bg: #26314a;
     --btn-hover: #2e3a56;
     --shadow: rgba(2, 6, 20, 0.5);
-    
+    --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+
     --pastel-blue-bg: #e0f2fe;
     --pastel-blue-accent: #38bdf8;
     --pastel-blue-text: #0369a1;
@@ -29,14 +30,14 @@
 }
 
 body.light-mode {
-    --bg-color: #f5f7fb;
-    --text-color: #0b1120;
-    --text-muted: #5c6579;
+    --bg-color: #f2f4fb;
+    --text-color: #0c1324;
+    --text-muted: #4a5372;
     --card-bg: #ffffff;
-    --card-border: #e6e9f2;
-    --btn-bg: #e6e9f2;
-    --btn-hover: #dde2ea;
-    --shadow: rgba(16, 23, 42, 0.06);
+    --card-border: #c6d0ea;
+    --btn-bg: #e9edf9;
+    --btn-hover: #dbe3f6;
+    --shadow: rgba(30, 41, 74, 0.15);
 }
 
 body.index-body {
@@ -51,6 +52,7 @@ body.index-body {
     padding: 20px;
     transition: background-color 0.4s ease, color 0.4s ease;
     overflow-x: hidden;
+    position: relative;
 }
 
 .index-controls {
@@ -86,6 +88,21 @@ body.index-body {
 
 .control-btn:active {
     transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   1d. Light mode — izraženije ivice i kontrast
+   -------------------------------------------------------------------------- */
+body.light-mode .control-btn {
+    border-width: 1.5px;
+}
+
+body.light-mode .selection-card {
+    border-width: 1.5px;
+}
+
+body.light-mode .selection-card button {
+    border-width: 1.5px;
 }
 
 .welcome-container {
@@ -138,6 +155,11 @@ body.index-body {
         background: linear-gradient(to bottom, transparent, var(--pastel-blue-accent) 20%, var(--pastel-pink-accent) 80%, transparent);
         opacity: 0.45;
         pointer-events: none;
+    }
+
+    body.light-mode .split-grid::before {
+        width: 2px;
+        opacity: 0.75;
     }
 }
 
@@ -347,7 +369,9 @@ body.index-body {
 }
 
 body.light-mode .it-card {
-    background-image: linear-gradient(160deg, #ffffff 0%, #ffffff 55%, var(--pastel-blue-bg) 145%);
+    background-image: linear-gradient(160deg, #ffffff 0%, #ffffff 50%, var(--pastel-blue-bg) 150%);
+    border-color: color-mix(in srgb, var(--pastel-blue-accent) 45%, var(--card-border));
+    box-shadow: 0 14px 28px -8px rgba(56, 189, 248, 0.2), 0 4px 10px -4px var(--shadow);
 }
 
 .it-card:hover {
@@ -395,7 +419,9 @@ body.light-mode .it-card {
 }
 
 body.light-mode .edu-card {
-    background-image: linear-gradient(160deg, #ffffff 0%, #ffffff 55%, var(--pastel-pink-bg) 145%);
+    background-image: linear-gradient(160deg, #ffffff 0%, #ffffff 50%, var(--pastel-pink-bg) 150%);
+    border-color: color-mix(in srgb, var(--pastel-pink-accent) 45%, var(--card-border));
+    box-shadow: 0 14px 28px -8px rgba(244, 114, 182, 0.2), 0 4px 10px -4px var(--shadow);
 }
 
 .edu-card:hover {

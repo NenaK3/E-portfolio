@@ -13,9 +13,12 @@
     --text-muted: #98a3bc;
     --card-bg: #151d30;
     --card-border: #26314a;
+    --card-edge: rgba(255, 255, 255, 0.045);
     --btn-bg: #26314a;
     --btn-hover: #2e3a56;
     --shadow: rgba(2, 6, 20, 0.5);
+    --shadow-lg: 0 25px 50px -12px rgba(2, 6, 20, 0.55);
+    --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
 
     --pastel-blue-bg: #e0f2fe;
     --pastel-blue-accent: #38bdf8;
@@ -29,14 +32,16 @@
 }
 
 body.light-mode {
-    --bg-color: #f5f7fb;
-    --text-color: #0b1120;
-    --text-muted: #5c6579;
+    --bg-color: #f2f4fb;
+    --text-color: #0c1324;
+    --text-muted: #4a5372;
     --card-bg: #ffffff;
-    --card-border: #e6e9f2;
-    --btn-bg: #e6e9f2;
-    --btn-hover: #dde2ea;
-    --shadow: rgba(16, 23, 42, 0.06);
+    --card-border: #c6d0ea;
+    --card-edge: rgba(255, 255, 255, 0.85);
+    --btn-bg: #e9edf9;
+    --btn-hover: #dbe3f6;
+    --shadow: rgba(30, 41, 74, 0.15);
+    --shadow-lg: 0 25px 45px -12px rgba(30, 41, 74, 0.24);
 }
 
 /* ==========================================================================
@@ -54,6 +59,46 @@ body.index-body {
     padding: 20px;
     transition: background-color 0.4s ease, color 0.4s ease;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   2b. "Zvezdana kiša" — zvezdice koje padaju pored robota
+   -------------------------------------------------------------------------- */
+.digit-rain {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.digit-rain span {
+    position: absolute;
+    top: -10vh;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--pastel-blue-accent);
+    opacity: 0;
+    will-change: transform, opacity;
+    animation-name: digitPada;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.digit-rain span:nth-child(even) {
+    color: var(--pastel-pink-accent);
+}
+
+@keyframes digitPada {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    8% { opacity: 0.55; }
+    88% { opacity: 0.5; }
+    100% { transform: translateY(120vh) rotate(25deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .digit-rain { display: none; }
 }
 
 .index-controls {
@@ -91,6 +136,26 @@ body.index-body {
     transform: translateY(0);
 }
 
+/* --------------------------------------------------------------------------
+   2c. Light mode — izraženije ivice i kontrast
+   -------------------------------------------------------------------------- */
+body.light-mode .control-btn {
+    border-width: 1.5px;
+}
+
+body.light-mode .error-card {
+    border-width: 1.5px;
+}
+
+body.light-mode .error-actions button {
+    border-width: 1.5px;
+}
+
+body.light-mode .robot-404-orbit {
+    border-color: color-mix(in srgb, var(--pastel-blue-accent) 60%, transparent);
+    border-width: 2.5px;
+}
+
 /* ==========================================================================
    3. Sadržaj 404 stranice
    ========================================================================== */
@@ -101,12 +166,270 @@ body.index-body {
     margin: auto 0;
 }
 
+.robot-404-stage {
+    position: relative;
+    width: 220px;
+    max-width: 62%;
+    margin: 0 auto 4px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.robot-404-stage::before {
+    content: '';
+    position: absolute;
+    inset: -22%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--pastel-blue-accent) 26%, transparent), transparent 72%),
+                radial-gradient(closest-side at 70% 70%, color-mix(in srgb, var(--pastel-pink-accent) 20%, transparent), transparent 75%);
+    filter: blur(22px);
+    opacity: 0.9;
+}
+
+.robot-404-orbit {
+    position: absolute;
+    inset: -14%;
+    border: 2px dashed color-mix(in srgb, var(--pastel-blue-accent) 42%, transparent);
+    border-radius: 50%;
+    animation: robotOrbitVrti 16s linear infinite;
+}
+
+.robot-404-orbit::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    margin-left: -4.5px;
+    border-radius: 50%;
+    background: var(--pastel-pink-accent);
+    box-shadow: 0 0 12px 2px color-mix(in srgb, var(--pastel-pink-accent) 55%, transparent);
+}
+
+@keyframes robotOrbitVrti {
+    to { transform: rotate(360deg); }
+}
+
+.robot-404-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.robot-404-particle-1 {
+    width: 11px;
+    height: 11px;
+    top: 4%;
+    left: 2%;
+    background: var(--pastel-blue-accent);
+    opacity: 0.55;
+    animation: robotLebdiCestica 4.6s ease-in-out infinite;
+}
+
+.robot-404-particle-2 {
+    width: 8px;
+    height: 8px;
+    bottom: 8%;
+    right: 0%;
+    background: var(--pastel-pink-accent);
+    opacity: 0.5;
+    animation: robotLebdiCestica 3.8s ease-in-out infinite 0.6s;
+}
+
+.robot-404-particle-3 {
+    width: 6px;
+    height: 6px;
+    top: 52%;
+    left: -6%;
+    background: var(--pastel-blue-accent);
+    opacity: 0.4;
+    animation: robotLebdiCestica 5.4s ease-in-out infinite 1.3s;
+}
+
+@keyframes robotLebdiCestica {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-14px) scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .robot-404-orbit,
+    .robot-404-particle {
+        animation: none;
+    }
+}
+
+.robot-404 {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.robot-404-svg {
+    width: 100%;
+    height: auto;
+    animation: robotLebdenje 3.2s ease-in-out infinite;
+}
+
+@keyframes robotLebdenje {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.robot-antenna-dot {
+    animation: antenaTreptanje 1.6s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes antenaTreptanje {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+}
+
+.robot-arm-left {
+    transform-origin: 65px 160px;
+    animation: masiRukaLevo 2.4s ease-in-out infinite;
+}
+
+.robot-arm-right {
+    transform-origin: 155px 160px;
+    animation: masiRukaDesno 2.4s ease-in-out infinite;
+}
+
+@keyframes masiRukaLevo {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-6deg); }
+}
+
+@keyframes masiRukaDesno {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(6deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .robot-404-svg,
+    .robot-antenna-dot,
+    .robot-arm-left,
+    .robot-arm-right {
+        animation: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   3b. Kartica sa greškom — sada sa rotirajućim gradijent-prstenom
+   -------------------------------------------------------------------------- */
+@property --ring-ugao {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.error-card {
+    position: relative;
+    isolation: isolate;
+    max-width: 540px;
+    width: 100%;
+    margin: 6px auto 0;
+    padding: 40px 44px 44px;
+    border-radius: 24px;
+    border: 1px solid var(--card-border);
+    background: color-mix(in srgb, var(--card-bg) 88%, transparent);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    box-shadow: var(--shadow-lg), inset 0 1px 0 var(--card-edge);
+    opacity: 0;
+    transform: translateY(22px);
+    animation: greskaUlazak 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.error-card::before {
+    content: '';
+    position: absolute;
+    inset: -1.5px;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(from var(--ring-ugao, 0deg),
+        var(--pastel-blue-accent),
+        var(--pastel-pink-accent),
+        var(--pastel-blue-accent));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.55;
+    animation: prstenRotacija 7s linear infinite;
+}
+
+body.light-mode .error-card::before {
+    opacity: 0.85;
+}
+
+@keyframes prstenRotacija {
+    to { --ring-ugao: 360deg; }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+    .error-card {
+        background-color: var(--card-bg);
+    }
+}
+
+@keyframes greskaUlazak {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .error-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+    .error-card::before {
+        animation: none;
+    }
+}
+
+.error-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    font-family: var(--font-mono);
+    color: var(--pastel-pink-dark);
+    background: color-mix(in srgb, var(--pastel-pink-accent) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--pastel-pink-accent) 32%, transparent);
+    margin-bottom: 20px;
+}
+
+body.light-mode .error-eyebrow {
+    border-width: 1.5px;
+    background: color-mix(in srgb, var(--pastel-pink-accent) 20%, transparent);
+    border-color: color-mix(in srgb, var(--pastel-pink-accent) 50%, transparent);
+}
+
+@media (max-width: 768px) {
+    .error-card {
+        padding: 32px 24px 34px;
+        border-radius: 20px;
+    }
+}
+
 .error-code {
-    font-size: 6rem;
+    font-size: 3rem;
     font-weight: 800;
     line-height: 1;
     margin: 0 0 12px 0;
     letter-spacing: -1px;
+    opacity: 0.85;
     background: linear-gradient(135deg, var(--pastel-blue-accent), var(--pastel-pink-accent));
     -webkit-background-clip: text;
     background-clip: text;
@@ -148,7 +471,7 @@ body.index-body {
     color: var(--text-color);
     border: 1px solid var(--card-border);
     box-shadow: 0 10px 15px -3px var(--shadow);
-    transition: all 0.3s ease;
+    transition: background 0.35s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .error-actions button i {
@@ -156,11 +479,11 @@ body.index-body {
 }
 
 .error-actions button:hover {
-    background-color: var(--pastel-blue-dark);
+    background: linear-gradient(135deg, var(--pastel-blue-dark), var(--pastel-pink-dark));
     color: #ffffff;
     border-color: transparent;
     transform: translateY(-3px);
-    box-shadow: 0 20px 25px -5px rgba(2, 132, 199, 0.3);
+    box-shadow: 0 20px 25px -5px rgba(219, 39, 119, 0.28), 0 20px 25px -5px rgba(2, 132, 199, 0.22);
 }
 
 .error-actions button:hover i {
@@ -168,7 +491,7 @@ body.index-body {
 }
 
 body.light-mode .error-actions button:hover {
-    box-shadow: 0 16px 28px -8px rgba(2, 132, 199, 0.28);
+    box-shadow: 0 16px 28px -8px rgba(219, 39, 119, 0.22), 0 16px 28px -8px rgba(2, 132, 199, 0.18);
 }
 
 /* ==========================================================================

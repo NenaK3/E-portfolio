@@ -31,15 +31,25 @@
 body.light-mode {
     color-scheme: light;
 
-    --shadow-sm: 0 2px 6px -1px rgba(15, 23, 42, 0.09), 0 1px 3px -1px rgba(15, 23, 42, 0.06);
-    --shadow-md: 0 10px 20px -6px rgba(15, 23, 42, 0.14), 0 4px 8px -2px rgba(15, 23, 42, 0.08);
-    --shadow-lg: 0 24px 44px -14px rgba(15, 23, 42, 0.20), 0 10px 18px -4px rgba(15, 23, 42, 0.10);
+    /* Toplija off-white paleta umesto hladne bele/sive (manje "flat") */
+    --bg-color: #faf7f2;
+    --card-bg: #fffdfa;
+    --card-border: #ece5d8;
+    --btn-bg: #f1ebe0;
+    --btn-hover: #e6ddcd;
+    --text-muted: #6b6459;
+
+    /* Slojevite, mekše senke — više slojeva, manja neprozirnost, topliji ton */
+    --shadow-sm: 0 1px 2px rgba(120, 100, 70, 0.05), 0 2px 5px -1px rgba(120, 100, 70, 0.06), 0 1px 1px rgba(120, 100, 70, 0.04);
+    --shadow-md: 0 4px 10px -2px rgba(120, 100, 70, 0.07), 0 10px 22px -6px rgba(120, 100, 70, 0.10), 0 2px 5px -1px rgba(120, 100, 70, 0.05);
+    --shadow-lg: 0 10px 20px -6px rgba(120, 100, 70, 0.10), 0 26px 48px -14px rgba(120, 100, 70, 0.16), 0 6px 14px -4px rgba(120, 100, 70, 0.07);
     --cursor-glow-color: rgba(56, 189, 248, 0.08);
 
-    --scrollbar-thumb: #dde2ea;
-    --scrollbar-thumb-hover: #98a3bc;
+    --scrollbar-thumb: #e6ddcd;
+    --scrollbar-thumb-hover: #cabfa9;
+    --scrollbar-track: var(--bg-color);
 
-    --dot-grid-color: rgba(56, 189, 248, 0.28);
+    --dot-grid-color: rgba(56, 189, 248, 0.24);
 
     --focus-ring-color: #0284c7;
     --card-edge: rgba(255, 255, 255, 0.9);
@@ -511,14 +521,17 @@ body:not(.light-mode) #grain-overlay {
     height: 150px;
     border-radius: 16px;
     border: 1px solid var(--card-border);
-    background: linear-gradient(100deg, var(--card-bg) 30%, var(--btn-bg) 50%, var(--card-bg) 70%);
-    background-size: 200% 100%;
-    animation: skeletonShimmer 1.5s ease-in-out infinite;
+    background: linear-gradient(100deg,
+        var(--card-bg) 42%,
+        color-mix(in srgb, var(--card-bg) 55%, var(--btn-bg) 45%) 50%,
+        var(--card-bg) 58%);
+    background-size: 260% 100%;
+    animation: skeletonShimmer 2.2s ease-in-out infinite;
 }
 
 @keyframes skeletonShimmer {
-    0% { background-position: 150% 0; }
-    100% { background-position: -50% 0; }
+    0% { background-position: 160% 0; }
+    100% { background-position: -60% 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -781,8 +794,182 @@ html {
     }
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-    animation-duration: 0.22s;
-    animation-timing-function: ease;
+/* ==========================================================================
+   25. Više "disanja" između sekcija — veći vertikalni razmak (desktop)
+   ========================================================================== */
+@media (min-width: 901px) {
+    .page-main-container,
+    .education-split-container,
+    .tabs-container,
+    .welcome-container {
+        margin-top: 72px;
+        margin-bottom: 72px;
+    }
+
+    .hero-section {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    .experience-stack {
+        gap: 42px;
+    }
+
+    .timeline-item {
+        margin-bottom: 44px;
+    }
+
+    .edu-column + .edu-column,
+    .education-split-container {
+        row-gap: 56px;
+    }
+
+    .card,
+    .experience-card,
+    .spec-course-card {
+        padding-top: 42px;
+        padding-bottom: 42px;
+    }
+
+    .breadcrumbs {
+        margin-top: 32px;
+        margin-bottom: 8px;
+    }
+}
+
+/* ==========================================================================
+   26. Magnetni hover na dugmadima — glatka tranzicija za JS transform
+   ========================================================================== */
+.control-btn,
+.selection-card button,
+.cv-download-btn,
+.error-actions button,
+.switch-btn,
+.tab-btn,
+.scroll-top-btn,
+.nav-dropdown-caret {
+    transition: transform 0.18s cubic-bezier(0.34, 1.2, 0.64, 1), background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+    .control-btn,
+    .selection-card button,
+    .cv-download-btn,
+    .error-actions button,
+    .switch-btn,
+    .tab-btn,
+    .scroll-top-btn {
+        transition-property: background-color, color, box-shadow, border-color;
+    }
+}
+
+/* ==========================================================================
+   27. Mesh / blob gradijent pozadina iza hero sekcija (index, portfolio)
+   ========================================================================== */
+.welcome-container::after,
+.hero-section::after {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.55;
+    background:
+        radial-gradient(38% 32% at 12% 8%, color-mix(in srgb, var(--pastel-blue-accent) 40%, transparent), transparent 70%),
+        radial-gradient(34% 30% at 88% 14%, color-mix(in srgb, var(--pastel-pink-accent) 38%, transparent), transparent 70%),
+        radial-gradient(30% 26% at 50% 92%, color-mix(in srgb, var(--pastel-blue-accent) 22%, transparent), transparent 75%);
+    filter: blur(48px);
+}
+
+body.light-mode .welcome-container::after,
+body.light-mode .hero-section::after {
+    opacity: 0.4;
+}
+
+body.edukacija-theme .hero-section::after,
+body.edu-theme .hero-section::after {
+    background:
+        radial-gradient(38% 32% at 12% 8%, color-mix(in srgb, var(--pastel-pink-accent) 40%, transparent), transparent 70%),
+        radial-gradient(34% 30% at 88% 14%, color-mix(in srgb, var(--pastel-blue-accent) 30%, transparent), transparent 70%),
+        radial-gradient(30% 26% at 50% 92%, color-mix(in srgb, var(--pastel-pink-accent) 22%, transparent), transparent 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .welcome-container::after,
+    .hero-section::after {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   28. Back-to-top dugme — centralizovan izgled (svaka stranica ga koristi)
+   ========================================================================== */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-md), inset 0 1px 0 var(--card-edge);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    z-index: 500;
+}
+
+.scroll-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+    background-color: var(--btn-hover);
+}
+
+@media (max-width: 768px) {
+    .scroll-top-btn {
+        bottom: 20px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   29. Bogatiji page-transition (View Transitions API) 
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(root) {
+        animation: rutaIzlaz 0.3s cubic-bezier(0.4, 0, 1, 1) both;
+    }
+
+    ::view-transition-new(root) {
+        animation: rutaUlaz 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+}
+
+@keyframes rutaIzlaz {
+    to {
+        opacity: 0;
+        transform: translateY(-16px) scale(0.99);
+    }
+}
+
+@keyframes rutaUlaz {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.99);
+    }
 }

@@ -437,3 +437,4 @@
         osvezi();
         podesiEduDropdown();
         initFadeInReveal();
+        Common.initScrollTopButton();

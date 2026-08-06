@@ -5,12 +5,14 @@
 
         const prevodi404 = {
             SRB: {
+                eyebrow: 'Greška 404',
                 naslov: 'Stranica nije pronađena',
                 opis: 'Stranica koju tražite ne postoji ili je premeštena. Vratite se na početnu i izaberite profil koji vas zanima.',
                 btn: 'Nazad na početnu',
                 footer: '©Copyright by Nena Kozić'
             },
             ENG: {
+                eyebrow: 'Error 404',
                 naslov: 'Page not found',
                 opis: 'The page you are looking for does not exist or has been moved. Go back to the homepage and choose the profile you are interested in.',
                 btn: 'Back to homepage',
@@ -19,6 +21,7 @@
         };
 
         const el = {
+            eyebrow: document.getElementById('err-eyebrow'),
             naslov: document.getElementById('err-naslov'),
             opis: document.getElementById('err-opis'),
             btn: document.getElementById('err-btn'),
@@ -39,6 +42,7 @@
 
         function primeniJezik() {
             const p = prevodi404[trenutniJezik];
+            el.eyebrow.innerHTML = `<i class="fa-solid fa-satellite-dish"></i> ${p.eyebrow}`;
             el.naslov.innerText = p.naslov;
             el.opis.innerText = p.opis;
             el.btn.innerHTML = `${p.btn} <i class="fa-solid fa-arrow-right"></i>`;
@@ -61,3 +65,4 @@
 
         primeniRezim();
         primeniJezik();
+        Common.initScrollTopButton();

@@ -35,17 +35,69 @@
 <body class="index-body">
     <script>(function(){try{var t=localStorage.getItem('portfolioRezim')||(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(t==='light')document.body.classList.add('light-mode');}catch(e){}})();</script>
     <a href="#glavni-sadrzaj" class="skip-link">Preskoči na sadržaj / Skip to content</a>
+
+    <div class="digit-rain" aria-hidden="true">
+        <span style="left:4%; font-size:16px; animation-duration:9s; animation-delay:-1s;">✦</span>
+        <span style="left:9%; font-size:14px; animation-duration:12s; animation-delay:-5s;">✦</span>
+        <span style="left:15%; font-size:18px; animation-duration:8s; animation-delay:-3s;">★</span>
+        <span style="left:21%; font-size:13px; animation-duration:11s; animation-delay:-7s;">✧</span>
+        <span style="left:28%; font-size:12px; animation-duration:10s; animation-delay:-2s;">★</span>
+        <span style="left:34%; font-size:17px; animation-duration:13s; animation-delay:-9s;">✦</span>
+        <span style="left:40%; font-size:14px; animation-duration:9.5s; animation-delay:-4s;">✧</span>
+        <span style="left:47%; font-size:13px; animation-duration:14s; animation-delay:-11s;">✦</span>
+        <span style="left:53%; font-size:19px; animation-duration:8.5s; animation-delay:-6s;">★</span>
+        <span style="left:59%; font-size:14px; animation-duration:12.5s; animation-delay:-1.5s;">★</span>
+        <span style="left:65%; font-size:15px; animation-duration:10.5s; animation-delay:-8s;">✧</span>
+        <span style="left:71%; font-size:13px; animation-duration:11.5s; animation-delay:-3.5s;">✦</span>
+        <span style="left:77%; font-size:12px; animation-duration:9s; animation-delay:-10s;">✦</span>
+        <span style="left:83%; font-size:18px; animation-duration:13.5s; animation-delay:-5.5s;">★</span>
+        <span style="left:89%; font-size:14px; animation-duration:8s; animation-delay:-2.5s;">✧</span>
+        <span style="left:95%; font-size:13px; animation-duration:12s; animation-delay:-7.5s;">★</span>
+        <span style="left:1%; font-size:15px; animation-duration:14.5s; animation-delay:-12s;">✦</span>
+        <span style="left:44%; font-size:16px; animation-duration:10s; animation-delay:-0.5s;">★</span>
+        <span style="left:62%; font-size:14px; animation-duration:11s; animation-delay:-6.5s;">✧</span>
+        <span style="left:12%; font-size:13px; animation-duration:9.5s; animation-delay:-4.5s;">★</span>
+    </div>
+
     <div class="index-controls">
         <button onclick="promeniJezik()" class="control-btn" id="lang-btn" aria-label="Promeni jezik / Switch language">EN</button>
         <button onclick="promeniTemu()" class="control-btn" id="theme-btn" aria-label="Promeni temu / Switch theme"><i class="fa-solid fa-sun"></i></button>
     </div>
 
     <main class="welcome-container" id="glavni-sadrzaj" tabindex="-1">
-        <p class="error-code" id="err-kod">404</p>
-        <h1 id="err-naslov">Stranica nije pronađena</h1>
-        <p class="subtitle" id="err-opis">Stranica koju tražite ne postoji ili je premeštena. Vratite se na početnu i izaberite profil koji vas zanima.</p>
-        <div class="error-actions">
-            <button id="err-btn" onclick="window.location.href='index.html'">Nazad na početnu <i class="fa-solid fa-arrow-right"></i></button>
+        <div class="robot-404-stage">
+            <div class="robot-404-orbit" aria-hidden="true"></div>
+            <div class="robot-404-particle robot-404-particle-1" aria-hidden="true"></div>
+            <div class="robot-404-particle robot-404-particle-2" aria-hidden="true"></div>
+            <div class="robot-404-particle robot-404-particle-3" aria-hidden="true"></div>
+            <div class="robot-404" aria-hidden="true">
+                <svg viewBox="0 0 220 220" class="robot-404-svg" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="110" y1="18" x2="110" y2="38" stroke="var(--pastel-blue-accent)" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="110" cy="14" r="7" fill="var(--pastel-pink-accent)" class="robot-antenna-dot"/>
+                    <rect x="45" y="38" width="130" height="100" rx="26" fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="3"/>
+                    <g stroke="var(--pastel-blue-accent)" stroke-width="6" stroke-linecap="round">
+                        <line x1="78" y1="72" x2="98" y2="92"/>
+                        <line x1="98" y1="72" x2="78" y2="92"/>
+                        <line x1="122" y1="72" x2="142" y2="92"/>
+                        <line x1="142" y1="72" x2="122" y2="92"/>
+                    </g>
+                    <rect x="90" y="108" width="40" height="8" rx="4" fill="var(--pastel-pink-accent)"/>
+                    <rect x="65" y="140" width="90" height="60" rx="16" fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="3"/>
+                    <circle cx="110" cy="170" r="16" fill="none" stroke="var(--pastel-pink-accent)" stroke-width="4"/>
+                    <text x="110" y="176" text-anchor="middle" font-family="var(--font-mono, monospace)" font-size="14" font-weight="700" fill="var(--pastel-pink-accent)">404</text>
+                    <line x1="65" y1="160" x2="40" y2="180" stroke="var(--card-border)" stroke-width="6" stroke-linecap="round" class="robot-arm-left"/>
+                    <line x1="155" y1="160" x2="180" y2="180" stroke="var(--card-border)" stroke-width="6" stroke-linecap="round" class="robot-arm-right"/>
+                </svg>
+            </div>
+        </div>
+        <div class="error-card">
+            <span class="error-eyebrow" id="err-eyebrow"><i class="fa-solid fa-satellite-dish"></i> Greška 404</span>
+            <p class="error-code" id="err-kod">404</p>
+            <h1 id="err-naslov">Stranica nije pronađena</h1>
+            <p class="subtitle" id="err-opis">Stranica koju tražite ne postoji ili je premeštena. Vratite se na početnu i izaberite profil koji vas zanima.</p>
+            <div class="error-actions">
+                <button id="err-btn" onclick="window.location.href='index.html'">Nazad na početnu <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
         </div>
     </main>
 
@@ -54,6 +106,10 @@
         <span class="footer-separator">•</span>
         <span id="idx-footer-datum"></span>
     </footer>
+
+    <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Nazad na vrh / Back to top" title="Nazad na vrh">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
     <script src="script/common.js" defer></script>
     <script src="script/enhancements.js" defer></script>
