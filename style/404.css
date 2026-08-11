@@ -31,18 +31,18 @@
 }
 
 body.light-mode {
-    --text-color: #0c1324;
-    --shadow: rgba(120, 100, 70, 0.09);
+    --text-color: #000000;
+    --shadow: rgba(0, 0, 0, 0.08);
 }
 
 /* --------------------------------------------------------------------------
    1b. Light mode — pozadinski sjaj, senke i akcenti fino podešeni za svetlu temu
    -------------------------------------------------------------------------- */
 body.light-mode.index-body {
+    background-color: #ffffff;
     background-image:
-        radial-gradient(circle at 12% 6%, color-mix(in srgb, var(--pastel-blue-accent) 20%, transparent), transparent 46%),
-        radial-gradient(circle at 90% 88%, color-mix(in srgb, var(--pastel-pink-accent) 18%, transparent), transparent 48%),
-        linear-gradient(180deg, #ffffff 0%, #f6f8fd 100%);
+        radial-gradient(circle at 12% 6%, color-mix(in srgb, var(--pastel-blue-accent) 14%, transparent), transparent 46%),
+        radial-gradient(circle at 90% 88%, color-mix(in srgb, var(--pastel-pink-accent) 12%, transparent), transparent 48%);
 }
 
 body.light-mode .digit-rain span {
@@ -67,12 +67,12 @@ body.light-mode .robot-404-stage::before {
 
 body.light-mode .robot-404-svg {
     --card-border: var(--pastel-blue-dark);
-    filter: drop-shadow(0 14px 20px rgba(30, 41, 74, 0.15));
+    filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.12));
 }
 
 body.light-mode .error-card {
-    background: color-mix(in srgb, var(--card-bg) 94%, transparent);
-    box-shadow: var(--shadow-lg), inset 0 1px 0 var(--card-edge), 0 1px 2px rgba(30, 41, 74, 0.06);
+    background: #ffffff;
+    box-shadow: var(--shadow-lg), inset 0 1px 0 var(--card-edge), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 body.light-mode .error-code {
@@ -88,7 +88,7 @@ body.light-mode .error-actions button {
 }
 
 body.light-mode .skip-link {
-    background-color: #0c1324;
+    background-color: #000000;
     color: #ffffff;
 }
 

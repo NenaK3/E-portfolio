@@ -30,14 +30,14 @@
 }
 
 body.light-mode {
-    --bg-color: #f2f4fb;
-    --text-color: #0c1324;
-    --text-muted: #4a5372;
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --text-muted: #52525b;
     --card-bg: #ffffff;
-    --card-border: #c6d0ea;
-    --btn-bg: #e9edf9;
-    --btn-hover: #dbe3f6;
-    --shadow: rgba(30, 41, 74, 0.15);
+    --card-border: #e5e7eb;
+    --btn-bg: #f4f4f5;
+    --btn-hover: #e4e4e7;
+    --shadow: rgba(0, 0, 0, 0.08);
 }
 
 body.index-body {
