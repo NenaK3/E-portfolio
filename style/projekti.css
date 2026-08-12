@@ -348,6 +348,22 @@ body {
 }
 
 /* ==========================================================================
+   6a. Sortiranje projekata
+   ========================================================================== */
+.projekti-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .projekti-toolbar .sort-dropdown {
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
    6. Stek sa Karticama Obrazovanja / Projekata
    ========================================================================== */
 .experience-stack {

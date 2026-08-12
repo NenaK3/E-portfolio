@@ -20,11 +20,27 @@
                 pretragaRezultati: (n) => n === 1 ? '1 rezultat pretrage' : `${n} rezultata pretrage`,
                 pretragaNemaRezultata: 'Nema beleški koje odgovaraju pretrazi. Pokušajte drugi pojam.',
                 oznakaPin: 'Zakačeno',
+                oznakaIstaknuto: 'Istaknuto',
+                svaKategorija: 'Sve',
+                sortLabela: 'Sortiraj:',
+                sortNajnovije: 'Najnovije',
+                sortNajstarije: 'Najstarije',
+                sortAZ: 'Sortiraj od A do Z',
+                sortZA: 'Sortiraj od Z do A',
+                kategorije: {
+                    'projekti': 'Projekti',
+                    'performanse': 'Performanse',
+                    'kod-kvalitet': 'Kod i kvalitet',
+                    'istrazivanje': 'Istraživanje',
+                    'praksa': 'Praksa',
+                    'metodika': 'Metodika'
+                },
                 objave: {
                     IT: [
                         {
                             naslov: 'PageSpeed Insights rezultati mog portfolija',
                             id: 'it-pagespeed',
+                            kategorija: 'performanse',
                             datum: 'Jul 2026',
                             pin: true,
                             povezano: ['it-portfolio'],
@@ -69,6 +85,7 @@
                         {
                             naslov: 'Šta sam naučila praveći ovaj e-portfolio',
                             id: 'it-portfolio',
+                            kategorija: 'projekti',
                             datum: 'Jul 2026',
                             povezano: ['it-pagespeed'],
                             opis: 'Pretpostavljala sam da će najznačajniji izazov predstavljati vizuelni dizajn. Pokazalo se, međutim, da je suštinski izazov ležao u arhitekturi koda i podeli sadržaja namenjenog dvema potpuno različitim ciljnim grupama na istim stranicama.',
@@ -105,6 +122,7 @@
                                                 {
                             naslov: 'Rudarstvo veba u praksi: Od analize grafa do rudarenja sentimenta',
                             id: 'it-webmining',
+                            kategorija: 'istrazivanje',
                             datum: 'Jul 2025',
                             opis: 'Pregled pet praktičnih domaćih zadataka u okviru predmeta Web Mining na master studijama — analiza linkova algoritmima PageRank i HITS (Moz), analiza log fajlova veb servera (Nihuo), analiza socijalnih mreža na Marvel Universe skupu podataka (Gephi), klasterovanje K-Means i DBSCAN algoritmima u Python-u i analiza mišljenja u alatu Altair AI Studio.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-brain"></i> Master akademske studije • 2024/2025</div>
@@ -187,6 +205,7 @@
                         {
                             naslov: 'Ocenjivanje kvaliteta sopstvenog koda kroz ISO/IEC 9126',
                             id: 'it-iso9126',
+                            kategorija: 'kod-kvalitet',
                             povezano: ['it-tim-hms'],
                             datum: 'Decembar 2024',
                             opis: 'U okviru predmeta Upravljanje kvalitetom softvera na master studijama, analizirala sam sopstvenu aplikaciju Hospital Management System primenom međunarodnih standarda i metoda kvantitativne analize.',
@@ -218,6 +237,7 @@
                         {
                             naslov: 'Rad u timu na Hospital Management System-u',
                             id: 'it-tim-hms',
+                            kategorija: 'projekti',
                             povezano: ['it-iso9126'],
                             datum: '2023/2024',
                             opis: 'Prvi obimniji timski projekat razotkrio mi je dinamičku stranu softverskog inženjerstva — usaglašavanje interfejsa, dodela uloga i kontrola verzionisanja koda često su važniji od same brzine pisanja sintakse.',
@@ -249,6 +269,7 @@
                         {
                             naslov: 'E-cvećara "Rose": Razvoj mog prvog projekta i uočene lekcije',
                             id: 'it-cvecara',
+                            kategorija: 'projekti',
                             datum: '2021/2022',
                             opis: 'E-cvećara "Rose" predstavlja prvi celovit projekat koji sam ikada realizovala — nastao u drugoj godini osnovnih studija na predmetu Objektno orijentisano programiranje. Taj projekat bio je prekretnica u kom je teorija prešla u praktičan kod.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-seedling"></i> Prvi praktični projekat • 2021/2022</div>
@@ -287,6 +308,7 @@
                         {
                             naslov: 'Pedagoški uvidi sa nastavne prakse u osnovnoj školi',
                             id: 'edu-praksa',
+                            kategorija: 'praksa',
                             povezano: ['edu-debug'],
                             datum: 'Maj – Jun 2026',
                             opis: 'Nastavnu praksu iz informatike sprovela sam u Osnovnoj školi "Dr Dragiša Mišović" u Čačku radaći sa VI, VII i VIII razredom. To iskustvo razotkrilo mi je koliko se metodika rada mora menjati u zavisnosti od uzrasta i kognitivnog razvoja učenika.',
@@ -317,6 +339,7 @@
                         {
                             naslov: 'Debagovanje kao ključna pedagoška metoda u nastavi',
                             id: 'edu-debug',
+                            kategorija: 'metodika',
                             povezano: ['edu-praksa'],
                             datum: '2025/2026',
                             opis: 'Kao programerka, grešku u kodu ne posmatram kao neuspeh već kao prirodan korak ka rešenju. Naučiti učenike kako da čitaju poruke o greškama i ne paniče pred konzolom bio je moj glavne pedagoški cilj.',
@@ -348,6 +371,7 @@
                         {
                             naslov: 'Kvalitet doživljaja korisnika: šta seminarski rad o multimediji otkriva o dobroj nastavi',
                             id: 'edu-multimedija',
+                            kategorija: 'metodika',
                             datum: '2026',
                             opis: 'Seminarski rad iz predmeta Metodički praktikum iz multimedijalnih tehnologija i komunikacija naterao me je da preispitam nešto što svaki nastavnik intuitivno zna, ali retko imenuje — da tehnički ispravan čas i čas koji učenici dožive kao dobar nisu uvek ista stvar.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-photo-film"></i> Seminarski rad • Metodički praktikum iz multimedijalnih tehnologija i komunikacija • 2026</div>
@@ -383,6 +407,7 @@
                         {
                             naslov: 'Šta sam naučila pišući o prevenciji elektronskog nasilja kroz školski kurikulum',
                             id: 'edu-e-nasilje',
+                            kategorija: 'istrazivanje',
                             datum: '2026',
                             opis: 'Seminarski rad o etičkim i pedagoškim aspektima prevencije elektronskog nasilja promenio je način na koji razmišljam o ulozi nastave računarstva i informatike — ne samo kao predmeta koji uči tehnička znanja, već i digitalnu etiku i odgovorno ponašanje.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-shield-heart"></i> Seminarski rad • Etički i pedagoški aspekti prevencije elektronskog nasilja kroz školski kurikulum • 2026</div>
@@ -430,11 +455,27 @@
                 pretragaRezultati: (n) => n === 1 ? '1 search result' : `${n} search results`,
                 pretragaNemaRezultata: 'No notes match your search. Try a different term.',
                 oznakaPin: 'Pinned',
+                oznakaIstaknuto: 'Featured',
+                svaKategorija: 'All',
+                sortLabela: 'Sort:',
+                sortNajnovije: 'Newest',
+                sortNajstarije: 'Oldest',
+                sortAZ: 'Sort A to Z',
+                sortZA: 'Sort Z to A',
+                kategorije: {
+                    'projekti': 'Projects',
+                    'performanse': 'Performance',
+                    'kod-kvalitet': 'Code Quality',
+                    'istrazivanje': 'Research',
+                    'praksa': 'Practicum',
+                    'metodika': 'Methodology'
+                },
                 objave: {
                     IT: [
                         {
                             naslov: 'PageSpeed Insights results for my portfolio',
                             id: 'it-pagespeed',
+                            kategorija: 'performanse',
                             datum: 'July 2026',
                             pin: true,
                             povezano: ['it-portfolio'],
@@ -479,6 +520,7 @@
                         {
                             naslov: 'What I learned building this e-portfolio',
                             id: 'it-portfolio',
+                            kategorija: 'projekti',
                             datum: 'July 2026',
                             povezano: ['it-pagespeed'],
                             opis: 'I assumed the most significant challenge would be visual design. It turned out that the essential challenge lay in code architecture and structuring content for two entirely different target audiences on the same pages.',
@@ -510,6 +552,7 @@
                                                 {
                             naslov: 'Web Mining in Practice: From Graph Theory to Sentiment Analysis',
                             id: 'it-webmining',
+                            kategorija: 'istrazivanje',
                             datum: 'July 2025',
                             opis: 'An overview of five practical assignments completed during the Web Mining master course — link analysis with PageRank and HITS (Moz), web server log analysis (Nihuo), social network analysis on the Marvel Universe dataset (Gephi), K-Means and DBSCAN clustering in Python, and opinion analysis in Altair AI Studio.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-brain"></i> Master Academic Studies • 2024/2025</div>
@@ -592,6 +635,7 @@
                         {
                             naslov: 'Assessing code quality using the ISO/IEC 9126 standard',
                             id: 'it-iso9126',
+                            kategorija: 'kod-kvalitet',
                             povezano: ['it-tim-hms'],
                             datum: 'December 2024',
                             opis: 'As part of the Software Quality Management course in my master’s studies, I analyzed my own Hospital Management System application using international standards and quantitative code metrics.',
@@ -617,6 +661,7 @@
                         {
                             naslov: 'Working in a team on the Hospital Management System',
                             id: 'it-tim-hms',
+                            kategorija: 'projekti',
                             povezano: ['it-iso9126'],
                             datum: '2023/2024',
                             opis: 'My first major team project revealed the dynamic side of software engineering — interface agreements, role assignments, and version control matter just as much as coding speed.',
@@ -636,6 +681,7 @@
                         {
                             naslov: 'E-flower shop "Rose": Developing my first project & lessons learned',
                             id: 'it-cvecara',
+                            kategorija: 'projekti',
                             datum: '2021/2022',
                             opis: 'E-flower shop "Rose" represents the very first complete project I completed during my second year of undergraduate studies in Object-Oriented Programming. It bridged textbook theory with real code.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-seedling"></i> First Practical Project • 2021/2022</div>
@@ -662,6 +708,7 @@
                         {
                             naslov: 'Pedagogical insights from school teaching practicum',
                             id: 'edu-praksa',
+                            kategorija: 'praksa',
                             povezano: ['edu-debug'],
                             datum: 'May – June 2026',
                             opis: 'I conducted my teaching internship at Elementary School "Dr Dragiša Mišović" in Čačak with 6th, 7th, and 8th grades. The experience revealed how teaching methods must adapt to student age levels.',
@@ -680,6 +727,7 @@
                         {
                             naslov: 'Debugging as a core pedagogical teaching tool',
                             id: 'edu-debug',
+                            kategorija: 'metodika',
                             povezano: ['edu-praksa'],
                             datum: '2025/2026',
                             opis: 'As a programmer, I view bugs not as failures, but as clues toward a solution. Teaching students to read error logs without panicking was my primary pedagogical goal.',
@@ -699,6 +747,7 @@
                         {
                             naslov: 'User Experience Quality: what a multimedia seminar paper reveals about good teaching',
                             id: 'edu-multimedija',
+                            kategorija: 'metodika',
                             datum: '2026',
                             opis: 'A seminar paper for the Multimedia Technologies and Communications Teaching Practicum course made me reconsider something every teacher senses intuitively but rarely names — that a technically flawless class and a class students experience as good are not always the same thing.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-photo-film"></i> Seminar Paper • Multimedia Technologies and Communications Teaching Practicum • 2026</div>
@@ -734,6 +783,7 @@
                         {
                             naslov: 'What I learned writing about preventing cyberbullying through the school curriculum',
                             id: 'edu-e-nasilje',
+                            kategorija: 'istrazivanje',
                             datum: '2026',
                             opis: 'A seminar paper on the ethical and pedagogical aspects of preventing electronic violence changed how I think about the role of computer science classes — not just as a subject teaching technical skills, but digital ethics and responsible behavior too.',
                             telo: `<div class="modal-badge"><i class="fa-solid fa-shield-heart"></i> Seminar Paper • Ethical and Pedagogical Aspects of Preventing Electronic Violence through the School Curriculum • 2026</div>
@@ -794,15 +844,22 @@
             searchInput: document.getElementById('blog-search-input'),
             searchClear: document.getElementById('blog-search-clear'),
             searchRezultati: document.getElementById('blog-search-rezultati'),
-            nemaRezultata: document.getElementById('blog-nema-rezultata')
+            nemaRezultata: document.getElementById('blog-nema-rezultata'),
+            kategorije: document.getElementById('blog-kategorije'),
+            featured: document.getElementById('blog-featured'),
+            sortDropdown: document.getElementById('blog-sort')
         };
 
         let trenutnaPretraga = '';
+        let aktivnaKategorija = 'sve';
+        let aktivnoSortiranje = 'najnovije';
 
         function karticaHTML(objava, idx) {
+            const r = recnik[jezik];
             const pinDeo = objava.pin
-                ? `<span class="blog-pin-badge"><i class="fa-solid fa-thumbtack"></i> ${recnik[jezik].oznakaPin}</span>`
+                ? `<span class="blog-pin-badge"><i class="fa-solid fa-thumbtack"></i> ${r.oznakaPin}</span>`
                 : '';
+            const kategorijaLabela = r.kategorije[objava.kategorija] || '';
             return `
                 <div class="card edu-split-card spec-course-card fade-in-up${objava.pin ? ' blog-pinned-card' : ''}" style="animation-delay:${idx * 0.08}s">
                     <div class="exp-header">
@@ -811,14 +868,38 @@
                         </div>
                         <div class="exp-header-meta">
                             <span class="block-date"><i class="fa-solid fa-calendar-days"></i> ${objava.datum}</span>
-                            <span class="block-date blog-vreme-citanja"><i class="fa-solid fa-clock"></i> ${recnik[jezik].tekstVreme(vremeCitanja(objava.telo))}</span>
+                            <span class="block-date blog-vreme-citanja"><i class="fa-solid fa-clock"></i> ${r.tekstVreme(vremeCitanja(objava.telo))}</span>
                         </div>
                     </div>
                     <p class="exp-opis">${istakniPretragu(objava.opis)}</p>
                     <div class="edu-buttons-container">
                         <div class="btn-row">
+                            ${kategorijaLabela ? `<button type="button" class="skill-tag blog-kategorija-tag" onclick="izaberiKategoriju('${objava.kategorija}')">${kategorijaLabela}</button>` : ''}
                             <button type="button" class="skill-tag blog-citaj-link" onclick="otvoriBlogModal(${idx})">
-                                <i class="fa-solid fa-book-open"></i> <span class="blog-citaj-tekst">${recnik[jezik].tekstCitaj}</span>
+                                <i class="fa-solid fa-book-open"></i> <span class="blog-citaj-tekst">${r.tekstCitaj}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        function featuredHTML(objava, idx) {
+            const r = recnik[jezik];
+            const kategorijaLabela = r.kategorije[objava.kategorija] || '';
+            return `
+                <div class="card blog-featured-card fade-in-up">
+                    <span class="blog-pin-badge blog-featured-badge"><i class="fa-solid fa-star"></i> ${r.oznakaIstaknuto}</span>
+                    <h3 class="blog-featured-naslov">${escapeHtml(objava.naslov)}</h3>
+                    <div class="exp-header-meta blog-featured-meta">
+                        <span class="block-date"><i class="fa-solid fa-calendar-days"></i> ${objava.datum}</span>
+                        <span class="block-date blog-vreme-citanja"><i class="fa-solid fa-clock"></i> ${r.tekstVreme(vremeCitanja(objava.telo))}</span>
+                        ${kategorijaLabela ? `<span class="block-date">${kategorijaLabela}</span>` : ''}
+                    </div>
+                    <p class="exp-opis blog-featured-opis">${escapeHtml(objava.opis)}</p>
+                    <div class="edu-buttons-container">
+                        <div class="btn-row">
+                            <button type="button" class="skill-tag blog-citaj-link" onclick="otvoriBlogModal(${idx})">
+                                <i class="fa-solid fa-book-open"></i> <span class="blog-citaj-tekst">${r.tekstCitaj}</span>
                             </button>
                         </div>
                     </div>
@@ -851,10 +932,72 @@
         function objaveZaPrikaz() {
             const sve = (recnik[jezik].objave[mod] || []).map((objava, idx) => ({ objava, idx }));
             const upit = trenutnaPretraga.trim().toLowerCase();
-            const filtrirano = !upit ? sve : sve.filter(({ objava }) =>
+            let filtrirano = !upit ? sve : sve.filter(({ objava }) =>
                 objava.naslov.toLowerCase().includes(upit) || objava.opis.toLowerCase().includes(upit)
             );
-            return filtrirano.slice().sort((a, b) => (b.objava.pin ? 1 : 0) - (a.objava.pin ? 1 : 0));
+            if (aktivnaKategorija && aktivnaKategorija !== 'sve') {
+                filtrirano = filtrirano.filter(({ objava }) => objava.kategorija === aktivnaKategorija);
+            }
+            return filtrirano.slice().sort(poredi);
+        }
+
+        function poredi(a, b) {
+            if (aktivnoSortiranje === 'az') {
+                return a.objava.naslov.localeCompare(b.objava.naslov, jezik === 'SRB' ? 'sr' : 'en');
+            }
+            if (aktivnoSortiranje === 'za') {
+                return b.objava.naslov.localeCompare(a.objava.naslov, jezik === 'SRB' ? 'sr' : 'en');
+            }
+            if (aktivnoSortiranje === 'najstarije') {
+                return b.idx - a.idx;
+            }
+            // 'najnovije' (podrazumevano): zakačena beleška prva, zatim originalni (hronološki) redosled
+            const pinRazlika = (b.objava.pin ? 1 : 0) - (a.objava.pin ? 1 : 0);
+            return pinRazlika !== 0 ? pinRazlika : a.idx - b.idx;
+        }
+
+        function izaberiSortiranje(vrednost) {
+            aktivnoSortiranje = vrednost;
+            renderujSortDropdown();
+            prikaziBlogListu();
+        }
+        window.izaberiSortiranje = izaberiSortiranje;
+
+        function svePrisutneKategorije() {
+            const sve = recnik[jezik].objave[mod] || [];
+            const redosled = [];
+            sve.forEach(objava => {
+                if (objava.kategorija && !redosled.includes(objava.kategorija)) {
+                    redosled.push(objava.kategorija);
+                }
+            });
+            return redosled;
+        }
+
+        function izaberiKategoriju(slug) {
+            aktivnaKategorija = slug;
+            renderujKategorije();
+            prikaziBlogListu();
+        }
+        window.izaberiKategoriju = izaberiKategoriju;
+
+        function renderujKategorije() {
+            if (!el.kategorije) return;
+            const r = recnik[jezik];
+            const prisutne = svePrisutneKategorije();
+
+            if (prisutne.length < 2) {
+                el.kategorije.innerHTML = '';
+                el.kategorije.style.display = 'none';
+                return;
+            }
+
+            el.kategorije.style.display = '';
+            const opcije = [
+                { value: 'sve', label: r.svaKategorija },
+                ...prisutne.map(slug => ({ value: slug, label: r.kategorije[slug] || slug }))
+            ];
+            Common.renderSortDropdown(el.kategorije, opcije, aktivnaKategorija, izaberiKategoriju);
         }
 
         function povezanePostoveHTML(idx) {
@@ -931,21 +1074,35 @@
 
         function prikaziBlogListu() {
             const r = recnik[jezik];
-            const stavke = objaveZaPrikaz();
+            let stavke = objaveZaPrikaz();
+            const brojRezultata = stavke.length;
+
+            const upit = trenutnaPretraga.trim();
+            const kategorijaAktivna = aktivnaKategorija && aktivnaKategorija !== 'sve';
+            const prikaziFeatured = !upit && !kategorijaAktivna;
+            const istaknuta = prikaziFeatured ? stavke.find(({ objava }) => objava.pin) : null;
+
+            if (istaknuta) {
+                el.featured.innerHTML = featuredHTML(istaknuta.objava, istaknuta.idx);
+                el.featured.style.display = '';
+                stavke = stavke.filter(({ idx }) => idx !== istaknuta.idx);
+            } else {
+                el.featured.innerHTML = '';
+                el.featured.style.display = 'none';
+            }
 
             el.blogKontejner.innerHTML = stavke.map(({ objava, idx }) => karticaHTML(objava, idx)).join('');
 
-            const upit = trenutnaPretraga.trim();
             const ukupno = (r.objave[mod] || []).length;
 
-            if (upit) {
+            if (upit || kategorijaAktivna) {
                 el.searchRezultati.style.display = 'block';
-                el.searchRezultati.innerText = r.pretragaRezultati(stavke.length);
+                el.searchRezultati.innerText = r.pretragaRezultati(brojRezultata);
             } else {
                 el.searchRezultati.style.display = 'none';
             }
 
-            if (upit && stavke.length === 0) {
+            if ((upit || kategorijaAktivna) && brojRezultata === 0) {
                 el.nemaRezultata.style.display = 'block';
                 el.nemaRezultata.innerText = r.pretragaNemaRezultata;
                 el.blogKontejner.style.display = 'none';
@@ -973,6 +1130,18 @@
             });
         }
 
+        function renderujSortDropdown() {
+            if (!el.sortDropdown) return;
+            const r = recnik[jezik];
+            const opcije = [
+                { value: 'najnovije', label: r.sortNajnovije },
+                { value: 'najstarije', label: r.sortNajstarije },
+                { value: 'az', label: r.sortAZ },
+                { value: 'za', label: r.sortZA }
+            ];
+            Common.renderSortDropdown(el.sortDropdown, opcije, aktivnoSortiranje, izaberiSortiranje);
+        }
+
         function osvezi() {
             const r = recnik[jezik];
 
@@ -991,6 +1160,8 @@
             el.searchInput.placeholder = r.pretragaPlaceholder;
             el.searchInput.setAttribute('aria-label', r.pretragaPlaceholder);
 
+            renderujKategorije();
+            renderujSortDropdown();
             prikaziBlogListu();
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';

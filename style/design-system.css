@@ -26,6 +26,9 @@
     --dot-grid-color: var(--card-border);
 
     --focus-ring-color: #4da3ff;
+
+    --skeleton-base: var(--btn-bg);
+    --skeleton-highlight: color-mix(in srgb, var(--btn-bg) 45%, var(--card-bg) 55%);
 }
 
 body.light-mode {
@@ -51,6 +54,9 @@ body.light-mode {
 
     --focus-ring-color: #0284c7;
     --card-edge: rgba(0, 0, 0, 0.035);
+
+    --skeleton-base: var(--btn-bg);
+    --skeleton-highlight: color-mix(in srgb, var(--btn-bg) 40%, var(--card-bg) 60%);
 }
 
 body.light-mode.edukacija-theme,
@@ -449,6 +455,116 @@ button:focus-visible,
 }
 
 /* ==========================================================================
+   9b. Custom padajuća lista za sortiranje (isti stil kao nav-dropdown-menu)
+   ========================================================================== */
+.sort-dropdown {
+    position: relative;
+    display: inline-flex;
+}
+
+.sort-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.25s ease, color 0.25s ease, background-color 0.3s ease;
+}
+
+.sort-dropdown-toggle:hover {
+    border-color: var(--theme-accent);
+    color: var(--theme-accent);
+}
+
+.sort-dropdown-toggle i {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.sort-dropdown.open .sort-dropdown-toggle {
+    border-color: var(--theme-accent);
+    color: var(--theme-accent);
+}
+
+.sort-dropdown.open .sort-dropdown-toggle i {
+    transform: rotate(180deg);
+    color: var(--theme-accent);
+}
+
+.sort-dropdown-menu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 210px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -3px var(--theme-shadow-strong, var(--shadow));
+    padding: 8px;
+    z-index: 200;
+}
+
+.sort-dropdown.open .sort-dropdown-menu {
+    display: flex;
+}
+
+.sort-dropdown-item {
+    border: none;
+    background: none;
+    text-align: left;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    color: var(--text-color);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sort-dropdown-item:hover {
+    background-color: var(--theme-tag-bg, var(--btn-bg));
+    color: var(--theme-accent);
+}
+
+.sort-dropdown-item.aktivna {
+    background-color: var(--theme-accent);
+    color: #ffffff;
+}
+
+.sort-dropdown-item.aktivna:hover {
+    background-color: var(--theme-accent);
+    color: #ffffff;
+}
+
+@media (max-width: 600px) {
+    .sort-dropdown,
+    .sort-dropdown-toggle {
+        width: 100%;
+    }
+
+    .sort-dropdown-toggle {
+        justify-content: space-between;
+    }
+
+    .sort-dropdown-menu {
+        left: 0;
+        right: 0;
+        min-width: 0;
+    }
+}
+
+/* ==========================================================================
    10. Glassmorphism navbar 
    ========================================================================== */
 .navbar {
@@ -568,18 +684,77 @@ body:not(.light-mode) #grain-overlay {
 }
 
 /* ==========================================================================
-   15. Skeleton (placeholder) kartice 
+   15. Skeleton (placeholder) kartice — struktura koja liči na pravi sadržaj
    ========================================================================== */
 .skeleton-card {
-    height: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
     border-radius: 16px;
     border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow-sm, none);
+}
+
+.skeleton-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.skeleton-line,
+.skeleton-chip {
+    border-radius: 6px;
     background: linear-gradient(100deg,
-        var(--card-bg) 42%,
-        color-mix(in srgb, var(--card-bg) 55%, var(--btn-bg) 45%) 50%,
-        var(--card-bg) 58%);
+        var(--skeleton-base) 40%,
+        var(--skeleton-highlight) 50%,
+        var(--skeleton-base) 60%);
     background-size: 260% 100%;
     animation: skeletonShimmer 2.2s ease-in-out infinite;
+}
+
+.skeleton-line--title {
+    height: 20px;
+    width: 58%;
+    animation-delay: 0s;
+}
+
+.skeleton-line--meta {
+    height: 12px;
+    width: 76px;
+    border-radius: 999px;
+    animation-delay: 0.08s;
+}
+
+.skeleton-line--body {
+    height: 12px;
+    width: 100%;
+    animation-delay: 0.16s;
+}
+
+.skeleton-line--body.skeleton-line--short {
+    width: 70%;
+    animation-delay: 0.24s;
+}
+
+.skeleton-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.skeleton-chip {
+    height: 24px;
+    width: 74px;
+    border-radius: 999px;
+    animation-delay: 0.3s;
+}
+
+.skeleton-chip:nth-child(2) {
+    width: 58px;
+    animation-delay: 0.36s;
 }
 
 @keyframes skeletonShimmer {
@@ -588,9 +763,10 @@ body:not(.light-mode) #grain-overlay {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .skeleton-card {
+    .skeleton-line,
+    .skeleton-chip {
         animation: none;
-        background: var(--card-bg);
+        background: var(--skeleton-base);
     }
 }
 
@@ -955,7 +1131,79 @@ body.edu-theme .hero-section::after {
 }
 
 /* ==========================================================================
-   28. Back-to-top dugme — centralizovan izgled (svaka stranica ga koristi)
+   28. Sort dropdown — prilagođen izgled (blog.html, projekti.html)
+   ========================================================================== */
+.sort-select-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.blog-sort-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 10px 38px 10px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.sort-select-wrap:hover .blog-sort-select {
+    border-color: var(--theme-accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.blog-sort-select:focus-visible {
+    outline: none;
+    border-color: var(--theme-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-accent) 25%, transparent);
+}
+
+.blog-sort-select option {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.sort-select-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: color 0.25s ease, transform 0.3s ease;
+}
+
+.sort-select-wrap:hover .sort-select-icon {
+    color: var(--theme-accent);
+    transform: translateY(-50%) translateY(1px);
+}
+
+@media (hover: none) {
+    .sort-select-wrap:hover .blog-sort-select {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .blog-sort-select,
+    .sort-select-icon {
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   29. Back-to-top dugme — centralizovan izgled (svaka stranica ga koristi)
    ========================================================================== */
 .scroll-top-btn {
     position: fixed;
@@ -1001,7 +1249,7 @@ body.edu-theme .hero-section::after {
 }
 
 /* ==========================================================================
-   29. Bogatiji page-transition (View Transitions API) 
+   30. Bogatiji page-transition (View Transitions API) 
    ========================================================================== */
 @media (prefers-reduced-motion: no-preference) {
     ::view-transition-old(root) {

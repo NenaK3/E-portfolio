@@ -409,21 +409,37 @@ body {
 }
 
 /* ==========================================================================
-   6b. Traka za pretragu bloga
+   6b. Traka za pretragu, filter i sortiranje — uvek u jednom redu
    ========================================================================== */
 .blog-toolbar {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 10px;
     margin-top: 10px;
     margin-bottom: 8px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .blog-search-wrap {
     position: relative;
-    width: 100%;
-    max-width: 420px;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+#blog-kategorije,
+#blog-sort {
+    flex-shrink: 0;
+}
+
+.blog-kategorija-tag {
+    background-color: transparent;
+    border: 1px dashed var(--card-border);
+    color: var(--text-muted);
+}
+
+.blog-kategorija-tag:hover {
+    border-color: var(--theme-accent);
+    color: var(--theme-accent);
 }
 
 .blog-search-icon {
@@ -478,6 +494,64 @@ body {
 
 .blog-search-clear:hover {
     background-color: var(--btn-hover);
+}
+
+/* ==========================================================================
+   6b-2. Kompaktna traka na mobilnom — i dalje jedan red: lupa + 2 padajuće liste
+   ========================================================================== */
+@media (max-width: 640px) {
+    .blog-toolbar {
+        gap: 6px;
+    }
+
+    .blog-search-wrap {
+        min-width: 0;
+    }
+
+    .blog-search-input {
+        padding: 10px 12px 10px 32px;
+        font-size: 0.8rem;
+    }
+
+    .blog-search-icon {
+        left: 11px;
+        font-size: 0.78rem;
+    }
+
+    .blog-search-clear {
+        right: 6px;
+        width: 20px;
+        height: 20px;
+    }
+
+    #blog-kategorije .sort-dropdown-toggle,
+    #blog-sort .sort-dropdown-toggle {
+        padding: 8px 9px;
+        gap: 5px;
+        font-size: 0.76rem;
+    }
+
+    #blog-kategorije .sort-dropdown-label,
+    #blog-sort .sort-dropdown-label {
+        max-width: 58px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #blog-kategorije .sort-dropdown-menu,
+    #blog-sort .sort-dropdown-menu {
+        min-width: 190px;
+    }
+}
+
+@media (max-width: 380px) {
+    #blog-kategorije .sort-dropdown-label,
+    #blog-sort .sort-dropdown-label {
+        max-width: 40px;
+    }
 }
 
 .blog-search-rezultati {
@@ -828,6 +902,70 @@ body.edukacija-theme .blog-search-mark {
     border: 1px solid var(--theme-accent);
     box-shadow: 0 8px 20px -6px var(--theme-shadow-strong, rgba(0, 0, 0, 0.25));
     position: relative;
+}
+
+/* ==========================================================================
+   6c-2. Istaknuta (featured) beleška — veća kartica iznad grida
+   ========================================================================== */
+.blog-featured {
+    margin-bottom: 28px;
+}
+
+.blog-featured-card {
+    position: relative;
+    padding: 36px 40px;
+    border: 1px solid var(--theme-accent);
+    background: linear-gradient(155deg, var(--card-bg) 0%, var(--card-bg) 62%, color-mix(in srgb, var(--theme-accent) 7%, var(--card-bg)) 100%);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.blog-featured-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--theme-accent), color-mix(in srgb, var(--theme-accent) 40%, transparent));
+}
+
+.blog-featured-badge {
+    margin-right: 0;
+    margin-bottom: 14px;
+    transform: none;
+}
+
+.blog-featured-naslov {
+    font-size: var(--font-size-xl, 1.75rem);
+    line-height: 1.25;
+    margin-bottom: 14px;
+    max-width: 34ch;
+}
+
+.blog-featured-meta {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.blog-featured-opis {
+    font-size: 1.02rem;
+    line-height: 1.7;
+    max-width: 62ch;
+    margin-bottom: 22px;
+}
+
+@media (max-width: 600px) {
+    .blog-featured-card {
+        padding: 26px 22px;
+    }
+
+    .blog-featured-naslov {
+        font-size: var(--font-size-lg, 1.375rem);
+    }
 }
 
 /* ==========================================================================

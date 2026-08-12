@@ -21,6 +21,11 @@
                 btnPriprema33: 'Priprema za čas broj  33, šesti razred',
                 btnPriprema34: 'Priprema za čas broj 34, šesti razred',
                 btnKodNaDelu: 'Pogledaj kod na delu',
+                sortLabela: 'Sortiraj:',
+                sortNajnovije: 'Najnovije',
+                sortNajstarije: 'Najstarije',
+                sortAZ: 'Sortiraj od A do Z',
+                sortZA: 'Sortiraj od Z do A',
                 projekti: {
                     IT: [
                         {
@@ -109,6 +114,11 @@
                 btnPriprema33: 'Lesson plan 33 (6th grade)',
                 btnPriprema34: 'Lesson plan 34 (6th grade)',
                 btnKodNaDelu: 'See code in action',
+                sortLabela: 'Sort:',
+                sortNajnovije: 'Newest',
+                sortNajstarije: 'Oldest',
+                sortAZ: 'Sort A to Z',
+                sortZA: 'Sort Z to A',
                 projekti: {
                     IT: [
                         {
@@ -210,8 +220,11 @@
             projekatModal: document.getElementById('projekat-modal'),
             projekatModalNaslov: document.getElementById('projekat-modal-naslov'),
             projekatModalTelo: document.getElementById('projekat-modal-telo'),
-            footerDatum: document.getElementById('idx-footer-datum')
+            footerDatum: document.getElementById('idx-footer-datum'),
+            sortDropdown: document.getElementById('projekti-sort')
         };
+
+        let aktivnoSortiranje = 'najnovije';
 
         const AKCIJA_STIL = 'text-decoration:none; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:5px; font-weight:bold;';
 
@@ -281,6 +294,52 @@
             Common.azurirajJezikDugme(jezik);
         }
 
+        function projektiZaPrikaz() {
+            const lista = (recnik[jezik].projekti[mod] || []).map((p, idx) => ({ p, idx }));
+            return lista.slice().sort(porediProjekte);
+        }
+
+        function porediProjekte(a, b) {
+            if (aktivnoSortiranje === 'az') {
+                return a.p.naziv.localeCompare(b.p.naziv, jezik === 'SRB' ? 'sr' : 'en');
+            }
+            if (aktivnoSortiranje === 'za') {
+                return b.p.naziv.localeCompare(a.p.naziv, jezik === 'SRB' ? 'sr' : 'en');
+            }
+            if (aktivnoSortiranje === 'najstarije') {
+                return b.idx - a.idx;
+            }
+            return a.idx - b.idx; // najnovije (podrazumevano) = originalni hronološki redosled
+        }
+
+        function izaberiSortiranje(vrednost) {
+            aktivnoSortiranje = vrednost;
+            renderujSortDropdown();
+            prikaziProjekte();
+        }
+        window.izaberiSortiranje = izaberiSortiranje;
+
+        function renderujSortDropdown() {
+            if (!el.sortDropdown) return;
+            const r = recnik[jezik];
+            const opcije = [
+                { value: 'najnovije', label: r.sortNajnovije },
+                { value: 'najstarije', label: r.sortNajstarije },
+                { value: 'az', label: r.sortAZ },
+                { value: 'za', label: r.sortZA }
+            ];
+            Common.renderSortDropdown(el.sortDropdown, opcije, aktivnoSortiranje, izaberiSortiranje);
+        }
+
+        function prikaziProjekte() {
+            const r = recnik[jezik];
+            const stavke = projektiZaPrikaz();
+
+            el.projektiKontejner.innerHTML = stavke.map(({ p, idx }) => karticaHTML(p, r, idx)).join('');
+            initFadeInReveal();
+            if (window.Enhancements) window.Enhancements.initTilt(el.projektiKontejner);
+        }
+
         function initFadeInReveal(root) {
             Common.initFadeInReveal(root);
         }
@@ -311,9 +370,8 @@
             el.bcTrenutna.innerText = r.bcTrenutna;
             el.naslovProjekata.innerHTML = `<i class="fa-solid fa-folder-open"></i> ${r.naslovProjekata}`;
 
-            el.projektiKontejner.innerHTML = r.projekti[mod].map((p, idx) => karticaHTML(p, r, idx)).join('');
-            initFadeInReveal();
-            if (window.Enhancements) window.Enhancements.initTilt(el.projektiKontejner);
+            renderujSortDropdown();
+            prikaziProjekte();
 
             el.langBtn.innerText = jezik === 'SRB' ? 'EN' : 'SRB';
             azurirajDatumFootera();

@@ -298,6 +298,63 @@ window.Common = (function () {
         }
     }
 
+    // -----------------------------------------------------------------
+    // Custom padajuća lista za sortiranje — isti vizuelni jezik kao
+    // nav-dropdown-menu (Edukacija u navigaciji)
+    // -----------------------------------------------------------------
+    let sortDropdownOtvoren = null;
+
+    function zatvoriSortDropdown() {
+        if (!sortDropdownOtvoren) return;
+        sortDropdownOtvoren.classList.remove('open');
+        const dugme = sortDropdownOtvoren.querySelector('.sort-dropdown-toggle');
+        if (dugme) dugme.setAttribute('aria-expanded', 'false');
+        sortDropdownOtvoren = null;
+    }
+
+    function renderSortDropdown(kontejner, opcije, aktivnaVrednost, onIzbor) {
+        if (!kontejner) return;
+        const aktivnaOpcija = opcije.find(o => o.value === aktivnaVrednost) || opcije[0];
+
+        kontejner.classList.add('sort-dropdown');
+        kontejner.innerHTML = `
+            <button type="button" class="sort-dropdown-toggle" aria-haspopup="listbox" aria-expanded="false">
+                <span class="sort-dropdown-label">${aktivnaOpcija ? aktivnaOpcija.label : ''}</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="sort-dropdown-menu" role="listbox">
+                ${opcije.map(o => `<button type="button" class="sort-dropdown-item${o.value === aktivnaVrednost ? ' aktivna' : ''}" role="option" aria-selected="${o.value === aktivnaVrednost}" data-value="${o.value}">${o.label}</button>`).join('')}
+            </div>`;
+
+        const dugmeToggle = kontejner.querySelector('.sort-dropdown-toggle');
+
+        dugmeToggle.addEventListener('click', event => {
+            event.stopPropagation();
+            const trebaOtvoriti = !kontejner.classList.contains('open');
+            zatvoriSortDropdown();
+            if (trebaOtvoriti) {
+                kontejner.classList.add('open');
+                dugmeToggle.setAttribute('aria-expanded', 'true');
+                sortDropdownOtvoren = kontejner;
+            }
+        });
+
+        kontejner.querySelectorAll('.sort-dropdown-item').forEach(stavka => {
+            stavka.addEventListener('click', () => {
+                zatvoriSortDropdown();
+                onIzbor(stavka.dataset.value);
+            });
+        });
+    }
+
+    if (!window._sortDropdownGlobalniListeneri) {
+        document.addEventListener('click', zatvoriSortDropdown);
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') zatvoriSortDropdown();
+        });
+        window._sortDropdownGlobalniListeneri = true;
+    }
+
     return {
         meseciSRB,
         meseciENG,
@@ -311,6 +368,7 @@ window.Common = (function () {
         initMagneticButtons,
         otvoriModal,
         zatvoriModal,
-        kopirajTekst
+        kopirajTekst,
+        renderSortDropdown
     };
 })();
