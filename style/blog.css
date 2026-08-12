@@ -412,6 +412,7 @@ body {
    6b. Traka za pretragu, filter i sortiranje — uvek u jednom redu
    ========================================================================== */
 .blog-toolbar {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -424,6 +425,27 @@ body {
     position: relative;
     flex: 1 1 auto;
     min-width: 0;
+}
+
+.blog-search-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--card-border);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.blog-search-toggle:hover {
+    border-color: var(--theme-accent);
+    color: var(--theme-accent);
 }
 
 #blog-kategorije,
@@ -497,60 +519,58 @@ body {
 }
 
 /* ==========================================================================
-   6b-2. Kompaktna traka na mobilnom — i dalje jedan red: lupa + 2 padajuće liste
+   6b-2. Kompaktna traka na mobilnom — jedan red: lupa (dugme) + filter + sort.
+   Klikom na lupu polje za pretragu se otvara pored nje (isti red), ikonica
+   lupe postaje X za zatvaranje. Meniji filtera/sortiranja se pozicioniraju
+   preko cele trake (ne uz sam taster) da uvek budu potpuno vidljivi.
+   (izgled samih dropdown-a je definisan generički u design-system.css)
    ========================================================================== */
 @media (max-width: 640px) {
     .blog-toolbar {
-        gap: 6px;
+        gap: 8px;
+    }
+
+    .blog-search-toggle {
+        display: flex;
     }
 
     .blog-search-wrap {
+        display: none;
         min-width: 0;
     }
 
     .blog-search-input {
-        padding: 10px 12px 10px 32px;
-        font-size: 0.8rem;
+        padding: 11px 14px 11px 36px;
+        font-size: 0.88rem;
     }
 
     .blog-search-icon {
-        left: 11px;
-        font-size: 0.78rem;
+        left: 13px;
     }
 
     .blog-search-clear {
-        right: 6px;
-        width: 20px;
-        height: 20px;
+        right: 8px;
     }
 
-    #blog-kategorije .sort-dropdown-toggle,
-    #blog-sort .sort-dropdown-toggle {
-        padding: 8px 9px;
-        gap: 5px;
-        font-size: 0.76rem;
+    .blog-toolbar.pretraga-otvorena #blog-kategorije,
+    .blog-toolbar.pretraga-otvorena #blog-sort {
+        display: none;
     }
 
-    #blog-kategorije .sort-dropdown-label,
-    #blog-sort .sort-dropdown-label {
-        max-width: 58px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        display: inline-block;
-        vertical-align: middle;
+    .blog-toolbar.pretraga-otvorena .blog-search-wrap {
+        display: block;
+        flex: 1 1 auto;
     }
 
-    #blog-kategorije .sort-dropdown-menu,
-    #blog-sort .sort-dropdown-menu {
-        min-width: 190px;
-    }
-}
-
-@media (max-width: 380px) {
-    #blog-kategorije .sort-dropdown-label,
-    #blog-sort .sort-dropdown-label {
-        max-width: 40px;
+    /* Dropdown meniji (filter/sort) se centriraju u odnosu na SVOJE dugme
+       — direktno ispod tastera koji ih je otvorio */
+    .blog-toolbar .sort-dropdown-menu {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: max-content;
+        min-width: 160px;
+        max-width: calc(100vw - 24px);
     }
 }
 

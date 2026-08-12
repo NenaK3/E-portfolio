@@ -23,6 +23,9 @@
                 oznakaIstaknuto: 'Istaknuto',
                 svaKategorija: 'Sve',
                 sortLabela: 'Sortiraj:',
+                filterDugme: 'Filter',
+                sortDugme: 'Sortiraj',
+                pretragaDugmeOznaka: 'Otvori pretragu',
                 sortNajnovije: 'Najnovije',
                 sortNajstarije: 'Najstarije',
                 sortAZ: 'Sortiraj od A do Z',
@@ -458,6 +461,9 @@
                 oznakaIstaknuto: 'Featured',
                 svaKategorija: 'All',
                 sortLabela: 'Sort:',
+                filterDugme: 'Filter',
+                sortDugme: 'Sort',
+                pretragaDugmeOznaka: 'Open search',
                 sortNajnovije: 'Newest',
                 sortNajstarije: 'Oldest',
                 sortAZ: 'Sort A to Z',
@@ -843,6 +849,8 @@
             blogModalTelo: document.getElementById('blog-modal-telo'),
             searchInput: document.getElementById('blog-search-input'),
             searchClear: document.getElementById('blog-search-clear'),
+            searchToggle: document.getElementById('blog-search-toggle'),
+            toolbar: document.getElementById('blog-toolbar'),
             searchRezultati: document.getElementById('blog-search-rezultati'),
             nemaRezultata: document.getElementById('blog-nema-rezultata'),
             kategorije: document.getElementById('blog-kategorije'),
@@ -997,7 +1005,7 @@
                 { value: 'sve', label: r.svaKategorija },
                 ...prisutne.map(slug => ({ value: slug, label: r.kategorije[slug] || slug }))
             ];
-            Common.renderSortDropdown(el.kategorije, opcije, aktivnaKategorija, izaberiKategoriju);
+            Common.renderSortDropdown(el.kategorije, opcije, aktivnaKategorija, izaberiKategoriju, 'fa-solid fa-filter', r.filterDugme);
         }
 
         function povezanePostoveHTML(idx) {
@@ -1128,6 +1136,27 @@
                 el.searchInput.focus();
                 prikaziBlogListu();
             });
+
+            if (el.searchToggle && el.toolbar) {
+                el.searchToggle.addEventListener('click', () => {
+                    const otvoreno = el.toolbar.classList.toggle('pretraga-otvorena');
+                    el.searchToggle.setAttribute('aria-expanded', String(otvoreno));
+
+                    const ikona = el.searchToggle.querySelector('i');
+                    if (ikona) {
+                        ikona.classList.toggle('fa-magnifying-glass', !otvoreno);
+                        ikona.classList.toggle('fa-xmark', otvoreno);
+                    }
+
+                    if (otvoreno) {
+                        el.searchInput.focus();
+                    } else {
+                        trenutnaPretraga = '';
+                        el.searchInput.value = '';
+                        prikaziBlogListu();
+                    }
+                });
+            }
         }
 
         function renderujSortDropdown() {
@@ -1139,7 +1168,7 @@
                 { value: 'az', label: r.sortAZ },
                 { value: 'za', label: r.sortZA }
             ];
-            Common.renderSortDropdown(el.sortDropdown, opcije, aktivnoSortiranje, izaberiSortiranje);
+            Common.renderSortDropdown(el.sortDropdown, opcije, aktivnoSortiranje, izaberiSortiranje, 'fa-solid fa-arrow-down-wide-short', r.sortDugme);
         }
 
         function osvezi() {
@@ -1159,6 +1188,7 @@
             el.blogUvod.innerText = r.uvod;
             el.searchInput.placeholder = r.pretragaPlaceholder;
             el.searchInput.setAttribute('aria-label', r.pretragaPlaceholder);
+            if (el.searchToggle) el.searchToggle.setAttribute('aria-label', r.pretragaDugmeOznaka);
 
             renderujKategorije();
             renderujSortDropdown();

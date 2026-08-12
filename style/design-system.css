@@ -488,14 +488,26 @@ button:focus-visible,
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
+.sort-dropdown-icon {
+    font-size: 0.78rem !important;
+    opacity: 0.85;
+}
+
+.sort-dropdown-label--kratka {
+    display: none;
+}
+
 .sort-dropdown.open .sort-dropdown-toggle {
     border-color: var(--theme-accent);
     color: var(--theme-accent);
 }
 
 .sort-dropdown.open .sort-dropdown-toggle i {
-    transform: rotate(180deg);
     color: var(--theme-accent);
+}
+
+.sort-dropdown.open .sort-dropdown-toggle .sort-dropdown-caret {
+    transform: rotate(180deg);
 }
 
 .sort-dropdown-menu {
@@ -547,20 +559,44 @@ button:focus-visible,
     color: #ffffff;
 }
 
+/* Samostalan dropdown (npr. projekti.html) — na mobilnom zauzima ceo red */
 @media (max-width: 600px) {
-    .sort-dropdown,
-    .sort-dropdown-toggle {
+    .projekti-toolbar .sort-dropdown,
+    .projekti-toolbar .sort-dropdown-toggle {
         width: 100%;
     }
 
-    .sort-dropdown-toggle {
+    .projekti-toolbar .sort-dropdown-toggle {
         justify-content: space-between;
     }
 
-    .sort-dropdown-menu {
+    .projekti-toolbar .sort-dropdown-menu {
         left: 0;
         right: 0;
         min-width: 0;
+    }
+}
+
+/* Dropdown-ovi u traci sa više elemenata (npr. blog.html) — na mobilnom
+   ostaju kompaktni: umesto trenutne vrednosti prikazuju fiksan kratak
+   naziv dugmeta ("Filter" / "Sortiraj") da sve stane u jedan red */
+@media (max-width: 640px) {
+    .blog-toolbar .sort-dropdown-toggle {
+        padding: 9px 12px;
+        gap: 6px;
+    }
+
+    .blog-toolbar .sort-dropdown-label--puna {
+        display: none;
+    }
+
+    .blog-toolbar .sort-dropdown-label--kratka {
+        display: inline-block;
+        font-size: 0.82rem;
+    }
+
+    .blog-toolbar .sort-dropdown-menu {
+        min-width: 200px;
     }
 }
 

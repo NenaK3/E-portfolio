@@ -312,15 +312,21 @@ window.Common = (function () {
         sortDropdownOtvoren = null;
     }
 
-    function renderSortDropdown(kontejner, opcije, aktivnaVrednost, onIzbor) {
+    function renderSortDropdown(kontejner, opcije, aktivnaVrednost, onIzbor, ikonaKlasa, kratkiNaslov) {
         if (!kontejner) return;
         const aktivnaOpcija = opcije.find(o => o.value === aktivnaVrednost) || opcije[0];
+        const ikonaDeo = ikonaKlasa ? `<i class="${ikonaKlasa} sort-dropdown-icon"></i>` : '';
+        const kratkaOznakaDeo = kratkiNaslov
+            ? `<span class="sort-dropdown-label sort-dropdown-label--kratka">${kratkiNaslov}</span>`
+            : '';
 
         kontejner.classList.add('sort-dropdown');
         kontejner.innerHTML = `
             <button type="button" class="sort-dropdown-toggle" aria-haspopup="listbox" aria-expanded="false">
-                <span class="sort-dropdown-label">${aktivnaOpcija ? aktivnaOpcija.label : ''}</span>
-                <i class="fa-solid fa-chevron-down"></i>
+                ${ikonaDeo}
+                <span class="sort-dropdown-label sort-dropdown-label--puna">${aktivnaOpcija ? aktivnaOpcija.label : ''}</span>
+                ${kratkaOznakaDeo}
+                <i class="fa-solid fa-chevron-down sort-dropdown-caret"></i>
             </button>
             <div class="sort-dropdown-menu" role="listbox">
                 ${opcije.map(o => `<button type="button" class="sort-dropdown-item${o.value === aktivnaVrednost ? ' aktivna' : ''}" role="option" aria-selected="${o.value === aktivnaVrednost}" data-value="${o.value}">${o.label}</button>`).join('')}
