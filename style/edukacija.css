@@ -370,6 +370,53 @@ body {
     position: relative;
 }
 
+/* ==========================================================================
+   6c. Kurs "u toku" — oznaka, istaknuta kartica i checklist preostalih koraka
+   ========================================================================== */
+.u-toku-card {
+    border-color: var(--theme-accent);
+    box-shadow: 0 10px 20px -6px var(--theme-shadow-strong, var(--shadow));
+}
+
+.edu-pin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--theme-accent);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.u-toku-oznaka {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--theme-accent);
+    font-weight: 700;
+}
+
+.u-toku-oznaka i {
+    animation: uTokuPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes uTokuPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .u-toku-oznaka i {
+        animation: none;
+    }
+}
+
 .exp-header {
     display: flex;
     justify-content: space-between;
@@ -558,6 +605,19 @@ body.light-mode .skill-tag {
     margin: 0;
 }
 
+.modal-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.sertifikat-brojac {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
 .modal-overlay .modal-close-btn {
     background: none;
     border: none;
@@ -575,6 +635,65 @@ body.light-mode .skill-tag {
 .modal-overlay .modal-body {
     padding: 24px;
     overflow-y: auto;
+}
+
+/* ==========================================================================
+   7a-2. Lightbox strelice za navigaciju kroz sertifikate
+   ========================================================================== */
+.sertifikat-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background-color: rgba(15, 23, 42, 0.55);
+    color: #ffffff;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.sertifikat-nav-btn:hover {
+    background-color: var(--theme-accent);
+    border-color: var(--theme-accent);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.sertifikat-nav-prev {
+    left: 16px;
+}
+
+.sertifikat-nav-next {
+    right: 16px;
+}
+
+.sertifikat-nav-btn.skriveno {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .sertifikat-nav-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 0.9rem;
+    }
+
+    .sertifikat-nav-prev {
+        left: 6px;
+    }
+
+    .sertifikat-nav-next {
+        right: 6px;
+    }
 }
 
 /* ==========================================================================

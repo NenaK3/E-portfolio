@@ -361,6 +361,50 @@ window.Common = (function () {
         window._sortDropdownGlobalniListeneri = true;
     }
 
+    // -----------------------------------------------------------------
+    // Plutajući scroll-prateći mini-meni — brz skok na druge stranice
+    // portfolija, pojavljuje se pri skrolovanju. Automatski se inicira
+    // na svakoj stranici koja ima glavnu navigaciju (.navbar) — index.html
+    // i 404.html je nemaju, pa se na njima ne prikazuje.
+    // -----------------------------------------------------------------
+    function initFloatingNav() {
+        if (!document.querySelector('.navbar') || document.getElementById('floating-nav')) return;
+
+        const jezikTrenutni = localStorage.getItem('portfolioJezik') || 'SRB';
+        const oznake = {
+            SRB: { profil: 'Profil', iskustvo: 'Iskustvo', edukacija: 'Edukacija', projekti: 'Projekti', blog: 'Blog' },
+            ENG: { profil: 'Profile', iskustvo: 'Experience', edukacija: 'Education', projekti: 'Projects', blog: 'Blog' }
+        };
+        const t = oznake[jezikTrenutni] || oznake.SRB;
+
+        const stavke = [
+            { href: 'portfolio.html', ikona: 'fa-address-card', naziv: t.profil },
+            { href: 'iskustvo.html', ikona: 'fa-briefcase', naziv: t.iskustvo },
+            { href: 'edukacija.html', ikona: 'fa-graduation-cap', naziv: t.edukacija },
+            { href: 'projekti.html', ikona: 'fa-folder-open', naziv: t.projekti },
+            { href: 'blog.html', ikona: 'fa-pen-nib', naziv: t.blog }
+        ];
+
+        const trenutnaStranica = window.location.pathname.split('/').pop() || 'portfolio.html';
+
+        const nav = document.createElement('div');
+        nav.id = 'floating-nav';
+        nav.className = 'floating-nav';
+        nav.setAttribute('aria-label', 'Brza navigacija');
+        nav.innerHTML = stavke.map(s => `
+            <a href="${s.href}" class="floating-nav-link${s.href === trenutnaStranica ? ' aktivna' : ''}" data-tooltip="${s.naziv}" aria-label="${s.naziv}">
+                <i class="fa-solid ${s.ikona}"></i>
+            </a>`).join('');
+
+        document.body.appendChild(nav);
+
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('visible', window.scrollY > 300);
+        }, { passive: true });
+    }
+
+    document.addEventListener('DOMContentLoaded', initFloatingNav);
+
     return {
         meseciSRB,
         meseciENG,
@@ -375,6 +419,7 @@ window.Common = (function () {
         otvoriModal,
         zatvoriModal,
         kopirajTekst,
-        renderSortDropdown
+        renderSortDropdown,
+        initFloatingNav
     };
 })();

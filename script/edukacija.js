@@ -98,6 +98,7 @@
 
         const neformalnoPodaci = {
             SRB: [
+                { kurs: 'Power BI Data Analyst Associate (PL-300)', izdavac: 'Microsoft', period: '<span class="u-toku-oznaka"><i class="fa-solid fa-hourglass-half"></i> U toku</span>', uToku: true, opis: 'Kao nadogradnju na osnovni Power BI kurs koji sam ranije završila (Kampster AI, decembar 2024), trenutno se pripremam za Microsoft sertifikaciju Power BI Data Analyst Associate (ispit PL-300) — profesionalni, srednji nivo sertifikacije koji podiže to znanje na viši nivo. Kroz dosadašnju pripremu produbila sam znanje Power Query-ja za povezivanje, čišćenje i transformaciju podataka iz različitih izvora, naučila sam da gradim relacije između tabela i pišem DAX mere i izračunate kolone za modelovanje podataka na naprednijem nivou nego ranije. Unapredila sam veštinu kreiranja interaktivnih izveštaja i dashboard-a koji jasno komuniciraju uvide, kao i upravljanje i bezbednost u Power BI servisu — organizaciju radnih prostora, deljenje izveštaja i row-level security.', vestine: ['Power BI', 'DAX', 'Power Query', 'Modelovanje podataka', 'Vizuelizacija podataka'] },
                 { kurs: 'Baze podataka', izdavac: 'freeCodeCamp', period: 'Maj 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Relational-Databases.git', verifikacijaLink: 'https://www.freecodecamp.org/certification/nena_k/relational-database-v8', opis: 'Intenzivan kurs posvećen radu sa relacionim bazama podataka, u okviru kog sam kroz praktične zadatke naučila da projektujem šeme baza, pišem složene SQL upite i optimizujem njihove performanse. Radila sam u Linux okruženju koristeći komandnu liniju i Bash skripte za automatizaciju svakodnevnih zadataka, dok sam kroz Git usvojila disciplinu verzionisanja koda i praćenja izmena. Poseban fokus bio je na PostgreSQL sistemu upravljanja bazama, uključujući normalizaciju podataka, indeksiranje i pisanje agregatnih upita.', vestine: ['PostgreSQL', 'SQL', 'Git & GitHub'] },
                 { kurs: 'Responzivni veb dizajn', izdavac: 'freeCodeCamp', period: 'Mart 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Responsive-Web-Design.git', verifikacijaLink: 'https://www.freecodecamp.org/certification/nena_k/responsive-web-design', opis: 'Sveobuhvatan kurs kroz koji sam usavršila principe responzivnog dizajna — od fleksibilnih layout tehnika poput Flexbox-a i CSS Grid-a, do medijskih upita koji obezbeđuju da sajt izgleda besprekorno na svim veličinama ekrana. Naučila sam da strukturiram semantički ispravan HTML5 kod i primenim napredne CSS tehnike stilizovanja, uključujući animacije, tranzicije i pristupačan dizajn. Kroz niz praktičnih projekata izgradila sam naviku da razmišljam mobile-first i testiram rešenja na različitim rezolucijama.', vestine: ['HTML', 'HTML5', 'CSS'] },
                 { kurs: 'Excel VBA programiranje', izdavac: 'Kampster AI', period: 'April 2025', sertifikatFajl: 'assets/sertifikat/srb - Excel VBA programiranje - osnovni nivo.pdf', opis: 'Kurs fokusiran na automatizaciju repetitivnih zadataka unutar Excel-a pomoću VBA (Visual Basic for Applications) programskog jezika. Naučila sam da pišem makroe koji ubrzavaju obradu podataka, kreiram korisničke forme (UserForms) za unos podataka i kontrolišem tok izvršavanja pomoću petlji i uslovnih struktura. Ovo znanje mi je pomoglo da razumem kako se poslovni procesi mogu automatizovati bez potrebe za razvojem posebne softverske aplikacije.', vestine: ['VBA', 'Automatizacija'] },
@@ -105,6 +106,7 @@
                 { kurs: 'Adobe Dreamweaver', izdavac: 'Akademija Oxford', period: '2021', githubLink: 'https://github.com/NenaK3/E-portfolio.git', sertifikatFajl: 'assets/sertifikat/Adobe Dreamweaver.pdf', opis: 'Jedan od mojih prvih kurseva iz oblasti veb razvoja, kroz koji sam savladala osnove izrade veb stranica u Adobe Dreamweaver okruženju. Naučila sam standarde modernog veb dizajna, strukturiranje HTML dokumenata i osnovno CSS stilizovanje, kao i principe organizacije fajlova unutar projekta. Ovaj kurs je postavio temelje mog interesovanja za frontend razvoj koje sam kasnije nadogradila kroz akademsko obrazovanje i profesionalnu praksu.', vestine: ['HTML', 'HTML5', 'CSS', 'Web design', 'Web development'] }
             ],
             ENG: [
+                { kurs: 'Power BI Data Analyst Associate (PL-300)', izdavac: 'Microsoft', period: '<span class="u-toku-oznaka"><i class="fa-solid fa-hourglass-half"></i> In progress</span>', uToku: true, opis: "Building on the foundational Power BI course I previously completed (Kampster AI, December 2024), I am currently preparing for the Microsoft Certified: Power BI Data Analyst Associate certification (exam PL-300) — a professional, intermediate-level certification that takes that knowledge further. Through my preparation so far, I have deepened my knowledge of Power Query for connecting to, cleaning, and transforming data from various sources, and learned to build relationships between tables and write DAX measures and calculated columns for data modeling at a more advanced level than before. I have improved my ability to create interactive reports and dashboards that communicate insights clearly, as well as managing and securing Power BI — organizing workspaces, sharing reports, and row-level security.", vestine: ['Power BI', 'DAX', 'Power Query', 'Data Modeling', 'Data Visualization'] },
                 { kurs: 'Databases', izdavac: 'freeCodeCamp', period: 'May 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Relational-Databases.git', verifikacijaLink: 'https://www.freecodecamp.org/certification/nena_k/relational-database-v8', opis: 'An intensive course focused on relational database systems, where I learned to design database schemas, write complex SQL queries, and optimize query performance through hands-on exercises. I worked within a Linux environment using the command line and Bash scripts to automate everyday tasks, while Git taught me the discipline of version control and change tracking. Special emphasis was placed on PostgreSQL, including data normalization, indexing, and writing aggregate queries.', vestine: ['PostgreSQL', 'SQL', 'Git & GitHub'] },
                 { kurs: 'Responsive Web Design', izdavac: 'freeCodeCamp', period: 'March 2026', githubLink: 'https://github.com/NenaK3/freecodecamp-Responsive-Web-Design.git', verifikacijaLink: 'https://www.freecodecamp.org/certification/nena_k/responsive-web-design', opis: 'A comprehensive course through which I mastered responsive design principles — from flexible layout techniques such as Flexbox and CSS Grid, to media queries that ensure a site looks flawless across all screen sizes. I learned to structure semantically correct HTML5 and apply advanced CSS styling techniques, including animations, transitions, and accessible design. Through a series of hands-on projects I built the habit of thinking mobile-first and testing solutions across different resolutions.', vestine: ['HTML', 'HTML5', 'CSS'] },
                 { kurs: 'Excel VBA Programming', izdavac: 'Kampster AI', period: 'April 2025', sertifikatFajl: 'assets/sertifikat/eng - Excel VBA programiranje - osnovni nivo.pdf', opis: 'A course focused on automating repetitive tasks in Excel using the VBA (Visual Basic for Applications) programming language. I learned to write macros that speed up data processing, build UserForms for data entry, and control program flow using loops and conditional structures. This knowledge helped me understand how business processes can be automated without developing a separate software application.', vestine: ['VBA', 'Automation'] },
@@ -125,6 +127,7 @@
                 navProfil: 'Profil', navIskustvo: 'Iskustvo', navEdukacija: 'Edukacija', navBlog: 'Blog', navPromeni: 'Promeni portfolio',
                 naslovFormalno: 'Formalno obrazovanje', naslovNeformalno: 'Neformalno obrazovanje',
                 tekstPogledajSertifikat: 'Pogledaj sertifikat',
+                oznakaZakaceno: 'Zakačeno',
                 tekstEksterniOpis: 'Ovaj sertifikat se nalazi na freeCodeCamp platformi. Iz bezbednosnih razloga sajt ne dozvoljava prikaz unutar ovog prozora — klikni dugme ispod da ga pogledaš.',
                 tekstOtvoriSertifikat: 'Otvori sertifikat',
                 footer: '©Copyright by Nena Kozić',
@@ -134,6 +137,7 @@
                 navProfil: 'Profile', navIskustvo: 'Experience', navEdukacija: 'Education', navBlog: 'Blog', navPromeni: 'Switch Portfolio',
                 naslovFormalno: 'Formal education', naslovNeformalno: 'Non-formal education',
                 tekstPogledajSertifikat: 'View Certificate',
+                oznakaZakaceno: 'Pinned',
                 tekstEksterniOpis: 'This certificate is hosted on the freeCodeCamp platform. For security reasons the site does not allow it to be displayed inside this window — click the button below to view it.',
                 tekstOtvoriSertifikat: 'Open Certificate',
                 footer: '©Copyright by Nena Kozić',
@@ -171,7 +175,10 @@
             radModalTelo: document.getElementById('rad-modal-telo'),
             sertifikatModal: document.getElementById('sertifikat-modal'),
             sertifikatModalNaslov: document.getElementById('sertifikat-modal-naslov'),
-            sertifikatModalTelo: document.getElementById('sertifikat-modal-telo')
+            sertifikatModalTelo: document.getElementById('sertifikat-modal-telo'),
+            sertifikatBrojac: document.getElementById('sertifikat-brojac'),
+            sertifikatPrev: document.getElementById('sertifikat-prev'),
+            sertifikatNext: document.getElementById('sertifikat-next')
         };
 
         function karticaHTML({ naslov, podnaslov, period, opis, link, linkTekst, vestine, extraClass = '', tagClass = 'skill-tag', radDugme = '', sertifikatHTML = '' }) {
@@ -182,19 +189,18 @@
                         <span class="block-date">${period}</span>
                     </div>
                     <p class="exp-opis">${opis}</p>
-                    ${link ? `<a href="${link}" target="_blank" class="project-link"><i class="${extraClass ? 'fa-brands fa-github' : 'fa-solid fa-link'}"></i> ${linkTekst}</a>` : ''}
+                    ${link ? `<a href="${link}" target="_blank" class="project-link"><i class="${link.includes('github.com') ? 'fa-brands fa-github' : 'fa-solid fa-link'}"></i> ${linkTekst}</a>` : ''}
                     ${radDugme}
                     ${sertifikatHTML}
                     <div class="tag-container" style="${extraClass ? 'margin-top:10px;' : ''}">${vestine.map(v => `<span class="${tagClass}">${v}</span>`).join('')}</div>
                 </div>`;
         }
 
-        function sertifikatDugmadHTML(n, r) {
+        function sertifikatDugmadHTML(n, r, i) {
             const putanja = n.verifikacijaLink || n.sertifikatFajl;
             if (!putanja) return '';
 
-            const naslovEskejp = n.kurs.replace(/'/g, "\\'");
-            return `<div class="cert-buttons-row"><a href="javascript:void(0)" onclick="otvoriSertifikatModal('${putanja}', '${naslovEskejp}')" class="project-link cert-link"><i class="fa-solid fa-certificate"></i> ${r.tekstPogledajSertifikat}</a></div>`;
+            return `<div class="cert-buttons-row"><a href="javascript:void(0)" onclick="otvoriSertifikatModal(${i})" class="project-link cert-link"><i class="fa-solid fa-certificate"></i> ${r.tekstPogledajSertifikat}</a></div>`;
         }
 
         function otvoriRadModal(kljuc) {
@@ -241,8 +247,34 @@
             if (event.key === 'Escape' && el.radModal.style.display === 'flex') zatvoriRadModal();
         });
 
-        function otvoriSertifikatModal(putanja, naslov) {
+        let trenutniSertifikatIndex = 0;
+
+        function otvoriSertifikatModal(i) {
+            trenutniSertifikatIndex = i;
+            prikaziSertifikat();
+            el.sertifikatModal.style.display = 'flex';
+            Common.otvoriModal(el.sertifikatModal);
+        }
+
+        function prikaziSertifikat() {
+            const lista = neformalnoPodaci[jezik];
+            const n = lista[trenutniSertifikatIndex];
+            if (!n) return;
+
+            const putanja = n.verifikacijaLink || n.sertifikatFajl;
+            const naslov = n.kurs;
+            const r = recnik[jezik];
+
             el.sertifikatModalNaslov.innerText = naslov;
+
+            if (el.sertifikatBrojac) {
+                el.sertifikatBrojac.innerText = lista.length > 1
+                    ? `${trenutniSertifikatIndex + 1} / ${lista.length}`
+                    : '';
+            }
+            if (el.sertifikatPrev) el.sertifikatPrev.classList.toggle('skriveno', lista.length < 2);
+            if (el.sertifikatNext) el.sertifikatNext.classList.toggle('skriveno', lista.length < 2);
+
             const staza = putanja.toLowerCase();
 
             if (staza.endsWith('.pdf')) {
@@ -254,7 +286,6 @@
             } else if (staza.endsWith('.png') || staza.endsWith('.jpg') || staza.endsWith('.jpeg')) {
                 el.sertifikatModalTelo.innerHTML = `<img src="${putanja}" alt="${naslov}" loading="lazy">`;
             } else {
-                const r = recnik[jezik];
                 el.sertifikatModalTelo.innerHTML = `
                     <div class="cert-external-card">
                         <i class="fa-solid fa-shield-halved cert-external-icon"></i>
@@ -262,9 +293,20 @@
                         <a href="${putanja}" target="_blank" class="cert-external-btn"><i class="fa-solid fa-up-right-from-square"></i> ${r.tekstOtvoriSertifikat}</a>
                     </div>`;
             }
+        }
 
-            el.sertifikatModal.style.display = 'flex';
-            Common.otvoriModal(el.sertifikatModal);
+        function sertifikatSledeci() {
+            const lista = neformalnoPodaci[jezik];
+            if (lista.length < 2) return;
+            trenutniSertifikatIndex = (trenutniSertifikatIndex + 1) % lista.length;
+            prikaziSertifikat();
+        }
+
+        function sertifikatPrethodni() {
+            const lista = neformalnoPodaci[jezik];
+            if (lista.length < 2) return;
+            trenutniSertifikatIndex = (trenutniSertifikatIndex - 1 + lista.length) % lista.length;
+            prikaziSertifikat();
         }
 
         function zatvoriSertifikatModal() {
@@ -279,6 +321,10 @@
 
         document.addEventListener('keydown', event => {
             if (event.key === 'Escape' && el.sertifikatModal.style.display === 'flex') zatvoriSertifikatModal();
+            if (el.sertifikatModal.style.display === 'flex') {
+                if (event.key === 'ArrowRight') sertifikatSledeci();
+                if (event.key === 'ArrowLeft') sertifikatPrethodni();
+            }
         });
 
         function azurirajDatumFootera() {
@@ -354,11 +400,15 @@
             })).join('');
 
             if (mod === 'IT') {
-                el.neformalnoKontejner.innerHTML = neformalnoPodaci[jezik].map(n => karticaHTML({
-                    naslov: n.kurs, podnaslov: n.izdavac, period: n.period, opis: n.opis,
-                    link: n.githubLink, linkTekst: 'GitHub Code', vestine: n.vestine,
-                    extraClass: 'spec-course-card', tagClass: 'skill-tag course-tag',
-                    sertifikatHTML: sertifikatDugmadHTML(n, r)
+                el.neformalnoKontejner.innerHTML = neformalnoPodaci[jezik].map((n, i) => karticaHTML({
+                    naslov: (n.uToku ? `<span class="edu-pin-badge"><i class="fa-solid fa-thumbtack"></i> ${r.oznakaZakaceno}</span>` : '') + n.kurs, podnaslov: n.izdavac, period: n.period,
+                    opis: n.opis,
+                    link: n.uToku ? null : n.githubLink,
+                    linkTekst: 'GitHub Code',
+                    vestine: n.vestine,
+                    extraClass: n.uToku ? 'spec-course-card u-toku-card' : 'spec-course-card',
+                    tagClass: 'skill-tag course-tag',
+                    sertifikatHTML: n.uToku ? '' : sertifikatDugmadHTML(n, r, i)
                 })).join('');
             }
             initFadeInReveal();

@@ -1285,6 +1285,99 @@ body.edu-theme .hero-section::after {
 }
 
 /* ==========================================================================
+   29b. Plutajući scroll-prateći navigacioni meni (brz skok na druge stranice)
+   ========================================================================== */
+.floating-nav {
+    position: fixed;
+    left: 24px;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+    background-color: color-mix(in srgb, var(--card-bg) 88%, transparent);
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    box-shadow: var(--shadow-md), inset 0 1px 0 var(--card-edge);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    z-index: 500;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50%) translateX(-14px);
+    transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
+}
+
+.floating-nav.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+}
+
+.floating-nav-link {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.floating-nav-link:hover {
+    background-color: var(--btn-bg);
+    color: var(--theme-accent);
+    transform: scale(1.08);
+}
+
+.floating-nav-link.aktivna {
+    background-color: var(--theme-accent);
+    color: #ffffff;
+}
+
+.floating-nav-link::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.floating-nav-link:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(2px);
+}
+
+@media (max-width: 900px) {
+    .floating-nav {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .floating-nav {
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+        transform: translateY(-50%);
+    }
+}
+
+/* ==========================================================================
    30. Bogatiji page-transition (View Transitions API) 
    ========================================================================== */
 @media (prefers-reduced-motion: no-preference) {
