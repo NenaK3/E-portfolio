@@ -28,6 +28,15 @@
     --pastel-pink-accent: #f472b6;
     --pastel-pink-text: #b02a59;
     --pastel-pink-dark: #db2777;
+
+    /* Kontura robota — svetlija nijansa da linije ostanu vidljive na tamnom telu robota */
+    --robot-outline: #8fa2c9;
+    --robot-outline-soft: color-mix(in srgb, var(--robot-outline) 55%, transparent);
+    --robot-body-base: var(--card-bg);
+    --robot-body-stop1: var(--card-bg);
+    --robot-body-stop2: color-mix(in srgb, var(--card-bg) 84%, var(--pastel-blue-accent) 16%);
+    --robot-gloss-color: rgba(255, 255, 255, 0.07);
+    --robot-gloss-color-soft: rgba(255, 255, 255, 0.06);
 }
 
 body.light-mode {
@@ -66,8 +75,22 @@ body.light-mode .robot-404-stage::before {
 }
 
 body.light-mode .robot-404-svg {
-    --card-border: var(--pastel-blue-dark);
-    filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.12));
+    --robot-outline: var(--pastel-blue-dark);
+    --robot-outline-soft: color-mix(in srgb, var(--robot-outline) 60%, transparent);
+    --robot-body-base: var(--pastel-blue-bg);
+    --robot-body-stop1: #ffffff;
+    --robot-body-stop2: var(--pastel-blue-bg);
+    --robot-gloss-color: color-mix(in srgb, var(--pastel-blue-dark) 12%, transparent);
+    --robot-gloss-color-soft: color-mix(in srgb, var(--pastel-blue-dark) 8%, transparent);
+    filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.14));
+}
+
+body.light-mode .robot-404-senka {
+    background: radial-gradient(closest-side, rgba(15, 23, 42, 0.2), transparent 75%);
+}
+
+body.light-mode .robot-404-svg .robot-blush {
+    opacity: 0.45;
 }
 
 body.light-mode .error-card {
@@ -335,6 +358,24 @@ body.light-mode .robot-404-orbit {
     z-index: 1;
 }
 
+.robot-404-senka {
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    width: 58%;
+    height: 14px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--shadow) 92%, #000 15%), transparent 75%);
+    z-index: 0;
+    animation: senkaPulsiranje 3.2s ease-in-out infinite;
+}
+
+@keyframes senkaPulsiranje {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.55; }
+    50% { transform: translateX(-50%) scale(0.82); opacity: 0.3; }
+}
+
 .robot-404-svg {
     width: 100%;
     height: auto;
@@ -358,12 +399,12 @@ body.light-mode .robot-404-orbit {
 }
 
 .robot-arm-left {
-    transform-origin: 65px 160px;
+    transform-origin: 62px 160px;
     animation: masiRukaLevo 2.4s ease-in-out infinite;
 }
 
 .robot-arm-right {
-    transform-origin: 155px 160px;
+    transform-origin: 158px 160px;
     animation: masiRukaDesno 2.4s ease-in-out infinite;
 }
 
@@ -377,11 +418,48 @@ body.light-mode .robot-404-orbit {
     50% { transform: rotate(6deg); }
 }
 
+.robot-eye {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: robotTrepni 5.5s ease-in-out infinite;
+}
+
+@keyframes robotTrepni {
+    0%, 90%, 100% { transform: scaleY(1); }
+    93%, 96% { transform: scaleY(0.12); }
+}
+
+.robot-signal-wave {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: signalPulsiranje 2.6s ease-out infinite;
+}
+
+@keyframes signalPulsiranje {
+    0% { opacity: 0.7; transform: scale(0.6); }
+    70%, 100% { opacity: 0; transform: scale(1.35); }
+}
+
+.robot-ekran {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ekranSjaj 2.6s ease-in-out infinite;
+}
+
+@keyframes ekranSjaj {
+    0%, 100% { filter: drop-shadow(0 0 2px color-mix(in srgb, var(--pastel-pink-accent) 55%, transparent)); }
+    50% { filter: drop-shadow(0 0 7px color-mix(in srgb, var(--pastel-pink-accent) 85%, transparent)); }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .robot-404-svg,
     .robot-antenna-dot,
     .robot-arm-left,
-    .robot-arm-right {
+    .robot-arm-right,
+    .robot-404-senka,
+    .robot-eye,
+    .robot-signal-wave,
+    .robot-ekran {
         animation: none;
     }
 }

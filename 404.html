@@ -73,28 +73,84 @@
             <div class="robot-404-particle robot-404-particle-2" aria-hidden="true"></div>
             <div class="robot-404-particle robot-404-particle-3" aria-hidden="true"></div>
             <div class="robot-404" aria-hidden="true">
+                <div class="robot-404-senka" aria-hidden="true"></div>
                 <svg viewBox="0 0 220 220" class="robot-404-svg" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="robot-404-linija" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stop-color="var(--pastel-blue-accent)"/>
                             <stop offset="100%" stop-color="var(--pastel-pink-accent)"/>
                         </linearGradient>
+                        <linearGradient id="robot-404-telo" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="var(--robot-body-stop1)"/>
+                            <stop offset="100%" stop-color="var(--robot-body-stop2)"/>
+                        </linearGradient>
+                        <filter id="robot-404-senka-blaga" x="-30%" y="-30%" width="160%" height="160%">
+                            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.18"/>
+                        </filter>
                     </defs>
-                    <line x1="110" y1="18" x2="110" y2="38" stroke="url(#robot-404-linija)" stroke-width="4" stroke-linecap="round"/>
-                    <circle cx="110" cy="14" r="7" fill="var(--pastel-pink-accent)" class="robot-antenna-dot"/>
-                    <rect x="45" y="38" width="130" height="100" rx="26" fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="3"/>
-                    <g stroke="url(#robot-404-linija)" stroke-width="6" stroke-linecap="round">
-                        <line x1="78" y1="72" x2="98" y2="92"/>
-                        <line x1="98" y1="72" x2="78" y2="92"/>
-                        <line x1="122" y1="72" x2="142" y2="92"/>
-                        <line x1="142" y1="72" x2="122" y2="92"/>
+
+                    <!-- Signalni talasi oko antene -->
+                    <path class="robot-signal-wave" d="M98 4 Q88 11 98 18" fill="none" stroke="var(--pastel-blue-accent)" stroke-width="2" stroke-linecap="round"/>
+                    <path class="robot-signal-wave" d="M122 4 Q132 11 122 18" fill="none" stroke="var(--pastel-pink-accent)" stroke-width="2" stroke-linecap="round" style="animation-delay: 0.5s"/>
+
+                    <!-- Antena -->
+                    <line x1="110" y1="15" x2="110" y2="38" stroke="url(#robot-404-linija)" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="110" cy="11" r="10" fill="none" stroke="var(--pastel-pink-accent)" stroke-width="1.5" opacity="0.35"/>
+                    <circle cx="110" cy="11" r="7" fill="var(--pastel-pink-accent)" class="robot-antenna-dot"/>
+
+                    <!-- Glava -->
+                    <rect x="45" y="38" width="130" height="100" rx="28" fill="url(#robot-404-telo)" stroke="var(--robot-outline)" stroke-width="3.5" filter="url(#robot-404-senka-blaga)"/>
+                    <ellipse cx="82" cy="54" rx="32" ry="13" fill="var(--robot-gloss-color)" transform="rotate(-15 82 54)"/>
+
+                    <!-- Oči -->
+                    <g class="robot-eye">
+                        <circle cx="85" cy="80" r="12" fill="url(#robot-404-linija)"/>
+                        <circle cx="85" cy="82" r="4.5" fill="var(--bg-color)"/>
+                        <circle cx="82" cy="78" r="1.6" fill="#ffffff" opacity="0.85"/>
                     </g>
-                    <rect x="90" y="108" width="40" height="8" rx="4" fill="var(--pastel-pink-accent)"/>
-                    <rect x="65" y="140" width="90" height="60" rx="16" fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="3"/>
-                    <circle cx="110" cy="170" r="16" fill="none" stroke="var(--pastel-pink-accent)" stroke-width="4"/>
-                    <text x="110" y="176" text-anchor="middle" font-family="var(--font-mono, monospace)" font-size="14" font-weight="700" fill="var(--pastel-pink-accent)">404</text>
-                    <line x1="65" y1="160" x2="40" y2="180" stroke="url(#robot-404-linija)" stroke-width="6" stroke-linecap="round" class="robot-arm-left"/>
-                    <line x1="155" y1="160" x2="180" y2="180" stroke="url(#robot-404-linija)" stroke-width="6" stroke-linecap="round" class="robot-arm-right"/>
+                    <g class="robot-eye">
+                        <circle cx="135" cy="80" r="12" fill="url(#robot-404-linija)"/>
+                        <circle cx="135" cy="82" r="4.5" fill="var(--bg-color)"/>
+                        <circle cx="132" cy="78" r="1.6" fill="#ffffff" opacity="0.85"/>
+                    </g>
+
+                    <!-- Rumeni obrazi -->
+                    <circle cx="68" cy="99" r="6" class="robot-blush" fill="var(--pastel-pink-accent)" opacity="0.3"/>
+                    <circle cx="152" cy="99" r="6" class="robot-blush" fill="var(--pastel-pink-accent)" opacity="0.3"/>
+
+                    <!-- Osmeh -->
+                    <path d="M92 110 Q110 121 128 110" stroke="var(--pastel-pink-accent)" stroke-width="5" stroke-linecap="round" fill="none"/>
+
+                    <ellipse cx="110" cy="136" rx="34" ry="4" fill="#0f172a" opacity="0.1"/>
+
+                    <!-- Vrat -->
+                    <rect x="100" y="134" width="20" height="10" rx="3" fill="var(--robot-outline)" opacity="0.6"/>
+
+                    <!-- Telo -->
+                    <rect x="62" y="140" width="96" height="64" rx="20" fill="url(#robot-404-telo)" stroke="var(--robot-outline)" stroke-width="3.5" filter="url(#robot-404-senka-blaga)"/>
+                    <ellipse cx="90" cy="152" rx="22" ry="7" fill="var(--robot-gloss-color-soft)" transform="rotate(-10 90 152)"/>
+                    <circle cx="70" cy="148" r="2.2" fill="var(--robot-outline)" opacity="0.55"/>
+                    <circle cx="150" cy="148" r="2.2" fill="var(--robot-outline)" opacity="0.55"/>
+                    <circle cx="70" cy="196" r="2.2" fill="var(--robot-outline)" opacity="0.55"/>
+                    <circle cx="150" cy="196" r="2.2" fill="var(--robot-outline)" opacity="0.55"/>
+
+                    <!-- Ekran sa brojem 404 -->
+                    <g class="robot-ekran">
+                        <circle cx="110" cy="172" r="19" fill="none" stroke="#0f172a" stroke-width="3" opacity="0.14"/>
+                        <circle cx="110" cy="172" r="17" fill="var(--bg-color)" stroke="var(--pastel-pink-accent)" stroke-width="4"/>
+                        <text x="110" y="178" text-anchor="middle" font-family="var(--font-mono, monospace)" font-size="14" font-weight="700" fill="var(--pastel-pink-accent)">404</text>
+                    </g>
+                    <line x1="97" y1="196" x2="123" y2="196" stroke="var(--robot-outline)" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+
+                    <!-- Ruke sa šakama -->
+                    <g class="robot-arm-left">
+                        <line x1="62" y1="160" x2="38" y2="182" stroke="url(#robot-404-linija)" stroke-width="6" stroke-linecap="round"/>
+                        <circle cx="38" cy="182" r="7" fill="url(#robot-404-linija)"/>
+                    </g>
+                    <g class="robot-arm-right">
+                        <line x1="158" y1="160" x2="182" y2="182" stroke="url(#robot-404-linija)" stroke-width="6" stroke-linecap="round"/>
+                        <circle cx="182" cy="182" r="7" fill="url(#robot-404-linija)"/>
+                    </g>
                 </svg>
             </div>
         </div>
